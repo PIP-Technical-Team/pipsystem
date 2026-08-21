@@ -1,0 +1,50 @@
+schemaVersion: "compound-gpid-wiki-v1"
+folder: "wiki"
+pages:
+  - id: "readme"
+    file: "README.md"
+    title: "Home"
+    ownership: "auto"
+    order: 1
+    sections:
+      - id: "overview"
+        managed: true
+      - id: "setup"
+        managed: true
+      - id: "quick-start"
+        managed: true
+  - id: "usage"
+    file: "usage.md"
+    title: "Usage"
+    ownership: "auto"
+    order: 2
+    sections:
+      - id: "commands"
+        managed: true
+      - id: "flags"
+        managed: true
+      - id: "examples"
+        managed: true
+  - id: "configuration"
+    file: "configuration.md"
+    title: "Configuration"
+    ownership: "auto"
+    order: 3
+    sections:
+      - id: "config-keys"
+        managed: true
+      - id: "defaults"
+        managed: true
+      - id: "environment-vars"
+        managed: true
+  - id: "cli-reference"
+    file: "cli-reference.md"
+    title: "CLI Reference"
+    ownership: "auto"
+    order: 4
+    sections:
+      - id: "all-commands"
+        managed: true
+      - id: "full-options"
+        managed: true
+lastUpdated: "2026-08-21"
