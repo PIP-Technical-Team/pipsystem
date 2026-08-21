@@ -17,6 +17,9 @@ Design and build an incremental build system for the PIP data pipeline: a system
 - Data contracts per pipeline layer.
 - A dependency graph with an explicit invalidation model.
 - A planner that decides what needs to run for a given release, kept separate from the executor so the compute platform can change without changing the logic.
+- A planner built on `{stamp}` that decides what needs to run for a given release,
+  plus whatever extensions to `{stamp}` that requires, kept separate from the
+  executor so the compute platform can change without changing the logic.
 
 ## Constraints
 
@@ -25,6 +28,9 @@ Design and build an incremental build system for the PIP data pipeline: a system
 - Record the commit SHA of every package repository read. Facts without a SHA are not reusable.
 - Planner logic must stay portable and must not depend on any specific cloud platform.
 - R dialect is data.table and collapse, matching the existing PIP packages.
+- `{stamp}` stays domain agnostic. It knows about artifacts, hashes, parents, and
+  versions. It must never learn what a survey, a CPI series, or a release is.
+  PIP specific concepts live in pipsystem.
 
 ## Current Focus
 

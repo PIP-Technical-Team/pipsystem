@@ -23,6 +23,8 @@ this file is committed to git and shared with the team.
 - **pipster**: PIP user facing computation package. Read only source.
 - **pipfaker**: PIP synthetic data generation for testing. Read only source.
 - **metapip**: PIP package installer, branch management, SHA pinned lockfile. Read only source.
+- **stamp**: Lightweight versioned artifact store for R with sidecar metadata, pruning policies, and Hive-style partitions.
+
 
 ## Wiki Configuration
 <!-- folder: wiki -->
