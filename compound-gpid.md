@@ -2,7 +2,7 @@
 project-name: "pipsystem"
 team: "PIP-Technical-Team"
 created: "2026-08-21"
-last-reviewed: "2026-08-21"
+last-reviewed: "2026-10-07"
 ---
 
 # pipsystem
@@ -34,4 +34,4 @@ Design and build an incremental build system for the PIP data pipeline: a system
 
 ## Current Focus
 
-Phase 1, discovery. Establish what documentation already exists in the .cg-docs folders of the PIP package repositories before generating anything new, then harvest structured facts about how the nine packages read data, write data, consume auxiliary data, and encode cleaning rules. The first question to answer is the granularity at which auxiliary data is consumed, because it determines whether precise invalidation is achievable without refactoring.
+M0 and M1 in parallel. M0: Andres decides the proposals in SYSTEM_DESIGN.md. M1: one agent per package answers HARVEST_BRIEF.md. Next: M2 walking skeleton, starting when its nine prerequisite features are done.

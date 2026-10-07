@@ -1,4 +1,127 @@
 {
   "schemaVersion": "compound-gpid-roadmap-v1",
-  "milestones": []
+  "milestones": [
+    {
+      "id": "m0-settle-the-design",
+      "title": "M0 Settle the design",
+      "objective": "Decide every proposal in SYSTEM_DESIGN.md so build work starts from a stable design.",
+      "status": "planned",
+      "features": [
+        { "id": "decide-module-out-of-survey-id", "title": "Decide module out of survey ID", "status": "idea", "plan": null },
+        { "id": "decide-decisions-become-data", "title": "Decide decisions become data", "status": "idea", "plan": null },
+        { "id": "decide-stage-5-output-shape", "title": "Decide stage 5 output shape", "status": "idea", "plan": null },
+        { "id": "decide-engine-first-interface-later", "title": "Decide engine first interface later", "status": "idea", "plan": null },
+        { "id": "decide-pipster-calculations-only", "title": "Decide pipster calculations only", "status": "idea", "plan": null },
+        { "id": "decide-plan-only-mode", "title": "Decide plan only mode", "status": "idea", "plan": null },
+        { "id": "decide-transient-and-permanent-failures", "title": "Decide transient and permanent failures", "status": "idea", "plan": null },
+        { "id": "decide-corrections-keep-history", "title": "Decide corrections keep history", "status": "idea", "plan": null },
+        { "id": "update-system-design-with-m0-decisions", "title": "Update SYSTEM_DESIGN with M0 decisions", "status": "idea", "plan": null }
+      ]
+    },
+    {
+      "id": "m1-know-the-code",
+      "title": "M1 Know the code",
+      "objective": "Answer the Open questions that only code can answer, with file and line evidence.",
+      "status": "planned",
+      "features": [
+        { "id": "harvest-stamp", "title": "Harvest stamp", "status": "idea", "plan": null },
+        { "id": "harvest-pipaux", "title": "Harvest pipaux", "status": "idea", "plan": null },
+        { "id": "harvest-pipdata", "title": "Harvest pipdata", "status": "idea", "plan": null },
+        { "id": "harvest-pipload", "title": "Harvest pipload", "status": "idea", "plan": null },
+        { "id": "harvest-pipfun", "title": "Harvest pipfun", "status": "idea", "plan": null },
+        { "id": "harvest-pipster-and-wbpip", "title": "Harvest pipster and wbpip", "status": "idea", "plan": null },
+        { "id": "harvest-pipapi", "title": "Harvest pipapi", "status": "idea", "plan": null },
+        { "id": "write-harvest-findings", "title": "Write harvest findings", "status": "idea", "plan": null },
+        { "id": "decide-row-level-change-detection", "title": "Decide row level change detection", "status": "idea", "plan": null },
+        { "id": "decide-code-version-rule", "title": "Decide code version rule", "status": "idea", "plan": null },
+        { "id": "decide-orchestrator-location", "title": "Decide orchestrator location", "status": "idea", "plan": null },
+        { "id": "decide-pipload-role", "title": "Decide pipload role", "status": "idea", "plan": null },
+        { "id": "update-system-design-with-m1-findings", "title": "Update SYSTEM_DESIGN with M1 findings", "status": "idea", "plan": null }
+      ]
+    },
+    {
+      "id": "m2-walking-skeleton",
+      "title": "M2 Walking skeleton",
+      "objective": "Prove incremental rebuild end to end on one survey, one estimate, and one test release through stamp.",
+      "status": "planned",
+      "features": [
+        { "id": "close-stamp-gaps-for-skeleton", "title": "Close stamp gaps for skeleton", "status": "idea", "plan": null },
+        { "id": "create-engine-skeleton", "title": "Create engine skeleton", "status": "idea", "plan": null },
+        { "id": "save-cpi-ppp-and-pfw-through-stamp", "title": "Save CPI PPP and PFW through stamp", "status": "idea", "plan": null },
+        { "id": "download-one-survey", "title": "Download one survey", "status": "idea", "plan": null },
+        { "id": "format-and-validate-one-survey", "title": "Format and validate one survey", "status": "idea", "plan": null },
+        { "id": "deflate-one-survey", "title": "Deflate one survey", "status": "idea", "plan": null },
+        { "id": "compute-the-mean", "title": "Compute the mean", "status": "idea", "plan": null },
+        { "id": "register-test-release", "title": "Register test release", "status": "idea", "plan": null },
+        { "id": "test-incremental-reruns", "title": "Test incremental reruns", "status": "idea", "plan": null }
+      ]
+    },
+    {
+      "id": "m3-widen-to-all-surveys",
+      "title": "M3 Widen to all surveys",
+      "objective": "Run stages 1 to 5 and stage 9 for every survey and auxiliary series.",
+      "status": "planned",
+      "features": [
+        { "id": "all-aux-series-through-stamp", "title": "All aux series through stamp", "status": "idea", "plan": null },
+        { "id": "legacy-aux-repos-as-inputs", "title": "Legacy aux repos as inputs", "status": "idea", "plan": null },
+        { "id": "row-level-change-detection", "title": "Row level change detection", "status": "idea", "plan": null },
+        { "id": "module-selection-table", "title": "Module selection table", "status": "idea", "plan": null },
+        { "id": "survey-list-from-pfw", "title": "Survey list from PFW", "status": "idea", "plan": null },
+        { "id": "dlw-change-detection-for-all-surveys", "title": "DLW change detection for all surveys", "status": "idea", "plan": null },
+        { "id": "revision-manifest", "title": "Revision manifest", "status": "idea", "plan": null },
+        { "id": "format-validate-and-deflate-all-surveys", "title": "Format validate and deflate all surveys", "status": "idea", "plan": null },
+        { "id": "all-stage-5-estimates", "title": "All stage 5 estimates", "status": "idea", "plan": null },
+        { "id": "per-estimate-dependencies", "title": "Per estimate dependencies", "status": "idea", "plan": null },
+        { "id": "failure-handling", "title": "Failure handling", "status": "idea", "plan": null },
+        { "id": "end-of-run-report", "title": "End of run report", "status": "idea", "plan": null },
+        { "id": "scoped-mode", "title": "Scoped mode", "status": "idea", "plan": null },
+        { "id": "plan-only-mode", "title": "Plan only mode", "status": "idea", "plan": null },
+        { "id": "all-module-for-table-maker", "title": "ALL module for Table Maker", "status": "idea", "plan": null },
+        { "id": "scale-test", "title": "Scale test", "status": "idea", "plan": null },
+        { "id": "compare-survey-estimates-with-current-pipeline", "title": "Compare survey estimates with current pipeline", "status": "idea", "plan": null }
+      ]
+    },
+    {
+      "id": "m4-lineups-and-missing-countries",
+      "title": "M4 Lineups and missing countries",
+      "objective": "Port stages 6 and 7 from the current pipeline and track their dependencies.",
+      "status": "planned",
+      "features": [
+        { "id": "harvest-targets-project", "title": "Harvest targets project", "status": "idea", "plan": null },
+        { "id": "decide-targets-replacement", "title": "Decide targets replacement", "status": "idea", "plan": null },
+        { "id": "port-lineups", "title": "Port lineups", "status": "idea", "plan": null },
+        { "id": "track-lineup-dependencies", "title": "Track lineup dependencies", "status": "idea", "plan": null },
+        { "id": "port-missing-countries", "title": "Port missing countries", "status": "idea", "plan": null },
+        { "id": "track-missing-country-dependencies", "title": "Track missing country dependencies", "status": "idea", "plan": null },
+        { "id": "compare-lineups-with-current-pipeline", "title": "Compare lineups with current pipeline", "status": "idea", "plan": null }
+      ]
+    },
+    {
+      "id": "m5-release-and-api",
+      "title": "M5 Release and API",
+      "objective": "Produce a full release the API can serve, and prove it matches the current pipeline.",
+      "status": "planned",
+      "features": [
+        { "id": "write-release-folder", "title": "Write release folder", "status": "idea", "plan": null },
+        { "id": "build-a-round", "title": "Build a round", "status": "idea", "plan": null },
+        { "id": "release-states", "title": "Release states", "status": "idea", "plan": null },
+        { "id": "ingest-into-pipapi", "title": "Ingest into pipapi", "status": "idea", "plan": null },
+        { "id": "full-test-release", "title": "Full test release", "status": "idea", "plan": null },
+        { "id": "compare-full-release-with-current-pipeline", "title": "Compare full release with current pipeline", "status": "idea", "plan": null },
+        { "id": "move-ppp-conversion-out-of-pipapi", "title": "Move PPP conversion out of pipapi", "status": "idea", "plan": null }
+      ]
+    },
+    {
+      "id": "m6-interface-and-platform",
+      "title": "M6 Interface and platform",
+      "objective": "Give analysts a way to run the system: plain R functions in January, the rest after March.",
+      "status": "planned",
+      "features": [
+        { "id": "document-run-functions-for-analysts", "title": "Document run functions for analysts", "status": "idea", "plan": null },
+        { "id": "decide-interface", "title": "Decide interface", "status": "idea", "plan": null },
+        { "id": "decide-platform", "title": "Decide platform", "status": "idea", "plan": null },
+        { "id": "move-logging-to-general-package", "title": "Move logging to general package", "status": "idea", "plan": null }
+      ]
+    }
+  ]
 }
