@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "compound-gpid-active-state-v1",
+  "updatedAt": "2026-10-08T01:23:14Z",
+  "workflow": "/cg-work",
+  "status": "completed",
+  "branch": "docs/pre-harvest-documentation-reuse",
+  "plan": ".cg-docs/plans/2026-10-07-m0-m1-design-integration.md",
+  "executionReport": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md",
+  "currentPhase": null,
+  "evidenceStatus": [
+    {"id": "V1", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"},
+    {"id": "V2", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"},
+    {"id": "V3", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"},
+    {"id": "V4", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"},
+    {"id": "V5", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"},
+    {"id": "V6", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"},
+    {"id": "V7", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"},
+    {"id": "V8", "status": "passed", "artifact": ".cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md"}
+  ],
+  "unresolvedDecisions": [],
+  "artifactRefs": [],
+  "nextCommand": "/cg-compound"
+}

@@ -1,34 +1,33 @@
-# Compound GPID managed items (junctions + copied file - do not commit)
-.agents/AGENTS.md
-.agents/commands
-.agents/instructions
-.agents/shared
-.agents/skills
-.agents/subagents
-.claude/agents
-.claude/CLAUDE.md
-.claude/commands
-.claude/instructions
-.claude/shared
-.claude/skills
-.compound-gpid/managed-files.json
-.github/agents
-.github/copilot-instructions.md
-.github/instructions
-.github/prompts
-.github/shared
-.github/skills
-.kilo/agents
-.kilo/AGENTS.md
-.kilo/commands
-.kilo/instructions
-.kilo/kilo.json
-.kilo/shared
-.kilo/skills
-.opencode/agents
-.opencode/AGENTS.md
-.opencode/commands
-.opencode/instructions
-.opencode/opencode.json
-.opencode/shared
-.opencode/skills
+# Compound GPID runtime and Kilo adapter files (including junctions)
+/.compound-gpid
+/.kilo
+
+# Other Compound GPID adapter projections; keep GitHub workflows trackable
+/.agents/AGENTS.md
+/.agents/commands
+/.agents/instructions
+/.agents/shared
+/.agents/skills
+/.agents/subagents
+/.claude/agents
+/.claude/CLAUDE.md
+/.claude/commands
+/.claude/instructions
+/.claude/shared
+/.claude/skills
+/.github/agents
+/.github/copilot-instructions.md
+/.github/instructions
+/.github/prompts
+/.github/shared
+/.github/skills
+/.opencode/agents
+/.opencode/AGENTS.md
+/.opencode/commands
+/.opencode/instructions
+/.opencode/opencode.json
+/.opencode/shared
+/.opencode/skills
+
+# Project records stay tracked: .cg-docs/, compound-gpid*.md, roadmap.json,
+# project AGENTS.md, design documents, briefs, notes, and tables.

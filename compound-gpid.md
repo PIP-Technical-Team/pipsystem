@@ -2,7 +2,7 @@
 project-name: "pipsystem"
 team: "PIP-Technical-Team"
 created: "2026-08-21"
-last-reviewed: "2026-08-21"
+last-reviewed: "2026-10-07"
 ---
 
 # pipsystem
@@ -30,8 +30,8 @@ Design and build an incremental build system for the PIP data pipeline: a system
 - R dialect is data.table and collapse, matching the existing PIP packages.
 - `{stamp}` stays domain agnostic. It knows about artifacts, hashes, parents, and
   versions. It must never learn what a survey, a CPI series, or a release is.
-  PIP specific concepts live in pipsystem.
+  PIP-specific runtime concepts live in the PIP packages. Release orchestration lives in `pipdata`; `pipsystem` is the design and evidence workspace.
 
 ## Current Focus
 
-Phase 1, discovery. Establish what documentation already exists in the .cg-docs folders of the PIP package repositories before generating anything new, then harvest structured facts about how the nine packages read data, write data, consume auxiliary data, and encode cleaning rules. The first question to answer is the granularity at which auxiliary data is consumed, because it determines whether precise invalidation is achievable without refactoring.
+M0 design decisions and approved M1 decisions R2, R3, and R4 are integrated. The nine-feature M2 start gate is satisfied. Next: plan the M2 walking skeleton. M1 R1 and unresolved capability gaps remain Open. No M2 implementation starts from this documentation task.
