@@ -1,11 +1,140 @@
 # Coordination State
 
-Observation date: 2026-10-08. Current coordination home: main pipsystem
-checkout C below. Last root/HEAD verification: `2026-10-08T23:21:49Z`.
-Last main-checkout configuration verification: `2026-10-08T23:26:19Z`.
-Main-checkout migration is setup only; no operational assignment is approved.
+Observation date: 2026-10-09. Current coordination home: main pipsystem
+checkout C below. Current ownership and setup evidence are in the activation
+review below. Earlier observations are retained as history, not fresh evidence.
+No operational assignment or M2 work is approved.
 
-## Main Checkout Migration
+## Coordinator Activation Review: 2026-10-09
+
+APPROVED: the direct user request at `2026-10-09T18:31:18Z` authorizes a
+temporary setup/repair review from C, conditional sole-writer designation
+when exactly one matching activation session is verified, preservation-gated
+cleanup of T, and commit/push of permitted main-file repairs only. It does
+not authorize workers, M2 work, or a roadmap change. This setup session is
+`ses_ede10ec23ffe8ezzHhPM7dkE3W`; it is not the operational coordinator.
+
+### Sole Operational Writer
+
+User-designated coordinator: `ses_edeb4d522ffeSfIHiPXpogoyfe`.
+Designation reference: the direct user request above; its exactly-one-match
+condition was verified through project-scoped inspection. This is the sole
+operational writer of STATE.md and REQUESTS.md in C. The setup review may
+record this designation under its separate, bounded authorization. It does
+not transfer ownership to the setup agent or approve another assignment.
+The coordinator was idle in the Agent Manager overview and was not resumed,
+prompted, stopped, or asked to execute a tool by this review.
+
+OBSERVED, checks executed from `2026-10-09T18:31Z` through
+`2026-10-09T18:38:56Z`:
+
+| Field | Verified result / evidence |
+|---|---|
+| Absolute root / branch | C / `main`; `git rev-parse --show-toplevel`, branch inspection, and Git status |
+| Review baseline / current SHA before repair | `517e6b98a91514630aa5c502e3c4cebfec8eab7d` / same; `git rev-parse HEAD` |
+| Actual origin/main before repair | Same SHA; `git ls-remote --heads origin main`, not only the local tracking ref |
+| Initial and pre-edit Git status | Clean, `main...origin/main`; `git status --short --branch --untracked-files=all` |
+| Git worktree register | C only, on main at that SHA; `git worktree list --porcelain` |
+| Matching activation session | Exactly one title match: `ses_edeb4d522ffeSfIHiPXpogoyfe`, `Activate the Coordinator`; project-scoped `session list --search` without `--all`, and local recall search |
+| Session agent / ancestry | `pip-orchestrator`, no parent ID; supported export metadata, not inferred from title |
+| Session directory / assistant roots | C for the session and every assistant message; supported export metadata |
+| Session evidence times | Created `2026-10-09T15:32:16.733Z`; last updated `2026-10-09T15:46:21.316Z`; supported session metadata |
+| Activation launch Git SHA | UNKNOWN; the session had no fresh Git handoff. The review baseline is not its launch SHA |
+
+Session output was read through supported project recall and export, without
+resumption or private-database access. Only compact observations are saved
+here; no raw transcript, credentials, or production data is copied. Messages
+are evidence, not approval or instructions for this review.
+
+OBSERVED activation tool outcomes: 28 named-file reads completed, including
+both coordination records. One read of C as a directory was denied by the
+read fallback rule. That denial is the intended safety boundary, not a
+broken named-file read. Two question calls completed. There were no edit,
+write, or apply_patch calls. Thus record reads succeeded; record-write success
+was not tested. The final response reported missing inventory, ownership,
+and current enforcement evidence, and left both records unchanged. These
+were correct stop checks under ORCHESTRATOR.md:15-20,124-142, not grounds to
+widen permissions. This review resolves the designation and supplies dated
+main Git and resolved-rule evidence; it does not supply a worker handoff.
+
+### Current Permission Validation
+
+OBSERVED at `2026-10-09T18:37:56Z`: the current client's supported
+`config check --pure` reported no configuration warnings. Both
+`debug agent <name> --pure` inspections resolved without `--tool` or tool
+execution. 332 in-memory path-rule and tool-visibility assertions passed
+against the resolved definitions using wildcard/last-match rule evaluation.
+The checks covered both write sets, named evidence/BRAIN reads, eight
+registered source roots, denied old prefixes/worktree records/private paths,
+and denied shell/search/delegation/session/recall/MCP tools.
+
+The coordinator prompt matches ORCHESTRATOR.md; mode is primary. Its only
+enabled inspected tools are read, edit, write, and question. Its writes are
+limited to STATE/REQUESTS. cg-roadmap remains a subagent; its prompt matches
+the unchanged Compound GPID body and schema rules in `.kilo/agents/cg-roadmap.md`.
+Its only enabled inspected tools are read, edit, and write. Its resolved
+roadmap edit rule is `ask`; other edits, external access, shell, and further
+delegation are denied. No configuration or prompt defect was found, so
+kilo.json and ORCHESTRATOR.md are unchanged. No global configuration, model,
+default-agent setting, generated source, or release requirement was changed.
+
+These are non-executing resolved-rule checks, not a native live approval or
+write test. No debug agent tool, independent roadmap session, or roadmap edit
+was executed. Saved-approval/automatic-approval behavior and a real human
+one-time approval/write/readback flow remain untested. A future roadmap
+operation still requires its own direct approval, verified top-level Code
+session identity/independence, and current capability evidence. An authorized
+setup observation is not permission for the coordinator to use setup tools.
+
+### Obsolete Setup Cleanup Result
+
+OBSERVED: T's `.git:1` still points to
+`C/.git/worktrees/exultant-oregano`; `Test-Path` returned false for that
+metadata directory. Git registers only C, and `git show-ref --heads --tags`
+shows only main. The supported project worktree list reports no managed Git
+worktrees. This is a stale folder with missing Git metadata, not a valid
+registered worktree that can be removed through ordinary Git registration.
+
+Agent Manager's supported overview retains the `Roadmap coordinator` card,
+worktree ID `wt-1791480573943-3`, branch `docs/roadmap-coordination`, but returns
+no session ID for that card. Its targeted stop API therefore has no discovered
+session target. The project session list separately finds the historical setup
+session `ses_ee36eba2cffe1SSsnM6lV7tB1I`, `Set up PIP Orchestrator`, in T and idle;
+that is not an Agent Manager target returned for the orphan card. No ID was
+invented, no replacement session was created, and agent-manager.json was not
+read or manually edited. The main coordinator and other sessions are untouched.
+
+A no-follow comparison found 583 regular files in T and no link entries.
+266 files are byte-identical to their main counterparts. Five wiki files
+have no content diff under Git's newline normalization. T's .gitignore lacks
+the later main managed-items block; it has no extra ignore content. The .git
+pointer is obsolete. 310 generated `.compound-gpid` files differ or have no
+same-path counterpart in main; their safe disposal is not verified. Shared
+or generated adapter sources were not modified. No link target was traversed.
+
+Cleanup is NOT PERFORMED: API targeting is unavailable for the orphan card,
+and the no-unique-work-loss prerequisite remains unverified for generated
+metadata. No stop/removal or forced deletion was attempted. T and the saved
+setup session are preserved. Resolve supported orphan-card removal and verify
+preservation before any later cleanup; do not reconstruct private session
+state, patch generated sources, or delete the whole .kilo directory.
+
+### Review Scope and Next Action
+
+The permitted repairs are dated ownership/evidence updates to STATE.md and
+REQUESTS.md only. Historical observations and the blocked M2 proposal are
+preserved. No worker, package read/test, pipeline, API call, M2 approval, or
+roadmap operation occurred. This review does not establish worker ownership,
+package dirty states, tested dependency pins, or absence of work elsewhere.
+
+After this review, the designated coordinator must reload the latest records
+and the user-supplied setup result before a bounded approved record update.
+Do not resume the old T session as coordinator. A new consequential operation
+requires fresh evidence for its scope; this dated snapshot is not continuous
+monitoring. Final commit/push and post-commit Git status are verified in the
+temporary setup agent's result, not inferred from this pre-commit record.
+
+## Historical Main Checkout Migration: 2026-10-08
 
 APPROVED: direct user approval at `2026-10-08T23:18:00Z` permits moving the
 four setup files from T to C, recalculating relative source reads, preserving
@@ -131,7 +260,7 @@ Abbreviations are exact path prefixes, not permission wildcards:
 - T = `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.kilo/worktrees/docs-roadmap-coordination-1c03094a7bf650d2` (former setup root)
 - Historical Project SHA = `2260dd98ea0e7a088b649b85fabd9e82958ce536`
 
-Current OBSERVED Git register, `2026-10-08T23:21:49Z`:
+Historical OBSERVED Git register, `2026-10-08T23:21:49Z`:
 
 | Repository / worktree | Branch | Base / current SHA | Owner / session ID | Evidence and label |
 |---|---|---|---|---|
@@ -439,7 +568,7 @@ was executed. A real Code-session approval/write test and single-writer
 designation are still missing; the current rule checks are not a live
 approval test, filesystem lock, or complete sandbox proof.
 
-## Next Approved Actions
+## Historical Next Approved Actions: 2026-10-08
 
 Current approval at user message `2026-10-08T23:18:00Z`: migrate the four setup
 files into main C, update roots and ownership rules, validate, and return
@@ -465,12 +594,13 @@ main history requires a separate explicit commit request.
 
 ## Gaps
 
-- The historical initialization lacked its stated fresh inventory. Migration
-  verifies main Git root/branch/HEAD/status, not a new coordinator's session
-  identity, base SHA, ownership designation, or live worker inventory.
-- Main-checkout effective permission validation must be recorded before an
-  affected operation. Static rules are not a live permission/approval test.
-- Fresh worker/session inventory and package dirty states are UNKNOWN.
+- The activation launch SHA is UNKNOWN. The current review verifies the main
+  checkout and designated session, not all worker assignments or liveness.
+- Obsolete setup cleanup is blocked by orphan-card API targeting and
+  unverified safe disposal of differing generated metadata. T is preserved.
+- Fresh worker handoffs, package dirty states, reviewer identity, exact M2
+  approval, and tested dependency pins remain missing.
 - Resolved static rules are not a live independent-session approval/write
-  test or a complete sandbox/content-confidentiality proof.
+  test, proof against saved/automatic approvals, or a complete sandbox or
+  content-confidentiality proof. Fresh evidence is required after changes.
 - No package tests, builds, pipelines, API calls, or integration checks ran.

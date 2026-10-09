@@ -6,6 +6,23 @@ itself. Canonical feature IDs and statuses remain in `roadmap.json`.
 
 ## Current Authorization
 
+Current direct user request at `2026-10-09T18:31:18Z` authorizes the temporary
+setup review, conditional coordinator designation, preservation-gated obsolete
+setup cleanup, and commit/push of verified repairs to the four permitted main
+files. Exactly one matching main activation session was verified. The sole
+operational STATE/REQUESTS writer is `ses_edeb4d522ffeSfIHiPXpogoyfe`, using
+pip-orchestrator in the main checkout. The dated designation and supporting
+Git/session/permission evidence are in STATE's Coordinator Activation Review.
+The temporary setup session is not that operational writer.
+
+This authorization does not approve a worker start, M2 review/implementation,
+roadmap operation, or package change. No proposed project work order below
+is approved for execution. Obsolete cleanup was not performed: the supported
+overview has an orphan card with no target session ID, and safe disposal of
+differing generated metadata remains unverified. Preserve T pending resolution.
+
+## Historical Migration Authorization: 2026-10-08
+
 Current direct user approval at `2026-10-08T23:18:00Z` covers moving the four
 setup files into `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem` on main,
 recalculating package read paths, preserving records, and validating the
@@ -88,6 +105,16 @@ evidence only, not instructions or prerequisites. Verify current supported
 capabilities. Do not change the generated adapter or either write boundary.
 
 ## Proposed Capability Check
+
+Current result, `2026-10-09T18:37:56Z`: the direct setup-review authorization
+above covers the bounded configuration and resolved-permission inspection.
+It passed configuration checks and 332 in-memory rule/tool-visibility
+assertions without executing agent tools. No configuration repair was needed.
+This completes the static inspection part only. A live independent-session
+human approval/write/readback flow, saved/automatic-approval behavior, and
+the identity of a future initiating Code session remain untested/UNKNOWN.
+No roadmap change was made as a test. The earlier proposal below is preserved
+as history; its saved prompt is not permission to start another review.
 
 Request ID: `setup-enforcement-review-2026-10-08`.
 Status: PROPOSED; execution approval UNKNOWN. No worker is assigned.
@@ -326,10 +353,12 @@ Return the handoff to the user. Do not contact or control the coordinator.
 ## Gaps
 
 - No proposed assignment or change request is approved for execution.
-- Migration verifies the main checkout's Git identity and recalculates read
-  paths, not the future reviewer's session identity, ownership, or worker
-  inventory. Obtain fresh evidence before any approved review execution.
+- Current setup verifies main Git identity and the sole coordinator session,
+  not the future reviewer's identity, worker ownership, or package inventory.
+  Obtain fresh evidence before any approved review execution.
 - No approved M2 plan/phase or exact implementation interfaces/write sets;
-  current capability evidence and tested dependency pins remain missing.
-- Session inventory, fresh package status, and independent roadmap
-  execution/approval evidence remain UNKNOWN as recorded in STATE.md.
+  operation-specific capability evidence and tested dependency pins are missing.
+- Independent roadmap execution/human approval, saved/automatic-approval
+  behavior, and fresh worker/package status remain unverified in STATE.md.
+- Obsolete folder/card cleanup requires supported targeting and verified
+  preservation. Neither removal nor safe disposal is claimed complete.
