@@ -1,9 +1,287 @@
 # Coordination State
 
-Observation date: 2026-10-09. Current coordination home: main pipsystem
-checkout C below. Current ownership and setup evidence are in the activation
-review below. Earlier observations are retained as history, not fresh evidence.
-No operational assignment or M2 work is approved.
+Observation date: 2026-10-13, using the dated UTC user handoffs. Coordination
+home: main pipsystem checkout C below. Latest evidence is in Feature 1 Setup
+and Published Commit Record: 2026-10-13. Earlier observations remain dated
+history. Current approval covers the bounded two-record setup-handoff update
+only; no M2 work, package implementation, or roadmap operation is approved.
+
+## Feature 1 Setup and Published Commit Record: 2026-10-13
+
+Task ID: `record-orchestrator-follow-ups-2026-10-13`. Roadmap IDs: NONE.
+Workflow: existing pip-orchestrator record workflow, not `/cg-work`.
+Plan/phase: NONE. Purpose: record the completed Feature 1 setup and published
+commit as user-supplied evidence, not coordinator-executed validation.
+
+APPROVED: the user selected `Approve exact update` in the direct approval
+question following the proposal at `2026-10-13T22:24:59Z`. Exact answer time
+UNKNOWN; approval preceded the user message at `2026-10-13T22:31:12Z`.
+Approval covers dated amendments to STATE.md and REQUESTS.md only, preservation
+of existing changes/history/proposals, readback, and a sanitized handoff.
+The initial Git-status blocker is RESOLVED by the later user handoff below.
+
+Sole writer remains `ses_edeb4d522ffeSfIHiPXpogoyfe`, designated by the user
+on 2026-10-09 and directly confirmed on 2026-10-10. The current proposal
+explicitly retains the existing sole coordinator with no ownership transfer.
+Latest record readback agrees with that designation; no second writer or
+ownership conflict was identified in the supplied evidence. This is not a
+filesystem lock or a complete worker inventory.
+
+### Task and Evidence Register
+
+| Field | Dated evidence / result |
+|---|---|
+| Repository / absolute root | pipsystem / `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem`; user-supplied root and environment agree with C |
+| Branch / worktree | `main`, user-reported verification `2026-10-13T22:17:43Z` and later status header; existing coordination checkout, no new worktree needed |
+| Setup base SHA | `6810a4ef60865e00cb0553c98924ea317b3d2e90`; WORKER-REPORTED |
+| Recording baseline / current HEAD / verified remote main | `4c6bb06ac88a3bba244c148ce45f2cce584934e9` / same / same; user-supplied setup handoff, not coordinator Git or remote checks |
+| Activation launch SHA / common Git directory / remote URL | UNKNOWN / UNKNOWN / UNKNOWN; not supplied by this handoff |
+| Owner / coordinator session | Existing designated pip-orchestrator / `ses_edeb4d522ffeSfIHiPXpogoyfe` |
+| Setup owner / native setup session ID | Separate setup worker, identity details UNKNOWN / UNKNOWN |
+| Approved write set / changed files in this task | `.cg-docs/orchestration/STATE.md` and `.cg-docs/orchestration/REQUESTS.md` only |
+| Reported setup commit scope / PR | `ORCHESTRATOR.md` only / UNKNOWN |
+| Git status capture / handoff receipt | `2026-10-13T22:38:34.7083084Z` / `2026-10-13T22:38:58Z`; user-supplied read-only status output |
+| Pre-update modified files / staging | Unstaged STATE.md, REQUESTS.md, and `.gitignore`; no staged changes listed |
+| Pre-update untracked file | `.cg-docs/plans/2026-10-10-m2-walking-skeleton.md`; user-reported status only; contents, owner, approval, and acceptance evidence not reviewed |
+| Evidence paths / verification date | User handoffs at the times above; `ORCHESTRATOR.md:187-220`, `kilo.json:8-130,133-195`, both coordination records; named-file readback on 2026-10-13, exact tool time UNKNOWN |
+| Inventory limits / tested dependencies | Supplied setup/status handoffs and permitted project documents only; other worker ownership/liveness and current package states UNKNOWN; dependencies actually tested: NONE |
+
+WORKER-REPORTED setup results, supplied at `2026-10-13T22:24:59Z`:
+Feature 1 application approval `2026-10-13T21:09:11Z`; commit/push request
+`2026-10-13T22:15:26Z`; ORCHESTRATOR-only commit published at the current/remote
+SHA above. Full readback, whitespace check, configuration inspection, 310
+static assertions, and 15 unchanged protected-file hashes passed. No live
+session, approval, package, pipeline, or API tests ran. Separate validation
+log path, individual hash values, and exact setup-check time: UNKNOWN.
+These setup approval/commit/check claims are recorded from the user handoff;
+they are not independently executed or verified Git/hash/test results here.
+
+OBSERVED artifact readback: `ORCHESTRATOR.md:187-220` contains the Feature 1
+actionable follow-up prompt rules, required task/root/branch/worktree/scope/
+acceptance fields, and package-local Plan boundary. `kilo.json:8-130,133-195`
+retains the configured separate coordinator/writer limits. This verifies
+readable content, not file-to-commit identity, 310 executed assertions,
+protected-file hashes, prompt reload, or live denied-path/approval behavior.
+
+### Result, Preserved Boundaries, and Gaps
+
+- OBSERVED acceptance result: permitted apply_patch succeeded for both records.
+  Full readback on 2026-10-13 confirmed the bounded amendments, evidence labels,
+  preserved historical records/pending proposals, and unchanged approval limits.
+  Recording is complete; setup publication/check claims remain WORKER-REPORTED.
+- Feature 1 setup completion and publication remain WORKER-REPORTED; current
+  follow-up rules are OBSERVED in the artifact. Feature 2 remains BLOCKED;
+  native session/recall access remains denied. No worker is started or managed.
+- The supplied Git status resolves only this recording preflight. Preserve
+  all pre-existing record changes, `.gitignore`, and the untracked M2 plan.
+  The untracked path does not prove plan approval, completion, or worker status.
+  Earlier M2 proposals and integration queue entries remain unchanged and
+  unverified; no assignment is resumed or retroactively approved.
+- NOT RUN: coordinator shell/Git/remote/hash/static-assertion checks; live
+  session/approval tests; package/pipeline/API/integration tests; staging,
+  commit, push, merge, cleanup, delegation, session tools, and recall.
+  Post-amendment Git status and independent file-to-SHA comparison are not run.
+- UNKNOWN: exact approval-answer/tool times, separate validation log path,
+  native setup ID, full worker inventory/liveness, current package states,
+  and live effective-permission/independent-roadmap approval behavior. The
+  reported static checks do not certify these capabilities.
+- Next action within this approval: return the sanitized handoff and stop.
+  No further user input is required for this completed recording task.
+  No new setup, planning, package, or roadmap
+  operation, configuration edit, commit, or push is authorized.
+
+## Bounded Coordination Continuation: 2026-10-10
+
+APPROVED: direct user request `2026-10-10T00:42:18Z` reaffirms
+`ses_edeb4d522ffeSfIHiPXpogoyfe` as the sole operational STATE/REQUESTS writer
+in C. It matches the designation in Coordinator Activation Review: 2026-10-09.
+That review is supporting evidence; the present direct user confirmation is
+the current authority. No ownership transfer or second writer is introduced.
+
+Approved task: reload authority and latest records, record the supplied setup
+handoff, reconcile blockers, update only these two records, read back permitted
+writes, and return the ownership/dependency view and next proposal. Previous
+setup cleanup and commit/push allowances do not apply to this continuation.
+
+### Current Repository and Session Entry
+
+OBSERVED: receipt of the direct designation and setup handoff at the user
+message time above; the supplied environment names C. WORKER-REPORTED below
+means the setup result supplied directly by the user, not Git or validation
+commands executed by this coordinator. No separate setup evidence path was
+supplied. Comparison with the saved register and current authority establishes
+the bounded coordination home and writer; missing fields stay UNKNOWN.
+
+| Register field | Current evidence / result |
+|---|---|
+| Absolute root | `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem`; user-supplied environment and setup handoff agree with C |
+| Repository identity | pipsystem, from the handoff context and charter; fresh common Git directory / remote URL UNKNOWN |
+| Branch | `main`; WORKER-REPORTED fresh handoff, matches required coordination branch |
+| Activation launch / base SHA | UNKNOWN / UNKNOWN; do not substitute a later setup HEAD |
+| Current HEAD / actual origin/main | `6810a4ef60865e00cb0553c98924ea317b3d2e90` / same; WORKER-REPORTED, not a coordinator Git or remote check |
+| Pre-update Git status / changed files | `.gitignore` has an unstaged change with four added lines; WORKER-REPORTED; preserve without staging, discarding, or committing |
+| Task / owner / session ID | Bounded coordination continuation / pip-orchestrator / `ses_edeb4d522ffeSfIHiPXpogoyfe`; direct user designation |
+| Session liveness / other worker ownership | Continuous liveness UNKNOWN; other session IDs, assignments, write sets, and liveness UNKNOWN |
+| Evidence / verification time | Current user handoff `2026-10-10T00:42:18Z`; setup validation `2026-10-10T00:40:46Z`; separate Git capture time UNKNOWN; register comparison and document reads executed in this continuation |
+
+WORKER-REPORTED current setup validation: configuration check passed; 277
+resolved-permission and tool-visibility assertions passed; both agent prompts
+matched. Debug inspection executed no agent tools. This later validation and
+HEAD supersede the older snapshots for this bounded continuation; their
+different SHA and assertion count do not erase or contradict the dated history.
+OBSERVED configuration readback agrees with the record-only coordinator write
+set and denied delegation/shell/search/session/recall/MCP boundaries
+(`kilo.json:8-130`). It is not an independently executed validation.
+
+### Resolved and Remaining Blockers
+
+- RESOLVED for this continuation: sole-writer designation, matching main root
+  and branch, fresh user-supplied HEAD/status, current setup validation handoff,
+  and direct approval of the exact two-record update.
+- OBSERVED: the approved apply_patch returned success for STATE and REQUESTS.
+  Complete readback of both records confirmed the handoff, preserved historical
+  observations, ownership/dependency view, and blocked M2 proposal. This proves
+  only these permitted coordinator writes, not denied-path enforcement, a
+  filesystem lock, or independent roadmap human approval/write behavior.
+- UNKNOWN: activation launch/base SHA; complete worker inventory and ownership;
+  current package branches, SHAs and dirty states; reviewer identity/root/base;
+  tested producer/consumer pins and acceptance evidence. An incomplete inventory
+  is not evidence that no workers exist. Historical package pins are not refreshed.
+- BLOCKED: `m2-planning-proposal-2026-10-08` remains PROPOSED / BLOCKED, with
+  execution approval NOT GRANTED, reviewer UNKNOWN, and write set EMPTY.
+- UNTESTED: independent roadmap human approval/write/readback, saved/automatic
+  approval behavior, and future initiating Code-session identity/independence.
+  A permitted coordinator record write cannot prove these capabilities.
+- BLOCKED / OUT OF SCOPE: obsolete setup cleanup. Preserve T and do not inspect,
+  manage, stop, or remove its folder/card/session from this coordinator.
+
+OBSERVED reload: ORCHESTRATOR, AGENTS, charter/design, brief/HARVEST, full
+roadmap, context/local records, latest STATE/REQUESTS, integration plan/report,
+three controlling decisions, strategy, FINDINGS, stamp/pipaux/pipdata notes,
+stamp_fit.csv, and kilo.json. The four named BRAIN files were read after
+authority. Relevant roadmap/decision/plan references agree with their source
+readback; BRAIN supplies neither approval nor current policy. No private links
+or external package source were read.
+
+OBSERVED document reconciliation: M0 done 9/9; M1 in-progress 11/13, R1 idea
+and design-update active/null; M2 planned with nine idea/null features
+(`roadmap.json:5-56`). The exact nine gate IDs in the Start-Gate table below
+are each unique and done, with the reloaded decision/harvest evidence. This is
+a document-level gate, not permission to run the planning review or implement.
+Ownership boundaries and proposed dependency order below remain unchanged.
+No implementation interfaces, test pins, or package capabilities are certified.
+
+Next project proposal remains `m2-planning-proposal-2026-10-08`, a single
+user-started read-only contract/planning review after its own evidence and exact
+approval. No integration candidate handoff was supplied. The queue remains
+unverified; do not merge or replay historical work. No shell, session, recall,
+search, delegation, package/runtime checks, cleanup, staging, commit, or push
+was executed. Post-update Git status is not checked by this coordinator.
+
+## Record Clarification and Planning Proposal: 2026-10-13
+
+APPROVED: direct user request `2026-10-13T02:31:42Z` authorizes only this
+STATE/REQUESTS update: record the supplied 2026-10-12 setup handoff, clarify
+the instruction change, preserve history and the old read-only proposal, add
+`m2-cg-plan-2026-10-10` as a proposed planning-document assignment, and read
+back both records. This is not approval to start that assignment.
+
+Sole coordinator remains `ses_edeb4d522ffeSfIHiPXpogoyfe`, under the recorded
+2026-10-09 designation and direct 2026-10-10 confirmation above. No ownership
+transfer, second writer, worker start, or obsolete setup cleanup is introduced.
+
+### Supplied Setup Handoff and Evidence Readback
+
+WORKER-REPORTED, supplied by the user at `2026-10-13T02:24:26Z`: setup result
+dated `2026-10-12T20:55:33Z`, task Bounded orchestrator instruction
+simplification. Its original direct-approval reference is reported as
+`2026-10-12T20:48:36Z`; the present user request directly authorizes recording
+the approved change, not another setup edit. No separate validation log path
+was supplied. Do not convert the setup report into coordinator-executed checks.
+
+| Register field | Dated setup handoff / current bounded task |
+|---|---|
+| Repository / absolute root | pipsystem / `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem`; supplied environment and handoff match C |
+| Branch / setup base and current HEAD | `main` / `6810a4ef60865e00cb0553c98924ea317b3d2e90` / same; WORKER-REPORTED at setup time, not a new coordinator Git check |
+| Activation launch SHA / fresh common Git directory / actual remote origin/main | UNKNOWN / UNKNOWN / UNKNOWN in this setup handoff; retain older dated observations without refreshing them |
+| Setup owner / native session ID | Separate user-started setup reviewer / UNKNOWN; not the coordination-record writer |
+| Reported setup changed files | `ORCHESTRATOR.md` only, 45 additions and 15 deletions; commit/PR none |
+| Reported final Git status | `main...origin/main`; modified STATE.md, REQUESTS.md, .gitignore, ORCHESTRATOR.md; first three pre-existed and were preserved; staging area empty |
+| Current task / owner / approved write set | Record clarification and planning proposal / designated pip-orchestrator / STATE.md and REQUESTS.md only |
+| Observed changed files in this operation | STATE.md and REQUESTS.md; permitted apply_patch succeeded and complete record readback confirmed the bounded changes |
+| Current task base/current SHA | No separate Git capture; latest supplied setup base/current SHA above, with its recorded time |
+| Evidence / verification time | User handoff and authorization at the UTC times above; named-file artifact/configuration readback in this bounded continuation; no shell or private-state inspection |
+| Inventory limits | Only supplied setup and planning-blocker reports plus permitted project evidence; other worker ownership/liveness, package status, and tested dependency pins UNKNOWN |
+
+WORKER-REPORTED checks: full readback and scoped Git diff matched the approved
+ORCHESTRATOR change; whitespace check passed; configuration check returned no
+warnings; non-executing agent inspections passed 125 static assertions. The
+normalized resolved-prompt Git blob hash is reported as
+`cec778da22af2e1c91dd1a9652c7f052ea431406`. Permission/tool visibility matched
+the pre-edit baseline; cg-roadmap stayed a subagent with unchanged prompt;
+15 protected-file hashes remained unchanged. No agent-tool probes, roadmap
+write, worker start, M2 work, package test, pipeline/API call, staging, commit,
+push, or merge ran in that setup. These claims were not re-executed here.
+
+OBSERVED: current `ORCHESTRATOR.md:70-99,123-150,181-215,259-270` contains
+the reviewed task/evidence register, explicit Compound GPID work orders,
+task-specific independent worker prompts, and optional native worker IDs.
+The artifact readback matches the supplied approved diff. `kilo.json:8-130,
+133-195` retains the configured coordinator/writer limits. This verifies
+readable artifacts, not the reported Git results, normalized hash, effective
+running-conversation prompt reload, or all live enforcement behavior.
+
+### Dated Instruction and Request Clarification
+
+OBSERVED current instruction: missing native worker IDs, managed-session
+registration, or a complete inventory are tracking gaps, not generic blockers
+for an approved bounded planning-document task (`ORCHESTRATOR.md:123-150,
+267-270`). Record UNKNOWN and explicit inventory limits. Keep sole coordinator
+ownership and the independent roadmap identity/approval requirements intact.
+Actual approval, root/branch, write scope, ownership conflicts, required
+interfaces/evidence, and effective-permission problems still stop affected work.
+No new tool access, automatic starts, or runtime authority follows from this.
+
+The old `m2-planning-proposal-2026-10-08` remains unchanged history: PROPOSED /
+BLOCKED, execution approval NOT GRANTED, write set EMPTY. Do not reuse its
+old identity preflight or response-only output as the new assignment's scope.
+No old assignment is resumed or retroactively approved.
+
+PROPOSED new task: `m2-cg-plan-2026-10-10`, recorded today using the ID of its
+earlier draft, not a backdated execution. Command `/cg-plan`; milestone
+`m2-walking-skeleton`; all nine exact IDs in the M2 table below. One user-selected
+planning worker in C on main; native session ID and fresh worker Git baseline
+UNKNOWN. Proposed write set is exactly
+`.cg-docs/plans/2026-10-10-m2-walking-skeleton.md`; full work order and
+acceptance criteria are in REQUESTS. Execution approval NOT GRANTED by this
+record-update request. This proposes a plan document, not M2 implementation.
+
+OBSERVED current roadmap read: M0 done 9/9; M1 in-progress 11/13, R1 idea and
+design-update active/null; M2 planned with nine idea/null features. All nine
+start-gate IDs are unique and done, with controlling decisions and harvest
+evidence reloaded. Ownership and dependency views below remain policy/proposals,
+not runtime proof or concurrent assignments. The four BRAIN files were read
+after authority; relevant source links agree with current roadmap/decision/plan
+readback and provide no new approval. No external package repository was read.
+
+### Result and Remaining Gaps
+
+- OBSERVED record-write/readback result: the permitted apply_patch succeeded
+  for STATE.md and REQUESTS.md. Complete readback confirmed the dated handoff,
+  clarification, preserved historical/read-only proposal, and new one-file
+  `/cg-plan` proposal with execution approval NOT GRANTED. This proves these
+  permitted record writes only, not live roadmap approval or denied-path safety.
+- UNKNOWN: planning-worker owner details, fresh base/current SHA/status, target
+  plan-file existence/ownership, and independent worker permission evidence;
+  complete worker inventory, package dirty states/SHAs, and actual tested pins.
+- NOT GRANTED: new planning assignment execution, implementation, design edits,
+  or a roadmap operation. Only ordinary planning metadata requirements changed.
+- NOT RUN / UNKNOWN: live roadmap approval/write/readback, denied-path
+  enforcement, automatic/saved-approval behavior, and current-conversation
+  prompt reload. Static setup assertions do not certify these.
+- No package/runtime tests, pipelines, API calls, native session tools,
+  delegation, cleanup, staging, commit, push, or merge ran in this continuation.
+  Post-update Git status is not checked by this coordinator.
 
 ## Coordinator Activation Review: 2026-10-09
 
@@ -252,6 +530,10 @@ No recorded session ID or an empty queue proves absence of workers.
 
 ## Repository and Worktree Register
 
+The latest task entry is in Feature 1 Setup and Published Commit Record:
+2026-10-13 above. Earlier continuation entries, listings, and package checks
+retain their dates; the setup handoff does not refresh package provenance.
+
 Abbreviations are exact path prefixes, not permission wildcards:
 
 - P = `E:/PovcalNet/01.personal/wb384996/PIP`
@@ -362,9 +644,11 @@ following nine IDs once, all `done`:
 
 Decision-record shorthand means the three exact 2026-10-07 paths cited in
 the integration plan :43-45. Result: 9/9 at document level, consistent with
-Current Focus (`compound-gpid.md:35-37`). Current source SHA binding of these
-worktree files is UNKNOWN until the fresh Git handoff. No runtime capability,
-new approval, integration, or completion is inferred. HARVEST's earlier
+Current Focus (`compound-gpid.md:35-37`). The earlier readback lacked a fresh
+project pin. The continuation now supplies HEAD
+`6810a4ef60865e00cb0553c98924ea317b3d2e90` through the user handoff; an
+independent tracked-file-to-HEAD comparison is not run. No runtime capability,
+assignment approval, integration, or completion is inferred. HARVEST's earlier
 pending-decision statements (:53-69,78) describe collection time; later
 decisions/design/roadmap control current policy. The completed integration
 plan does not complete the still-partial M1 feature.
@@ -411,16 +695,17 @@ pipeline, storage, API, numerical, and integration test.
 
 ## Integration Queue
 
-No candidate handoff was supplied during setup or the current initialization
-request. Live queue contents are UNKNOWN; this is not a claim that no work
-is in progress elsewhere.
+Only a setup handoff, not an integration candidate handoff, was supplied for
+the current continuation. Live queue contents are UNKNOWN; this is not a claim
+that no work is in progress elsewhere.
 Queue records must contain task ID, producer/consumer SHAs, interface and
 check evidence, scope result, approval reference, and next action.
 
 | Candidate | Producer/consumer pins | Interface / scope / checks | Approval | State / next action |
 |---|---|---|---|---|
-| Prior M0/M1 design integration, record reconciliation only | Historical package pins HARVEST :13-20; current project pin UNKNOWN | Policy/roadmap readback consistent; original diffs/check results DOCUMENT-REPORTED by integration report :238-299, not rerun | Original approvals DOCUMENT-REPORTED by report :30-36; no new integration approval | unverified as a fresh integration handoff; preserve document statuses, do not merge or replay |
-| m2-planning-proposal-2026-10-08 | Historical evidence pins only; future tested pins UNKNOWN | Proposal only; no implementation write set, interface test, or package check | NOT GRANTED | blocked/not an integration candidate; obtain inventory/capability evidence and exact planning approval before separate user-started review |
+| Prior M0/M1 design integration, record reconciliation only | Historical package pins HARVEST :13-20; current project HEAD user-supplied `6810a4ef60865e00cb0553c98924ea317b3d2e90`, not a fresh integration baseline | Policy/roadmap readback consistent; original diffs/check results DOCUMENT-REPORTED by integration report :238-299, not rerun | Original approvals DOCUMENT-REPORTED by report :30-36; no new integration approval | unverified as a fresh integration handoff; preserve document statuses, do not merge or replay |
+| m2-planning-proposal-2026-10-08 | Historical evidence pins only; future review baseline and tested pins UNKNOWN | Proposal only; write set EMPTY; reviewer/worker evidence UNKNOWN; no interface or package check | NOT GRANTED; explicitly retained by current user request | blocked/not an integration candidate; current coordinator setup evidence does not establish the future reviewer or authorize execution |
+| m2-cg-plan-2026-10-10 | Planning baseline and actual tested pins UNKNOWN; inherited HARVEST pins only | Proposed one-plan-file write set; all nine M2 IDs; no worker execution, saved-plan evidence, interface test, or package check | NOT GRANTED; only proposal preparation approved at 2026-10-13T02:31:42Z | proposed/not an integration candidate; exact user approval and user-started planning next; native worker ID alone is not a generic planning blocker |
 
 ## Unresolved Decisions
 
@@ -489,6 +774,14 @@ Checks were in memory; no validation artifact, worker, or debug tool session
 was created. No live approval or delegated-write test was run.
 
 ## Current Capability Gate
+
+Latest supplied setup validation is the Feature 1 handoff received at
+`2026-10-13T22:24:59Z`, recorded above as WORKER-REPORTED: configuration
+inspection, 310 static assertions, and 15 unchanged protected-file hashes.
+Exact check time/log path UNKNOWN. Current instruction/configuration artifacts
+were read back. No current-conversation reload, live roadmap approval, or
+negative permission test is certified by that readback or reported checks.
+The earlier `2026-10-12T20:55:33Z` / 125-assertion result remains dated history.
 
 Before an affected operation, require a current setup validation reference
 for the limits in ORCHESTRATOR's Client Capability Gate. Check effective
@@ -594,12 +887,33 @@ main history requires a separate explicit commit request.
 
 ## Gaps
 
+- Current recording task has exact approval and a user-supplied Git status
+  capture at `2026-10-13T22:38:34.7083084Z`; setup/remote/check claims remain
+  WORKER-REPORTED. Earlier missing capture-time statements retain their dates.
+- The M2 plan path is reported untracked, not reviewed or approved by this task;
+  its contents, owner, and acceptance result remain UNKNOWN.
+- Latest setup Git/validation evidence is WORKER-REPORTED at its own date;
+  current instruction/configuration readback is OBSERVED. No coordinator Git,
+  hash computation, or agent-debug validation was executed.
+- The new planning task has proposed one-file scope and execution approval
+  NOT GRANTED. Missing native worker IDs/full inventory are tracking gaps,
+  not generic planning blockers; required scope/ownership/permission evidence
+  and independent roadmap identity requirements remain separate.
+- Current main root/branch/HEAD/status and resolved validation are supplied by
+  the user handoff, not re-executed Git/setup checks. Independent file-to-HEAD
+  comparison and post-update Git status are not run. Fresh pre-update status
+  capture time is recorded in the latest task entry; older missing-time entries
+  remain historical.
+- Permitted coordinator record writes and readback succeeded as recorded above;
+  independent roadmap approval/write behavior and denied-path enforcement
+  remain untested. No broader client or sandbox capability is certified.
 - The activation launch SHA is UNKNOWN. The current review verifies the main
   checkout and designated session, not all worker assignments or liveness.
 - Obsolete setup cleanup is blocked by orphan-card API targeting and
   unverified safe disposal of differing generated metadata. T is preserved.
-- Fresh worker handoffs, package dirty states, reviewer identity, exact M2
-  approval, and tested dependency pins remain missing.
+- Fresh task-specific worker handoffs, package dirty states, exact planning/
+  implementation approval, and actual tested dependency pins remain missing.
+  Native worker IDs may be UNKNOWN for ordinary planning/reporting.
 - Resolved static rules are not a live independent-session approval/write
   test, proof against saved/automatic approvals, or a complete sandbox or
   content-confidentiality proof. Fresh evidence is required after changes.
