@@ -95,6 +95,7 @@
     "V7": "PASS locally: protected hashes and exact original root-config/ignore reconstruction; no roadmap/generated/package/Git mutations"
   },
   "capabilities": {
+    "qualification": "Initial capability observations before user Git-publication authorization; subsequent pipsystem commits/pushes are recorded under publication.",
     "kiloOnPath": false, "supportedMergedInspection": "not run", "livePermissionChecks": "not run",
     "configuredBash": "deny", "candidateWildcardHelperRuleInstalled": false,
     "canonicalDirectEdits": "denied", "controlEdits": "session-scoped convention under shared permissions",
@@ -126,8 +127,8 @@
   },
   "activation": "blocked-pending-capability-evidence",
   "publication": {
-    "status": "precommit-validation-passed-awaiting-stage-commit-push", "approvalRef": "current user commit/push request 2026-10-21T16:02:06Z",
-    "capturedAt": "2026-10-21T16:12:51.377Z", "reload": "USER-REPORTED Developer: Reload Window; not actual permission-test evidence",
+    "status": "primary-commit-pushed-and-remotely-verified", "approvalRef": "current user commit/push request 2026-10-21T16:02:06Z",
+    "capturedAt": "2026-10-21T16:18:55.089Z", "reload": "USER-REPORTED Developer: Reload Window; not actual permission-test evidence",
     "repository": "pipsystem only", "branch": "main", "baseSha": "f1863d2e80471616842aebfa5918651c947ba50d",
     "remote": "origin", "remoteUrl": "https://github.com/randrescastaneda/pipsystem",
     "preExistingStagedChanges": false,
@@ -145,8 +146,13 @@
       "secretScan": {"initialFilenameOnlyRgCommand": "unavailable: command not found", "fallback": "four scoped built-in Grep searches", "result": "No high-confidence private-key or known token-prefix markers matched; no values printed", "qualification": "heuristic scan and manual candidate-file review, not a universal secrets guarantee"},
       "gitDiffCheckExitCode": 0
     },
-    "commits": [], "pushes": [],
-    "gaps": ["Publication not executed yet.", "Reload does not remove the outstanding V5/V6 runtime/activation evidence gate."]
+    "commits": [{"sha": "acfbe5d291a5085b32202ef1e4ebbc9a2b85e985", "subject": "feat(orchestration): add gated multi-session coordination", "files": 33, "branch": "main"}],
+    "pushes": [{"command": "git push origin main", "exitCode": 0, "beforeSha": "f1863d2e80471616842aebfa5918651c947ba50d", "afterSha": "acfbe5d291a5085b32202ef1e4ebbc9a2b85e985", "reportedDestination": "https://github.com/PIP-Technical-Team/pipsystem.git", "remoteUrlEdited": false}],
+    "remoteVerification": {"command": "git ls-remote --heads origin main", "exitCode": 0, "ref": "refs/heads/main", "sha": "acfbe5d291a5085b32202ef1e4ebbc9a2b85e985", "matchesLocalHead": true, "workingTreeCleanAtCapture": true},
+    "stagedVerification": {"files": 33, "gitDiffCachedCheckExitCode": 0, "testedInputBlobMatches": 9, "preExistingStagedWork": false, "generatedRuntimeOrPrivateFilesStaged": false},
+    "receiptIntegrity": "This follow-up saves the observed primary publication. It cannot embed its own future commit hash or claim its own push before that happens; verify its later publication via Git refs. The metadata clean Git state is the actual primary-commit observation before writing the receipt.",
+    "sessionBehavior": "Reload should refresh backend project configuration, not old chat context or proof of enforcement. Existing chats should resynchronize current contract/registry; new sessions select pip-orchestrator. Neither has official helper/record-write capability while bash deny and activation blocked remain. No second reload needed for this publication because agent config was unchanged during this step. Auto-approve preference stays on/unchanged.",
+    "gaps": ["Reload does not remove the outstanding V5/V6 runtime/activation evidence gate.", "Current/new pip-orchestrator session behavior has not been independently executed; no new session was started."]
   },
   "extensionFirst": {
     "status": "off-only-proposal-withdrawn-normal-mode-revision-needed", "capturedAt": "2026-10-21T15:52:39.865Z",
