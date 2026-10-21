@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "pip-project-state-v1", "projectId": "pipfun", "revision": 0,
+  "owner": null, "updatedAt": "2026-10-21T12:27:18Z", "tasks": [],
+  "legacyEvidence": [{"path": "STATE.md:657-675 before migration", "capturedAt": "2026-10-08T23:21:49Z", "headSha": "0c6a78d9884ed0965a524311537eec2a5095d60b", "qualification": "document-reported", "acceptance": "UNKNOWN"}],
+  "reconciliationHistory": [], "gaps": ["Historical SHA is not current or tested evidence.", "Ownership and acceptance are UNKNOWN; activation blocked."]
+}

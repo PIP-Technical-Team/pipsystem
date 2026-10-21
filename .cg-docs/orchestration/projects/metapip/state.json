@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "pip-project-state-v1", "projectId": "metapip", "revision": 0,
+  "owner": null, "updatedAt": "2026-10-21T12:27:18Z", "tasks": [],
+  "legacyEvidence": [{"path": "STATE.md:677-679,709-711 before migration", "capturedAt": "2026-10-13T23:17:03Z", "qualification": "document-reported", "root": "UNKNOWN"}],
+  "reconciliationHistory": [], "gaps": ["Root, SHA, source access, ownership and acceptance are UNKNOWN; metadata-only registration."]
+}

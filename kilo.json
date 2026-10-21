@@ -27,6 +27,14 @@
           "kilo.json": "allow",
           ".cg-docs/orchestration/STATE.md": "allow",
           ".cg-docs/orchestration/REQUESTS.md": "allow",
+          ".cg-docs/orchestration/outputs/**": "allow",
+          ".cg-docs/orchestration/CONTRACT.md": "allow",
+          ".cg-docs/orchestration/registry.json": "allow",
+          ".cg-docs/orchestration/templates/*.md": "allow",
+          ".cg-docs/orchestration/projects/*/state.json": "allow",
+          ".cg-docs/orchestration/projects/*/requests/*/*.md": "allow",
+          ".cg-docs/orchestration/control/*/operation.json": "allow",
+          ".cg-docs/orchestration/views/*/overview.json": "allow",
           ".cg-docs/BRAIN.md": "allow",
           ".cg-docs/BRAIN-01.md": "allow",
           ".cg-docs/BRAIN-log.md": "allow",
@@ -111,8 +119,7 @@
         },
         "edit": {
           "*": "deny",
-          ".cg-docs/orchestration/STATE.md": "allow",
-          ".cg-docs/orchestration/REQUESTS.md": "allow"
+          ".cg-docs/orchestration/control/*/operation.json": "allow"
         },
         "external_directory": {
           "*": "deny",

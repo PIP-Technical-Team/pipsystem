@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "pip-project-state-v1", "projectId": "stamp", "revision": 0,
+  "owner": null, "updatedAt": "2026-10-21T12:27:18Z", "tasks": [],
+  "legacyEvidence": [{"path": "STATE.md:657-675 before migration", "capturedAt": "2026-10-08T23:21:49Z", "headSha": "b6e5e2c5519a7c00dbb8f815a59aeac2daf9592e", "qualification": "document-reported", "acceptance": "UNKNOWN"}],
+  "reconciliationHistory": [], "gaps": ["Historical SHA is not current or tested evidence.", "Newer unregistered central stamp handoff needs owner-led reconciliation; no automatic task completion.", "Ownership and acceptance are UNKNOWN; activation blocked."]
+}

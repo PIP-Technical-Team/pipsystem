@@ -32,6 +32,21 @@
 # Project records stay tracked: .cg-docs/, compound-gpid*.md, roadmap.json,
 # project AGENTS.md, design documents, briefs, notes, and tables.
 
+# Disposable helper fixtures, short-operation locks and per-session derivatives
+/.tmp/pip-orchestration/
+/.cg-docs/orchestration/control/
+/.cg-docs/orchestration/views/
+/.cg-docs/orchestration/projects/*/.lock
+/.cg-docs/orchestration/projects/**/*.tmp
+
+.kilo
+.kilo/AGENTS.md
+.kilo/kilo.json
+
+.kilo
+.kilo/AGENTS.md
+.kilo/kilo.json
+
 # Compound GPID managed items (junctions + copied file - do not commit)
 .compound-gpid/*.bak
 .compound-gpid/*.tmp

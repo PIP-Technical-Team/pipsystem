@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "pip-project-state-v1", "projectId": "pipsystem", "revision": 0,
+  "owner": null, "updatedAt": "2026-10-21T12:27:18Z", "tasks": [],
+  "legacyEvidence": [{"path": "STATE.md", "reference": "M2 Existing Plan Review Record and D5/D8 Proposal: 2026-10-13; Integration Queue", "capturedAt": "2026-10-13T23:17:03Z", "qualification": "document-reported", "acceptance": "UNKNOWN", "approval": "Historical recording approvals only; no worker execution reissued", "historicalCoordinator": "ses_edeb4d522ffeSfIHiPXpogoyfe", "legacyGitBlob": "adee443a054eb549ac09020dcb7ef8be9f0956da"}, {"path": "REQUESTS.md", "legacyGitBlob": "071737d9533190d5f99a6632d8515d2674866dbb", "qualification": "document-reported", "tasks": ["m2-planning-proposal-2026-10-08", "m2-cg-plan-2026-10-10", "m2-stamp-contracts-2026-10-13"], "approval": "NOT GRANTED for execution"}],
+  "reconciliationHistory": [],
+  "gaps": ["No project owner inferred from the historical global coordinator.", "Legacy tasks retain their original approval limits; no accepted v1 requests or reports.", "Activation remains blocked pending capability evidence."]
+}

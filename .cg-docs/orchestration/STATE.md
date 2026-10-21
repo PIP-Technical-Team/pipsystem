@@ -1,10 +1,124 @@
 # Coordination State
 
+## Migration Index: 2026-10-21
+
+Under `.kilo/plans/1792584548162-multi-session-pip-orchestrator.md`, the new
+central contract is `CONTRACT.md`, registry is `registry.json`, and authoritative
+project records are `projects/<project-id>/state.json`. Activation is BLOCKED
+pending merged/client capability evidence. Old-format operational writes stop
+here; do not resume them while preparing or validating the new writer path.
+
+This dated index supersedes only the operational single-global-writer and
+two-register rules below. The full original remainder is preserved as history,
+including dated authorizations, unknowns, proposed work and reported checks.
+The historical owner `ses_edeb4d522ffeSfIHiPXpogoyfe` is not silently made owner
+of any new project. All seed owners and accepted v1 evidence are unassigned.
+No old work order is reissued or approved. Historical roots/SHAs keep their
+original observation dates; registry metadata grants no new source access.
+
+Central handoffs remain unchanged and discoverable, including unregistered
+stamp release follow-up evidence. Free-text reports are legacy/unvalidated and
+require owner-led reconciliation; they cannot automatically complete tasks.
+Migration/check evidence: `outputs/pipsystem/multi-session-orchestrator/20261021T120908Z-implementation/handoff.md`
+and `validation.json` in that same folder. Gaps: effective helper confinement,
+fresh user-started session checks and current external work/liveness are UNKNOWN.
+
 Observation date: 2026-10-13, using the dated UTC user handoffs. Coordination
-home: main pipsystem checkout C below. Latest evidence is in Feature 1 Setup
-and Published Commit Record: 2026-10-13. Earlier observations remain dated
-history. Current approval covers the bounded two-record setup-handoff update
-only; no M2 work, package implementation, or roadmap operation is approved.
+home: main pipsystem checkout C below. Latest evidence is in M2 Existing Plan
+Review Record and D5/D8 Proposal: 2026-10-13. Earlier observations remain dated
+history. Current approval covers the two-record review recording and proposal
+preparation only; no discussion execution, umbrella/package implementation,
+Open decision, or roadmap operation is approved.
+
+## M2 Existing Plan Review Record and D5/D8 Proposal: 2026-10-13
+
+Task: `record-m2-plan-review-2026-10-13`. Source review:
+`m2-existing-plan-review-2026-10-13`. Milestone: `m2-walking-skeleton`.
+Workflow: existing pip-orchestrator record workflow, not `/cg-work`.
+Plan/phase: existing unapproved M2 umbrella / record review and prepare proposal.
+APPROVED: direct request `2026-10-13T23:17:03Z`, only STATE/REQUESTS amendments,
+review recording, D5/D8 verification, proposal preparation, readback and handoff.
+No plan revision, implementation approval, decision resolution, roadmap/config
+edit, session start/management, package/runtime operation, or Git write.
+
+Sole writer remains `ses_edeb4d522ffeSfIHiPXpogoyfe`, with the dated
+designation/confirmation below. The current user retains that owner without
+transfer; latest records agree. No ownership conflict is identified in supplied
+evidence. This is not a filesystem lock or complete worker inventory.
+
+### Current Task and Evidence Register
+
+| Field | Supplied evidence / bounded result |
+|---|---|
+| Repository / absolute root | pipsystem / `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem`; request/environment agree with C |
+| Branch / worktree | `main`; current Git handoff checked 2026-10-13; existing coordination checkout, worktree unnecessary |
+| Recording base/current HEAD / actual remote main | `45426874ae489c398b0d7ba479d92f3e016264fb` / same / same; user-supplied setup handoff, not coordinator Git/remote checks |
+| Git capture / receipt | Capture date 2026-10-13, exact capture time UNKNOWN; received with request `2026-10-13T23:17:03Z` |
+| Pre-update remaining changes | Modified `.gitignore`; untracked `.cg-docs/plans/2026-10-10-m2-walking-skeleton.md`; preserve both; staging not separately supplied |
+| Owner / coordinator session | Existing designated pip-orchestrator / `ses_edeb4d522ffeSfIHiPXpogoyfe`; no transfer |
+| Approved write set / observed changed files | STATE.md and REQUESTS.md only; permitted patch succeeded and amendment readback confirmed the bounded changes |
+| Reviewer root/branch/base/current SHA/session | Not separately supplied for source review: UNKNOWN; recording baseline is not reviewer source evidence |
+| Source artifact | `.cg-docs/plans/2026-10-10-m2-walking-skeleton.md`; current file readback OBSERVED; untracked working file is not pinned to recording HEAD |
+| Review evidence path/time | Sanitized summary in current request; separate report/log, review capture time, exact reviewed artifact hash and approval reference UNKNOWN |
+| Inventory / actual tested pins | Supplied handoff and permitted project documents only; other owners/write sets/liveness, package states and tested dependency pins UNKNOWN; no package tests executed here |
+
+WORKER-REPORTED (reviewer), supplied by user: 0 P1, 0 P2 and 0 P3 findings;
+all nine M2 features assessed; no file changes; no implementation approval.
+These are reviewer-reported results, not an independently rerun critique,
+changed-file check or runtime pass. Individual check commands/results, severity
+criteria, full log, source binding, dependencies tested and commit/PR are not
+supplied. Zero reported findings does not approve or certify implementation.
+
+OBSERVED plan references, with `plan` meaning the source artifact above:
+- D5 (`plan:233`): neutral stamp status and missing/NA fingerprint policy,
+  result-relevant metadata schema, unchanged-output provenance/version semantics
+  preserving old pinned history while latest successful execution becomes current.
+- D8 (`plan:236`): approved repository-local saved Plans, exact work/lifecycle
+  sets/progress fields, owners, dependency commits, test roots/runtime/API
+  compatibility, inspected safe full-suite command or directly approved
+  compatible substitute, with exclusions recorded before implementation.
+- Step 1 (`plan:254-264`) names `close-stamp-gaps-for-skeleton` and
+  `create-engine-skeleton` contract prerequisites; Steps 2/3 (`:266-288`)
+  sequence generic stamp before pipdata/pipload integration at tested pins.
+- `plan:225,250,415-429,595-603` keeps decisions and implementation unapproved;
+  future work needs local saved Plans. The umbrella is not a `/cg-work` target.
+
+D5/D8 are plan-local references, not new SYSTEM_DESIGN decisions. D4's engine
+feedback/Force interaction is separate; do not silently resolve it in D5/D8.
+Other decisions and M1 R1 remain unresolved unless separately approved.
+
+OBSERVED current prompt/configuration preserves coordinator record-only writes.
+Feature 1 work-order fields are in `ORCHESTRATOR.md:187-220`. Feature 2 remains
+BLOCKED; native session/recall access remains denied. The separate reported
+310-assertion setup result below is not a newly executed or live enforcement test.
+
+PROPOSED next request: `m2-stamp-contracts-2026-10-13`, `/cg-brainstorm`, bounded
+D5/D8 discussion for the two feature IDs above. One user-selected discussion
+worker in C/pipsystem on verified main; no branch switch/new branch/worktree
+needed for this design document. Owner details/native ID UNKNOWN. Proposed
+output: `.cg-docs/brainstorms/2026-10-13-m2-stamp-contracts.md` only. Execution
+approval NOT GRANTED. Complete work order is in REQUESTS.
+
+### Result and Explicit Gaps
+
+- OBSERVED acceptance result: permitted patch succeeded for both records;
+  amendment readback confirmed reviewer-reported findings, D5/D8 references,
+  complete proposed work order, preserved history and unchanged approval limits.
+  Recording/proposal preparation is complete, not implementation or discussion
+  execution. Initial patch had a context mismatch; readback confirmed the old
+  entry remained, and the corrected patch succeeded without an access bypass.
+- UNKNOWN: full reviewer handoff/log, exact source/hash/check times, reviewer
+  branch/SHAs and tested dependencies; creation/review acceptance beyond the
+  supplied summary and current artifact readback.
+- UNKNOWN: fresh package APIs/SHAs/dirty states, discussion-worker permissions/
+  baseline, target existence/ownership, future local code/lifecycle work sets,
+  approved safe suites/runtime/test roots and tested producer pins.
+- NOT GRANTED: discussion execution, umbrella/package implementation, D5/D8
+  decisions, protected-design edits or roadmap operation. No older approval reused.
+- BLOCKED: Feature 2. No private state, raw transcript, production data or
+  external package source was read. Coordinator Git/hash/runtime/session tests,
+  pipelines/API calls, delegation, staging/commit/push/merge were not run.
+  Post-amendment Git status is not checked by this coordinator.
 
 ## Feature 1 Setup and Published Commit Record: 2026-10-13
 
@@ -887,11 +1001,12 @@ main history requires a separate explicit commit request.
 
 ## Gaps
 
-- Current recording task has exact approval and a user-supplied Git status
-  capture at `2026-10-13T22:38:34.7083084Z`; setup/remote/check claims remain
-  WORKER-REPORTED. Earlier missing capture-time statements retain their dates.
-- The M2 plan path is reported untracked, not reviewed or approved by this task;
-  its contents, owner, and acceptance result remain UNKNOWN.
+- Current review-record task has exact approval and a user-supplied 2026-10-13
+  main/HEAD/remote/status handoff; exact capture time UNKNOWN. Older handoffs
+  retain their dates. Reviewer check/source evidence remains WORKER-REPORTED.
+- M2 umbrella contents and D5/D8 references are OBSERVED by current readback;
+  exact reviewed hash/source pin, creator/implementation approval and full
+  review/validation acceptance evidence remain UNKNOWN/unverified.
 - Latest setup Git/validation evidence is WORKER-REPORTED at its own date;
   current instruction/configuration readback is OBSERVED. No coordinator Git,
   hash computation, or agent-debug validation was executed.
@@ -901,9 +1016,9 @@ main history requires a separate explicit commit request.
   and independent roadmap identity requirements remain separate.
 - Current main root/branch/HEAD/status and resolved validation are supplied by
   the user handoff, not re-executed Git/setup checks. Independent file-to-HEAD
-  comparison and post-update Git status are not run. Fresh pre-update status
-  capture time is recorded in the latest task entry; older missing-time entries
-  remain historical.
+  comparison and post-update Git status are not run. The latest pre-update
+  handoff supplies a capture date, exact time UNKNOWN; earlier precise capture
+  times retain their own dates and are not reused as this task's time.
 - Permitted coordinator record writes and readback succeeded as recorded above;
   independent roadmap approval/write behavior and denied-path enforcement
   remain untested. No broader client or sandbox capability is certified.
