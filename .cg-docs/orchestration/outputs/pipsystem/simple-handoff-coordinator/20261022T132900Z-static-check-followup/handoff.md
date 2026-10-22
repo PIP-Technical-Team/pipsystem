@@ -9,24 +9,24 @@
   "requestId": "direct-user-continuation-20261022",
   "coordinationSessionId": "code-refocus-20261022",
   "reportingOwner": "static-check-followup-code-session",
-  "checkpoint": 5,
+  "checkpoint": 6,
   "createdAt": "2026-10-22T13:59:00.458Z",
-  "updatedAt": "2026-10-22T15:29:04.397Z",
+  "updatedAt": "2026-10-22T15:30:19.820Z",
   "repository": {"name": "pipsystem", "root": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem"},
   "worktree": {"name": "main-checkout", "path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem", "kind": "main"},
   "session": {"label": "same-refocus-code-session", "nativeId": "UNKNOWN"},
   "git": {
-    "branch": "main", "baseSha": "01690ae8a1f02841b3b9ab24bfcb11ac97297675", "headSha": "01690ae8a1f02841b3b9ab24bfcb11ac97297675",
-    "capturedAt": "2026-10-22T14:02:24.651Z", "dirty": "dirty",
+    "branch": "main", "baseSha": "01690ae8a1f02841b3b9ab24bfcb11ac97297675", "headSha": "5a1b087b1c38f12e172bebf602da62e22d61e53f",
+    "capturedAt": "2026-10-22T15:30:19.820Z", "dirty": "dirty",
     "changedFiles": ["tests/pip-orchestration.test.mjs", ".cg-docs/orchestration/outputs/pipsystem/simple-handoff-coordinator/20261022T132900Z-static-check-followup/handoff.md"],
-    "commitsMade": [], "mergeSha": "NONE", "pr": "NONE", "testedPins": []
+    "commitsMade": ["5a1b087b1c38f12e172bebf602da62e22d61e53f"], "mergeSha": "NONE", "pr": "NONE", "testedPins": []
   },
   "scope": {
     "workflow": "same-session narrow verification; later user-authorized publication",
     "approvalRef": "direct user continuation 2026-10-22T13:58:43Z; commit/push request 2026-10-22T15:26:42Z",
     "planPath": "NONE", "planRevision": "NONE", "phase": "refocus-verification",
     "writeSet": ["tests/pip-orchestration.test.mjs", "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/pipsystem/simple-handoff-coordinator/20261022T132900Z-static-check-followup/handoff.md"],
-    "completed": "One-line assertion corrected; both static checks passed; new report rediscovered through directory listings; multi-project status refreshed; preservation/whitespace audits and substantive saved-output readback passed. User-approved scope complete."
+    "completed": "Narrow verification complete. Later user-authorized seven-file coordinator commit published to origin/main and independently verified; older pending reports remain untouched and uncommitted."
   },
   "status": "completed", "dependencyPins": [],
   "checks": [
@@ -128,9 +128,13 @@ Publication scope is seven files: `ORCHESTRATOR.md`, `AGENTS.md`, `kilo.json`, `
 
 Fresh prepublication checks: reviewed status, source/config/static-test diffs, recent ten commits, upstream, remote, intended report content and preservation pins. The same two-test command passed again: 2 PASS / 0 FAIL / 0 SKIP, exit 0, total 121.6966 ms. `git diff --check` passed with existing LF-to-CRLF warnings only. No functional/helper operation or permission experiment was run. Scoped sensitive-marker scans returned no findings; these are heuristic only, not a privacy guarantee. Publication is pending at checkpoint 5; no push success or future commit SHA is invented here. Save the observed primary publication receipt in this owned report after actual results.
 
+Checkpoint 6 publication receipt, adjacent capture `2026-10-22T15:30:19.820Z`: the seven staged files and their exact blobs were checked, `git diff --cached --check` passed, and `git commit -m "refactor(orchestration): simplify handoff coordination"` created `5a1b087b1c38f12e172bebf602da62e22d61e53f` (7 files, 501 insertions, 186 deletions). `git push origin main` exited 0 and advanced remote main from recovery `01690ae8a1f02841b3b9ab24bfcb11ac97297675` to the primary commit. Independent `git ls-remote --heads origin main` returned the complete primary SHA; local main and origin/main matched.
+
+The four excluded older reporting files still have the same recorded Git blob pins and remain the only pending modified/untracked files after the primary push. No helper, registry/project record, package, generated-adapter or global-settings changes were made. The recorded tests bind their original working-file contents; publication does not invent a clean-commit execution or live permission pass. This owned report records the observed primary publication, not the unknown SHA of its own later receipt commit; the receipt publication is verified through Git afterward. The publication subsection and final metadata are read back before saving that receipt commit.
+
 ## Checks Not Run
 
-Not run by design: helper operations/full functional helper suite, permission experiments, live operational-agent effective-config/reload checks, cross-repository worker writes, installations, package tests/builds/pipelines, integration/release actions, Git mutations or session starts. All requested narrow static/discovery/preservation checks ran and passed. Live client behavior and unwritten package/session activity remain explicitly unverified, not reasons to restart a permission campaign.
+Not run by design: helper operations/full functional helper suite, permission experiments, live operational-agent effective-config/reload checks, cross-repository worker writes, installations, package tests/builds/pipelines, integration/release actions or session starts. Git mutations occurred only for the later explicitly authorized commit/push, not during narrow implementation verification. All requested narrow static/discovery/preservation checks ran and passed. Live client behavior and unwritten package/session activity remain explicitly unverified, not reasons to restart a permission campaign.
 
 ## Blockers And Decisions
 
