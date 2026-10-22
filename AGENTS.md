@@ -42,12 +42,19 @@ production data, or raw conversations. Workers own only their assigned output
 files, never another worker's files or canonical registry/project-state records.
 STATE/REQUESTS are retained historical indexes, not active writable registers.
 
-All orchestrators remain in this main pipsystem checkout. Different designated
-sessions may own different projects; one owner per project, checked by the helper
-with revision/locking rules. Designation permits routine project coordination,
-not implementation, workers, Git, roadmap or new source access. Refresh on start,
-before prompts, after intake and on status requests. While activation is blocked,
-do not substitute direct state edits or broader shell access for the helper.
+All orchestrators remain in this main pipsystem checkout. Ordinary coordination
+discovers and reads shared handoffs, explains last-known stages/blockers and
+drafts next-session prompts with exact report paths. Use bounded Read directory
+and file access within the central output root. No helper execution, registry
+ownership, activation, task registration or schema validation is required for
+reading or advice. Identify missing facts without refusing useful bounded advice.
+Refresh from saved files on start, before prompts, after handoff review and on
+status requests; never claim background awareness, liveness or unwritten progress.
+Canonical shared-state mutation, ownership locks/revisions and formal intake are
+deferred; preserve their helper, tests, records and history without modifying or
+executing them. Coordination does not authorize implementation, worker starts,
+Git, roadmap or new source access. Shell stays denied for pip-orchestrator; keep
+the user's auto-approve ON preference without changing settings.
 
 Every coordinating prompt must pass this requirement and exact paths onward;
 workers in other repositories do not automatically inherit this file. Reporting

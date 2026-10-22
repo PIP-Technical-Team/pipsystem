@@ -453,8 +453,11 @@ test('project config stays fail-closed; static candidate reads are not merged pe
   const candidate = (kind, value) => typeof permissions[kind] === 'string' ? permissions[kind] :
     Object.entries(permissions[kind] ?? { '*': 'deny' }).reduce((result, [p, action]) => match(p, value) ? action : result, 'deny');
   for (const read of ['CONTRACT.md', 'registry.json', 'templates/handoff.md', 'templates/work-order.md',
-    'projects/stamp/state.json', 'projects/pipapi/requests/task/request.md', 'outputs/stamp/task/run/handoff.md', 'views/observer/overview.json'])
+    'projects/stamp/state.json', 'projects/pipapi/requests/task/request.md', 'outputs', 'outputs/',
+    'outputs/stamp', 'outputs/stamp/task', 'outputs/stamp/task/run', 'outputs/stamp/task/run/handoff.md', 'views/observer/overview.json'])
     assert.equal(candidate('read', `.cg-docs/orchestration/${read}`), 'allow');
+  for (const denied of ['.cg-docs/orchestration', '.cg-docs', '.', '../pipdata', '.kilo/agent-manager.json'])
+    assert.equal(candidate('read', denied), 'deny');
   for (const denied of ['STATE.md', 'REQUESTS.md', 'registry.json', 'projects/stamp/state.json', 'outputs/stamp/task/run/handoff.md', 'templates/handoff.md'])
     assert.equal(candidate('edit', `.cg-docs/orchestration/${denied}`), 'deny');
   assert.equal(candidate('edit', '.cg-docs/orchestration/control/observer/operation.json'), 'allow');
@@ -476,14 +479,24 @@ test('project config stays fail-closed; static candidate reads are not merged pe
   assert.ok(!('model' in config.agent['pip-orchestrator']) && !('default_agent' in config));
 });
 
-test('active instructions use per-project ownership and a single canonical output contract', () => {
+test('active instructions use saved handoffs without helper prerequisites and retain the rich output contract', () => {
   const instructions = fs.readFileSync(path.join(repository, 'ORCHESTRATOR.md'), 'utf8');
   const contract = fs.readFileSync(path.join(repository, '.cg-docs/orchestration/CONTRACT.md'), 'utf8');
   const template = fs.readFileSync(path.join(repository, '.cg-docs/orchestration/templates/handoff.md'), 'utf8');
   const workOrder = fs.readFileSync(path.join(repository, '.cg-docs/orchestration/templates/work-order.md'), 'utf8');
+  const agents = fs.readFileSync(path.join(repository, 'AGENTS.md'), 'utf8');
+  const prose = instructions.replace(/\s+/g, ' ').toLowerCase();
   assert.ok(!/Only one user-designated coordinator session may write|Direct writes are limited to STATE|single durable coordination registers/.test(instructions));
-  for (const value of ['global overview', 'repository-focused coordination', 'handoff intake', 'BLOCKED',
-    'expected revision', 'observer', 'transfer', 'scope', 'main pipsystem']) assert.ok(instructions.includes(value), value);
+  for (const value of ['global overview', 'repository-focused coordination', 'saved handoff review',
+    'Bounded Discovery and Refresh', 'Read tool', 'exact absolute central report path',
+    'last-known stage', 'after handoff review', 'scope', 'main pipsystem', 'auto-approve ON'])
+    assert.ok(prose.includes(value.toLowerCase()), value);
+  for (const content of [instructions, agents, contract]) {
+    assert.match(content.replace(/\s+/g, ' '), /No helper[\s\S]*schema validation is required for[\s\S]*advice/);
+    assert.match(content, /ownership locks\/revisions[\s\S]*deferred/);
+  }
+  assert.ok(!/Activation is currently BLOCKED|After activation, use this process|Submit owner-led intake through the helper/.test(instructions));
+  assert.ok(instructions.includes('Do not execute the helper'));
   for (const section of SECTIONS) assert.ok(template.includes(`## ${section}`), section);
   for (const value of ['pip-handoff-v1', 'tested-content', 'legacy/unvalidated', 'recover-lock', 'Rollback', 'outer Code caller'])
     assert.ok((contract + workOrder).includes(value), value);

@@ -2,7 +2,7 @@
   "$schema": "https://app.kilo.ai/config.json",
   "agent": {
     "pip-orchestrator": {
-      "description": "Coordinates approved PIP project work and evidence; does not run the pipeline.",
+      "description": "Reads shared PIP project handoffs, summarizes last-known blockers and drafts next-session prompts; does not run the pipeline.",
       "mode": "primary",
       "prompt": "{file:./ORCHESTRATOR.md}",
       "permission": {
@@ -27,6 +27,7 @@
           "kilo.json": "allow",
           ".cg-docs/orchestration/STATE.md": "allow",
           ".cg-docs/orchestration/REQUESTS.md": "allow",
+          ".cg-docs/orchestration/outputs": "allow",
           ".cg-docs/orchestration/outputs/**": "allow",
           ".cg-docs/orchestration/CONTRACT.md": "allow",
           ".cg-docs/orchestration/registry.json": "allow",
