@@ -9,18 +9,18 @@
   "requestId": "20261022-user-scheduling",
   "coordinationSessionId": "20261022-code-scheduling",
   "reportingOwner": "Code configuration session",
-  "checkpoint": 4,
+  "checkpoint": 5,
   "createdAt": "2026-10-22T21:08:44Z",
-  "updatedAt": "2026-10-22T21:17:41Z",
+  "updatedAt": "2026-10-22T21:19:24Z",
   "repository": {"name": "pipsystem", "root": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem"},
   "worktree": {"name": "main", "path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem", "kind": "main"},
   "session": {"label": "Code configuration session", "nativeId": "UNKNOWN"},
   "git": {
     "branch": "main", "baseSha": "0918412685a714745c5df3114598f62a9c27129d",
-    "headSha": "0918412685a714745c5df3114598f62a9c27129d",
-    "capturedAt": "2026-10-22T21:08:44Z", "dirty": "dirty",
+    "headSha": "5716a54a2a06310d5ebcecb6f0ffb5aaa8ddfc47",
+    "capturedAt": "2026-10-22T21:19:24Z", "dirty": "dirty",
     "changedFiles": ["kilo.json", "ORCHESTRATOR.md", "AGENTS.md", ".cg-docs/orchestration/CONTRACT.md", ".cg-docs/orchestration/outputs/pipsystem/timed-handoff-follow-up/20261022T210844Z-code/handoff.md", ".cg-docs/orchestration/outputs/pipsystem/timed-handoff-follow-up/20261022T210844Z-code/validate.mjs"],
-    "commitsMade": [], "mergeSha": "NONE", "pr": "NONE",
+    "commitsMade": ["5716a54a2a06310d5ebcecb6f0ffb5aaa8ddfc47"], "mergeSha": "NONE", "pr": "NONE",
     "testedPins": [{"kind": "content", "sha": "UNKNOWN", "evidencePath": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/pipsystem/timed-handoff-follow-up/20261022T210844Z-code/validate.mjs", "capturedAt": "2026-10-22T21:13:50.739Z", "dirty": "dirty", "qualification": "Static checks executed against uncommitted working content, compared to baseline 0918412685a714745c5df3114598f62a9c27129d; not a clean tested commit or live-agent test."}]
   },
   "scope": {
@@ -35,9 +35,9 @@
       "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/pipsystem/timed-handoff-follow-up/20261022T210844Z-code/handoff.md",
       "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/pipsystem/timed-handoff-follow-up/20261022T210844Z-code/validate.mjs"
     ],
-    "completed": "Five scheduling permissions enabled; active instruction conflicts removed; estimated file-follow-up lifecycle documented; ten static checks and scoped whitespace check passed; canonical outputs read back."
+    "completed": "Scheduling change and six task files committed as 5716a54a2a06310d5ebcecb6f0ffb5aaa8ddfc47 and successfully pushed to origin/main; static validation rerun 10/10 PASS; publication receipt saved for a follow-up documentation commit."
   },
-  "status": "running",
+  "status": "completed",
   "dependencyPins": [],
   "checks": [
     {"name": "Isolated scheduling configuration and policy validator (10 checks)", "result": "PASS", "exitCode": 0, "executedAt": "2026-10-22T21:13:50.739Z", "capturedAt": "2026-10-22T21:14:22Z", "evidencePath": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/pipsystem/timed-handoff-follow-up/20261022T210844Z-code/validate.mjs", "sourceBinding": "Uncommitted kilo.json, ORCHESTRATOR.md, AGENTS.md and CONTRACT.md checked against source baseline 0918412685a714745c5df3114598f62a9c27129d.", "dependencyBinding": "NONE; no package sources or runtime dependencies tested.", "qualification": "executed; static JSON/configuration and text assertions only, not native scheduler execution"},
@@ -52,7 +52,7 @@
 
 Configuration change is complete and statically validated: 10/10 isolated checks passed, as did the scoped whitespace check. Five native scheduling lifecycle tools are allowed. Launch confirmation triggers estimated file-based checks, with recurring follow-up only while pending and cancellation on terminal results, stop or supersession. No worker start, shell access or pipeline automation is authorized. Live callback execution and reload of an existing operational session remain unverified.
 
-Publication checkpoint at `2026-10-22T21:17:41Z`: the user explicitly requested commit and push. Pre-publication status/diff/recent-log/upstream review found branch main tracking origin/main, no previously staged changes, and the same unrelated dirty paths. Only this task's six listed files will be staged. Git metadata and this report's resolved output directory are on E:. No configured custom hooksPath or active default commit/push hooks were found. Commit and push are pending at this checkpoint.
+Publication completed and verified at `2026-10-22T21:19:24Z`: commit `5716a54a2a06310d5ebcecb6f0ffb5aaa8ddfc47`, `feat(orchestration): schedule confirmed handoff follow-ups`, contains exactly the six task-owned files and was pushed successfully to origin/main. `git rev-parse HEAD origin/main` returned that full SHA twice. Unrelated README/wiki, prior-report and external-worker changes remain uncommitted and untouched. This checkpoint records the implementation commit's successful publication; the following documentation commit containing this receipt cannot self-reference its own SHA or prove its later push.
 
 ## Substantive Findings
 
@@ -93,9 +93,18 @@ Executed `node .cg-docs/orchestration/outputs/pipsystem/timed-handoff-follow-up/
 
 Executed `git diff --check -- kilo.json AGENTS.md ORCHESTRATOR.md .cg-docs/orchestration/CONTRACT.md`, exit 0. No whitespace errors; Git printed LF-to-CRLF conversion warnings. Final status showed only the four task-owned tracked changes and this new run folder in addition to the pre-existing unrelated changes. These are executed static checks, not runtime or worker-completion passes.
 
+Publication checks and actions actually executed:
+
+- Re-ran the isolated Node validator at `2026-10-22T21:18:22.759Z`: 10/10 PASS, exit 0; no operational content changed after that run.
+- Reviewed status, full intended diff, recent ten commits, origin URL, tracking upstream and existing index before staging. The initial index was empty. Resolved Git metadata and report paths are on E:; no custom hooksPath or active default hooks were found.
+- Staged exactly the four configuration/instruction files plus this handoff and validator. `git diff --cached --stat` listed six files; `git diff --cached --check` passed; new evidence files were reviewed before committing.
+- `git commit -m "feat(orchestration): schedule confirmed handoff follow-ups"` succeeded as `5716a54a2a06310d5ebcecb6f0ffb5aaa8ddfc47` (6 files; 323 insertions, 18 deletions).
+- `git -c "credential.helper=" -c "credential.helper=!gh auth git-credential" push origin main` succeeded, reporting `0918412..5716a54 main -> main`. This command used existing GitHub CLI authentication and command-local helper overrides, not persistent Git configuration changes. TEMP/TMP/TMPDIR and XDG cache/data/state were redirected to the E: run folder. No credentials were saved in this report. The agent-generated GitHub CLI device-id cache was removed and is not a deliverable or staged content.
+- `git rev-parse HEAD origin/main`, `git show --stat --oneline HEAD`, and `git status --short --branch` confirmed the implementation commit and tracking ref match, task files are committed, and pre-existing unrelated edits remain.
+
 ## Saved-Output Readback
 
-The initial saved report was read back before checkpoint 2; all required metadata and ten prose headings were present. At the final checkpoint, Read confirmed current scheduling permissions (`kilo.json:137-143`), the full lifecycle (`ORCHESTRATOR.md:190-258`), the inherited coordination rule (`AGENTS.md:51-61`), and the central contract's scheduled-follow-up permission (`CONTRACT.md:17-25`). The saved validator was executed directly from this run folder. Readback is configuration/document evidence, not live scheduling verification.
+The initial saved report was read back before checkpoint 2; all required metadata and ten prose headings were present. At the configuration-completion checkpoint, Read confirmed current scheduling permissions (`kilo.json:137-143`), the full lifecycle (`ORCHESTRATOR.md:190-258`), the inherited coordination rule (`AGENTS.md:51-61`), and the central contract's scheduled-follow-up permission (`CONTRACT.md:17-25`). The saved report and validator were read again before publication, and the staged versions were reviewed with git diff --cached. The saved validator was executed directly from this run folder twice. Readback is configuration/document evidence, not live scheduling verification.
 
 ## Checks Not Run
 
@@ -107,9 +116,10 @@ NONE for the authorized configuration edit and scoped Git publication. The user 
 
 ## Recommended Next Action
 
-This Code session will publish only the approved scheduling files and their report/validator, preserve unrelated dirty changes, and record the publication result in this owned handoff. The behavior applies when pip-orchestrator loads the updated project configuration. After a future user-confirmed launch, that agent must successfully create a native timer and report its returned ID/due time before claiming follow-up is scheduled. A still-open old session may require a client-supported project configuration reload; this report does not claim that reload occurred. No separate worker start or live test was performed for this edit.
+Implementation publication is complete. This Code session will commit and push only this updated handoff as a publication receipt, then verify local/upstream equality without further report rewriting. The behavior applies when pip-orchestrator loads the updated project configuration. After a future user-confirmed launch, that agent must successfully create a native timer and report its returned ID/due time before claiming follow-up is scheduled. A still-open old session may require a client-supported project configuration reload; this report does not claim that reload occurred. No separate worker start or live test was performed for this edit.
 
 ## Gaps
 
 - Static configuration checks cannot prove that an already-open pip-orchestrator session has reloaded permissions or can execute callbacks.
 - Task duration estimates must remain estimates; saved reports cannot establish whether an external worker is live or has finished unwritten work.
+- This publication receipt records the verified implementation push at its capture time, not its own future receipt-commit SHA or later push result. Final local/upstream verification belongs to the publishing session's command result.
