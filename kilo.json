@@ -2,7 +2,7 @@
   "$schema": "https://app.kilo.ai/config.json",
   "agent": {
     "pip-orchestrator": {
-      "description": "Reads shared PIP project handoffs, summarizes last-known blockers and drafts next-session prompts; does not run the pipeline.",
+      "description": "Reads shared PIP project handoffs, drafts next-session prompts and schedules evidence checks after user-confirmed starts; does not run the pipeline.",
       "mode": "primary",
       "prompt": "{file:./ORCHESTRATOR.md}",
       "permission": {
@@ -135,6 +135,11 @@
           "E:/PovcalNet/01.personal/wb384996/PIP/pipapi/*": "allow"
         },
         "task": "deny",
+        "schedule_wakeup": "allow",
+        "cancel_wakeup": "allow",
+        "cron_create": "allow",
+        "cron_list": "allow",
+        "cron_delete": "allow",
         "question": "allow"
       }
     },

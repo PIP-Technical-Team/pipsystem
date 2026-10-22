@@ -48,8 +48,12 @@ drafts next-session prompts with exact report paths. Use bounded Read directory
 and file access within the central output root. No helper execution, registry
 ownership, activation, task registration or schema validation is required for
 reading or advice. Identify missing facts without refusing useful bounded advice.
-Refresh from saved files on start, before prompts, after handoff review and on
-status requests; never claim background awareness, liveness or unwritten progress.
+Refresh from saved files on start, before prompts, after handoff review, on
+status requests and on scheduled callbacks for user-confirmed work. When the user
+says a proposed prompt is running or executed, estimate its duration and use
+native scheduling/wakeup tools to check its assigned handoff and evidence files;
+follow the lifecycle in ORCHESTRATOR.md. Scheduled reads establish only observed
+saved evidence, never worker liveness, unwritten progress or continuous monitoring.
 Canonical shared-state mutation, ownership locks/revisions and formal intake are
 deferred; preserve their helper, tests, records and history without modifying or
 executing them. Coordination does not authorize implementation, worker starts,
