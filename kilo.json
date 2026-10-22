@@ -2,7 +2,7 @@
   "$schema": "https://app.kilo.ai/config.json",
   "agent": {
     "pip-orchestrator": {
-      "description": "Reads shared PIP project handoffs, drafts next-session prompts and schedules evidence checks after user-confirmed starts; does not run the pipeline.",
+      "description": "Coordinates PIP handoffs using installed Compound GPID contracts; can maintain its own rules with explicit user approval; does not run the pipeline.",
       "mode": "primary",
       "prompt": "{file:./ORCHESTRATOR.md}",
       "permission": {
@@ -25,6 +25,28 @@
           "roadmap.json": "allow",
           "ORCHESTRATOR.md": "allow",
           "kilo.json": "allow",
+          ".kilo/AGENTS.md": "allow",
+          ".kilo/kilo.json": "allow",
+          ".kilo/command": "allow",
+          ".kilo/command/**": "allow",
+          ".kilo/commands": "allow",
+          ".kilo/commands/**": "allow",
+          ".kilo/agent": "allow",
+          ".kilo/agent/**": "allow",
+          ".kilo/agents": "allow",
+          ".kilo/agents/**": "allow",
+          ".kilo/instructions": "allow",
+          ".kilo/instructions/**": "allow",
+          ".kilo/shared": "allow",
+          ".kilo/shared/**": "allow",
+          ".kilo/skill": "allow",
+          ".kilo/skill/**": "allow",
+          ".kilo/skills": "allow",
+          ".kilo/skills/**": "allow",
+          ".compound-gpid": "allow",
+          ".compound-gpid/**": "allow",
+          ".cg-docs": "allow",
+          ".cg-docs/**": "allow",
           ".cg-docs/orchestration/STATE.md": "allow",
           ".cg-docs/orchestration/REQUESTS.md": "allow",
           ".cg-docs/orchestration/outputs": "allow",
@@ -112,15 +134,18 @@
           "*secret*": "deny",
           "*transcript*": "deny",
           "*/.git/*": "deny",
-          "*/.kilo/*": "deny",
-          "*/.compound-gpid/*": "deny",
           "*/data/*": "deny",
           "*/data-raw/*": "deny",
           "*/production/*": "deny"
         },
         "edit": {
           "*": "deny",
-          ".cg-docs/orchestration/control/*/operation.json": "allow"
+          ".cg-docs/orchestration/control/*/operation.json": "allow",
+          "ORCHESTRATOR.md": "ask",
+          "kilo.json": "ask",
+          "AGENTS.md": "ask",
+          ".cg-docs/orchestration/CONTRACT.md": "ask",
+          ".cg-docs/orchestration/outputs/pipsystem/orchestrator-self-maintenance/*/handoff.md": "allow"
         },
         "external_directory": {
           "*": "deny",
@@ -135,6 +160,11 @@
           "E:/PovcalNet/01.personal/wb384996/PIP/pipapi/*": "allow"
         },
         "task": "deny",
+        "skill": {
+          "*": "deny",
+          "cg-*": "allow",
+          "pl-clear-technical-communication": "allow"
+        },
         "schedule_wakeup": "allow",
         "cancel_wakeup": "allow",
         "cron_create": "allow",

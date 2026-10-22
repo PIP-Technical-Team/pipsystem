@@ -60,6 +60,22 @@ executing them. Coordination does not authorize implementation, worker starts,
 Git, roadmap or new source access. Shell stays denied for pip-orchestrator; keep
 the user's auto-approve ON preference without changing settings.
 
+pip-orchestrator has standing read access to the installed Compound GPID
+commands, agents, instructions, shared contracts, skills and resources in
+.kilo/, the managed .compound-gpid/ installation, and project .cg-docs/ artifacts.
+Use these files to verify framework requirements before drafting prompts; they
+are reference material, not permission to execute commands or edit generated
+files. Credentials, private Kilo session state and package write boundaries stay
+protected. Follow the Compound GPID Reference Access section in ORCHESTRATOR.md.
+
+The exception to read-and-advise is explicit user-approved self-maintenance of
+pip-orchestrator's own rules. Follow the User-Approved Self-Maintenance section in
+ORCHESTRATOR.md. It may edit ORCHESTRATOR.md, its own agent block in kilo.json,
+and only its coordination rules in AGENTS.md and the central CONTRACT.md, plus
+its unique maintenance handoff. Approval is per change, not standing permission
+to expand authority. Unrelated tools, files, package writes, roadmap operations,
+and deferred shared-state operations remain outside this exception.
+
 Every coordinating prompt must pass this requirement and exact paths onward;
 workers in other repositories do not automatically inherit this file. Reporting
 does not expand implementation scope or override permissions. If a restricted

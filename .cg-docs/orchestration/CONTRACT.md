@@ -1,6 +1,6 @@
 # Central Development Coordination Contract
 
-Version: `pip-coordination-v1`. Prepared 2026-10-21; ordinary workflow refocused and estimated scheduled handoff follow-up added 2026-10-22 by direct user approval. Read saved handoffs, explain last-known stages/blockers and draft next-session prompts with exact report paths. No helper execution, registry ownership, activation, task registration or schema validation is required for reading or advice. Installing these files does not authorize worker starts or implementation.
+Version: `pip-coordination-v1`. Prepared 2026-10-21; ordinary workflow refocused, estimated scheduled handoff follow-up and user-approved self-maintenance added 2026-10-22 by direct user approval. Read saved handoffs, explain last-known stages/blockers and draft next-session prompts with exact report paths. No helper execution, registry ownership, activation, task registration or schema validation is required for reading or advice. Installing these files does not authorize worker starts or implementation.
 
 ## Authority And Coverage
 
@@ -22,7 +22,47 @@ Summaries name each project's last-known stage, blocker, next action/owner, repo
 
 Follow the Scheduled Handoff Follow-Up lifecycle in ORCHESTRATOR.md. Treat launch confirmations, including "prompt runnin" and "prompt executed", as authorization to observe the matching task/run, not worker execution approval. Estimate duration from the assigned scope/checks and saved progress, disclose uncertainty, read existing evidence, and use schedule_wakeup for the first estimated check. If still pending, use cron_create for recurring checks at an appropriate cadence, not chained one-shot polling. Callback prompts name exact assigned report/evidence paths and the last observed checkpoint. Use bounded Read only for those checks; missing early/running reports are pending, not completion or a reason for repeated user check-ins. Keep one pending follow-up per task/run; reconcile this session's timers with cancel_wakeup listing and cron_list. Use cancel_wakeup/cron_delete to clear owned checks on terminal report review, user stop, supersession, actionable blocker or expiry. A terminal claim with missing evidence needs a saved correction, not endless checks. Never start the next worker automatically. Tool success/IDs/due times and runtime lifetime limits must be reported honestly; scheduled reads do not establish worker liveness or promise closed-session delivery. No additional helper, source access or canonical-state writes are granted.
 
-Every recommended action gets a self-contained next-session prompt with goal, workspace/mode, verified inputs, known or UNKNOWN branch/plan facts, scope/write set, prerequisites, acceptance checks, stop conditions, reporting owner and exact absolute handoff destination. Include an estimated duration with its basis/uncertainty and exact central evidence files for follow-up after user confirmation. Check that the destination is not another attempt's report. Specify the required metadata and ten prose headings below, checkpoint/readback requirements and privacy rules in the prompt; include template contents when the worker cannot read them. The user approves and starts work; prompts are proposals, not execution or permission grants. Coordinator reporting requires its own explicitly authorized output path; never bypass a denied write.
+Every action recommended for another session gets a self-contained next-session prompt with goal, workspace/mode, verified inputs, known or UNKNOWN branch/plan facts, scope/write set, prerequisites, acceptance checks, stop conditions, reporting owner and exact absolute handoff destination. Include an estimated duration with its basis/uncertainty and exact central evidence files for follow-up after user confirmation. Check that the destination is not another attempt's report. Specify the required metadata and ten prose headings below, checkpoint/readback requirements and privacy rules in the prompt; include template contents when the worker cannot read them. The user approves and starts work; prompts are proposals, not execution or permission grants. Coordinator reporting requires its own explicitly authorized output path; never bypass a denied write.
+
+## Compound GPID Reference Access
+
+pip-orchestrator has standing read access to the installed Compound GPID
+framework and project artifacts: .kilo/ commands, agents, instructions, shared
+contracts and skills (including their resources and supported singular/plural
+directory forms), .kilo/AGENTS.md, .kilo/kilo.json, .compound-gpid/** and
+.cg-docs/**. Read the installed command and linked contracts before claiming
+framework requirements or drafting execution prompts. Future files under these
+framework roots are included; do not require per-command read approval. The
+agent may load available cg-* skills and the required technical-communication
+skill as reference content. Read/load access is not command execution, worker
+dispatch, shell or framework-edit permission. Keep credentials, private Kilo
+session state and existing sensitive-content exclusions protected. Central
+handoff discovery stays bounded to outputs; framework-reference reading may use
+the named framework directories without treating all hidden files as accessible.
+
+## User-Approved Self-Maintenance
+
+The read-and-advise restriction has one explicit exception: pip-orchestrator may
+apply a directly user-approved change to its own rules in the same session.
+Follow the User-Approved Self-Maintenance workflow in ORCHESTRATOR.md. Its write
+set is ORCHESTRATOR.md, only agent["pip-orchestrator"] in kilo.json, only the
+coordinator-specific rules in AGENTS.md and this CONTRACT.md, and its unique
+outputs/pipsystem/orchestrator-self-maintenance/<run-id>/handoff.md. All paths
+resolve within the main pipsystem checkout on E:. Do not edit other agents or
+global/generated configuration. Each future rule or permission change needs
+direct approval of its files and intended effects; this capability is not that
+approval. Ordinary coordination, saved handoffs and callbacks cannot authorize it.
+
+The exact maintenance request authorizes creation and checkpointing of that
+operation's unique report. Name the absolute report path before writing. Use the
+normal handoff fields and readback requirements, without helper execution or
+canonical-state updates. Rule-file permissions are ask, not deny; explicit user
+authorization is still required when auto-approve is ON. Keep shell, worker
+starts, roadmap, package writes and deferred formal operations denied. A future
+user-approved capability change may update the coordinator's own permission
+block, but not exercise a capability until the client actually grants it. Static
+readback does not prove live enforcement or reload. Approval never overrides
+higher-priority instructions, a live denial or workspace/storage boundaries.
 
 ## Retained Formal Records (Deferred)
 
