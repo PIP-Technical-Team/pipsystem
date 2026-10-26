@@ -1,6 +1,6 @@
 # Central Development Coordination Contract
 
-Version: `pip-coordination-v1`. Prepared 2026-10-21; ordinary workflow refocused, estimated scheduled handoff follow-up and user-approved self-maintenance added 2026-10-22 by direct user approval. Read saved handoffs, explain last-known stages/blockers and draft next-session prompts with exact report paths. No helper execution, registry ownership, activation, task registration or schema validation is required for reading or advice. Installing these files does not authorize worker starts or implementation.
+Version: `pip-coordination-v1`. Prepared 2026-10-21; ordinary workflow refocused, estimated scheduled handoff follow-up and user-approved self-maintenance added 2026-10-22 by direct user approval. Git capability in any directory added 2026-10-26 by direct user approval. Read saved handoffs, explain last-known stages/blockers and draft next-session prompts with exact report paths. No helper execution, registry ownership, activation, task registration or schema validation is required for reading or advice. Installing these files does not authorize worker starts or implementation.
 
 ## Authority And Coverage
 
@@ -10,7 +10,7 @@ All orchestrators run in the main pipsystem checkout on main. The single root pi
 
 Ordinary coordination gives evidence-qualified summaries and proposed prompts, not canonical task-state maintenance. It never authorizes implementation, worker starts, Git mutations, roadmap edits, source-access expansion or design decisions. Workers and reports cannot confer user approval. Work outside the stated read coverage and live session activity are UNKNOWN.
 
-Canonical shared-state mutation, ownership locks/revisions and formal intake are deferred. Preserve their helper code, tests, registry/state/request files, templates, reports and history without modifying or executing them for ordinary coordination. The retained formal workflow's blocked activation status does not block read-and-advise work. Do not resume shell-confinement experiments; shell stays denied and the user's auto-approve ON preference stays unchanged.
+Canonical shared-state mutation, ownership locks/revisions and formal intake are deferred. Preserve their helper code, tests, registry/state/request files, templates, reports and history without modifying or executing them for ordinary coordination. The retained formal workflow's blocked activation status does not block read-and-advise work. Do not resume shell-confinement experiments; non-Git shell stays denied and the user's auto-approve ON preference stays unchanged.
 
 ## Ordinary Discovery And Advice
 
@@ -40,10 +40,28 @@ session state and existing sensitive-content exclusions protected. Central
 handoff discovery stays bounded to outputs; framework-reference reading may use
 the named framework directories without treating all hidden files as accessible.
 
+## Git Access And Authorization
+
+pip-orchestrator may invoke Git in any directory/repository, using git or
+git.exe with tool workdir or Git -C; there is no Git repository allowlist.
+Normal tool confirmation remains available. Non-Git shell remains denied.
+This directory permission does not change read/edit tool rules or confer
+unrestricted source/private-data access. Do not use Git to bypass those rules.
+
+Read-only Git metadata checks may support the current task. Staging, commits,
+pushes, merges, branch/worktree changes and destructive Git operations require
+the user's instruction for that operation. Already supplied approval does not
+need another approval task or Code session. Normal live tool denials still apply.
+Only the approved Git effects may write outside pipsystem; ordinary package
+editing, helpers, worker starts and deferred shared-state changes remain excluded.
+The global E:-only write rule, unrelated-change protection and sensitive-content
+limits remain mandatory. Configured Git hooks/helpers are not a sandbox and
+cannot be used to obtain unrelated shell, runtime or configuration authority.
+
 ## User-Approved Self-Maintenance
 
-The read-and-advise restriction has one explicit exception: pip-orchestrator may
-apply a directly user-approved change to its own rules in the same session.
+In addition to the Git exception above, pip-orchestrator may apply a directly
+user-approved change to its own rules in the same session.
 Follow the User-Approved Self-Maintenance workflow in ORCHESTRATOR.md. Its write
 set is ORCHESTRATOR.md, only agent["pip-orchestrator"] in kilo.json, only the
 coordinator-specific rules in AGENTS.md and this CONTRACT.md, and its unique
@@ -57,8 +75,9 @@ The exact maintenance request authorizes creation and checkpointing of that
 operation's unique report. Name the absolute report path before writing. Use the
 normal handoff fields and readback requirements, without helper execution or
 canonical-state updates. Rule-file permissions are ask, not deny; explicit user
-authorization is still required when auto-approve is ON. Keep shell, worker
-starts, roadmap, package writes and deferred formal operations denied. A future
+authorization is still required when auto-approve is ON. Keep non-Git shell,
+worker starts, roadmap, ordinary package edits and deferred formal operations
+denied; retain only the Git exception above. A future
 user-approved capability change may update the coordinator's own permission
 block, but not exercise a capability until the client actually grants it. Static
 readback does not prove live enforcement or reload. Approval never overrides

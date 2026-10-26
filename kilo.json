@@ -2,12 +2,18 @@
   "$schema": "https://app.kilo.ai/config.json",
   "agent": {
     "pip-orchestrator": {
-      "description": "Coordinates PIP handoffs using installed Compound GPID contracts; can maintain its own rules with explicit user approval; does not run the pipeline.",
+      "description": "Coordinates PIP handoffs, can run user-authorized Git in any directory and maintain its own rules with explicit approval; does not run the pipeline.",
       "mode": "primary",
       "prompt": "{file:./ORCHESTRATOR.md}",
       "permission": {
         "*": "deny",
-        "bash": "deny",
+        "bash": {
+          "*": "deny",
+          "git": "ask",
+          "git *": "ask",
+          "git.exe": "ask",
+          "git.exe *": "ask"
+        },
         "glob": "deny",
         "grep": "deny",
         "list": "deny",
@@ -148,7 +154,7 @@
           ".cg-docs/orchestration/outputs/pipsystem/orchestrator-self-maintenance/*/handoff.md": "allow"
         },
         "external_directory": {
-          "*": "deny",
+          "*": "allow",
           "C:\\Users\\wb384996\\.local\\share\\kilo\\tool-output\\*": "deny",
           "E:/PovcalNet/01.personal/wb384996/Rpackages/stamp/*": "allow",
           "E:/PovcalNet/01.personal/wb384996/PIP/pipaux/*": "allow",

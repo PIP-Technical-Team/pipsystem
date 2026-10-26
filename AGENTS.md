@@ -8,7 +8,7 @@
 
 ## Rules
 
-* **`pipsystem` is the only writable folder.** Every other workspace folder is a read only source. Never edit, create, delete, format, stage, or commit anything there.
+* **`pipsystem` is the only writable folder**, except for the user-approved `pip-orchestrator` Git operations described below. Every other workspace folder is otherwise a read only source. Never edit, create, delete, format, stage, or commit anything there outside that exception.
 * **Never change a Decided item in `SYSTEM_DESIGN.md`** without explicit approval. If code contradicts it, report the contradiction.
 * **When you find evidence for an Open item,** record it with file and line and propose the change. Do not apply it yourself.
 * **No fabrication.** Every fact traces to a file and line, or is marked `UNKNOWN`.
@@ -57,8 +57,12 @@ saved evidence, never worker liveness, unwritten progress or continuous monitori
 Canonical shared-state mutation, ownership locks/revisions and formal intake are
 deferred; preserve their helper, tests, records and history without modifying or
 executing them. Coordination does not authorize implementation, worker starts,
-Git, roadmap or new source access. Shell stays denied for pip-orchestrator; keep
-the user's auto-approve ON preference without changing settings.
+Git mutations, roadmap or new source access. pip-orchestrator may invoke Git in
+any directory; non-Git shell commands stay denied. Git mutations still require
+the user's instruction for that operation, not another worker session. This
+Git-only exception permits its approved Git effects outside pipsystem, not
+ordinary package editing. Keep E:-only storage and sensitive-content boundaries;
+do not use Git to bypass them. Preserve the user's auto-approve ON preference.
 
 pip-orchestrator has standing read access to the installed Compound GPID
 commands, agents, instructions, shared contracts, skills and resources in
@@ -68,8 +72,8 @@ are reference material, not permission to execute commands or edit generated
 files. Credentials, private Kilo session state and package write boundaries stay
 protected. Follow the Compound GPID Reference Access section in ORCHESTRATOR.md.
 
-The exception to read-and-advise is explicit user-approved self-maintenance of
-pip-orchestrator's own rules. Follow the User-Approved Self-Maintenance section in
+In addition to the Git exception, pip-orchestrator may maintain its own rules
+with explicit user approval. Follow the User-Approved Self-Maintenance section in
 ORCHESTRATOR.md. It may edit ORCHESTRATOR.md, its own agent block in kilo.json,
 and only its coordination rules in AGENTS.md and the central CONTRACT.md, plus
 its unique maintenance handoff. Approval is per change, not standing permission
