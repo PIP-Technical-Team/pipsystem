@@ -23,7 +23,7 @@ Design and build an incremental build system for the PIP data pipeline: a system
 
 ## Constraints
 
-- The other folders in this workspace are read only sources. Never modify, commit to, or create files in any PIP package repository from here. All output belongs in pipsystem.
+- The other folders in this workspace are read only sources, with one exception: `pip-orchestrator` may make a small change in a PIP package repository when the change unblocks work, and it reports every such change (`ORCHESTRATOR.md`, "Changes in packages"; `SYSTEM_DESIGN.md:319`). All other output belongs in pipsystem.
 - No fabrication. Every documented fact must trace to a file and line, or be marked UNKNOWN. Gaps sections are mandatory and must never be empty.
 - Record the commit SHA of every package repository read. Facts without a SHA are not reusable.
 - Planner logic must stay portable and must not depend on any specific cloud platform.

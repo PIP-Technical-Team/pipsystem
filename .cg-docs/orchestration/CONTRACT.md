@@ -88,5 +88,7 @@ belong to a paused formal workflow. Keep them. Do not use or update them.
 
 - Permissions after the rules reset were tested in a fresh session on
   2026-10-29 (`outputs/pipsystem/orchestrator-self-maintenance/20261029T171953Z-permission-test/handoff.md`).
-- No tool reads v2 handoffs yet; the planned status script will read v1 and v2.
+- `tools\pipsys\pipsys.cmd handoffs` (`/pip-handoffs`) reads v2 and v1
+  handoffs; older reports show UNKNOWN status. v2 frontmatter that is not
+  valid YAML is read line by line, and multi-line fields then show UNKNOWN.
 - Workers in other repositories see this format only through their prompts.

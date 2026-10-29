@@ -316,9 +316,11 @@ Approval sources: [first M0 decisions](.cg-docs/brainstorms/2026-10-07-m0-settle
 
 * **Decided.** API behavior does not change, except the planned PPP change in section 10.
 * **Decided.** Performance comes first. Fast formats such as `fst` stay.
-* **Decided.** Package repositories in the workspace are read only from `pipsystem`. Changes are made in each package's own repository.
+* **Decided.** Package repositories in the workspace are read only from `pipsystem`, with one exception: `pip-orchestrator` may make a small, reported change in a package repository when the change unblocks work. All other package work happens in each package's own repository.
 * **Decided.** No fabrication. Every fact traces to a file and line, or is marked unknown.
 * **Decided.** R with `data.table` and `collapse`.
+
+Approval source for the `pip-orchestrator` exception: [rules-reset follow-up](.cg-docs/orchestration/outputs/pipsystem/rules-reset-follow-up/20261029T172103Z-orchestrator/handoff.md), lines 20-30 (user reply "approve 319", 2026-10-29T17:21:03Z).
 
 ## 12. Open questions
 
