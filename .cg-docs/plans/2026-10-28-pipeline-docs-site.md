@@ -1,7 +1,9 @@
 ---
 date: 2026-10-28
 title: "PIP Pipeline Documentation Site"
-status: active
+status: superseded
+superseded-date: 2026-10-29
+superseded-by: "Plan A, pipsystem info tools v1 (minimal local Quarto site and /pip-site)"
 scope: "Deep"
 brainstorm: null
 language: "R"
@@ -15,6 +17,11 @@ tags: [pipeline-documentation, quarto, website, accessibility, evidence, publish
 ---
 
 # Plan: PIP Pipeline Documentation Site
+
+> **Superseded on 2026-10-29. Do not execute.** The user replaced this Plan
+> with a minimal local Quarto site that shows all Plans, built under Plan A
+> ("pipsystem info tools v1"). No phase of r3 was implemented. Closing record:
+> `.cg-docs/orchestration/outputs/pipsystem/close-website-plan-r3/20261029T173700Z-close/handoff.md`.
 
 ## Objective
 

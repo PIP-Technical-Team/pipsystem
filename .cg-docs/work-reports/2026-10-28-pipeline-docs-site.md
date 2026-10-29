@@ -86,3 +86,26 @@ Recommended: option 2 or option 3. Option 1 leaves a known exploited V8 issue in
 ## Resume Log
 
 - Run 1 (2026-10-29): blocked at the dependency advisory gate. Details above.
+- Closed (2026-10-29): Plan superseded. See "Closing Note" below.
+
+## Closing Note (2026-10-29)
+
+- The user replaced this Plan with a minimal local Quarto site that shows all
+  Plans, built under Plan A ("pipsystem info tools v1"), and approved closing
+  r3 in the rules-reset continuation prompt of 2026-10-29T17:19:24Z (step 3).
+- Plan frontmatter now has `status: superseded`, `superseded-date` and
+  `superseded-by`. `cg-render-artifact --validate-only` rejects the status
+  ("Use active, blocked, or completed"), so `/cg-work` cannot run this Plan by
+  accident.
+- Decisions D1 (Chromium residual risk) and D2 (Node pin 22.23.4) are no
+  longer needed: Plan A uses no Node, npm, Playwright or Chromium.
+- No phase was implemented. V1 stays partial; V2-V12 were never started.
+- The checksum-verified Quarto 1.8.27 copy moved from the run's
+  `runtime/tools/quarto-1.8.27` to
+  `E:/PovcalNet/01.personal/wb384996/tools/quarto-1.8.27` (2,484 files before
+  and after; `quarto --version` prints `1.8.27`).
+- `.cg-docs/active-state/current.json` no longer points to this Plan.
+- Closing record:
+  `.cg-docs/orchestration/outputs/pipsystem/close-website-plan-r3/20261029T173700Z-close/handoff.md`.
+
+Final status: `superseded`.

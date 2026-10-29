@@ -87,3 +87,10 @@ Fix all applicable P0-P3 via /cg-fix-triage P0 P1 P2 P3 bound to saved review, r
 - No package repository accessed; no package SHA claims added.
 - Pins and feasibility references are saved in evidence.md; installs, rendering and browser tests remain unexecuted.
 - No liveness, deployment, implementation or tested-HEAD claims. Future host ordering, npm reachability and tool runtime behavior remain untested.
+
+## Closing Note (2026-10-29, pip-orchestrator)
+
+Added after the run; the sections above are unchanged history. Plan r3 is
+**superseded** and will not be executed; do not use the `/cg-work` prompt
+above. Replacement: Plan A ("pipsystem info tools v1"). Closing record:
+`.cg-docs/orchestration/outputs/pipsystem/close-website-plan-r3/20261029T173700Z-close/handoff.md`.
