@@ -1,7 +1,7 @@
 ---
 date: 2026-10-29
 title: "pipsystem info tools v1"
-status: active
+status: completed
 scope: "Standard"
 brainstorm: null
 language: "R"
@@ -11,7 +11,7 @@ artifact-schema-version: 1
 phases: 2
 plan-revision: "r2"
 execution-report: ".cg-docs/work-reports/2026-10-29-pipsystem-info-tools-v1.md"
-completed-phases: [1]
+completed-phases: [1, 2]
 tags: [pipsys, status, commands, quarto, site]
 ---
 

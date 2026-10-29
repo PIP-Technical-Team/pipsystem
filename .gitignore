@@ -39,6 +39,13 @@
 /.cg-docs/orchestration/projects/*/.lock
 /.cg-docs/orchestration/projects/**/*.tmp
 
+# pipsys v1: temporary files, Quarto state and generated site
+/.tmp/pipsys/
+/site/gen/
+/site/_site/
+/site/.quarto/
+/site/.gitignore
+
 .kilo
 .kilo/AGENTS.md
 .kilo/kilo.json
