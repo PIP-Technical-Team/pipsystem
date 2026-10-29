@@ -1,0 +1,81 @@
+kind,id,field,value,status,evidence_file,evidence_line,notes
+stage,1,name,Clean auxiliary data,decided,SYSTEM_DESIGN.md,147,
+stage,1,owner,pipaux,decided,SYSTEM_DESIGN.md,147,
+stage,1,outputs,Auxiliary files,decided,SYSTEM_DESIGN.md,147,
+stage,1,entry_point,update_aux_measures() selects measures; process_dependencies() calls aux_fun() for each dependency,harvested,notes/pipaux.md,42-44,"Current code. Measure selection preserves the remote manifest's name order; manifest contents, SHA and agreement with code dependencies are UNKNOWN (notes/pipaux.md:44,57)."
+stage,1,inputs,"GDP: Maddison, WEO, WDI, special national accounts, fiscal-year metadata, nowcast rates, country list",harvested,notes/pipaux.md,50-52,Current code for GDP only.
+stage,1,inputs,"CPI, PPP, population and PFW cleaning: country list",harvested,notes/pipaux.md,55,Current code.
+stage,2,name,Download microdata,decided,SYSTEM_DESIGN.md,148,
+stage,2,owner,pipdata,decided,SYSTEM_DESIGN.md,148,With dlw.
+stage,2,outputs,Modules on the Y drive,decided,SYSTEM_DESIGN.md,148,
+stage,2,outputs,"Acquisition inventory dlw_gmd_inv (FileName, Checksum, Module, data_available)",harvested,notes/pipdata.md,88,Current code.
+stage,2,entry_point,UNKNOWN,unknown,,,Acquisition entry function not named in the notes.
+stage,2,inputs,"DLW catalog: modules GPWG, GROUP, BIN, HIST, ALL compared by filename, checksum and availability",harvested,notes/pipdata.md,19,Current code.
+stage,3,name,Format and validate,decided,SYSTEM_DESIGN.md,149,
+stage,3,owner,pipdata,decided,SYSTEM_DESIGN.md,149,
+stage,3,outputs,Clean survey data,decided,SYSTEM_DESIGN.md,149,
+stage,3,entry_point,pd_run_pipeline() runs the clean wave (with metadata and deflate),harvested,notes/pipdata.md,110,Current code; covers stages 3-4 only.
+stage,3,inputs,"Completed validation inventory gmd_valid_inv (valid and invalid rows)",harvested,notes/pipdata.md,89,"Current code keeps invalid rows, which conflicts with SYSTEM_DESIGN.md:213 (notes/pipdata.md:95)."
+stage,3,inputs,PFW rows with an exact mapping,harvested,notes/pipdata.md,81,Current code.
+stage,4,name,Deflate,decided,SYSTEM_DESIGN.md,150,
+stage,4,owner,pipdata,decided,SYSTEM_DESIGN.md,150,
+stage,4,outputs,"Welfare in PPP, one column per PPP year, named welfare_YYYY",decided,SYSTEM_DESIGN.md,162,Target.
+stage,4,outputs,welfare_ppp_{year}_{release}_{adaptation} columns,harvested,notes/pipdata.md,71,"Current code; differs from the target names (SYSTEM_DESIGN.md:162)."
+stage,4,outputs,Saved to alias pip_deflated,harvested,notes/pipdata.md,107,Current code.
+stage,4,entry_point,get_welfare_ppp() calls wbpip::deflate_welfare_mean(),harvested,notes/pipdata.md,46,Current code.
+stage,4,inputs,"Cleaned welfare, CPI, PPP, PFW domain settings; population for weights only",harvested,notes/pipdata.md,40-44,Current code.
+stage,5,name,Estimates that do not depend on the poverty line,decided,SYSTEM_DESIGN.md,151,
+stage,5,owner,pipster,decided,SYSTEM_DESIGN.md,151,
+stage,5,outputs,"Mean, median, deciles, Gini, and others",decided,SYSTEM_DESIGN.md,151,Computed for each PPP year (SYSTEM_DESIGN.md:164).
+stage,5,entry_point,"wbpip reference: md_compute_dist_stats(), gd_compute_dist_stats()",harvested,notes/pipster_wbpip.md,"44,61",Reference contracts in wbpip; pipster has no microdata mean/median/Gini estimator (notes/pipster_wbpip.md:25).
+stage,5,inputs,"One distribution: welfare and weight (microdata), or cumulative shares and a mean (grouped)",harvested,notes/pipster_wbpip.md,"44,61",
+stage,6,name,Lineups,decided,SYSTEM_DESIGN.md,152,
+stage,6,owner,pipster,decided,SYSTEM_DESIGN.md,152,
+stage,6,outputs,Distributions per country and lineup year,decided,SYSTEM_DESIGN.md,152,National only (SYSTEM_DESIGN.md:170).
+stage,6,entry_point,None found in pipster,harvested,notes/pipster_wbpip.md,25,
+stage,6,inputs,"A rule applied to whichever surveys exist, plus additional deflation factors; exact inputs Open",open,SYSTEM_DESIGN.md,170-172,"Adding a survey can change which surveys a lineup uses (SYSTEM_DESIGN.md:172). The source stage of the surveys is not stated, so no edge is drawn."
+stage,7,name,Countries with missing data,decided,SYSTEM_DESIGN.md,153,
+stage,7,owner,pipster,decided,SYSTEM_DESIGN.md,153,
+stage,7,outputs,Estimated distributions,decided,SYSTEM_DESIGN.md,153,
+stage,7,entry_point,Standalone code in the current pipeline's targets project; will move to pipster,decided,SYSTEM_DESIGN.md,174,
+stage,7,inputs,"Open; likely combines information across countries",open,SYSTEM_DESIGN.md,176,
+stage,8,name,Write release folder,decided,SYSTEM_DESIGN.md,154,
+stage,8,owner,pipdata,decided,SYSTEM_DESIGN.md,154,
+stage,8,outputs,"Release folder with lineup distributions, survey distributions, auxiliary files, precomputed estimates",decided,SYSTEM_DESIGN.md,178,
+stage,8,entry_point,UNKNOWN,unknown,,,Writer functions not named in the notes.
+stage,8,inputs,Survey distributions with only the variables needed for poverty and inequality,decided,SYSTEM_DESIGN.md,178,Source stage of survey distributions is UNKNOWN.
+stage,9,name,ALL module for Table Maker,decided,SYSTEM_DESIGN.md,155,
+stage,9,owner,pipdata,decided,SYSTEM_DESIGN.md,155,
+stage,9,outputs,"Clean ALL module, saved separately",decided,SYSTEM_DESIGN.md,180,
+stage,9,entry_point,UNKNOWN,unknown,,,
+stage,9,inputs,The ALL module,decided,SYSTEM_DESIGN.md,180,"Which stage hands it over is not stated, so no edge is drawn."
+stage,10,name,Ingest,decided,SYSTEM_DESIGN.md,156,
+stage,10,owner,pipapi,decided,SYSTEM_DESIGN.md,156,
+stage,10,outputs,Live API,decided,SYSTEM_DESIGN.md,156,
+stage,10,entry_point,create_lkups() builds one lookup per release folder; pip() dispatches calculations,harvested,notes/pipapi.md,"28,30",Consumption code; a complete ingestion entry point is not established.
+stage,10,inputs,"Release folder files: _aux/*.fst, estimations/*.fst, survey_data/<cache_id>.fst, lineup_data/<country>_<year>.fst",harvested,notes/pipapi.md,34-60,Current code.
+edge,1->3,carries,"PFW rows, consumed when stage 3 maps and selects surveys",harvested,notes/pipdata.md,"23,81",Consumer side.
+edge,1->3,carries,PFW is cleaned by pipaux in stage 1,harvested,notes/pipaux.md,55,Producer side.
+edge,1->4,carries,"CPI, PPP, population (weights only) and PFW domain settings, consumed by deflation",harvested,notes/pipdata.md,41-44,Consumer side.
+edge,1->4,carries,"CPI, PPP and population are cleaned by pipaux in stage 1",harvested,notes/pipaux.md,55,Producer side.
+edge,1->4,granularity,"Per survey: CPI by country, survey year and acronym; PPP by country; population by country and year",harvested,notes/pipdata.md,58,Current code.
+edge,1->4,invalidated_by,An input or rule change makes the artifact eligible to rerun,decided,SYSTEM_DESIGN.md,190,
+edge,1->4,invalidated_by,A change in one CPI or PFW row must not rebuild every survey; mechanism Open,open,SYSTEM_DESIGN.md,194-199,
+edge,1->4,invalidated_by,"Current code hashes the whole selected CPI or PPP vector, so unused levels or base years can invalidate",harvested,notes/pipdata.md,60,Current code.
+edge,2->3,carries,"Downloaded modules marked data_available Yes, which become validation candidates",harvested,notes/pipdata.md,88,Both sides: acquisition inventory and validation candidates.
+edge,2->3,carries,"The staged engine plans one clean node per DLW survey_id from the completed-validation inventory, valid and invalid rows",harvested,notes/pipdata.md,"21,95","Consumer side. Target: an incorrect download does not proceed (SYSTEM_DESIGN.md:213)."
+edge,3->4,carries,"Cleaned welfare: formatting divides by 365, deflation copies it to welfare_lcu",harvested,notes/pipdata.md,40,Both sides.
+edge,3->4,granularity,One clean node per DLW survey_id,harvested,notes/pipdata.md,21,Current code.
+edge,4->5,carries,"Welfare in PPP, one column per PPP year",decided,SYSTEM_DESIGN.md,150,Producer side.
+edge,4->5,carries,Estimates are computed for each PPP year,decided,SYSTEM_DESIGN.md,164,Consumer side.
+edge,4->5,granularity,"Per estimation, not per survey",decided,SYSTEM_DESIGN.md,188,
+edge,4->5,invalidated_by,Adding or revising one PPP year reruns every estimate for every PPP year of that survey,decided,SYSTEM_DESIGN.md,201,
+edge,4->5,invalidated_by,Automatic fingerprint of each calculation and its known result-affecting dependencies; coverage Open,decided,SYSTEM_DESIGN.md,203,
+edge,1->8,carries,Auxiliary files,decided,SYSTEM_DESIGN.md,147,Producer side.
+edge,1->8,carries,The release folder contains auxiliary files,decided,SYSTEM_DESIGN.md,178,Consumer side.
+edge,5->8,carries,"Estimates: mean, median, deciles, Gini, and others",decided,SYSTEM_DESIGN.md,151,Producer side.
+edge,5->8,carries,The release folder contains precomputed estimates,decided,SYSTEM_DESIGN.md,178,Consumer side.
+edge,6->8,carries,Distributions per country and lineup year,decided,SYSTEM_DESIGN.md,152,Producer side.
+edge,6->8,carries,The release folder contains lineup distributions,decided,SYSTEM_DESIGN.md,178,Consumer side.
+edge,8->10,carries,Files ready for the API,decided,SYSTEM_DESIGN.md,154,Producer side.
+edge,8->10,carries,Release folder files read at lookup creation,harvested,notes/pipapi.md,34-53,Consumer side.
