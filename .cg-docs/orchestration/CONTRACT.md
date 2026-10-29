@@ -1,10 +1,10 @@
 # Central Development Coordination Contract
 
-Version: `pip-coordination-v1`. Prepared 2026-10-21; ordinary workflow refocused, estimated scheduled handoff follow-up and user-approved self-maintenance added 2026-10-22 by direct user approval. Git capability in any directory added 2026-10-26 by direct user approval. Read saved handoffs, explain last-known stages/blockers and draft next-session prompts with exact report paths. No helper execution, registry ownership, activation, task registration or schema validation is required for reading or advice. Installing these files does not authorize worker starts or implementation.
+Version: `pip-coordination-v1`. Prepared 2026-10-21; ordinary workflow refocused, estimated scheduled handoff follow-up and user-approved self-maintenance added 2026-10-22 by direct user approval. Git capability in any directory added 2026-10-26; Compound GPID-first task prompts, work-ready Plan/review handoffs without duplicate approval checklists and standing cross-project Compound GPID read access made explicit 2026-10-27, by direct user approval. Read saved handoffs, explain last-known stages/blockers and draft next-session prompts with exact report paths. No helper execution, registry ownership, activation, task registration or schema validation is required for reading or advice. Installing these files does not authorize worker starts or implementation.
 
 ## Authority And Coverage
 
-This is development coordination, not PIP pipeline execution. `stamp` remains the rebuild authority; release orchestration remains in `pipdata`. Design/charter/roadmap decisions are unchanged. The main hub is `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/`. No other repository or global agent installation is involved.
+This is development coordination, not PIP pipeline execution. `stamp` remains the rebuild authority; release orchestration remains in `pipdata`. Design/charter/roadmap decisions are unchanged. The main hub is `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/`. Cross-project Compound GPID reference/artifact reads use the permission below; coordination writes stay in this main checkout. No other repository or global agent installation is changed.
 
 All orchestrators run in the main pipsystem checkout on main. The single root pip-orchestrator reads the shared `outputs/<project>/<task>/<run>/handoff.md` tree using bounded Read directory/file access. Native session IDs, complete inventory, formal registration and ownership are not prerequisites. No liveness, Agent Manager management, ancestry or unwritten progress is inferred from a path or label.
 
@@ -26,19 +26,27 @@ Every action recommended for another session gets a self-contained next-session 
 
 ## Compound GPID Reference Access
 
-pip-orchestrator has standing read access to the installed Compound GPID
-framework and project artifacts: .kilo/ commands, agents, instructions, shared
-contracts and skills (including their resources and supported singular/plural
-directory forms), .kilo/AGENTS.md, .kilo/kilo.json, .compound-gpid/** and
-.cg-docs/**. Read the installed command and linked contracts before claiming
-framework requirements or drafting execution prompts. Future files under these
-framework roots are included; do not require per-command read approval. The
-agent may load available cg-* skills and the required technical-communication
-skill as reference content. Read/load access is not command execution, worker
-dispatch, shell or framework-edit permission. Keep credentials, private Kilo
-session state and existing sensitive-content exclusions protected. Central
-handoff discovery stays bounded to outputs; framework-reference reading may use
-the named framework directories without treating all hidden files as accessible.
+pip-orchestrator always has standing read-only access to project-local Compound
+GPID files in any project/repository/worktree, including future projects, without
+a repository allowlist or per-project/per-command/per-Plan approval. It covers
+compound-gpid.md/context/local, AGENTS.md, roadmap.json and project kilo.json as
+workflow/policy reference; installed .kilo/ commands, agents, instructions,
+shared contracts and skills/resources (supported singular/plural directories),
+.kilo/AGENTS.md/.kilo/kilo.json; managed .compound-gpid/**; and .cg-docs/**
+artifacts, including canonical Plans, brainstorms, reviews, work reports and
+supporting evidence. Use bounded Read at known relevant roots, not drive/parent
+or unrelated-project discovery. Read actual installed commands and linked
+contracts before claiming requirements; loading an allowed skill is reference,
+not workflow execution.
+
+Read permission grants no package/source access outside these categories,
+framework/package edits, tests/pipelines, shell, worker dispatch or deferred
+shared-state operations. Private/native Kilo state, agent-manager.json,
+credentials/tokens, raw transcripts, production data and global configuration
+remain excluded; derived-view body restrictions remain. Ordinary handoff
+discovery stays in the central main-checkout outputs tree. Standing access does
+not imply current-session reload or override higher-priority/client denials;
+observe effective reads rather than certifying them from static configuration.
 
 ## Git Access And Authorization
 
@@ -82,6 +90,80 @@ user-approved capability change may update the coordinator's own permission
 block, but not exercise a capability until the client actually grants it. Static
 readback does not prove live enforcement or reload. Approval never overrides
 higher-priority instructions, a live denial or workspace/storage boundaries.
+
+## End-to-End Execution Handoffs And Minimal Reapproval
+
+By direct user instruction on 2026-10-27, implementation prompts follow the
+global End-to-End Plan Execution policy and ORCHESTRATOR.md's End-to-End Work
+Handoffs And Bounded Autonomy. This is coordination/continuation policy, not a
+permission expansion or an amendment to installed Compound GPID commands.
+
+One instruction to execute the approved repository-local Plan covers all its
+remaining phases sequentially from the first incomplete phase, unless the user
+limits that scope. Advance after each phase's required executed evidence passes;
+do not request routine phase-by-phase authorization. Preserve native phase
+controls, validation, lifecycle ordering and evidence gates. When a command
+returns after a phase, the authorized outer session uses its supported
+next-phase invocation under that whole-Plan instruction, not a new approval
+task. Planning/readiness/review requests alone do not approve implementation.
+
+Use target-verified `/cg-work review:auto deviate:auto` by default, unless the
+user selects another supported policy; new planning assignments should propose
+`/cg-plan deviate:auto` for the same bounded reversible discretion. Each concrete
+prompt must bind the absolute local Plan/revision and actual phase state rather
+than selecting an ambiguous latest Plan. Include `/cg-fix-triage P0 P1 P2 P3` for ALL
+applicable saved findings including P3, affected retests and required regression
+checks, followed by `/cg-review mode:verify`, within the Plan's iteration budget.
+Persist the correct canonical review before triage, verify finding closure, and
+report any verification fallback honestly. Do not silently skip findings, waive
+required evidence, weaken assertions or substitute static readback for tests.
+
+Each work prompt includes an explicit permission/artifact bundle, not implied
+permissions from a command name:
+
+- Exact implementing/outer reporting owner, repository/worktree/branch, Plan
+  revision, all-phase scope, source/test/docs write set, dependency pins, safe
+  commands, phase/final acceptance evidence and correction/iteration budget.
+- Named route-appropriate review agents, conditional escalations with triggers,
+  test-execution/diagnostics helpers if required, their tool/read/write bounds,
+  distinct assigned output paths and attributed reporting owners. Verify the
+  installed routing contract; do not automatically grant broad helper access.
+  The independently authorized worker invokes them, never pip-orchestrator.
+- Exact absolute Plan, execution-report, canonical review, resolution evidence,
+  verify-review, .cg-docs/active-state/current.json, required renderer/view and central
+  handoff/supporting-output paths, with permitted Plan lifecycle fields and
+  deterministic collision handling. Include bounded E: test/temp/cache/log and
+  runtime outputs and all reporting/lifecycle writes in the proposed write set.
+  Never read generated-view bodies into agent context.
+- Explicit authorization for the outer worker to run the named tests/reviewers,
+  fix within scope, retest and save these outputs without repeated confirmation.
+  Restricted reviewers/commands retain their independent permissions; their
+  authorized outer caller owns outputs they cannot save. No permission text
+  overrides a live denial or a command's protected-file boundary.
+- Exact Git operations if any, including staging when the installed verifier
+  needs it. Branch creation must be named; commits, pushes, merges, production
+  actions, destructive cleanup and permission changes are never implied.
+
+Within approved scope and live permissions, proceed through develop, test,
+review, fix and verify. Choose and record safe reversible implementation details,
+research discoverable facts and recover within the authorized budget instead of
+asking for repeated approvals. Metadata gaps, routine preflight, phase
+boundaries and recoverable failures do not create extra approval ceremonies.
+
+Irreversible/destructive or externally consequential actions require their exact
+authorization if not already supplied. This is not an irreversible-only override
+of higher-priority rules: genuine material design/scope/safety decisions, Git,
+self-maintenance and roadmap operations retain their applicable approval limits.
+Pause only the affected action for a genuine unresolved material boundary,
+denial/reporting failure, unsafe ownership/dependency, wrong required root/branch
+or pin, required check that cannot safely run or converge within budget,
+exhausted correction budget, or user stop. Keep independent safe work moving;
+save the exact failed condition, attempts, remaining evidence and next safe
+action. Never bypass a denial, weaken safety or certify unfinished work.
+
+This replaces repetitive local continuation/fix-selection gates, not framework
+permissions, mandatory approval/evidence gates, storage/privacy boundaries,
+coordinator worker-start limits or deferred formal-state restrictions.
 
 ## Retained Formal Records (Deferred)
 
@@ -132,7 +214,68 @@ No credentials, production data, private session storage or raw conversations. P
 
 ## Next-Session Prompts And Formal Work Orders
 
-Use `/cg-brainstorm --no-branch` for unresolved design, `/cg-plan` for clear planning, `/cg-work` only with a directly approved repository-local saved Plan/revision/phase, and `/cg-review --report-only` for review without source edits. Inspect the installed command contract in the target session; an unavailable contract is a prerequisite, not compatibility inferred from this checkout.
+Compound GPID is the default workflow for coordinated project tasks. The first
+line of every copy-ready task prompt is the actual selected slash-command
+invocation with supported arguments, followed by the self-contained task brief,
+approval status, scope and file-output requirements. A buried command field or
+ad hoc work order is not a substitute for invoking the framework.
+
+Use `/cg-brainstorm --no-branch` for unresolved material design/requirements,
+`/cg-plan` for clear structured planning, and `/cg-light-work` only when the
+installed small, low-risk qualification passes and no separate brainstorm or
+planning session is needed. Lightweight work still requires its approved saved
+validated Plan and review/evidence gates. Use `/cg-work` only with a directly
+approved repository-local saved Plan/revision/phase, `/cg-review --report-only`
+for review without source edits, or an appropriate verified specialized
+Compound GPID command. Inspect the installed command and relevant linked
+contracts in the target session; unavailable contracts are prerequisites, not
+compatibility inferred from this checkout.
+
+Local scope/reporting requirements supplement rather than replace command
+approval, validation, review, lifecycle and evidence requirements. Before any
+departure, state a concrete strong reason and the already-authorized route;
+preserve its approval and evidence gates. Ordinary bounded handoff reads/status
+advice, directly approved Git operations and User-Approved Self-Maintenance keep
+their existing narrow procedures. This policy grants no command execution,
+worker starts, source access, lifecycle writes or permissions. Missing contracts
+and denied required actions block the affected task, never justify a silent
+informal fallback. Follow Compound GPID First in ORCHESTRATOR.md.
+
+### Work-Ready Planning And Review
+
+The user's default for new coordinated implementation Plans is `/cg-plan` ->
+`/cg-plan-review` -> address ALL findings in the canonical Plan -> `/cg-work`.
+This is local coordination policy; qualifying `/cg-light-work` retains its own
+installed compact lifecycle. Planning/revision must settle material design,
+API/mode/safety and test-gate choices, include complete bounded code/docs/tests,
+lifecycle/central reporting/runtime scope, branch/worktree proposal and pins,
+and leave a validated local Plan with review-resolution evidence and an exact
+work invocation. Do not declare it ready while deferring real choices to a
+generic pre-start approval checklist. Schema validity and a clean review alone
+do not prove implementation readiness or executed tests.
+
+The user's all-findings instruction selects corrections for every finding,
+including P3; do not ask the same fix-selection question repeatedly. Record
+corrections, verify closure and revalidate/recheck material revisions. The
+installed `/cg-plan-review` command remains read-only. An independently
+authorized outer Code caller saves Plan/report corrections, or uses an installed
+authorized revision route, within the explicit assignment write set. Do not
+expand restricted command/reviewer permissions to achieve this preference.
+
+An explicit user `/cg-work` request for the reviewed Plan and covered scope
+supplies execution approval for the whole Plan unless the user limits it;
+no duplicate coordination approval is needed for
+the same specified choices, standard lifecycle/report writes or bounded
+runtime/test operations. Expected date/collision resolution and pin checks are
+ordinary preflight under the installed contract. Retain actual permission,
+ownership, validation, safe-test, phase/deviation and evidence gates. Apply
+End-to-End Execution Handoffs And Minimal Reapproval above: resolve recoverable
+failures within scope/budget instead of seeking routine approval; escalate only
+a real unresolved boundary or necessary stop. Branch creation must still be
+explicitly covered; commits/pushes/merges, production and unrelated writes are
+not implied. The user may continue in the existing package session; do not
+require a new session or approval task just to reconfirm covered work. Follow
+Work-Ready Plans And Review in ORCHESTRATOR.md.
 
 A plain next-session prompt does not need formal work-order JSON, registration, generated request IDs, helper execution or a filled initial report. Include the substantive instructions and reporting requirements in Ordinary Discovery And Advice. Unknown metadata stays explicit, not fabricated; missing facts are prerequisites for affected execution, not for drafting a prompt.
 
