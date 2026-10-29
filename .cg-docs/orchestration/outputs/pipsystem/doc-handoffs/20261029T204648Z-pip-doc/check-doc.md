@@ -1,0 +1,24 @@
+# Document check
+
+Generated 2026-10-29 16:54 EDT by pipsys v1
+
+## Summary
+
+File: `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/docs/handoffs.md`. 37 citations: 37 local (checked), 0 package (not checked).
+
+## Problems
+
+Line 0 means the whole document.
+
+none
+
+## Not checked
+
+Package citations start with a package name from tools/pipsys/packages.csv.
+
+none
+
+## Gaps
+
+- Citations are checked for existence and line range only, not for meaning.
+- Package citations are not checked (Later: check them at the recorded SHA).
