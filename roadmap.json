@@ -46,7 +46,7 @@
       "status": "in-progress",
       "features": [
         { "id": "close-stamp-gaps-for-skeleton", "title": "Close stamp gaps for skeleton", "status": "done", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
-        { "id": "create-engine-skeleton", "title": "Create engine skeleton", "status": "active", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "create-engine-skeleton", "title": "Create engine skeleton", "status": "done", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
         { "id": "save-cpi-ppp-and-pfw-through-stamp", "title": "Save CPI PPP and PFW through stamp", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
         { "id": "download-one-survey", "title": "Download one survey", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
         { "id": "format-and-validate-one-survey", "title": "Format and validate one survey", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
