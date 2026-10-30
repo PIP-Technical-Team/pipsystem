@@ -36,24 +36,24 @@
         { "id": "decide-code-version-rule", "title": "Decide code version rule", "status": "done", "plan": null },
         { "id": "decide-orchestrator-location", "title": "Decide orchestrator location", "status": "done", "plan": null },
         { "id": "decide-pipload-role", "title": "Decide pipload role", "status": "done", "plan": null },
-        { "id": "update-system-design-with-m1-findings", "title": "Update SYSTEM_DESIGN with M1 findings", "status": "active", "plan": null }
+        { "id": "update-system-design-with-m1-findings", "title": "Update SYSTEM_DESIGN with M1 findings", "status": "active", "plan": ".cg-docs/plans/2026-10-07-m0-m1-design-integration.md" }
       ]
     },
     {
       "id": "m2-walking-skeleton",
       "title": "M2 Walking skeleton",
       "objective": "Prove incremental rebuild end to end on one survey, one estimate, and one test release through stamp.",
-      "status": "planned",
+      "status": "in-progress",
       "features": [
-        { "id": "close-stamp-gaps-for-skeleton", "title": "Close stamp gaps for skeleton", "status": "idea", "plan": null },
-        { "id": "create-engine-skeleton", "title": "Create engine skeleton", "status": "idea", "plan": null },
-        { "id": "save-cpi-ppp-and-pfw-through-stamp", "title": "Save CPI PPP and PFW through stamp", "status": "idea", "plan": null },
-        { "id": "download-one-survey", "title": "Download one survey", "status": "idea", "plan": null },
-        { "id": "format-and-validate-one-survey", "title": "Format and validate one survey", "status": "idea", "plan": null },
-        { "id": "deflate-one-survey", "title": "Deflate one survey", "status": "idea", "plan": null },
-        { "id": "compute-the-mean", "title": "Compute the mean", "status": "idea", "plan": null },
-        { "id": "register-test-release", "title": "Register test release", "status": "idea", "plan": null },
-        { "id": "test-incremental-reruns", "title": "Test incremental reruns", "status": "idea", "plan": null }
+        { "id": "close-stamp-gaps-for-skeleton", "title": "Close stamp gaps for skeleton", "status": "done", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "create-engine-skeleton", "title": "Create engine skeleton", "status": "active", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "save-cpi-ppp-and-pfw-through-stamp", "title": "Save CPI PPP and PFW through stamp", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "download-one-survey", "title": "Download one survey", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "format-and-validate-one-survey", "title": "Format and validate one survey", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "deflate-one-survey", "title": "Deflate one survey", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "compute-the-mean", "title": "Compute the mean", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "register-test-release", "title": "Register test release", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" },
+        { "id": "test-incremental-reruns", "title": "Test incremental reruns", "status": "idea", "plan": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md" }
       ]
     },
     {

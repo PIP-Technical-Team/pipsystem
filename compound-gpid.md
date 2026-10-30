@@ -2,7 +2,7 @@
 project-name: "pipsystem"
 team: "PIP-Technical-Team"
 created: "2026-08-21"
-last-reviewed: "2026-10-07"
+last-reviewed: "2026-10-30"
 ---
 
 # pipsystem
@@ -34,4 +34,6 @@ Design and build an incremental build system for the PIP data pipeline: a system
 
 ## Current Focus
 
-M0 design decisions and approved M1 decisions R2, R3, and R4 are integrated. The nine-feature M2 start gate is satisfied. Next: plan the M2 walking skeleton. M1 R1 and unresolved capability gaps remain Open. No M2 implementation starts from this documentation task.
+M2 Walking Skeleton (`.cg-docs/plans/2026-10-10-m2-walking-skeleton.md`) is in progress:
+- Phase 1: `close-stamp-gaps-for-skeleton` is `done` (`stamp` `235a18a`), and `create-engine-skeleton` is `active` (`pipload` `feat/m2-stamp-adapter` pushed at `4ef0d90`; `pipdata` `feat/m2-pipdata-authority` verified in `pipdata-m2-engine-runtime`, pending commit).
+- Next M2 steps: finish committing `create-engine-skeleton` in `pipdata`, then start Phase 2 (`save-cpi-ppp-and-pfw-through-stamp` in `pipaux` and `download-one-survey` / `format-and-validate-one-survey` in `pipdata`). M1 R1 (row-level change detection) remains Open.

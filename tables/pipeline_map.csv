@@ -9,7 +9,7 @@ stage,2,name,Download microdata,decided,SYSTEM_DESIGN.md,148,
 stage,2,owner,pipdata,decided,SYSTEM_DESIGN.md,148,With dlw.
 stage,2,outputs,Modules on the Y drive,decided,SYSTEM_DESIGN.md,148,
 stage,2,outputs,"Acquisition inventory dlw_gmd_inv (FileName, Checksum, Module, data_available)",harvested,notes/pipdata.md,88,Current code.
-stage,2,entry_point,UNKNOWN,unknown,,,Acquisition entry function not named in the notes.
+stage,2,entry_point,"pipdata_get_gmd() (or pipdata_dlw_process()) calls .acquire_one_gmd() -> dlw::dlw_get_gmd()",harvested,notes/pipdata.md,88,Current code.
 stage,2,inputs,"DLW catalog: modules GPWG, GROUP, BIN, HIST, ALL compared by filename, checksum and availability",harvested,notes/pipdata.md,19,Current code.
 stage,3,name,Format and validate,decided,SYSTEM_DESIGN.md,149,
 stage,3,owner,pipdata,decided,SYSTEM_DESIGN.md,149,

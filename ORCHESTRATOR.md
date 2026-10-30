@@ -53,7 +53,8 @@ Do not copy attached transcripts into project files.
 | `pipfun` | `E:/PovcalNet/01.personal/wb384996/PIP/pipfun` | Shared utilities, logging |
 | `pipapi` | `E:/PovcalNet/01.personal/wb384996/PIP/pipapi` | Serving every release |
 | `wbpip` | `E:/PovcalNet/01.personal/wb384996/PIP/wbpip` | Calculation reference (Open: likely retired) |
-| `pipfaker`, `metapip` | UNKNOWN | Synthetic test data; ecosystem installation |
+| `pipfaker` | `E:/PovcalNet/01.personal/wb384996/PIP/pipfaker` | Synthetic test data |
+| `metapip` | `E:/PovcalNet/01.personal/wb384996/PIP/metapip` | Ecosystem installation |
 | `piptm` | Out of scope | Table Maker |
 
 ### Changes in packages
@@ -203,6 +204,5 @@ update them.
   not probed then.
 - The `/pip-*` commands and `pip-doc-*` agents are tracked in
   `tools/pipsys/kilo/` and installed into the gitignored `.kilo/`. They load
-  in new sessions only; loading, named dispatch and the checker's read-only
-  permission are not yet checked in a fresh session (Plan B V5).
-- `pipfaker` and `metapip` locations are UNKNOWN.
+  after a VS Code window reload (verified in Plan B V5 on 2026-10-29:
+  `outputs/pipsystem/doc-pipeline/20261029T205612Z-v5/handoff.md`).

@@ -74,4 +74,3 @@ The site is not published. `site/index.md:8`
 - Citation checks test existence and line ranges, not meaning. `tools/pipsys/pipsys.R:623,794`
 - `check-doc` leaves package citations unchecked. `tools/pipsys/pipsys.R:795`
 - The pipeline map is evidence, not a contract. `tools/pipsys/pipsys.R:624`
-- Local paths for `pipfaker` and `metapip` are UNKNOWN; their configuration entries are empty. `tools/pipsys/packages.csv:11-12`

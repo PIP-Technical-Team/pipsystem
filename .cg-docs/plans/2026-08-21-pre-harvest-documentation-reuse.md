@@ -1,7 +1,8 @@
 ---
 date: 2026-08-21
 title: "Evidence-first Phase 1 package harvest"
-status: active
+status: completed
+completed-date: 2026-10-07
 scope: "Deep"
 brainstorm: ".cg-docs/brainstorms/2026-08-21-pre-harvest-documentation-reuse.md"
 language: "R"
