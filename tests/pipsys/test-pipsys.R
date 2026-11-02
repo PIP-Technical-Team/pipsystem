@@ -261,6 +261,13 @@ test_that("repo_info reads Git facts and DESCRIPTION without failing", {
 
   missing <- ps$repo_info("")
   expect_equal(missing$branch, "UNKNOWN")
+
+  nested <- file.path(repo, "nested")
+  dir.create(nested)
+  nested_info <- ps$repo_info(nested)
+  expect_equal(nested_info$branch, "UNKNOWN")
+  expect_true(is.na(nested_info$uncommitted))
+  expect_match(nested_info$note, "not a Git repository root")
 })
 
 test_that("failed Git queries stay unknown instead of looking clean", {
@@ -268,6 +275,7 @@ test_that("failed Git queries stay unknown instead of looking clean", {
   real <- ps$run_git
   withr::defer(assign("run_git", real, envir = ps))
   assign("run_git", function(path, args) {
+    if (identical(args[1L], "rev-parse")) return(path)
     if (identical(args[1L], "log")) "abc1234\t1793212833" else NULL
   }, envir = ps)
   info <- ps$repo_info(repo)

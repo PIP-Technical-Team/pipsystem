@@ -189,6 +189,15 @@ repo_info <- function(path) {
       info$version <- v
     }
   }
+  top <- run_git(path, c("rev-parse", "--show-toplevel"))
+  if (is.null(top) || length(top) != 1L ||
+      !identical(
+        normalizePath(path, winslash = "/", mustWork = TRUE),
+        normalizePath(top, winslash = "/", mustWork = TRUE)
+      )) {
+    info$note <- "not a Git repository root"
+    return(info)
+  }
   log <- run_git(path, c("log", "-1", "--format=%h%x09%ct"))
   if (is.null(log) || !length(log)) {
     info$note <- "not a Git repository or no commits"
