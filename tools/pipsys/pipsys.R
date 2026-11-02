@@ -406,22 +406,36 @@ handoff_view <- function(dt) {
   )])
 }
 
-roadmap_summary <- function(root) {
+roadmap_summary_data <- function(root) {
   file <- file.path(root, "roadmap.json")
-  empty <- data.table(milestone = character(), status = character(), features_done = character())
+  empty <- data.table(
+    milestone = character(),
+    status = character(),
+    done = integer(),
+    total = integer(),
+    features_done = character()
+  )
   if (!file.exists(file)) {
     return(empty)
   }
   rm <- jsonlite::fromJSON(file, simplifyVector = FALSE)
   rows <- lapply(rm$milestones, function(m) {
     st <- vapply(m$features, function(f) as_chr(f$status), character(1L))
+    done_n <- as.integer(sum(st == "done"))
+    total_n <- as.integer(length(st))
     data.table(
       milestone = as_chr(m$title),
       status = as_chr(m$status),
-      features_done = sprintf("%d/%d", sum(st == "done"), length(st))
+      done = done_n,
+      total = total_n,
+      features_done = sprintf("%d/%d", done_n, total_n)
     )
   })
   return(if (length(rows)) rbindlist(rows) else empty)
+}
+
+roadmap_summary <- function(root) {
+  return(roadmap_summary_data(root)[, .(milestone, status, features_done)])
 }
 
 roadmap_table <- function(root) {
@@ -640,6 +654,10 @@ edge_label <- function(x) {
   return(x)
 }
 
+html_cell <- function(lines) {
+  return(c("```{=html}", lines, "```"))
+}
+
 map_page <- function(root) {
   map <- read_map(root)
   head <- c(
@@ -653,8 +671,18 @@ map_page <- function(root) {
     ),
     ""
   )
+  gaps <- c(
+    "- Citations are checked by check-map for existence and line range only, not for meaning.",
+    "- Evidence-only map, not a contract; the M2 Plan's E1-E11 contracts stay PROPOSED.",
+    "- Interactive chart loads Observable Plot from cdn.jsdelivr.net in the browser (works over file://); any tables on this page remain readable offline."
+  )
   if (is.null(map)) {
-    return(c(head, "none"))
+    return(c(
+      head,
+      "none", "",
+      "## Gaps", "",
+      c(gaps, sprintf("- %s not found.", gsub("\\\\", "/", MAP_FILE)))
+    ))
   }
   names_dt <- unique(map[kind == "stage" & field == "name", .(id, value)], by = "id")
   nodes <- sprintf("  S%s[\"%s. %s\"]", names_dt$id, names_dt$id, gsub("\"", "'", names_dt$value))
@@ -667,11 +695,64 @@ map_page <- function(root) {
       ends[[1L]], vapply(carries$value, edge_label, character(1L)), ends[[2L]]
     )
   }
+  claims_json <- as.character(
+    jsonlite::toJSON(map[, .(kind, id, status)], auto_unbox = TRUE, na = "null")
+  )
+  chart <- html_cell(c(
+    "<div class=\"pip-chart-card\">",
+    "  <div class=\"pip-chart-controls\">",
+    "    <label for=\"map-kind-filter\">Claim kind:</label>",
+    "    <select id=\"map-kind-filter\">",
+    "      <option value=\"All\">All</option>",
+    "      <option value=\"stage\">stage</option>",
+    "      <option value=\"edge\">edge</option>",
+    "    </select>",
+    "  </div>",
+    "  <div id=\"map-claims-chart\"></div>",
+    "</div>",
+    "<script>",
+    "(function () {",
+    "var map_claims;",
+    sprintf("map_claims = %s", claims_json),
+    "function renderMapChart() {",
+    "  var host = document.getElementById(\"map-claims-chart\");",
+    "  var sel = document.getElementById(\"map-kind-filter\");",
+    "  if (!host || !sel || typeof window.Plot === \"undefined\") return;",
+    "  var kind = sel.value;",
+    "  var rows = kind === \"All\" ? map_claims : map_claims.filter(function (d) { return d.kind === kind; });",
+    "  host.replaceChildren(window.Plot.plot({",
+    "    marginLeft: 90,",
+    "    height: 280,",
+    "    color: {",
+    "      legend: true,",
+    "      domain: [\"decided\", \"harvested\", \"open\", \"unknown\"],",
+    "      range: [\"#2563eb\", \"#10b981\", \"#f59e0b\", \"#64748b\"]",
+    "    },",
+    "    x: {label: \"Claims\", grid: true},",
+    "    y: {label: \"Stage / Edge ID\"},",
+    "    marks: [",
+    "      window.Plot.barX(rows, window.Plot.groupY({x: \"count\"}, {y: \"id\", fill: \"status\", tip: true})),",
+    "      window.Plot.ruleX([0])",
+    "    ]",
+    "  }));",
+    "}",
+    "document.addEventListener(\"DOMContentLoaded\", function () {",
+    "  var sel = document.getElementById(\"map-kind-filter\");",
+    "  if (sel) sel.addEventListener(\"change\", renderMapChart);",
+    "  renderMapChart();",
+    "});",
+    "})();",
+    "</script>"
+  ))
   return(c(
     head,
     "```{mermaid}", "flowchart LR", nodes, links, "```", "",
+    "## Claim status by stage", "",
+    chart, "",
     "## Claims", "",
-    md_table(map)
+    md_table(map), "",
+    "## Gaps", "",
+    gaps
   ))
 }
 
@@ -934,16 +1015,22 @@ handoff_gaps <- function(ho) {
   return(gaps)
 }
 
-report_overview <- function(root = pipsys_root(),
-                            ho = handoff_table(outputs_dir(root))) {
+overview_data <- function(root = pipsys_root(),
+                          ho = handoff_table(outputs_dir(root))) {
   pk <- read_packages(root)
   rows <- lapply(seq_len(nrow(pk)), function(i) {
     name <- pk$package[i]
     path <- pk$path[i]
     if (!nzchar(path) || !dir.exists(path)) {
+      missing_note <- if (nzchar(path)) {
+        sprintf("path %s does not exist", path)
+      } else {
+        NA_character_
+      }
       return(data.table(
         package = name, branch = "UNKNOWN", head = "-", head_date = "-",
-        uncommitted = "-", version = "-", open_plans = "-", last_handoff = "-"
+        uncommitted = "-", version = "-", open_plans = "-", last_handoff = "-",
+        note = missing_note
       ))
     }
     info <- repo_info(path)
@@ -989,11 +1076,199 @@ report_overview <- function(root = pipsys_root(),
     gaps <- c(gaps, paste("Repository facts missing for", notes))
   }
   gaps <- c(gaps, handoff_gaps(unique(ho, by = "project")))
+  return(list(
+    table = table,
+    roadmap = roadmap_summary_data(root),
+    gaps = gaps
+  ))
+}
+
+report_overview <- function(root = pipsys_root(),
+                            ho = handoff_table(outputs_dir(root))) {
+  ov <- overview_data(root = root, ho = ho)
   return(c(
     report_head("PIP packages: overview"),
-    "## Packages", "", md_table(table), "",
-    "## Roadmap", "", md_table(roadmap_summary(root)), "",
-    "## Gaps", "", paste0("- ", gaps)
+    "## Packages", "", md_table(ov$table), "",
+    "## Roadmap", "", md_table(ov$roadmap[, .(milestone, status, features_done)]), "",
+    "## Gaps", "", paste0("- ", ov$gaps)
+  ))
+}
+
+overview_page <- function(root = pipsys_root(),
+                          ho = handoff_table(outputs_dir(root))) {
+  ov <- overview_data(root = root, ho = ho)
+  to_num <- function(x) {
+    return(fifelse(
+      grepl("^[0-9]+$", x),
+      suppressWarnings(as.integer(x)),
+      NA_integer_
+    ))
+  }
+  pkg_chart <- ov$table[, .(
+    package,
+    branch,
+    uncommitted = to_num(uncommitted),
+    open_plans = to_num(open_plans)
+  )]
+  pkg_json <- as.character(jsonlite::toJSON(pkg_chart, auto_unbox = TRUE, na = "null"))
+  rm_json <- as.character(jsonlite::toJSON(ov$roadmap, auto_unbox = TRUE, na = "null"))
+  chart <- html_cell(c(
+    "<div class=\"pip-chart-card\">",
+    "  <div class=\"pip-chart-controls\">",
+    "    <span>Package metric:</span>",
+    "    <label><input type=\"radio\" name=\"overview-metric\" value=\"open_plans\" checked> open_plans</label>",
+    "    <label><input type=\"radio\" name=\"overview-metric\" value=\"uncommitted\"> uncommitted</label>",
+    "  </div>",
+    "  <div id=\"overview-pkg-chart\"></div>",
+    "  <div id=\"overview-rm-chart\" style=\"margin-top: 1.25rem;\"></div>",
+    "</div>",
+    "<script>",
+    "(function () {",
+    "var overview_pkg_data, overview_rm_data;",
+    sprintf("overview_pkg_data = %s", pkg_json),
+    sprintf("overview_rm_data = %s", rm_json),
+    "function renderOverviewCharts() {",
+    "  var pkgHost = document.getElementById(\"overview-pkg-chart\");",
+    "  var rmHost = document.getElementById(\"overview-rm-chart\");",
+    "  if (!pkgHost || typeof window.Plot === \"undefined\") return;",
+    "  var checked = document.querySelector(\"input[name='overview-metric']:checked\");",
+    "  var metric = checked ? checked.value : \"open_plans\";",
+    "  var validRows = overview_pkg_data.filter(function (d) { return d[metric] !== null; });",
+    "  var omitted = overview_pkg_data.filter(function (d) { return d[metric] === null; }).map(function (d) { return d.package; });",
+    "  pkgHost.replaceChildren(window.Plot.plot({",
+    "    marginLeft: 95,",
+    "    height: Math.max(180, validRows.length * 28 + 50),",
+    "    x: {grid: true, label: metric === \"open_plans\" ? \"Open plans\" : \"Uncommitted paths\"},",
+    "    y: {label: null},",
+    "    caption: omitted.length ? \"Omitted (count UNKNOWN): \" + omitted.join(\", \") : \"All configured packages shown.\",",
+    "    marks: [",
+    "      window.Plot.barX(validRows, {",
+    "        y: \"package\",",
+    "        x: metric,",
+    "        fill: metric === \"open_plans\" ? \"#2563eb\" : \"#f59e0b\",",
+    "        tip: true,",
+    "        sort: {y: \"-x\"}",
+    "      }),",
+    "      window.Plot.ruleX([0])",
+    "    ]",
+    "  }));",
+    "  if (rmHost && overview_rm_data.length > 0) {",
+    "    rmHost.replaceChildren(window.Plot.plot({",
+    "      marginLeft: 180,",
+    "      height: Math.max(140, overview_rm_data.length * 36 + 50),",
+    "      x: {grid: true, label: \"Features\"},",
+    "      y: {label: null},",
+    "      caption: \"Milestone completion (done vs total features)\",",
+    "      marks: [",
+    "        window.Plot.barX(overview_rm_data, {y: \"milestone\", x: \"total\", fill: \"#94a3b8\", fillOpacity: 0.35}),",
+    "        window.Plot.barX(overview_rm_data, {y: \"milestone\", x: \"done\", fill: \"#10b981\", tip: true}),",
+    "        window.Plot.ruleX([0])",
+    "      ]",
+    "    }));",
+    "  }",
+    "}",
+    "document.addEventListener(\"DOMContentLoaded\", function () {",
+    "  document.querySelectorAll(\"input[name='overview-metric']\").forEach(function (el) {",
+    "    el.addEventListener(\"change\", renderOverviewCharts);",
+    "  });",
+    "  renderOverviewCharts();",
+    "});",
+    "})();",
+    "</script>"
+  ))
+  site_gaps <- c(
+    ov$gaps,
+    "Interactive charts load Observable Plot from cdn.jsdelivr.net in the browser (works over file://); any tables on this page remain readable offline."
+  )
+  return(c(
+    "---",
+    sprintf("title: %s", yaml::as.yaml("PIP packages: overview")),
+    "---",
+    "",
+    sprintf("Generated %s by pipsys %s", fmt_et(Sys.time()), PIPSYS_VERSION),
+    "",
+    "## Interactive summary", "",
+    chart, "",
+    "## Packages", "", md_table(ov$table), "",
+    "## Roadmap", "", md_table(ov$roadmap[, .(milestone, status, features_done)]), "",
+    "## Gaps", "", paste0("- ", site_gaps)
+  ))
+}
+
+roadmap_page <- function(root = pipsys_root()) {
+  dt <- roadmap_table(root)
+  rm_json <- as.character(jsonlite::toJSON(dt, auto_unbox = TRUE, na = "null"))
+  chart <- html_cell(c(
+    "<div class=\"pip-chart-card\">",
+    "  <div class=\"pip-chart-controls\">",
+    "    <label for=\"roadmap-status-filter\">Filter by status:</label>",
+    "    <select id=\"roadmap-status-filter\"></select>",
+    "  </div>",
+    "  <div id=\"roadmap-chart\"></div>",
+    "</div>",
+    "<script>",
+    "(function () {",
+    "var roadmap_data, roadmap_statuses;",
+    sprintf("roadmap_data = %s", rm_json),
+    "roadmap_statuses = [\"All\", ...new Set(roadmap_data.map(d => d.status))]",
+    "function renderRoadmapChart() {",
+    "  var host = document.getElementById(\"roadmap-chart\");",
+    "  var sel = document.getElementById(\"roadmap-status-filter\");",
+    "  if (!host || !sel || typeof window.Plot === \"undefined\") return;",
+    "  if (roadmap_data.length === 0) {",
+    "    host.textContent = \"No features recorded in roadmap.json.\";",
+    "    return;",
+    "  }",
+    "  var status = sel.value || \"All\";",
+    "  var rows = status === \"All\" ? roadmap_data : roadmap_data.filter(function (d) { return d.status === status; });",
+    "  host.replaceChildren(window.Plot.plot({",
+    "    marginLeft: 180,",
+    "    height: 240,",
+    "    color: {",
+    "      legend: true,",
+    "      domain: [\"done\", \"active\", \"in-progress\", \"planned\", \"idea\"],",
+    "      range: [\"#10b981\", \"#2563eb\", \"#0ea5e9\", \"#f59e0b\", \"#64748b\"]",
+    "    },",
+    "    x: {grid: true, label: \"Features\"},",
+    "    y: {label: null},",
+    "    marks: [",
+    "      window.Plot.barX(rows, window.Plot.groupY({x: \"count\"}, {y: \"milestone\", fill: \"status\", tip: true})),",
+    "      window.Plot.ruleX([0])",
+    "    ]",
+    "  }));",
+    "}",
+    "document.addEventListener(\"DOMContentLoaded\", function () {",
+    "  var sel = document.getElementById(\"roadmap-status-filter\");",
+    "  if (sel) {",
+    "    roadmap_statuses.forEach(function (st) {",
+    "      var opt = document.createElement(\"option\");",
+    "      opt.value = st;",
+    "      opt.textContent = st;",
+    "      sel.appendChild(opt);",
+    "    });",
+    "    sel.addEventListener(\"change\", renderRoadmapChart);",
+    "  }",
+    "  renderRoadmapChart();",
+    "});",
+    "})();",
+    "</script>"
+  ))
+  gaps <- c(
+    "Statuses are as recorded in roadmap.json, not verified.",
+    "Interactive chart loads Observable Plot from cdn.jsdelivr.net in the browser (works over file://); any tables on this page remain readable offline."
+  )
+  if (!nrow(dt)) {
+    gaps <- c(gaps, "roadmap.json is missing or contains no features.")
+  }
+  return(c(
+    "---", "title: Roadmap", "---", "",
+    sprintf("Generated %s from `roadmap.json`.", fmt_et(Sys.time())), "",
+    "## Milestone progress", "",
+    chart, "",
+    "## Features", "",
+    md_table(dt), "",
+    "## Gaps", "",
+    paste0("- ", gaps)
   ))
 }
 
@@ -1149,20 +1424,19 @@ build_site <- function(root = pipsys_root(),
   ho <- handoff_table(outputs_dir(root))
 
   write_page(
-    file.path(gen, "overview.md"),
-    report_page(report_overview(root, ho = ho))
+    file.path(gen, "overview.qmd"),
+    overview_page(root, ho = ho)
   )
   write_page(
     file.path(gen, "handoffs.md"),
     report_page(report_handoffs(root = root, ho = ho))
   )
-  write_page(file.path(gen, "roadmap.md"), c(
-    "---", "title: Roadmap", "---", "",
-    sprintf("Generated %s from `roadmap.json`.", fmt_et(Sys.time())), "",
-    md_table(roadmap_table(root))
-  ))
-  # .qmd: Quarto treats a {mermaid} block as a diagram cell, which a .md page
-  # may not contain. The page has no R or Python cells.
+  write_page(
+    file.path(gen, "roadmap.qmd"),
+    roadmap_page(root)
+  )
+  # .qmd: Quarto treats {mermaid} and {ojs} blocks as executable cells, which a
+  # .md page may not contain. The pages have no R or Python cells.
   write_page(file.path(gen, "map.qmd"), map_page(root))
   design <- file.path(root, "SYSTEM_DESIGN.md")
   if (file.exists(design)) {

@@ -1,0 +1,36 @@
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  function syncThemeAttr() {
+    if (!document.body) return;
+    var mode = document.body.classList.contains("quarto-dark") ? "dark" : "light";
+    document.documentElement.setAttribute("data-bs-theme", mode);
+  }
+  syncThemeAttr();
+  if (typeof MutationObserver !== "undefined" && document.body) {
+    new MutationObserver(syncThemeAttr).observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+  }
+
+  var reducedMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (typeof window.AOS !== "undefined" && !reducedMotion) {
+    var targets = document.querySelectorAll(
+      ".card, .pip-chart-card, .callout, .cell-output-display, section.level2"
+    );
+    targets.forEach(function (el) {
+      if (!el.hasAttribute("data-aos")) {
+        el.setAttribute("data-aos", "fade-up");
+      }
+    });
+    window.AOS.init({
+      duration: 450,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 24
+    });
+  }
+});
+</script>

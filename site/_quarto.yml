@@ -4,9 +4,28 @@ project:
 
 website:
   title: "pipsystem"
+  navbar:
+    title: "pipsystem"
+    left:
+      - text: "Overview"
+        href: gen/overview.qmd
+      - text: "Roadmap"
+        href: gen/roadmap.qmd
+      - text: "Pipeline Map"
+        href: gen/map.qmd
+      - text: "Handoffs"
+        href: gen/handoffs.md
+      - text: "Design"
+        href: gen/design.md
   sidebar:
     contents: auto
 
 format:
   html:
     toc: true
+    page-layout: full
+    theme:
+      light: [cosmo, custom.scss]
+      dark: [slate, custom.scss]
+    include-in-header: assets/aos-head.html
+    include-after-body: assets/aos-body.html
