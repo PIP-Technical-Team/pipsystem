@@ -34,6 +34,7 @@ Design and build an incremental build system for the PIP data pipeline: a system
 
 ## Current Focus
 
-M2 Walking Skeleton (`.cg-docs/plans/2026-10-10-m2-walking-skeleton.md`) is in progress:
-- Phase 1 (`close-stamp-gaps-for-skeleton` and `create-engine-skeleton`) is `done` (`stamp` `ready_cran` at `4a1fa5d`, `pipload` `feat/m2-stamp-adapter` at `4ef0d90`, `pipdata` `PROD` at `7f4a984` / `8cde5c5`).
-- Next M2 steps: Phase 2 (`save-cpi-ppp-and-pfw-through-stamp` in `pipaux` and `download-one-survey` / `format-and-validate-one-survey` in `pipdata`). M1 R1 (row-level change detection) remains Open.
+M2 Walking Skeleton (`.cg-docs/plans/2026-10-10-m2-walking-skeleton.md`) is in progress (5/9 features `done`):
+- Phase 1 (`close-stamp-gaps-for-skeleton` and `create-engine-skeleton`) is `done`.
+- Phase 2 (`save-cpi-ppp-and-pfw-through-stamp` in `pipaux` on `feat/m2-aux-stamp-cpi-ppp-pfw`, and `download-one-survey` / `format-and-validate-one-survey` in `pipdata` on `feat/m2-one-survey-acquire-format`) has completed local fixture checks; package changes remain on feature branches pending integration. Live DLW and production storage were not tested.
+- Next M2 steps: Phase 3 (`deflate-one-survey` in `pipdata` and `compute-the-mean` in `pipster` / `pipdata`), followed by Phase 4 (`register-test-release` and `test-incremental-reruns`). M1 R1 (row-level change detection) remains Open.
