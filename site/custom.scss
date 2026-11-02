@@ -1,0 +1,273 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$font-family-monospace: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+
+$headings-font-weight: 650;
+$border-radius: 0.75rem;
+$border-radius-lg: 1rem;
+
+/*-- scss:rules --*/
+
+:root,
+body.quarto-light {
+  --pip-bg: #f8fafc;
+  --pip-surface: #ffffff;
+  --pip-surface-glass: rgba(255, 255, 255, 0.84);
+  --pip-border: rgba(15, 23, 42, 0.09);
+  --pip-accent: #2563eb;
+  --pip-accent-hover: #1d4ed8;
+  --pip-accent-soft: rgba(37, 99, 235, 0.11);
+  --pip-text: #0f172a;
+  --pip-text-muted: #475569;
+  --pip-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.09);
+  --pip-shadow-hover: 0 18px 36px -12px rgba(37, 99, 235, 0.18);
+  --pip-hero-gradient: linear-gradient(135deg, rgba(37, 99, 235, 0.10) 0%, rgba(14, 165, 233, 0.06) 50%, rgba(99, 102, 241, 0.08) 100%);
+  --pip-table-head-bg: #f1f5f9;
+  --pip-table-hover-bg: rgba(37, 99, 235, 0.04);
+}
+
+body.quarto-dark {
+  --pip-bg: #0b1120;
+  --pip-surface: #111827;
+  --pip-surface-glass: rgba(17, 24, 39, 0.82);
+  --pip-border: rgba(148, 163, 184, 0.16);
+  --pip-accent: #60a5fa;
+  --pip-accent-hover: #93c5fd;
+  --pip-accent-soft: rgba(96, 165, 250, 0.15);
+  --pip-text: #f1f5f9;
+  --pip-text-muted: #94a3b8;
+  --pip-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.45);
+  --pip-shadow-hover: 0 20px 40px -12px rgba(59, 130, 246, 0.28);
+  --pip-hero-gradient: linear-gradient(135deg, rgba(37, 99, 235, 0.22) 0%, rgba(14, 165, 233, 0.12) 50%, rgba(99, 102, 241, 0.16) 100%);
+  --pip-table-head-bg: #1e293b;
+  --pip-table-hover-bg: rgba(96, 165, 250, 0.08);
+}
+
+body {
+  background-color: var(--pip-bg);
+  color: var(--pip-text);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar {
+  background: var(--pip-surface-glass) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--pip-border);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+}
+
+.navbar .navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#quarto-sidebar {
+  background: var(--pip-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid var(--pip-border);
+}
+
+.hero-banner {
+  background: var(--pip-hero-gradient);
+  border: 1px solid var(--pip-border);
+  border-radius: 1rem;
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--pip-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hero-banner h1,
+.hero-banner h2 {
+  margin-top: 0;
+  letter-spacing: -0.025em;
+  font-weight: 750;
+}
+
+.hero-banner p {
+  color: var(--pip-text-muted);
+  font-size: 1.05rem;
+  max-width: 52rem;
+  margin-bottom: 1.25rem;
+}
+
+.card,
+.pip-card,
+.ojs-chart-card {
+  background: var(--pip-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pip-border);
+  border-radius: 0.875rem;
+  padding: 1.35rem 1.5rem;
+  box-shadow: var(--pip-shadow);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+  height: 100%;
+}
+
+.card:hover,
+.pip-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--pip-shadow-hover);
+  border-color: var(--pip-accent);
+}
+
+.pip-card h3 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+
+.pip-card p {
+  color: var(--pip-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.btn {
+  border-radius: 0.625rem;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background-color: var(--pip-accent);
+  border-color: var(--pip-accent);
+}
+
+.btn-primary:hover {
+  background-color: var(--pip-accent-hover);
+  border-color: var(--pip-accent-hover);
+}
+
+.callout {
+  background: var(--pip-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pip-border);
+  border-left-width: 4px;
+  border-radius: 0.75rem;
+  box-shadow: var(--pip-shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--pip-border);
+  border-radius: 0.75rem;
+  background: var(--pip-surface);
+  box-shadow: var(--pip-shadow);
+  margin-bottom: 1.5rem;
+}
+
+table thead th:first-child {
+  border-top-left-radius: 0.7rem;
+}
+
+table thead th:last-child {
+  border-top-right-radius: 0.7rem;
+}
+
+table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: var(--pip-table-head-bg);
+  color: var(--pip-text);
+  font-weight: 650;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 2px solid var(--pip-border);
+}
+
+table tbody td {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--pip-border);
+  vertical-align: top;
+  font-size: 0.92rem;
+}
+
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table tbody tr:hover td {
+  background-color: var(--pip-table-hover-bg);
+}
+
+code {
+  font-family: $font-family-monospace;
+  font-size: 0.86em;
+  background-color: var(--pip-accent-soft);
+  color: var(--pip-accent);
+  padding: 0.15em 0.4em;
+  border-radius: 0.35rem;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.cell-output-display,
+.pip-chart-card {
+  background: var(--pip-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pip-border);
+  border-radius: 0.875rem;
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--pip-shadow);
+  overflow-x: auto;
+}
+
+.pip-chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.pip-chart-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.pip-chart-controls select {
+  background-color: var(--pip-surface);
+  color: var(--pip-text);
+  border: 1px solid var(--pip-border);
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.9rem;
+}
+
+.pip-chart-caption {
+  color: var(--pip-text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}

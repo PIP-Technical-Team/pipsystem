@@ -261,6 +261,13 @@ test_that("repo_info reads Git facts and DESCRIPTION without failing", {
 
   missing <- ps$repo_info("")
   expect_equal(missing$branch, "UNKNOWN")
+
+  nested <- file.path(repo, "nested")
+  dir.create(nested)
+  nested_info <- ps$repo_info(nested)
+  expect_equal(nested_info$branch, "UNKNOWN")
+  expect_true(is.na(nested_info$uncommitted))
+  expect_match(nested_info$note, "not a Git repository root")
 })
 
 test_that("failed Git queries stay unknown instead of looking clean", {
@@ -268,6 +275,7 @@ test_that("failed Git queries stay unknown instead of looking clean", {
   real <- ps$run_git
   withr::defer(assign("run_git", real, envir = ps))
   assign("run_git", function(path, args) {
+    if (identical(args[1L], "rev-parse")) return(path)
     if (identical(args[1L], "log")) "abc1234\t1793212833" else NULL
   }, envir = ps)
   info <- ps$repo_info(repo)
@@ -717,4 +725,131 @@ test_that("backtick citations are taken whole, so bad suffixes are reported", {
   expect_equal(nrow(res$problems), 4L)
   expect_equal(sum(grepl("not N, N-M", res$problems$problem)), 3L)
   expect_equal(sum(grepl("inside pipsystem", res$problems$problem)), 1L)
+})
+
+# ---- interactive site pages (Phase 2) ----------------------------------------
+
+test_that("overview_page emits file://-compatible {=html} charts, serializes UNKNOWN and - counts as null, and keeps Gaps", {
+  repo <- make_git_repo(withr::local_tempdir())
+  plans <- file.path(repo, ".cg-docs", "plans")
+  write_lines(
+    file.path(plans, "2026-01-01-open.md"),
+    c("---", "title: Open", "status: active", "---")
+  )
+  # A directory that exists on disk but is not a Git repository produces
+  # uncommitted = "UNKNOWN" while open_plans is numeric ("0").
+  non_git <- withr::local_tempdir()
+  dir.create(file.path(non_git, ".cg-docs", "plans"), recursive = TRUE, showWarnings = FALSE)
+  missing_dir <- file.path(withr::local_tempdir(), "no-such-dir")
+  root <- make_root(
+    withr::local_tempdir(),
+    c(demo = repo, broken = non_git, vanished = missing_dir, ghost = "", pipsystem = "E:/elsewhere")
+  )
+  page <- ps$overview_page(root = root)
+  expect_true(any(page == "```{=html}"))
+  expect_false(any(page == "```{ojs}"))
+  expect_true(any(page == "## Interactive summary"))
+  expect_true(any(page == "## Packages"))
+  expect_true(any(page == "## Roadmap"))
+  gaps_at <- which(page == "## Gaps")
+  expect_length(gaps_at, 1L)
+  gaps_lines <- page[(gaps_at + 1L):length(page)]
+  expect_true(any(nzchar(trimws(gaps_lines))))
+  expect_true(any(grepl("vanished: path .* does not exist", gaps_lines)))
+
+  json_line <- grep("^overview_pkg_data = ", page, value = TRUE)
+  expect_length(json_line, 1L)
+  parsed <- jsonlite::fromJSON(sub("^overview_pkg_data = ", "", json_line))
+  setDT(parsed)
+  expect_equal(parsed[package == "demo", uncommitted], 1L)
+  expect_equal(parsed[package == "demo", open_plans], 1L)
+  # Known path without git status -> uncommitted = NA (serialized as null, not 0).
+  expect_true(is.na(parsed[package == "broken", uncommitted]))
+  expect_equal(parsed[package == "broken", open_plans], 0L)
+  # Nonexistent configured path and unconfigured path ("-") -> both serialize as null.
+  expect_true(is.na(parsed[package == "vanished", uncommitted]))
+  expect_true(is.na(parsed[package == "vanished", open_plans]))
+  expect_true(is.na(parsed[package == "ghost", uncommitted]))
+  expect_true(is.na(parsed[package == "ghost", open_plans]))
+  expect_match(json_line, '"package":"broken".*"uncommitted":null')
+  expect_match(json_line, '"package":"vanished".*"uncommitted":null,"open_plans":null')
+  expect_match(json_line, '"package":"ghost".*"uncommitted":null,"open_plans":null')
+})
+
+test_that("roadmap_page preserves active status in file://-compatible {=html} JSON and emits nonempty Gaps", {
+  root <- make_root(withr::local_tempdir(), c(demo = ""))
+  write_lines(
+    file.path(root, "roadmap.json"),
+    c(
+      '{"milestones": [{"id": "m2", "title": "M2 Skeleton", "status": "in-progress",',
+      '"features": [',
+      '  {"id": "f1", "title": "Feat 1", "status": "done", "plan": null},',
+      '  {"id": "f2", "title": "Feat 2", "status": "active", "plan": ".cg-docs/plans/p.md"},',
+      '  {"id": "f3", "title": "Feat 3", "status": "planned", "plan": null}',
+      ']}]}'
+    )
+  )
+  page <- ps$roadmap_page(root = root)
+  expect_true(any(page == "```{=html}"))
+  expect_false(any(page == "```{ojs}"))
+  expect_true(any(page == "## Features"))
+  gaps_at <- which(page == "## Gaps")
+  expect_length(gaps_at, 1L)
+  expect_true(any(nzchar(trimws(page[(gaps_at + 1L):length(page)]))))
+
+  json_line <- grep("^roadmap_data = ", page, value = TRUE)
+  expect_length(json_line, 1L)
+  parsed <- jsonlite::fromJSON(sub("^roadmap_data = ", "", json_line))
+  expect_true("active" %in% parsed$status)
+  expect_true(any(grepl(
+    "^roadmap_statuses = \\[\"All\", \\.\\.\\.new Set\\(roadmap_data\\.map\\(d => d\\.status\\)\\)\\]$",
+    page
+  )))
+  expect_true(any(grepl("roadmap_statuses\\.forEach", page)))
+  expect_true(any(grepl("\\| M2 Skeleton \\| Feat 2 \\| active \\|", page)))
+
+  # Missing roadmap.json still emits a nonempty ## Gaps section.
+  unlink(file.path(root, "roadmap.json"))
+  empty_page <- ps$roadmap_page(root = root)
+  empty_gaps_at <- which(empty_page == "## Gaps")
+  expect_length(empty_gaps_at, 1L)
+  expect_true(any(grepl("roadmap\\.json", empty_page[(empty_gaps_at + 1L):length(empty_page)])))
+})
+
+test_that("map_page includes file://-compatible {=html} chart and nonempty Gaps on both present and missing CSV", {
+  root <- make_map_root(valid_map_lines())
+  page <- ps$map_page(root)
+  expect_true(any(page == "```{mermaid}"))
+  expect_true(any(page == "```{=html}"))
+  expect_false(any(page == "```{ojs}"))
+  expect_true(any(page == "## Claims"))
+  gaps_at <- which(page == "## Gaps")
+  expect_length(gaps_at, 1L)
+  expect_true(any(nzchar(trimws(page[(gaps_at + 1L):length(page)]))))
+
+  # Stage-only map still has no '-->' anywhere (including inside {=html}).
+  stages_only <- valid_map_lines()[!grepl("^edge,", valid_map_lines())]
+  root_stage <- make_map_root(stages_only)
+  page_stage <- ps$map_page(root_stage)
+  expect_true(any(page_stage == "```{=html}"))
+  expect_false(any(grepl("-->", page_stage, fixed = TRUE)))
+
+  # Missing pipeline_map.csv still emits a nonempty ## Gaps section.
+  unlink(file.path(root, "tables", "pipeline_map.csv"))
+  missing_page <- ps$map_page(root)
+  missing_gaps_at <- which(missing_page == "## Gaps")
+  expect_length(missing_gaps_at, 1L)
+  expect_true(any(grepl("pipeline_map\\.csv", missing_page[(missing_gaps_at + 1L):length(missing_page)])))
+})
+
+test_that("build_site(render = FALSE) writes overview.qmd, roadmap.qmd, and map.qmd", {
+  root <- make_map_root(valid_map_lines())
+  write_lines(file.path(root, "site", "_quarto.yml"), "project:\n  type: website")
+  out <- ps$build_site(root = root, render = FALSE)
+  expect_true(any(grepl("Pages written:", out, fixed = TRUE)))
+  expect_true(file.exists(file.path(root, "site", "gen", "overview.qmd")))
+  expect_true(file.exists(file.path(root, "site", "gen", "roadmap.qmd")))
+  expect_true(file.exists(file.path(root, "site", "gen", "map.qmd")))
+  expect_false(file.exists(file.path(root, "site", "gen", "overview.md")))
+  expect_false(file.exists(file.path(root, "site", "gen", "roadmap.md")))
 })
