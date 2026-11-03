@@ -68,6 +68,14 @@ not copy credentials, production data or raw conversations into it.
 Workers in other repositories do not read this file, so every prompt repeats
 the report path and format.
 
+Every user-facing prompt intended for another session or environment also
+includes a metadata header with **Target Project** (name and absolute root),
+**Target Environment** (New branch, worktree or default branch; branch/path
+and new/existing status), and **Target Agent** (Code mode or pip-orchestrator).
+Show it directly above the copyable prompt, or immediately after its required
+line-1 slash command. Saved prompt files contain it too. Do not guess unknown
+values or treat the header as permission to create a branch/worktree.
+
 ## pip-orchestrator
 
 `pip-orchestrator` (rules in `ORCHESTRATOR.md`) coordinates the project from
@@ -78,6 +86,12 @@ its own handoffs. It does not run the PIP pipeline.
 - **Git:** read-only Git in any repository at any time. Commits, pushes and
   merges only on the user's instruction, also outside pipsystem. This is the
   exception named in the first rule above.
+- **Git cadence:** when the task has commit authorization, checkpoint each
+  completed, verified logical stage promptly, including its intended Plans,
+  tests, docs and reports. Push each checkpoint when push is also authorized.
+  Do not wait until task end, commit every edit, or stage others' changes just
+  to clear the worktree. Report SHAs, push status and excluded dirty paths.
+  Task-specific authorization still applies; this rule grants none by itself.
 - **Package files:** it may make a small change in a package repository
   when the change unblocks work. It first checks that the file has no
   uncommitted changes, and it reports every package change. Details are in

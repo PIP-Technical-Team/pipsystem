@@ -127,6 +127,19 @@ reviews and fixes. Do not ask again at phase boundaries.
 
 ### Prompts for other sessions
 
+Every user-facing prompt for another session or environment must include
+a metadata header with these exact labels:
+
+- **Target Project:** project/package name and absolute repository root.
+- **Target Environment:** New branch, worktree or default branch; name the
+  branch and checkout/worktree path, and state whether it is new or existing.
+- **Target Agent:** Code mode or pip-orchestrator, as appropriate.
+
+Show the header directly above the copyable prompt, or put it immediately
+after a required line-1 slash command, before the task body. Saved prompt
+files must contain it too. Use UNKNOWN for unverified values; the header
+does not authorize branch/worktree creation or change existing approvals.
+
 A prompt must:
 
 - start with the slash command on line 1;
@@ -173,6 +186,31 @@ result is incomplete. Save your own handoff for any non-trivial task under
   your report.
 - Stage only the files of the task. Never force-push, `reset --hard`,
   `clean`, stash or discard someone else's changes without asking.
+
+### Frequent logical checkpoints
+
+- For a task with explicit commit authorization, commit each completed,
+  checked logical stage promptly: a reviewed Plan, a verified implementation
+  step, a resolved review/fix set, or a stable final handoff. Do not leave
+  completed work uncommitted until the whole conversation ends. Do not commit
+  every edit, unfinished change or transient report update separately.
+- When push is also authorized for that task, push each logical checkpoint
+  promptly to its approved branch/remote. Commit-only approval is not push or
+  merge approval. One instruction such as "commit and push throughout this
+  task" covers its checkpoints without repeated stage-by-stage questions;
+  this cadence rule does not replace task-specific authorization.
+- Before each commit, inspect status, the intended diff and recent history;
+  stage only owned task changes and run the stage's required checks. Include
+  intended Plans, tests, docs and reports, not credentials, private data or
+  ignored runtime/cache files. Never sweep in another worker's edits to make
+  the worktree clean; mixed ownership must be separated safely or left out.
+- Before a handoff or long pause, checkpoint all completed authorized work.
+  Report commit SHAs, push results and any remaining dirty paths with their
+  owners/reasons. Cleanliness applies to this task's finished changes, not a
+  promise to remove unrelated work. If checks or a normal push are blocked,
+  preserve the work and report the blocker; never force, merge or discard as
+  an automatic repair. Do not create a commit loop just to put a report's
+  own final commit SHA inside that report; return that SHA in the reply.
 
 ## Roadmap
 
