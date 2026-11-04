@@ -55,6 +55,12 @@ the fix needs one of the decisions above or the user stops you.
 
 ## Coordinated Agent Outputs
 
+Only /pip-next may retain raw information-command output in its saved assessment
+instead of repeating it in default chat. Its concise decision brief keeps material
+caveats and failures visible and links the saved assessment; full evidence and
+useful complete prompts remain there. The standalone /pip-status, /pip-overview
+and /pip-handoffs commands still show their output as printed.
+
 Every agent coordinated for this project saves a file-based result, also for
 blocked, cancelled or no-change outcomes. Chat alone is not a handoff.
 

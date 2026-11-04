@@ -86,6 +86,12 @@ definitions in `tools/pipsys/kilo/`, then run
 `tools\pipsys\pipsys.cmd install-kilo`; `.kilo/` holds only the installed
 copies.
 
+Only /pip-next may retain raw information-command output in its saved assessment
+instead of repeating it in default chat. Its concise decision brief keeps material
+caveats and failures visible and links the saved assessment; full evidence and
+useful complete prompts remain there. The standalone /pip-status, /pip-overview
+and /pip-handoffs commands still show their output as printed.
+
 Time zone: show times to people in New York time (`America/New_York`, written
 "ET", for example "1:44 p.m. ET"). It follows daylight saving time: EDT
 (UTC-4) until 2026-11-01, then EST (UTC-5). Keep UTC (`Z`) in files, run IDs

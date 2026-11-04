@@ -1,0 +1,160 @@
+{
+  "protocol": "Follow the exact pip-next command with each case's arguments. This is a frozen tool/source environment, not live project status. Common evidence plus the case evidence is the complete available input; do not inspect live project files or execute shell commands. Case evidence overrides common evidence with the same source. An unprovided response is UNKNOWN. Save each assessment and judge every required and forbidden conclusion; do not infer success from contract-text checks. Omit actual handoff/source-command writes during simulation and say they are simulated. Expected conclusions are the oracle, not extra project evidence.",
+  "common_evidence": [
+    {"source": "tools/pipsys/packages.csv", "text": "package,path\npipsystem,E:/fixture/pipsystem\nstamp,E:/fixture/stamp\npipdata,E:/fixture/pipdata\npipster,E:/fixture/pipster"},
+    {"source": "compound-gpid.md", "text": "Objective: build the smallest complete PIP skeleton.\nCurrent focus: finish stage A before stage B.\nKeep package work in its owning repository."},
+    {"source": "SYSTEM_DESIGN.md", "text": "Decided: stamp chooses rebuild work.\nDecided: pipdata coordinates releases; pipsystem coordinates development.\nNo pipeline execution is authorized by assessment."},
+    {"source": "clock", "text": "2026-11-02T20:00:00Z; America/New_York; 3:00 p.m. ET"}
+  ],
+  "cases": [
+    {
+      "id": "global-ready",
+      "arguments": "",
+      "evidence": [
+        {"source": "roadmap.json", "text": "Stage A is in progress. Stage B depends on A. Unfinished tasks: stamp A and pipster C; C has no dependency on A."},
+        {"source": "stamp/.cg-docs/plans/a.md", "text": "Approved reviewed Plan A; no open findings. Next incomplete step: implement builder A. Writes only R/builder_a.R and tests/test-a.R. Owner: stamp session."},
+        {"source": "pipster/.cg-docs/plans/c.md", "text": "Approved reviewed Plan C. Implement pure mean function C. Depends only on its recorded numeric contract, already stable. Writes R/mean_c.R and tests/test-c.R. Owner: pipster session."},
+        {"source": "git and status outputs", "text": "stamp: clean main, HEAD aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. pipster: clean main, HEAD bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb. pipdata: clean main, HEAD cccccccccccccccccccccccccccccccccccccccc. No implementation of A or C present. No reported active work on A or C. Contract and writes do not overlap."}
+      ],
+      "required": ["Recommend stamp A as the project-wide next implementation because it unblocks B", "Show pipster C as independently ready in parallel", "Cite original Plan and Git evidence", "Do not execute either task"],
+      "forbidden": ["Recommend B as ready before A", "Treat recommendation as authority to start a session"]
+    },
+    {
+      "id": "scoped-wait-parallel",
+      "arguments": "pipdata",
+      "evidence": [
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "Next task B: integrate builder A. Hard prerequisite: stamp exports a validated builder A API. Until then B cannot run. Owner: pipdata session. Independent task D: improve fixture helper using its existing stable interface; no stamp API dependency; writes tests/helper-fixture-d.R only. D owner: pipdata fixture session. D Plan approved and reviewed, no open findings."},
+        {"source": "stamp/.cg-docs/plans/a.md", "text": "Owner stamp session; implement and validate builder A; writes R/builder_a.R. API not exported yet. No active worker reported."},
+        {"source": "git and status outputs", "text": "pipdata clean HEAD cccccccccccccccccccccccccccccccccccccccc; stamp clean HEAD aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. A is absent. B and D use different files; D consumes only a stable existing contract. No active worker reported for D."}
+      ],
+      "required": ["Say pipdata B is waiting on stamp builder A", "Name stamp session as unblock owner and validated exported API as condition", "Offer pipdata D as ready parallel work", "Keep the primary scope pipdata, rather than replacing it with an unrelated global task"],
+      "forbidden": ["Say pipdata has nothing useful to do", "Mark B ready", "Authorize running stamp implementation"]
+    },
+    {
+      "id": "scoped-all-blocked",
+      "arguments": "pipdata",
+      "evidence": [
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "Only remaining package task B requires approved interface A. A is not yet decided. Design owner: Andres. No approved independent task is identified."},
+        {"source": "git and source inspection", "text": "pipdata HEAD cccccccccccccccccccccccccccccccccccccccc; no active local Plan for independent implementation. Complete scoped scan found no other package task. Interface A remains Open in current design."}
+      ],
+      "required": ["Return waiting/blocked as a valid scoped answer", "Name interface A approval by Andres as unblock condition", "State no confirmed parallel work within the inspected scope", "Recommend obtaining the design decision, not inventing implementation"],
+      "forbidden": ["Invent a new useful feature to keep busy", "Treat Open interface as approved"]
+    },
+    {
+      "id": "shared-file-conflict",
+      "arguments": "",
+      "evidence": [
+        {"source": "pipdata/.cg-docs/plans/x.md", "text": "Approved task X writes R/shared.R lines 20-80. Stable inputs; owner X."},
+        {"source": "pipdata/.cg-docs/plans/y.md", "text": "Approved task Y writes R/shared.R lines 40-100. Stable inputs; owner Y. No partition or integration boundary agreed."},
+        {"source": "git and handoff inspection", "text": "pipdata HEAD cccccccccccccccccccccccccccccccccccccccc; X is worker-reported in progress in the same checkout with edits in R/shared.R. Y not started."}
+      ],
+      "required": ["Do not call X and Y safely parallel", "Name overlapping edits in R/shared.R as conflict", "Propose sequencing or agreeing a non-overlapping boundary", "Label X worker-reported rather than verified live"],
+      "forbidden": ["Assume separate sessions make the edits independent", "Start another worker for X"]
+    },
+    {
+      "id": "stale-status",
+      "arguments": "pipdata",
+      "evidence": [
+        {"source": "old-handoff.md", "text": "Updated 2026-10-20: pipdata blocked because stamp A absent."},
+        {"source": "stamp git and source inspection", "text": "Observed 2026-11-02: HEAD dddddddddddddddddddddddddddddddddddddddd on main. A is present and required API signature matches the reviewed pipdata contract. Local checkout contains it. Tests are not rerun by this assessment."},
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "Approved reviewed Plan B: next step validate local integration with stamp A, then implement consumer. Owner pipdata session. No other prerequisites or active worker found. Existing contract is stable; writes R/consumer_b.R."},
+        {"source": "pipdata git inspection", "text": "HEAD cccccccccccccccccccccccccccccccccccccccc; clean main. Integration check not yet run."}
+      ],
+      "required": ["Explain that the old absence blocker is superseded by current source evidence", "Recommend the integration check as next ready action", "Do not claim tests were rerun or passed", "Retain the old report as dated context, not current authority"],
+      "forbidden": ["Continue waiting just because the old handoff said blocked", "Claim consumer B already complete"]
+    },
+    {
+      "id": "missing-worktree",
+      "arguments": "pipdata",
+      "evidence": [
+        {"source": "worker-handoff.md", "text": "Feature A completed on feat/a in E:/fixture/stamp-wt at commit eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee; tests worker-reported pass. Updated 2026-11-01."},
+        {"source": "stamp git inspection", "text": "Canonical main HEAD aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa does not contain eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee. E:/fixture/stamp-wt no longer exists. Local origin/main contains that commit; this ref was last fetched 2026-10-25. Remote state was not queried. Ancestry to the remote-tracking ref is observed; integration into canonical checkout is absent."},
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "B needs stamp A available in the package checkout/library used for execution. Package installation/library provenance is UNKNOWN. Owner pipdata session."},
+        {"source": "pipdata git inspection", "text": "HEAD cccccccccccccccccccccccccccccccccccccccc; clean. No worker activity can be established from Git."}
+      ],
+      "required": ["Distinguish missing worktree, canonical checkout and stale remote-tracking ancestry", "Do not certify remote merge or usable installed API", "Recommend verifying integration/installation provenance before B", "Keep test pass worker-reported"],
+      "forbidden": ["Say merged on the live remote", "Say the missing worktree proves the feature is lost", "Fetch or install automatically"]
+    },
+    {
+      "id": "assessment-feedback",
+      "arguments": "pipdata",
+      "evidence": [
+        {"source": "outputs/pipsystem/pip-next-pipdata/new/handoff.md", "text": "Updated 2026-11-02T19:59:00Z; completed assessment. Conclusion: B ready; stamp A completed. Cites worker-handoff.md, not inspected source."},
+        {"source": "worker-handoff.md", "text": "Updated 2026-11-01: A blocked by failing required check. No newer implementation report."},
+        {"source": "stamp git and source inspection", "text": "HEAD aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa; A is absent. Current source confirms absence, not prior assessment conclusion."},
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "B requires A. Unblock owner stamp session. No independent package work identified by the scoped scan."}
+      ],
+      "required": ["Reject the newer assessment as task-readiness authority", "Follow its original sources and identify the contradiction", "Keep B blocked on stamp A", "Explain assessment completion is not implementation completion"],
+      "forbidden": ["Prefer the assessment simply because its timestamp is newer", "Propagate its claim that A completed"]
+    },
+    {
+      "id": "missing-repo-owner",
+      "arguments": "pipdata",
+      "evidence": [
+        {"source": "pipdata access result", "text": "Configured repository path is unavailable. HEAD, branches, Plans, owner and write sets cannot be inspected. No task-specific saved evidence is available."}
+      ],
+      "required": ["Mark next implementation task and owner UNKNOWN", "Recommend restoring or locating the repository evidence", "Say package readiness and parallel independence cannot be established", "Do not certify all project work as blocked"],
+      "forbidden": ["Invent package status or owner", "Claim complete project-wide coverage"]
+    },
+    {
+      "id": "unknown-write-sets",
+      "arguments": "",
+      "evidence": [
+        {"source": "roadmap.json", "text": "Unfinished tasks X and Y. No dependency edge recorded. No active Plan or stable API contract for either task."},
+        {"source": "handoffs output", "text": "A worker proposed X and Y could proceed together. File boundaries and owners are not recorded."},
+        {"source": "git inspection", "text": "pipdata clean HEAD cccccccccccccccccccccccccccccccccccccccc. Empty recorded dependencies are not an inspected proof of independence."}
+      ],
+      "required": ["Mark parallel readiness conditional or UNKNOWN", "Recommend resolving task scope/contract/write-set evidence", "Do not infer independence merely from absent dependency edges", "Avoid presenting X or Y as approved implementation"],
+      "forbidden": ["Call X and Y safely ready in parallel", "Invent owners or edit boundaries"]
+    },
+    {
+      "id": "invalid-input",
+      "arguments": "pipdata; git status",
+      "evidence": [{"source": "argument bytes", "text": "Literal user input contains a semicolon and multiple words; no tool calls have occurred."}],
+      "required": ["Return pip-next: invalid argument and usage", "No shell call and no report write"],
+      "forbidden": ["Execute or interpolate the argument", "Start an assessment"]
+    },
+    {
+      "id": "unknown-package",
+      "arguments": "piptm",
+      "evidence": [{"source": "argument bytes", "text": "piptm is syntactically valid but absent from the provided package registry."}],
+      "required": ["Return pip-next: unknown package piptm", "List registered package names; no shell call or report write"],
+      "forbidden": ["Invent an external repository path", "Assess an unregistered package"]
+    },
+    {
+      "id": "literal-output-error",
+      "arguments": "pipdata",
+      "evidence": [
+        {"source": "tools\\pipsys\\pipsys.cmd status pipdata", "text": "Exit status: 0. Exact stdout between markers:\nBEGIN STDOUT\n# Fixture status\n\n| package | branch |\n|---|---|\n| pipdata | main |\nEND STDOUT\nStderr: empty. Markers are not part of stdout."},
+        {"source": "tools\\pipsys\\pipsys.cmd handoffs", "text": "Exit status: 1. Stdout: empty. Exact stderr: pipsys: handoff root unavailable\nNo original task handoff can be opened."},
+        {"source": "pipdata git inspection", "text": "Clean main HEAD cccccccccccccccccccccccccccccccccccccccc. Original task Plans, owners and work reports are unavailable, so no unfinished task or parallel write boundary can be established."}
+      ],
+      "required": ["Reproduce exact successful stdout unchanged in Source output, without BEGIN/END markers", "Show exact handoffs stderr and exit status 1 as unavailable evidence", "Mark task readiness/owner and parallel independence UNKNOWN; recommend restoring original evidence"],
+      "forbidden": ["Rewrite, reorder or add a row inside the source table", "Hide or treat handoffs failure as success", "Invent package task status from the status table"]
+    },
+    {
+      "id": "invalid-single-token",
+      "arguments": "pipdata;",
+      "evidence": [{"source": "argument bytes", "text": "A single token contains a disallowed semicolon. No source, shell or report action has occurred."}],
+      "required": ["Return pip-next: invalid argument and usage", "No shell call or report write"],
+      "forbidden": ["Accept the token because it contains no spaces", "Strip punctuation to silently accept pipdata"]
+    },
+    {
+      "id": "invalid-two-packages",
+      "arguments": "pipdata stamp",
+      "evidence": [{"source": "argument bytes", "text": "Two otherwise valid package names, with no punctuation. No shell or report action has occurred."}],
+      "required": ["Return pip-next: invalid argument and usage", "No shell call or report write"],
+      "forbidden": ["Assess both packages as if multi-package input were supported", "Silently use only the first package"]
+    },
+    {
+      "id": "trimmed-package",
+      "arguments": "  pipdata  ",
+      "evidence": [
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "Only remaining task B requires interface A approval. A remains Open. Design owner Andres. No independent scoped task identified."},
+        {"source": "pipdata git inspection", "text": "Clean main HEAD cccccccccccccccccccccccccccccccccccccccc. No additional Plan or current worker evidence found by scoped inspection."}
+      ],
+      "required": ["Trim outer whitespace and assess pipdata, not global scope", "Report waiting on interface A approval by Andres", "State no confirmed parallel package work in inspected scope"],
+      "forbidden": ["Return invalid argument or unknown package due only to outer whitespace", "Treat the input as empty/global or implement the Open interface"]
+    }
+  ]
+}

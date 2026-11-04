@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "compound-gpid-active-state-v1",
+  "updatedAt": "2026-11-02T20:50:28Z",
+  "workflow": "/cg-work",
+  "status": "completed",
+  "branch": "main",
+  "plan": ".cg-docs/plans/2026-11-02-pip-next.md",
+  "executionReport": ".cg-docs/work-reports/2026-11-02-pip-next.md",
+  "currentPhase": null,
+  "evidenceStatus": [
+    {"id": "V1", "status": "passed", "artifact": "tools/pipsys/kilo/commands/pip-next.md"},
+    {"id": "V2", "status": "passed", "artifact": "tests/pipsys/test-pip-next.R"},
+    {"id": "V3", "status": "passed", "artifact": ".cg-docs/orchestration/outputs/pipsystem/pip-next/20261102T202426Z-orchestrator/live-global/handoff.md"},
+    {"id": "V4", "status": "passed", "artifact": ".cg-docs/orchestration/outputs/pipsystem/pip-next/20261102T202426Z-orchestrator/behavior-verdicts.md"},
+    {"id": "V5", "status": "passed", "artifact": ".cg-docs/reviews/2026-11-02-pip-next-verify-review.md"}
+  ],
+  "unresolvedDecisions": [],
+  "artifactRefs": [
+    {"kind": "plan", "path": ".cg-docs/plans/2026-11-02-pip-next.md", "status": "completed"},
+    {"kind": "work-report", "path": ".cg-docs/work-reports/2026-11-02-pip-next.md", "status": "completed"},
+    {"kind": "review", "path": ".cg-docs/reviews/2026-11-02-pip-next-review.md", "status": "resolved"},
+    {"kind": "review", "path": ".cg-docs/reviews/2026-11-02-pip-next-verify-review.md", "status": "passed"}
+  ],
+  "nextCommand": "/pip-next"
+}

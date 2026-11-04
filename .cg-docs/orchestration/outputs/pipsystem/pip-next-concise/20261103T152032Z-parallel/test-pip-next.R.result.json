@@ -1,0 +1,9 @@
+{
+  "file": "tests/pipsys/test-pip-next.R",
+  "tests": 11,
+  "passed": 200,
+  "failed": 0,
+  "errors": 0,
+  "warnings": 0,
+  "skipped": 0
+}

@@ -1,0 +1,9 @@
+{
+  "file": "tests/pipsys/test-pipsys.R",
+  "tests": 38,
+  "passed": 407,
+  "failed": 0,
+  "errors": 0,
+  "warnings": 0,
+  "skipped": 0
+}
