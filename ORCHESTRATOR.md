@@ -133,10 +133,10 @@ reviews and fixes. Do not ask again at phase boundaries.
 
 ### Metadata for user-facing commands and prompts
 
-Every command or prompt provided for the user to run or copy must have the
-same metadata header, including recommendations, same-session commands,
-cross-environment execution prompts and saved prompts in assessments. Use
-these exact labels, retaining the existing target fields for compatibility:
+Every command or prompt provided for the user to run or copy must have an
+external setup card for the user, including recommendations, same-session
+commands, cross-environment execution prompts and saved prompt artifacts.
+Use these exact labels, retaining the existing target fields for compatibility:
 
 - **Project Name:** the specific project/package context.
 - **Branch:** default, current or new; give the actual branch name and its
@@ -166,34 +166,45 @@ current responding model as the recommendation. Do not select/switch models,
 set provider/model/variant configuration or change client settings merely
 because a recommendation is present.
 
-```text
-Project Name: <project/package>
-Branch: <default/current/new> — <branch name>; <existing/proposed>
-Worktree Requirement: <Yes/No> — <new worktree/existing checkout or worktree>; <absolute path>
-Model Family Recommendation: <Powerful/Standard/Small> — <brief task-based reason>
-Effort: <low/medium/high/extra high>
-Target Project: <project/package and absolute repository root>
-Target Environment: <branch, path and new/existing status>
-Target Agent: <Code mode/pip-orchestrator>
-```
+**Setup card template — outside the copyable task block:**
 
-Show the header directly above the copyable command/prompt. If a slash
-command must be on line 1, put the header immediately after it, before the
-task body; never insert metadata into shell syntax. One header may cover a
-contiguous command block only when every command shares that context and
-recommendation. Different targets or tasks need separate headers. Saved
-prompt files contain the header too. Use UNKNOWN for unverified values and
-name the needed verification; do not guess targets, branches or paths.
-The header is advice, not branch/worktree creation or execution approval.
-Preserve all existing authorization and storage limits. Internal tool calls,
-historical examples and verbatim source output are not new execution prompts;
-do not rewrite them to add headers or alter information-command output.
+- **Project Name:** <project/package>
+- **Branch:** <default/current/new> — <branch name>; <existing/proposed>
+- **Worktree Requirement:** <Yes/No> — <new worktree/existing checkout or worktree>; <absolute path>
+- **Model Family Recommendation:** <Powerful/Standard/Small> — <brief task-based reason>
+- **Effort:** <low/medium/high/extra high>
+- **Target Project:** <project/package and absolute repository root>
+- **Target Environment:** <branch, path and new/existing status>
+- **Target Agent:** <Code mode/pip-orchestrator>
+
+Render the setup card directly above and outside the copyable command/task
+block. Model family and effort belong only in this user-facing card, never
+in the agent's copied task instructions. Do not ask the worker to select,
+change or infer its model, effort or client settings. Keep shell syntax free
+of metadata. A shared card covers only contiguous commands with the same
+context/recommendation; different targets or tasks need separate cards.
+
+Inside the task block, keep the goal, scope, approved decisions, inputs/Plan,
+checks, constraints and report requirements. Repeat only essential operating
+targets: verify the expected repository root, branch and checkout/worktree
+path before work; report a mismatch rather than silently switching or
+creating environments. This short verification is not a duplicate setup card.
+Keep a required slash command on line 1 of the task block, not after metadata.
+
+Saved prompt artifacts use two parts: an external Setup section and a separate
+fenced task block. The task block alone is the copyable agent prompt; the
+whole artifact does not have to start with the slash command. Keep model/effort
+advice in Setup only. UNKNOWN stays explicit with the needed verification;
+do not guess targets, branches or paths. Setup grants no branch/worktree,
+execution or model-setting authority. Preserve existing authorization/storage
+limits. Internal tool calls, historical examples and verbatim source output
+are excluded; do not rewrite history or alter information-command output.
 
 ### Prompts for other sessions
 
 A prompt must:
 
-- start with the slash command on line 1;
+- start its copyable task block with the slash command on line 1;
 - name the repository root, branch, and Plan path and revision;
 - state the goal, the scope and the check that shows the work functions;
 - state what needs the user (the Autonomy list) and that everything else
@@ -205,6 +216,31 @@ A prompt must:
 - give an estimated duration.
 
 Keep prompts short. The user starts other sessions; you do not.
+
+### Accurate final response endings
+
+End every conversational final response with **Next:** and **Need from you:**,
+with nothing after them. Base both on the real state of the active task and
+any proposal awaiting a decision, not merely whether this answer is written.
+
+- **Next:** name the next stage/action, owner and whether it is proposed,
+  waiting, active or complete. If continuation is automatic, name the real
+  scheduled trigger; otherwise name the decision/message/action that resumes it.
+- **Need from you:** name the actual user decision, approval or setup action
+  required for that next step. For an unresolved proposal, give the choices,
+  such as adopt the suggestion, keep the current setup or propose an alternative.
+  Say "Nothing" only when no user decision/action is outstanding for the
+  stated next step. Do not label a proposal decided or discussion complete
+  just because its explanation is finished.
+- A completed local edit does not mean a pending approval, reload or downstream
+  handoff is complete. State those limits. Do not silently turn a pending
+  required choice into an optional recommendation to justify "Nothing".
+- Do not invent duties for a fully answered informational request with no
+  pending proposal, or ask again for a decision the user already made. Continue
+  safely authorized work without asking the user to say "continue".
+- Before sending, check the pair: if the user does exactly what Need from you
+  says, can the stated Next step happen? If not, correct the missing action,
+  owner or continuation trigger. Optional future work must be clearly optional.
 
 ### Follow-up on started work
 

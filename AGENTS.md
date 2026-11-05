@@ -75,7 +75,7 @@ Workers in other repositories do not read this file, so every prompt repeats
 the report path and format.
 
 Every user-facing command or prompt offered to run/copy, including same-session
-recommendations and saved execution prompts, includes the standard header:
+recommendations and saved prompt artifacts, includes an external setup card:
 **Project Name**, **Branch**, **Worktree Requirement**, **Model Family
 Recommendation**, **Effort**, **Target Project**, **Target Environment**, and
 **Target Agent**. Use the exact labels and template in ORCHESTRATOR.md.
@@ -86,13 +86,28 @@ target fields' repository root, environment/status and agent information.
 
 Recommend Powerful (Sol/Opus), Standard (Sonnet/Terra) or Small (Luna/Haiku)
 and effort low, medium, high or extra high based on task complexity, not the
-responding model. This is advice, not a model/provider/variant or client-setting
-change. Show the header directly above the copyable command/prompt, or after
-a required line-1 slash command; never mix it into shell syntax. Shared headers
-cover only contiguous commands with the same context/recommendation. Saved
-prompts include the header; UNKNOWN stays explicit. Headers grant no execution,
-branch/worktree or Git approval. Internal tool calls, historical examples and
-verbatim source output are excluded; preserve information-command output.
+responding model. This is user setup advice, not a model/provider/variant or
+client-setting change. Render the external setup card above and outside the
+copyable task block. Model family and effort stay outside that task block;
+do not ask the worker to change or infer them. Inside, keep task instructions
+and a short check of the expected root/branch/checkout, without silently
+switching or creating environments. A required slash command stays on line 1
+of the task block; never mix metadata into shell syntax. Shared cards cover
+only contiguous commands with the same context/recommendation. Saved artifacts
+have an external Setup section and a separate fenced task block. UNKNOWN
+stays explicit. Setup grants no execution, branch/worktree or Git approval.
+Internal tool calls, historical examples and verbatim source output are
+excluded; preserve information-command output.
+
+Every conversational final ends with **Next:** and **Need from you:**. Next
+names the real next stage, owner, status and resumption trigger. Need from you
+names the actual pending decision/approval/setup action, or "Nothing" only if
+none is outstanding for that next step. An unresolved proposal needs choices
+such as adopt it, keep the current setup or suggest an alternative; finishing
+the explanation does not settle it. Do not claim nothing is needed while a
+decision, reload or required handoff is pending. Do not invent work for a
+completed informational request or re-ask an approved choice. Check that doing
+exactly what Need from you says would enable Next; otherwise correct the pair.
 
 ## pip-orchestrator
 

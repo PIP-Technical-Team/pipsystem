@@ -78,7 +78,8 @@ Limits, unknowns and open decisions. Never empty.
 ## Metadata For User-Facing Commands And Prompts
 
 Every command/prompt offered to the user to run or copy, including same-session
-recommendations and saved execution prompts, includes these exact labels:
+recommendations and saved prompt artifacts, includes an external setup card
+with these exact labels:
 
 - **Project Name:** specific project/package context.
 - **Branch:** default/current/new, actual name and existing/proposed status;
@@ -94,21 +95,37 @@ recommendations and saved execution prompts, includes these exact labels:
 - **Target Environment:** consistent branch, path and new/existing status.
 - **Target Agent:** Code mode or pip-orchestrator, as appropriate.
 
-Use the template and tier guidance in ORCHESTRATOR.md. Place the header above
-the copyable command/prompt, or immediately after a required line-1 slash
-command, before the task body; never embed it in shell syntax. A header can
-cover a contiguous block only if all commands share its context/recommendation.
-Saved prompts contain the header. Unknown values stay UNKNOWN with the needed
-verification named. It is advice, not execution, branch/worktree, Git or
-model/provider/variant/client-setting authority. Internal tool calls,
-historical examples and verbatim source output are excluded; do not rewrite
-historical reports or change information-command output to add headers.
+Use the template and tier guidance in ORCHESTRATOR.md. Render the external
+setup card above and outside the copyable task block. Model family and effort
+belong in that card only, not in the agent task or instructions to change or
+infer its client settings. A shared card covers a contiguous block only if all
+commands share context/recommendation. Never embed metadata in shell syntax.
+Saved artifacts contain an external Setup section and a separate fenced task
+block; only the latter is the agent prompt. UNKNOWN stays explicit with needed
+verification. Setup grants no execution, branch/worktree, Git or model-setting
+authority. Internal tool calls, historical examples and verbatim source output
+are excluded; do not rewrite history or information-command output.
 
-The copyable command starts with its slash command on line 1. The prompt
-names the repository root, the branch, the Plan path and revision, the goal
-and scope, the check that shows the work functions, what needs the user, the
-Minimal first rules in short form, and the exact absolute report path and
-format. `ORCHESTRATOR.md` gives the full list.
+The task block starts with its slash command on line 1. It briefly verifies the
+expected root/branch/checkout and reports mismatches without silently switching
+or creating environments; do not repeat the full setup card. Keep the Plan path
+and revision, goal/scope, functional checks, constraints, user approvals,
+Minimal first rules and exact report path/format. ORCHESTRATOR.md has the list.
+
+## Accurate Final Response Endings
+
+End each conversational final with **Next:** and **Need from you:**, based on
+the active task and any unresolved proposal, not just a finished explanation.
+Next names the real stage/action, owner, status and continuation trigger. Need
+from you names the actual pending user decision, approval or setup action;
+"Nothing" is valid only if none is outstanding for that next step. For a
+proposal awaiting choice, name options such as adopt it, keep the current setup
+or suggest an alternative. Do not call it settled or discussion complete until
+resolved. Local edit completion does not settle a pending reload or handoff.
+Do not invent work for completed informational requests or re-ask approved
+choices. Before sending, check that following Need from you would actually
+enable Next; correct missing decisions/actions/triggers. Mark optional work
+optional, without hiding a required choice or asking for routine continuation.
 
 ## Git Checkpoints
 
