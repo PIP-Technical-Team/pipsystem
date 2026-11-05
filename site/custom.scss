@@ -271,3 +271,75 @@ pre code {
   margin-top: 0.5rem;
   margin-bottom: 0;
 }
+
+.pip-table {
+  overflow-x: auto;
+  margin: 1rem 0 1.75rem;
+}
+
+.pip-table-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.7rem;
+  padding: 0.9rem;
+  background: var(--pip-surface);
+  border: 1px solid var(--pip-border);
+  border-radius: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.pip-table-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.pip-table-controls input,
+.pip-table-controls select,
+.pip-table-controls button {
+  background: var(--pip-surface);
+  color: var(--pip-text);
+  border: 1px solid var(--pip-text-muted);
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  max-width: 22rem;
+  font-size: 0.9rem;
+}
+
+.pip-table-controls output,
+.pip-table-empty {
+  color: var(--pip-text-muted);
+  font-size: 0.88rem;
+  padding: 0.4rem;
+}
+
+.pip-table tr[hidden] { display: none !important; }
+.pip-table td { min-width: 7rem; max-width: 34rem; overflow-wrap: anywhere; }
+.pip-table td:nth-child(2) { min-width: 13rem; }
+
+.pip-status {
+  display: inline-block;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.pip-status--done { background: #d1fae5; color: #065f46; }
+.pip-status--active { background: #dbeafe; color: #1e40af; }
+.pip-status--planned { background: #fef3c7; color: #92400e; }
+.pip-status--blocked { background: #fee2e2; color: #991b1b; }
+
+body.quarto-dark {
+  .pip-status--done { background: #064e3b; color: #a7f3d0; }
+  .pip-status--active { background: #1e3a8a; color: #bfdbfe; }
+  .pip-status--planned { background: #78350f; color: #fde68a; }
+  .pip-status--blocked { background: #7f1d1d; color: #fecaca; }
+  .pip-status--neutral { background: #334155; color: #e2e8f0; }
+}

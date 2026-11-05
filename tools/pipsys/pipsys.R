@@ -1103,8 +1103,193 @@ report_overview <- function(root = pipsys_root(),
   ))
 }
 
+# Extract one Markdown section, ignoring headings inside fenced examples.
+markdown_section <- function(lines, heading) {
+  fenced <- FALSE
+  headings <- integer()
+  for (i in seq_along(lines)) {
+    if (grepl("^\\s*(```|~~~)", lines[i])) fenced <- !fenced
+    if (!fenced && grepl("^#{1,6} ", lines[i])) headings <- c(headings, i)
+  }
+  names <- tolower(sub("^#+ +", "", lines[headings]))
+  hit <- headings[which(names == tolower(heading))[1L]]
+  if (!length(hit) || is.na(hit)) return(character())
+  level <- nchar(sub(" .*", "", lines[hit]))
+  ends <- headings[headings > hit &
+    nchar(sub(" .*", "", lines[headings])) <= level]
+  end <- if (length(ends)) ends[1L] - 1L else length(lines)
+  if (end <= hit) return(character())
+  return(lines[seq.int(hit + 1L, end)])
+}
+
+site_source <- function(path, label = basename(path)) {
+  absolute <- normalizePath(path, winslash = "/", mustWork = FALSE)
+  parts <- strsplit(absolute, "/", fixed = TRUE)[[1L]]
+  parts[-1L] <- vapply(parts[-1L], utils::URLencode, character(1L),
+                       reserved = TRUE, repeated = TRUE)
+  return(sprintf("[%s](file:///%s)", label, paste(parts, collapse = "/")))
+}
+
+# Saved advice is displayed, never re-executed or treated as fresh readiness.
+focus_page <- function(root = pipsys_root()) {
+  task_dir <- file.path(outputs_dir(root), "pipsystem", "pip-next-global")
+  files <- if (dir.exists(task_dir)) {
+    list.files(task_dir, pattern = "^handoff\\.md$", recursive = TRUE,
+               full.names = TRUE)
+  } else character()
+  files <- files[vapply(files, function(f) identical(
+    normalizePath(dirname(dirname(f)), winslash = "/"),
+    normalizePath(task_dir, winslash = "/")), logical(1L))]
+  runs <- if (length(files)) rbindlist(lapply(files, read_handoff)) else
+    data.table(run = character(), status = character(),
+               updated = as.POSIXct(character(), tz = "UTC"))
+  setorderv(runs, c("updated", "run"), c(-1L, -1L), na.last = TRUE)
+  invalid <- runs[status == "completed" & is.na(updated), run]
+  eligible <- runs[status == "completed" & !is.na(updated)]
+  gaps <- "Saved advice is not reassessed during site generation; readiness and approvals may have changed."
+  advice <- c("## Where to focus now", "",
+    sprintf("Site snapshot built: **%s**.", fmt_et(Sys.time())), "",
+    "**Latest saved global assessment — not reassessed by this site build.**", "")
+  if (nrow(eligible)) {
+    chosen <- eligible[1L]
+    file <- file.path(task_dir, chosen$run, "handoff.md")
+    lines <- read_lines_utf8(file)
+    fm <- read_frontmatter(file, lines)
+    if (is.null(fm)) fm <- simple_frontmatter(lines)
+    advice <- c(advice, sprintf("Assessment updated: **%s**. %s.",
+      fmt_et(chosen$updated), site_source(file, "Source handoff")), "")
+    # The optional detail document stays in the selected run; never follow
+    # arbitrary report-supplied paths or execute any report instructions.
+    detail <- file.path(dirname(file), "assessment.md")
+    if (!file.exists(detail)) detail <- file
+    detail_lines <- if (identical(detail, file)) lines else read_lines_utf8(detail)
+    recommendation <- markdown_section(detail_lines, "Recommendation")
+    if (length(recommendation) && any(nzchar(trimws(recommendation)))) {
+      advice <- c(advice, rewrite_links(recommendation, dirname(detail)), "")
+      for (section in c("Task states and blockers", "Parallel work")) {
+        body <- markdown_section(detail_lines, section)
+        if (length(body) && any(nzchar(trimws(body)))) {
+          advice <- c(advice, sprintf("### %s", section), "",
+                      rewrite_links(body, dirname(detail)), "")
+        } else {
+          advice <- c(advice, sprintf("%s: **UNKNOWN** — not recorded in this assessment.", section), "")
+        }
+      }
+      advice <- c(advice,
+        "Action owner: only as recorded above; otherwise **UNKNOWN**. The assessment author is not an assigned implementation owner.", "",
+        site_source(detail, "Full assessment and evidence"), "")
+    } else {
+      next_text <- if (is.null(fm)) NULL else fm[["next"]]
+      if (!is.character(next_text) || length(next_text) != 1L ||
+          is.na(next_text) || !nzchar(trimws(next_text)) || next_text == "-") {
+        next_text <- "UNKNOWN"
+      }
+      summary <- markdown_section(lines, "Summary")
+      advice <- c(advice, sprintf("**Recorded next action:** %s", next_text), "",
+                  rewrite_links(summary, dirname(file)), "",
+                  "Action owner, blockers and parallel options: only as recorded above; otherwise **UNKNOWN**.", "")
+    }
+  } else {
+    advice <- c(advice, "No completed, dated global assessment is available. Run `/pip-next` for a fresh assessment; rebuilding the site does not run it.", "")
+    gaps <- c(gaps, "Current next-action evidence is unavailable; no task is inferred ready from its roadmap status.")
+  }
+  if (length(invalid)) gaps <- c(gaps, sprintf(
+    "Completed assessments excluded for invalid timestamp: %s.", paste(invalid, collapse = ", ")))
+  charter <- file.path(root, "compound-gpid.md")
+  charter_fm <- if (file.exists(charter)) read_frontmatter(charter) else NULL
+  reviewed <- if (is.null(charter_fm)) "-" else as_chr(charter_fm[["last-reviewed"]])
+  if (!nzchar(trimws(reviewed)) || reviewed == "-") reviewed <- "UNKNOWN"
+  focus <- if (file.exists(charter)) {
+    markdown_section(read_lines_utf8(charter), "Current Focus")
+  } else character()
+  if (!any(nzchar(trimws(focus)))) {
+    focus <- "UNKNOWN — no Current Focus section is available."
+    gaps <- c(gaps, "Charter focus is missing.")
+  }
+  return(c(advice, "### Recorded charter focus", "",
+    "This is the charter's recorded focus, not a current integration check. Newer dated assessments may supersede its progress claims.", "",
+    sprintf("Charter last reviewed: **%s**.", reviewed), "",
+    site_source(charter, "compound-gpid.md — Current Focus"), "",
+    rewrite_links(focus, root), "", "### Focus gaps", "", paste0("- ", gaps), ""))
+}
+
+site_milestones <- function(root) {
+  file <- file.path(root, "roadmap.json")
+  if (!file.exists(file)) return(data.table())
+  rm <- jsonlite::fromJSON(file, simplifyVector = FALSE)
+  return(rbindlist(lapply(rm$milestones, function(m) data.table(
+    milestone = as_chr(m$title), objective = as_chr(m$objective),
+    status = as_chr(m$status),
+    progress = sprintf("%d/%d", sum(vapply(m$features,
+      function(f) identical(f$status, "done"), logical(1L))), length(m$features))
+  )), fill = TRUE))
+}
+
+site_roadmap_data <- function(root) {
+  file <- file.path(root, "roadmap.json")
+  empty <- data.table(feature_id = character(), milestone = character(),
+    feature = character(), status = character(), plan = character())
+  rows <- if (file.exists(file)) {
+    rm <- jsonlite::fromJSON(file, simplifyVector = FALSE)
+    rbindlist(lapply(rm$milestones, function(m) rbindlist(lapply(
+      m$features, function(f) data.table(feature_id = as_chr(f$id),
+        milestone = as_chr(m$title), feature = as_chr(f$title),
+        status = as_chr(f$status), plan = as_chr(f$plan))
+    ))), fill = TRUE)
+  } else empty
+  if (!ncol(rows)) rows <- empty
+  file <- file.path(root, "tables", "site_task_context.csv")
+  context <- if (file.exists(file)) {
+    fread(file, colClasses = "character", na.strings = NULL)
+  } else data.table(feature_id = character())
+  for (column in c("purpose", "expected_result", "packages", "evidence_file", "evidence_line")) {
+    if (!column %chin% names(context)) context[, (column) := "UNKNOWN"]
+  }
+  result <- context[rows, on = "feature_id"]
+  for (column in c("purpose", "expected_result", "packages", "evidence_file", "evidence_line")) {
+    set(result, which(is.na(result[[column]]) | !nzchar(result[[column]])), column, "UNKNOWN")
+  }
+  return(result[])
+}
+
+package_roles <- function(root) {
+  file <- file.path(root, "SYSTEM_DESIGN.md")
+  section <- if (file.exists(file)) {
+    markdown_section(read_lines_utf8(file), "10. Packages and responsibilities")
+  } else character()
+  table <- section[grepl("^\\|", section)]
+  if (length(table) < 2L) return(c("UNKNOWN — package role table is unavailable.", ""))
+  return(c("These are **target responsibilities**, not certification of current package implementation.", "",
+    paste(site_source(file, "Source: SYSTEM_DESIGN.md section 10"),
+      site_source(file.path(root, "compound-gpid.md"), "pipsystem: charter"), sep = "; "), "",
+    table[1:2],
+    "| `pipsystem` | Design, evidence and development coordination | Pipeline execution or release runtime | Charter |",
+    table[-(1:2)], ""))
+}
+
+# Site-only wrappers leave fixed-format CLI reports and copied documents alone.
+site_wrap_tables <- function(lines) {
+  out <- character()
+  in_table <- FALSE
+  legend_added <- FALSE
+  for (line in c(lines, "")) {
+    is_table <- startsWith(line, "|")
+    if (is_table && !legend_added) {
+      out <- c(out, "**Table guide:** search matches all words across columns; selected filters combine. Reset restores all rows. Status labels keep their source meaning: a completed handoff is not proof of completed implementation.", "",
+        '<span class="pip-status pip-status--done">done / completed</span> <span class="pip-status pip-status--active">active / in-progress / running</span> <span class="pip-status pip-status--planned">planned / partial / open</span> <span class="pip-status pip-status--neutral">idea / UNKNOWN</span> <span class="pip-status pip-status--blocked">blocked / failed</span>', "")
+      legend_added <- TRUE
+    }
+    if (is_table && !in_table) out <- c(out, "::: {.pip-table}", "")
+    if (!is_table && in_table) out <- c(out, "", ":::", "")
+    out <- c(out, line)
+    in_table <- is_table
+  }
+  return(out)
+}
+
 overview_page <- function(root = pipsys_root(),
-                          ho = handoff_table(outputs_dir(root))) {
+                          ho = handoff_table(outputs_dir(root)),
+                          focus = focus_page(root)) {
   ov <- overview_data(root = root, ho = ho)
   to_num <- function(x) {
     return(fifelse(
@@ -1196,6 +1381,9 @@ overview_page <- function(root = pipsys_root(),
     "",
     sprintf("Generated %s by pipsys %s", fmt_et(Sys.time()), PIPSYS_VERSION),
     "",
+    focus,
+    "## Milestones: what each one achieves", "", md_table(site_milestones(root)), "",
+    "## Package roles", "", package_roles(root), "",
     "## Interactive summary", "",
     chart, "",
     "## Packages", "", md_table(ov$table), "",
@@ -1206,11 +1394,27 @@ overview_page <- function(root = pipsys_root(),
 
 roadmap_page <- function(root = pipsys_root()) {
   dt <- roadmap_table(root)
+  tasks <- site_roadmap_data(root)
+  task_table <- tasks[, .(
+    Milestone = milestone,
+    Task = paste0(feature, " <br> `", feature_id, "`"),
+    Packages = packages, Status = status,
+    Purpose = purpose, `Expected result` = expected_result,
+    `Plan / evidence` = vapply(seq_len(.N), function(i) {
+      links <- if (plan[i] != "-" && file.exists(file.path(root, plan[i]))) {
+        sprintf("[Plan](plans/pipsystem/%s)", basename(plan[i]))
+      } else "Plan: none"
+      if (evidence_file[i] != "UNKNOWN") links <- paste(links,
+        site_source(file.path(root, evidence_file[i]),
+          paste0(evidence_file[i], ":", evidence_line[i])), sep = " <br> ")
+      return(links)
+    }, character(1L))
+  )]
   rm_json <- as.character(jsonlite::toJSON(dt, auto_unbox = TRUE, na = "null"))
   chart <- html_cell(c(
     "<div class=\"pip-chart-card\">",
     "  <div class=\"pip-chart-controls\">",
-    "    <label for=\"roadmap-status-filter\">Filter by status:</label>",
+    "    <label for=\"roadmap-status-filter\">Chart status (table filters below):</label>",
     "    <select id=\"roadmap-status-filter\"></select>",
     "  </div>",
     "  <div id=\"roadmap-chart\"></div>",
@@ -1269,13 +1473,19 @@ roadmap_page <- function(root = pipsys_root()) {
   if (!nrow(dt)) {
     gaps <- c(gaps, "roadmap.json is missing or contains no features.")
   }
+  missing_context <- tasks[purpose == "UNKNOWN", feature_id]
+  if (length(missing_context)) gaps <- c(gaps, sprintf(
+    "Task descriptions are UNKNOWN for: %s.", paste(missing_context, collapse = ", ")))
   return(c(
     "---", "title: Roadmap", "---", "",
     sprintf("Generated %s from `roadmap.json`.", fmt_et(Sys.time())), "",
+    "## Milestones: purpose and progress", "",
+    md_table(site_milestones(root)), "",
     "## Milestone progress", "",
     chart, "",
     "## Features", "",
-    md_table(dt), "",
+    "Descriptions and expected results explain intended scope, not verified delivery. Packages identify involved components, not assigned owners. Source: `tables/site_task_context.csv` joined to roadmap feature IDs.", "",
+    md_table(task_table), "",
     "## Gaps", "",
     paste0("- ", gaps)
   ))
@@ -1432,21 +1642,24 @@ build_site <- function(root = pipsys_root(),
   pk <- read_packages(root)
   ho <- handoff_table(outputs_dir(root))
 
+  focus <- focus_page(root)
+  write_page(file.path(gen, "_focus.md"), site_wrap_tables(focus))
+
   write_page(
     file.path(gen, "overview.qmd"),
-    overview_page(root, ho = ho)
+    site_wrap_tables(overview_page(root, ho = ho, focus = focus))
   )
   write_page(
     file.path(gen, "handoffs.md"),
-    report_page(report_handoffs(root = root, ho = ho))
+    site_wrap_tables(report_page(report_handoffs(root = root, ho = ho)))
   )
   write_page(
     file.path(gen, "roadmap.qmd"),
-    roadmap_page(root)
+    site_wrap_tables(roadmap_page(root))
   )
   # .qmd: Quarto treats {mermaid} and {ojs} blocks as executable cells, which a
   # .md page may not contain. The pages have no R or Python cells.
-  write_page(file.path(gen, "map.qmd"), map_page(root))
+  write_page(file.path(gen, "map.qmd"), site_wrap_tables(map_page(root)))
   design <- file.path(root, "SYSTEM_DESIGN.md")
   if (file.exists(design)) {
     write_page(
@@ -1459,7 +1672,7 @@ build_site <- function(root = pipsys_root(),
     name <- pk$package[i]
     write_page(
       file.path(gen, "status", paste0(name, ".md")),
-      report_page(report_status(name, root, ho = ho))
+      site_wrap_tables(report_page(report_status(name, root, ho = ho)))
     )
     path <- pk$path[i]
     plan_dir <- file.path(path, ".cg-docs", "plans")

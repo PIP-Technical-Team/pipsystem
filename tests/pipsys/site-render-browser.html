@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Rendered local site check</title>
+<body>
+<pre id="result">NOT RUN</pre>
+<iframe id="home" src="../../site/_site/index.html" title="Homepage"></iframe>
+<iframe id="overview" src="../../site/_site/gen/overview.html" title="Overview"></iframe>
+<iframe id="roadmap" src="../../site/_site/gen/roadmap.html" title="Roadmap"></iframe>
+<iframe id="handoffs" src="../../site/_site/gen/handoffs.html" title="Handoffs"></iframe>
+<iframe id="status" src="../../site/_site/gen/status/pipsystem.html" title="Status"></iframe>
+<iframe id="map" src="../../site/_site/gen/map.html" title="Pipeline map"></iframe>
+<script>
+window.addEventListener("load", function () {
+  var result = document.getElementById("result"), checks = 0;
+  function assert(condition, message) {
+    if (!condition) throw new Error(message);
+    checks += 1;
+  }
+  function visible(wrapper) {
+    return Array.from(wrapper.querySelectorAll("tbody tr")).filter(function (row) { return !row.hidden; });
+  }
+  function filter(wrapper, name, value) {
+    var select = wrapper.querySelector('[data-pip-filter="' + name + '"]');
+    assert(!!select, "Rendered " + name + " filter exists");
+    select.value = value;
+    select.dispatchEvent(new Event("change", {bubbles: true}));
+  }
+  function luminance(rgb) {
+    return rgb.match(/[\d.]+/g).slice(0, 3).map(function (value) {
+      var x = Number(value) / 255;
+      return x <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+    }).reduce(function (sum, value, index) { return sum + value * [0.2126, 0.7152, 0.0722][index]; }, 0);
+  }
+  try {
+    var docs = {};
+    ["home", "overview", "roadmap", "handoffs", "status", "map"].forEach(function (id) {
+      docs[id] = document.getElementById(id).contentDocument;
+      assert(!!docs[id].querySelector(".pip-table-controls"), id + " local controls loaded without CDN");
+      assert(docs[id].body.textContent.includes("Gaps") || docs[id].body.textContent.includes("Focus gaps"), id + " keeps limitations visible");
+    });
+    var focus = docs.home.getElementById("where-to-focus-now"), card = docs.home.querySelector(".pip-card");
+    assert(!!focus && !!card && !!(focus.compareDocumentPosition(card) & Node.DOCUMENT_POSITION_FOLLOWING), "Focus precedes navigation cards");
+    assert(docs.home.body.textContent.includes("not reassessed"), "Advice as-of caveat is visible");
+    assert(docs.overview.body.textContent.includes("target responsibilities"), "Roles are labeled target, not current implementation");
+    assert(docs.overview.body.textContent.includes("Out of scope") && docs.overview.body.textContent.includes("Open: likely retired"), "Role boundaries are preserved");
+    var tasks = Array.from(docs.roadmap.querySelectorAll(".pip-table")).find(function (wrapper) {
+      return Array.from(wrapper.querySelectorAll("th")).some(function (cell) { return cell.textContent.trim() === "Task"; });
+    });
+    assert(!!tasks && visible(tasks).length === 66, "All current task rows render");
+    filter(tasks, "packages", "pipdata");
+    filter(tasks, "milestone", "M2 Walking skeleton");
+    filter(tasks, "status", "idea");
+    assert(visible(tasks).length === 4, "Actual M2 next-feature filters intersect correctly");
+    var search = tasks.querySelector('input[type="search"]');
+    search.value = "mean";
+    search.dispatchEvent(new Event("input", {bubbles: true}));
+    assert(visible(tasks).length === 1 && visible(tasks)[0].textContent.includes("compute-the-mean"), "Actual descriptions participate in search");
+    tasks.querySelector('button[type="reset"]').click();
+    assert(visible(tasks).length === 66, "Actual table reset restores all features");
+    assert(!!tasks.querySelector('a[href*="plans/pipsystem/"]'), "Task Plans link to site copies");
+    ["quarto-light", "quarto-dark"].forEach(function (theme) {
+      docs.roadmap.body.classList.remove("quarto-light", "quarto-dark");
+      docs.roadmap.body.classList.add(theme);
+      Array.from(docs.roadmap.querySelectorAll(".pip-status")).slice(0, 5).forEach(function (badge) {
+        var css = docs.roadmap.defaultView.getComputedStyle(badge);
+        var a = luminance(css.color), b = luminance(css.backgroundColor);
+        assert((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05) >= 4.5, theme + " badge text contrast");
+      });
+    });
+    result.textContent = "PASS: " + checks + " rendered-site offline checks including both themes";
+    result.dataset.passed = "true";
+  } catch (error) {
+    result.textContent = "FAIL: " + error.message;
+    result.dataset.passed = "false";
+  }
+});
+</script>
+</body></html>

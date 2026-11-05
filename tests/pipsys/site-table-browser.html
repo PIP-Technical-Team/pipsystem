@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Offline site table behavior check</title>
+<body>
+<div class="pip-table" id="tasks">
+<table><thead><tr><th>Milestone</th><th>Task</th><th>Packages</th><th>Status</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>M2</td><td>Deflate</td><td>pipdata;pipaux</td><td>idea</td><td>Consume CPI inputs</td></tr>
+<tr><td>M2</td><td>Mean</td><td>pipster;pipdata</td><td>active</td><td>Compute a weighted result</td></tr>
+<tr><td>M3</td><td>Storage</td><td>stamp</td><td>planned</td><td>Track artifact history</td></tr>
+</tbody></table>
+</div>
+<div class="pip-table" id="packages">
+<table><thead><tr><th>Package</th><th>Status</th></tr></thead>
+<tbody><tr><td>pipdata</td><td>blocked</td></tr><tr><td>stamp</td><td>new-state</td></tr></tbody></table>
+</div>
+<table id="unmarked"><tbody><tr><td>Not a generated dashboard table</td></tr></tbody></table>
+<pre id="result">NOT RUN</pre>
+<script src="../../site/assets/table-tools.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var result = document.getElementById("result"), checks = 0;
+  function assert(condition, message) {
+    if (!condition) throw new Error(message);
+    checks += 1;
+  }
+  function select(wrapper, name, value) {
+    var el = wrapper.querySelector('[data-pip-filter="' + name + '"]');
+    assert(!!el, "Missing " + name + " filter");
+    el.value = value;
+    el.dispatchEvent(new Event("change", {bubbles: true}));
+  }
+  function visible(wrapper) {
+    return Array.from(wrapper.querySelectorAll("tbody tr")).filter(function (row) { return !row.hidden; });
+  }
+  try {
+    var tasks = document.getElementById("tasks"), packages = document.getElementById("packages");
+    assert(visible(tasks).length === 3, "All task rows visible by default");
+    select(tasks, "packages", "pipdata");
+    assert(visible(tasks).length === 2, "Exact multi-package membership");
+    select(tasks, "milestone", "M2");
+    select(tasks, "status", "active");
+    assert(visible(tasks).length === 1 && visible(tasks)[0].textContent.includes("Mean"), "Combined filter intersection");
+    var search = tasks.querySelector('input[type="search"]');
+    search.value = "weighted mean";
+    search.dispatchEvent(new Event("input", {bubbles: true}));
+    assert(visible(tasks).length === 1, "All search words match across columns");
+    search.value = "not-present";
+    search.dispatchEvent(new Event("input", {bubbles: true}));
+    assert(visible(tasks).length === 0, "No-match search hides rows");
+    assert(!tasks.querySelector(".pip-table-empty").hidden, "No-match message is visible");
+    assert(tasks.querySelector("output").textContent === "0 of 3 rows", "Accurate result count");
+    assert(visible(packages).length === 2, "Tables filter independently");
+    tasks.querySelector('button[type="reset"]').click();
+    assert(visible(tasks).length === 3 && search.value === "", "Reset restores all rows and inputs");
+    assert(tasks.querySelector(".pip-table-empty").hidden, "Reset hides empty-result message");
+    select(packages, "status", "new-state");
+    assert(visible(packages).length === 1, "Status options are data-driven");
+    assert(document.querySelectorAll("#unmarked .pip-status").length === 0, "Unmarked tables are untouched");
+    assert(document.querySelectorAll(".pip-status").length === 5, "Status text gains badges without losing rows");
+    result.textContent = "PASS: " + checks + " offline table checks";
+    result.dataset.passed = "true";
+  } catch (error) {
+    result.textContent = "FAIL: " + error.message;
+    result.dataset.passed = "false";
+  }
+});
+</script>
+</body></html>

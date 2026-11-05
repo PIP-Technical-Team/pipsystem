@@ -806,7 +806,9 @@ test_that("roadmap_page preserves active status in file://-compatible {=html} JS
     page
   )))
   expect_true(any(grepl("roadmap_statuses\\.forEach", page)))
-  expect_true(any(grepl("\\| M2 Skeleton \\| Feat 2 \\| active \\|", page)))
+  expect_true(any(grepl(
+    "\\| M2 Skeleton \\| Feat 2 <br> `f2` \\| UNKNOWN \\| active \\|", page
+  )))
 
   # Missing roadmap.json still emits a nonempty ## Gaps section.
   unlink(file.path(root, "roadmap.json"))
@@ -852,4 +854,171 @@ test_that("build_site(render = FALSE) writes overview.qmd, roadmap.qmd, and map.
   expect_true(file.exists(file.path(root, "site", "gen", "map.qmd")))
   expect_false(file.exists(file.path(root, "site", "gen", "overview.md")))
   expect_false(file.exists(file.path(root, "site", "gen", "roadmap.md")))
+})
+
+test_that("focus shows only dated completed global advice, not a newer running run", {
+  root <- make_root(withr::local_tempdir(), c(demo = ""))
+  write_lines(file.path(root, "compound-gpid.md"), c(
+    "---", "last-reviewed: 2026-10-30", "---", "## Current Focus",
+    "Complete the bounded skeleton.", "## Elsewhere", "Do not copy this."
+  ))
+  runs <- file.path(ps$outputs_dir(root), "pipsystem", "pip-next-global")
+  long_next <- paste(rep("full action", 20), collapse = " ")
+  write_lines(file.path(runs, "done", "handoff.md"), c(
+    v2_lines("done", "completed", "2026-11-02T20:00:00Z", long_next),
+    "## Summary", "Recorded recommendation and owner UNKNOWN."
+  ))
+  write_lines(file.path(runs, "running", "handoff.md"), c(
+    v2_lines("running", "running", "2026-11-02T21:00:00Z", "DO NOT SHOW")
+  ))
+  write_lines(file.path(runs, "undated", "handoff.md"),
+              v2_lines("undated", "completed", "invalid", "UNDATED ADVICE"))
+  page <- ps$focus_page(root)
+  text <- paste(page, collapse = "\n")
+  expect_match(text, long_next, fixed = TRUE)
+  expect_match(text, "2026-11-02 15:00 EST", fixed = TRUE)
+  expect_match(text, "not reassessed", fixed = TRUE)
+  expect_match(text, "Complete the bounded skeleton.", fixed = TRUE)
+  expect_match(text, "Charter last reviewed: **2026-10-30**", fixed = TRUE)
+  expect_match(text, "file:///", fixed = TRUE)
+  expect_match(text, "invalid.*timestamp|timestamp.*invalid")
+  expect_false(grepl("DO NOT SHOW|UNDATED ADVICE|Do not copy this", text))
+
+  unlink(runs, recursive = TRUE)
+  expect_match(paste(ps$focus_page(root), collapse = "\n"),
+               "No completed, dated global assessment", fixed = TRUE)
+})
+
+test_that("milestone objectives, task context and target roles are site-only", {
+  root <- make_root(withr::local_tempdir(), c(demo = ""))
+  write_lines(file.path(root, "roadmap.json"), c(
+    '{"milestones":[{"id":"m2","title":"M2 Skeleton","objective":"One survey end to end",',
+    '"status":"in-progress","features":[{"id":"mean","title":"Mean",',
+    '"status":"idea","plan":null},{"id":"future","title":"Future",',
+    '"status":"planned","plan":null}]}]}'
+  ))
+  write_lines(file.path(root, "tables", "site_task_context.csv"), c(
+    "feature_id,purpose,expected_result,packages,evidence_file,evidence_line",
+    "mean,Compute a supplied-data mean,An independent result,pipster;pipdata,SYSTEM_DESIGN.md,305"
+  ))
+  expect_equal(ps$site_milestones(root)$objective, "One survey end to end")
+  expect_named(ps$roadmap_summary(root), c("milestone", "status", "features_done"))
+  expect_named(ps$roadmap_table(root), c("milestone", "feature", "status", "plan"))
+  tasks <- ps$site_roadmap_data(root)
+  expect_equal(tasks$feature_id, c("mean", "future"))
+  expect_equal(tasks[feature_id == "mean", packages], "pipster;pipdata")
+  expect_equal(tasks[feature_id == "future", purpose], "UNKNOWN")
+  expect_equal(tasks$status, c("idea", "planned"))
+  page <- paste(ps$roadmap_page(root), collapse = "\n")
+  expect_match(page, "One survey end to end", fixed = TRUE)
+  expect_match(page, "Compute a supplied-data mean", fixed = TRUE)
+  expect_match(page, "UNKNOWN", fixed = TRUE)
+
+  write_lines(file.path(root, "SYSTEM_DESIGN.md"), c(
+    "## 10. Packages and responsibilities", "",
+    "| Package | Owns | Must not own | Status |", "|---|---|---|---|",
+    "| wbpip | Reference | | Open: likely retired |",
+    "| piptm | Table Maker | | Out of scope |", "## 11. Constraints"
+  ))
+  roles <- paste(ps$package_roles(root), collapse = "\n")
+  expect_match(roles, "Open: likely retired", fixed = TRUE)
+  expect_match(roles, "Out of scope", fixed = TRUE)
+  expect_match(roles, "pipsystem", fixed = TRUE)
+  expect_match(roles, "target responsibilities", fixed = TRUE)
+})
+
+test_that("real task context covers current feature IDs with informative cited results", {
+  root <- normalizePath(file.path(dirname(script), "..", ".."), winslash = "/")
+  tasks <- ps$site_roadmap_data(root)
+  context <- fread(file.path(root, "tables", "site_task_context.csv"),
+                   colClasses = "character")
+  expect_equal(anyDuplicated(context$feature_id), 0L)
+  expect_setequal(context$feature_id, tasks$feature_id)
+  expect_true(all(nchar(tasks$purpose) >= 25L))
+  expect_true(all(nchar(tasks$expected_result) >= 20L))
+  expect_false(any(tasks$packages == "UNKNOWN"))
+  for (i in seq_len(nrow(context))) {
+    source <- file.path(root, context$evidence_file[i])
+    expect_true(file.exists(source), info = context$feature_id[i])
+    bounds <- as.integer(strsplit(context$evidence_line[i], "-", fixed = TRUE)[[1L]])
+    expect_true(all(bounds >= 1L & bounds <= length(readLines(source, warn = FALSE))),
+                info = context$feature_id[i])
+  }
+})
+
+test_that("site table wrappers and offline script do not alter CLI tables", {
+  plain <- ps$md_table(data.table(package = "stamp", status = "done"))
+  wrapped <- ps$site_wrap_tables(c("## Tasks", "", plain, "", "## Gaps", "- Recorded only."))
+  expect_equal(sum(wrapped == "::: {.pip-table}"), 1L)
+  expect_true(all(plain %in% wrapped))
+  expect_false(any(grepl("pip-table", plain, fixed = TRUE)))
+  root <- normalizePath(file.path(dirname(script), "..", ".."), winslash = "/")
+  expect_true(file.exists(file.path(root, "site", "assets", "table-tools.js")))
+  body <- readLines(file.path(root, "site", "assets", "aos-body.html"))
+  expect_true(any(grepl("table-tools.js", body, fixed = TRUE)))
+})
+
+test_that("focus selects newest completed time, then descending run ID", {
+  root <- make_root(withr::local_tempdir(), c(demo = ""))
+  runs <- file.path(ps$outputs_dir(root), "pipsystem", "pip-next-global")
+  for (run in c("zz-old", "new-a", "new-z")) {
+    time <- if (run == "zz-old") "2026-11-01T20:00:00Z" else "2026-11-02T20:00:00Z"
+    write_lines(file.path(runs, run, "handoff.md"),
+                v2_lines(run, "completed", time, paste("ACTION", run)))
+  }
+  text <- paste(ps$focus_page(root), collapse = "\n")
+  expect_match(text, "ACTION new-z", fixed = TRUE)
+  expect_false(grepl("ACTION new-a|ACTION zz-old", text))
+  expect_match(text, "2026-11-02 15:00 EST", fixed = TRUE)
+  expect_match(text, "Charter last reviewed: **UNKNOWN**", fixed = TRUE)
+})
+
+test_that("focus links actual advice source and makes unrecorded fields explicit", {
+  root <- make_root(withr::local_tempdir(), c(demo = ""))
+  run <- file.path(ps$outputs_dir(root), "pipsystem", "pip-next-global", "one")
+  handoff <- file.path(run, "handoff.md")
+  write_lines(handoff, c(v2_lines("one", "completed", "2026-11-02T20:00:00Z"),
+    "## Recommendation", "Recommend the bounded decision.", "## Gaps", "Do not copy unrelated section."))
+  text <- paste(ps$focus_page(root), collapse = "\n")
+  expect_match(text, "Recommend the bounded decision.", fixed = TRUE)
+  expect_match(text, ps$site_source(handoff, "Full assessment and evidence"), fixed = TRUE)
+  expect_false(grepl("assessment.md|Do not copy unrelated section", text, fixed = FALSE))
+  expect_match(text, "Task states and blockers: **UNKNOWN**", fixed = TRUE)
+  expect_match(text, "Parallel work: **UNKNOWN**", fixed = TRUE)
+  expect_match(text, "Action owner", fixed = TRUE)
+
+  detail <- file.path(run, "assessment.md")
+  write_lines(detail, c("## Recommendation", "Use the detail recommendation.",
+    "```text", "## Gaps", "Example heading is not a section boundary.", "```",
+    "## Task states and blockers", "One decision is blocked. Owner: analyst.",
+    "## Parallel work", "No confirmed parallel work.", "## Evidence and gaps",
+    "DO NOT COPY THIS SECTION"))
+  text <- paste(ps$focus_page(root), collapse = "\n")
+  expect_match(text, "Use the detail recommendation.", fixed = TRUE)
+  expect_match(text, "Example heading is not a section boundary.", fixed = TRUE)
+  expect_match(text, "One decision is blocked. Owner: analyst.", fixed = TRUE)
+  expect_match(text, "No confirmed parallel work.", fixed = TRUE)
+  expect_match(text, ps$site_source(detail, "Full assessment and evidence"), fixed = TRUE)
+  expect_false(grepl("DO NOT COPY THIS SECTION|Recommend the bounded decision", text))
+})
+
+test_that("focus keeps lenient full next text and normalizes absent next to UNKNOWN", {
+  root <- make_root(withr::local_tempdir(), c(demo = ""))
+  file <- file.path(ps$outputs_dir(root), "pipsystem", "pip-next-global", "one", "handoff.md")
+  next_text <- paste(rep("complete recorded action", 12L), collapse = " ")
+  lines <- v2_lines("one", "completed", "2026-11-02T20:00:00Z", next_text)
+  lines <- append(lines, "plan: invalid: unquoted mapping", after = 7L)
+  write_lines(file, lines)
+  expect_null(ps$read_frontmatter(file))
+  expect_match(paste(ps$focus_page(root), collapse = "\n"), next_text, fixed = TRUE)
+  expect_equal(nchar(ps$read_handoff(file)$next_action), 100L)
+  lines <- v2_lines("one", "completed", "2026-11-02T20:00:00Z")
+  write_lines(file, lines[!startsWith(lines, "next:")])
+  expect_match(paste(ps$focus_page(root), collapse = "\n"),
+               "Recorded next action:** UNKNOWN", fixed = TRUE)
+})
+
+test_that("source file URIs encode literal root characters but keep drive separators", {
+  expect_equal(ps$site_source("E:/work/pipsystem #100%/SYSTEM_DESIGN.md", "source"),
+    "[source](file:///E:/work/pipsystem%20%23100%25/SYSTEM_DESIGN.md)")
 })
