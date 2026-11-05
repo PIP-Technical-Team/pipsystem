@@ -74,13 +74,25 @@ not copy credentials, production data or raw conversations into it.
 Workers in other repositories do not read this file, so every prompt repeats
 the report path and format.
 
-Every user-facing prompt intended for another session or environment also
-includes a metadata header with **Target Project** (name and absolute root),
-**Target Environment** (New branch, worktree or default branch; branch/path
-and new/existing status), and **Target Agent** (Code mode or pip-orchestrator).
-Show it directly above the copyable prompt, or immediately after its required
-line-1 slash command. Saved prompt files contain it too. Do not guess unknown
-values or treat the header as permission to create a branch/worktree.
+Every user-facing command or prompt offered to run/copy, including same-session
+recommendations and saved execution prompts, includes the standard header:
+**Project Name**, **Branch**, **Worktree Requirement**, **Model Family
+Recommendation**, **Effort**, **Target Project**, **Target Environment**, and
+**Target Agent**. Use the exact labels and template in ORCHESTRATOR.md.
+Branch names the actual default/current/new branch and existing/proposed
+status. Worktree Requirement says Yes/No for a new git worktree and gives the
+absolute target path; a new branch does not imply a new worktree. Retain the
+target fields' repository root, environment/status and agent information.
+
+Recommend Powerful (Sol/Opus), Standard (Sonnet/Terra) or Small (Luna/Haiku)
+and effort low, medium, high or extra high based on task complexity, not the
+responding model. This is advice, not a model/provider/variant or client-setting
+change. Show the header directly above the copyable command/prompt, or after
+a required line-1 slash command; never mix it into shell syntax. Shared headers
+cover only contiguous commands with the same context/recommendation. Saved
+prompts include the header; UNKNOWN stays explicit. Headers grant no execution,
+branch/worktree or Git approval. Internal tool calls, historical examples and
+verbatim source output are excluded; preserve information-command output.
 
 ## pip-orchestrator
 

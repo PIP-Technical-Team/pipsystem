@@ -75,19 +75,34 @@ Limits, unknowns and open decisions. Never empty.
 - Timestamps in reports and run IDs are UTC (`Z`). Status tools, the site and
   messages to people show them in New York time (`America/New_York`, "ET").
 
-## Prompts For Other Sessions
+## Metadata For User-Facing Commands And Prompts
 
-Every user-facing prompt for another session or environment includes a
-metadata header with these exact labels:
+Every command/prompt offered to the user to run or copy, including same-session
+recommendations and saved execution prompts, includes these exact labels:
 
+- **Project Name:** specific project/package context.
+- **Branch:** default/current/new, actual name and existing/proposed status;
+  current is not necessarily default.
+- **Worktree Requirement:** Yes/No for a new git worktree; identify the new or
+  existing checkout/worktree and its absolute path. A new branch alone does
+  not require a new worktree.
+- **Model Family Recommendation:** Powerful (Sol/Opus), Standard
+  (Sonnet/Terra) or Small (Luna/Haiku), based on task complexity, not the
+  model generating the response. Examples are not availability guarantees.
+- **Effort:** low, medium, high or extra high, as task-based advice.
 - **Target Project:** project/package name and absolute repository root.
-- **Target Environment:** New branch, worktree or default branch; branch,
-  checkout/worktree path and new/existing status.
+- **Target Environment:** consistent branch, path and new/existing status.
 - **Target Agent:** Code mode or pip-orchestrator, as appropriate.
 
-Show it directly above the copyable prompt, or immediately after the required
-line-1 slash command, before the task body. Include it in saved prompt files.
-Unknown values stay UNKNOWN; the header grants no branch/worktree authority.
+Use the template and tier guidance in ORCHESTRATOR.md. Place the header above
+the copyable command/prompt, or immediately after a required line-1 slash
+command, before the task body; never embed it in shell syntax. A header can
+cover a contiguous block only if all commands share its context/recommendation.
+Saved prompts contain the header. Unknown values stay UNKNOWN with the needed
+verification named. It is advice, not execution, branch/worktree, Git or
+model/provider/variant/client-setting authority. Internal tool calls,
+historical examples and verbatim source output are excluded; do not rewrite
+historical reports or change information-command output to add headers.
 
 The copyable command starts with its slash command on line 1. The prompt
 names the repository root, the branch, the Plan path and revision, the goal

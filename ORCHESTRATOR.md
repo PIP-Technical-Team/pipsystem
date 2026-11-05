@@ -131,20 +131,65 @@ the user asks you to do it or it is a small change (see Changes in packages).
 A user request to execute a reviewed Plan covers all its phases, tests,
 reviews and fixes. Do not ask again at phase boundaries.
 
-### Prompts for other sessions
+### Metadata for user-facing commands and prompts
 
-Every user-facing prompt for another session or environment must include
-a metadata header with these exact labels:
+Every command or prompt provided for the user to run or copy must have the
+same metadata header, including recommendations, same-session commands,
+cross-environment execution prompts and saved prompts in assessments. Use
+these exact labels, retaining the existing target fields for compatibility:
 
+- **Project Name:** the specific project/package context.
+- **Branch:** default, current or new; give the actual branch name and its
+  existing/proposed status. Do not assume current means default.
+- **Worktree Requirement:** Yes or No for a new git worktree; state whether
+  the target is a new worktree or an existing checkout/worktree, with its
+  absolute path. A new branch does not by itself require a new worktree.
+- **Model Family Recommendation:** Powerful, Standard or Small, selected
+  for the task's complexity, not the model generating this response.
+- **Effort:** low, medium, high or extra high, recommended for that task.
 - **Target Project:** project/package name and absolute repository root.
-- **Target Environment:** New branch, worktree or default branch; name the
-  branch and checkout/worktree path, and state whether it is new or existing.
+- **Target Environment:** branch, checkout/worktree path and new/existing
+  status, consistent with Branch and Worktree Requirement.
 - **Target Agent:** Code mode or pip-orchestrator, as appropriate.
 
-Show the header directly above the copyable prompt, or put it immediately
-after a required line-1 slash command, before the task body. Saved prompt
-files must contain it too. Use UNKNOWN for unverified values; the header
-does not authorize branch/worktree creation or change existing approvals.
+Choose capability and effort as task advice, not an availability claim or
+an automatic setting change. Starting points:
+
+| Tier | Examples, not specific model selections | Typical task and effort |
+|---|---|---|
+| Small | Luna, Haiku | Mechanical/read-only, tightly specified work; low or medium |
+| Standard | Sonnet, Terra | Bounded changes, tests or clear-interface planning; medium or high |
+| Powerful | Sol, Opus | Difficult cross-package reasoning, ambiguous design or high-impact review; high or extra high |
+
+Use extra high only when the task merits it; do not inherit or identify the
+current responding model as the recommendation. Do not select/switch models,
+set provider/model/variant configuration or change client settings merely
+because a recommendation is present.
+
+```text
+Project Name: <project/package>
+Branch: <default/current/new> — <branch name>; <existing/proposed>
+Worktree Requirement: <Yes/No> — <new worktree/existing checkout or worktree>; <absolute path>
+Model Family Recommendation: <Powerful/Standard/Small> — <brief task-based reason>
+Effort: <low/medium/high/extra high>
+Target Project: <project/package and absolute repository root>
+Target Environment: <branch, path and new/existing status>
+Target Agent: <Code mode/pip-orchestrator>
+```
+
+Show the header directly above the copyable command/prompt. If a slash
+command must be on line 1, put the header immediately after it, before the
+task body; never insert metadata into shell syntax. One header may cover a
+contiguous command block only when every command shares that context and
+recommendation. Different targets or tasks need separate headers. Saved
+prompt files contain the header too. Use UNKNOWN for unverified values and
+name the needed verification; do not guess targets, branches or paths.
+The header is advice, not branch/worktree creation or execution approval.
+Preserve all existing authorization and storage limits. Internal tool calls,
+historical examples and verbatim source output are not new execution prompts;
+do not rewrite them to add headers or alter information-command output.
+
+### Prompts for other sessions
 
 A prompt must:
 
