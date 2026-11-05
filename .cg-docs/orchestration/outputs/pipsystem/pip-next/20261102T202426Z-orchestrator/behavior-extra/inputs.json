@@ -1,0 +1,34 @@
+{
+  "protocol": "Frozen follow-up batch. Follow exact installed pip-next using only this evidence. No live project reads, shell or implementation. Unprovided responses are UNKNOWN. Command information calls/report writes are simulated; actual writes only authorized test responses and worker handoff. Expected/forbidden oracles are withheld.",
+  "common_evidence": [
+    {"source": "tools/pipsys/packages.csv", "text": "package,path\npipsystem,E:/fixture/pipsystem\nstamp,E:/fixture/stamp\npipdata,E:/fixture/pipdata\npipster,E:/fixture/pipster"},
+    {"source": "compound-gpid.md", "text": "Objective: build the smallest complete PIP skeleton.\nCurrent focus: finish stage A before stage B.\nKeep package work in its owning repository."},
+    {"source": "SYSTEM_DESIGN.md", "text": "Decided: stamp chooses rebuild work.\nDecided: pipdata coordinates releases; pipsystem coordinates development.\nNo pipeline execution is authorized by assessment."},
+    {"source": "clock", "text": "2026-11-02T20:00:00Z; America/New_York; 3:00 p.m. ET"}
+  ],
+  "cases": [
+    {
+      "id": "literal-output-error", "arguments": "pipdata",
+      "evidence": [
+        {"source": "tools\\pipsys\\pipsys.cmd status pipdata", "text": "Exit status: 0. Exact stdout between markers:\nBEGIN STDOUT\n# Fixture status\n\n| package | branch |\n|---|---|\n| pipdata | main |\nEND STDOUT\nStderr: empty. Markers are not part of stdout."},
+        {"source": "tools\\pipsys\\pipsys.cmd handoffs", "text": "Exit status: 1. Stdout: empty. Exact stderr: pipsys: handoff root unavailable\nNo original task handoff can be opened."},
+        {"source": "pipdata git inspection", "text": "Clean main HEAD cccccccccccccccccccccccccccccccccccccccc. Original task Plans, owners and work reports are unavailable, so no unfinished task or parallel write boundary can be established."}
+      ]
+    },
+    {
+      "id": "invalid-single-token", "arguments": "pipdata;",
+      "evidence": [{"source": "argument bytes", "text": "A single token contains a disallowed semicolon. No source, shell or report action has occurred."}]
+    },
+    {
+      "id": "invalid-two-packages", "arguments": "pipdata stamp",
+      "evidence": [{"source": "argument bytes", "text": "Two otherwise valid package names, with no punctuation. No shell or report action has occurred."}]
+    },
+    {
+      "id": "trimmed-package", "arguments": "  pipdata  ",
+      "evidence": [
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "Only remaining task B requires interface A approval. A remains Open. Design owner Andres. No independent scoped task identified."},
+        {"source": "pipdata git inspection", "text": "Clean main HEAD cccccccccccccccccccccccccccccccccccccccc. No additional Plan or current worker evidence found by scoped inspection."}
+      ]
+    }
+  ]
+}

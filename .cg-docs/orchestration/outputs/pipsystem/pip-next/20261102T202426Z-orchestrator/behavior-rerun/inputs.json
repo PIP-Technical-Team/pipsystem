@@ -1,0 +1,19 @@
+{
+  "protocol": "Rerun only scoped-wait-parallel with an explicitly recorded D owner. Original snapshot/output is preserved in behavior/. Follow exact installed command and use only these frozen inputs; no live reads/shell/implementation. Other responses are UNKNOWN. Oracles are withheld. All command-owned source/report steps are simulated.",
+  "common_evidence": [
+    {"source": "tools/pipsys/packages.csv", "text": "package,path\npipsystem,E:/fixture/pipsystem\nstamp,E:/fixture/stamp\npipdata,E:/fixture/pipdata\npipster,E:/fixture/pipster"},
+    {"source": "compound-gpid.md", "text": "Objective: build the smallest complete PIP skeleton.\nCurrent focus: finish stage A before stage B.\nKeep package work in its owning repository."},
+    {"source": "SYSTEM_DESIGN.md", "text": "Decided: stamp chooses rebuild work.\nDecided: pipdata coordinates releases; pipsystem coordinates development.\nNo pipeline execution is authorized by assessment."},
+    {"source": "clock", "text": "2026-11-02T20:00:00Z; America/New_York; 3:00 p.m. ET"}
+  ],
+  "cases": [
+    {
+      "id": "scoped-wait-parallel", "arguments": "pipdata",
+      "evidence": [
+        {"source": "pipdata/.cg-docs/plans/b.md", "text": "Next task B: integrate builder A. Hard prerequisite: stamp exports a validated builder A API. Until then B cannot run. Owner: pipdata session. Independent task D: improve fixture helper using its existing stable interface; no stamp API dependency; writes tests/helper-fixture-d.R only. D owner: pipdata fixture session. D Plan approved and reviewed, no open findings."},
+        {"source": "stamp/.cg-docs/plans/a.md", "text": "Owner stamp session; implement and validate builder A; writes R/builder_a.R. API not exported yet. No active worker reported."},
+        {"source": "git and status outputs", "text": "pipdata clean HEAD cccccccccccccccccccccccccccccccccccccccc; stamp clean HEAD aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. A is absent. B and D use different files; D consumes only a stable existing contract. No active worker reported for D."}
+      ]
+    }
+  ]
+}

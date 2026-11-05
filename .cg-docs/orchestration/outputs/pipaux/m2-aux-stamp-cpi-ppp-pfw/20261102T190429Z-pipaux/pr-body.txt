@@ -1,0 +1,45 @@
+## Summary
+
+Implements M2 Phase 2 Step 4, `save-cpi-ppp-and-pfw-through-stamp`, for the three skeleton auxiliary series only.
+
+- Validate and persist the CPI long key: `country_code, year, survey_acronym, reporting_level, cpi_year`, including validation after reshaping.
+- Persist the PPP key: `country_code, reporting_level, ppp_year, release_version, adaptation_version`, and update default flags deterministically when a vintage is added.
+- Reconcile PFW validation and persistence on `country_code, surveyid_year, welfare_type, is_alt_welf`.
+- Save through `pip_aux_save()` -> `pipload::pip_write()` -> `stamp::st_save()` with source metadata and generator code hashes. Data-neutral raw SHA changes do not create extra content versions, and skipped saves return usable retained version pins.
+- Run storage tests in disposable R processes rather than mutating private stamp state. Qualify the eight skeleton uniqueness predicates as `assertr::is_uniq()` so validation works in the installed package as well as under source loading.
+
+## Dependency Alignment
+
+- Require stamp >= 0.1.0; `Remotes` selects `randrescastaneda/stamp@4a1fa5d92313aa223296fae0e29cf3446a314aea`.
+- Require pipload >= 1.0.0; `Remotes` selects `PIP-Technical-Team/pipload@4ef0d90a974cb6ff0725da69373bde421dd04ad5`.
+- `Remotes` selects `PIP-Technical-Team/pipfun@aa6dfe888600820a525b43419268d531b6f2fb82`, a metadata-only commit on `fix/m2-stamp-pin` aligning pipfun with the same stamp SHA. pipfun/PROD is unchanged.
+- Deployment must honor these tested dependency selections. Older stamp 0.0.10 is intentionally rejected before package loading; no production or shared R library was changed.
+
+## Verification
+
+Verified for the corrected dependency set in head `6f026fe0262ab4417d224f2593ea366f801a5602`:
+
+- Five focused test files pass in source and installed-package runs: 218 original assertions plus 4 new wrapper/state assertions (84 parent + 138 child), with no unexpected failures, errors or warnings.
+- Five existing external-service tests are intentionally skipped; the L-aux/V7 child file has 88 passing assertions and no skips.
+- Exact persisted keys/classes/metadata, duplicate-key rejection before save, retained version pins after unchanged content/raw-SHA changes, and new versions after changed CPI content are verified.
+- Repeated directory-discovery runs and an intentional child-error experiment confirm caller state preservation and failure propagation.
+- Specialist review and final `/cg-review mode:verify` report no outstanding actionable P0-P3 findings in the scoped corrections.
+- `git diff --check` passes. The focused tests were rerun with the exact supporting pipfun commit installed in an isolated E-drive library.
+
+## Scope and Release Notes
+
+- Base: `PROD` at `27c5a3c8eab8ddcabb032d620af6a1f76e62f444`; corrected head: `8675cd6ccc77bfcebc53530d60ec39016a318d1a`; six commits, no base divergence when updated.
+- Other auxiliary measures and broader M2 integration remain outside this change.
+- No full-package check, live shared-drive/GitHub-data integration, production deployment or PROD merge is claimed. PR checks and merge review remain separate gates.
+
+Evidence: [Plan](https://github.com/PIP-Technical-Team/pipaux/blob/4b59a60d846a91c513d17f59629f8dc509867e78/.cg-docs/plans/2026-10-30-m2-aux-stamp-cpi-ppp-pfw.md), [Review report](https://github.com/PIP-Technical-Team/pipaux/blob/4b59a60d846a91c513d17f59629f8dc509867e78/.cg-docs/reviews/2026-10-30-feat-m2-aux-stamp-cpi-ppp-pfw-review.md), [Execution report](https://github.com/PIP-Technical-Team/pipaux/blob/4b59a60d846a91c513d17f59629f8dc509867e78/.cg-docs/work-reports/2026-10-30-m2-aux-stamp-cpi-ppp-pfw-execution.md).
+
+## Pkgdown Correction
+
+The first CI run failed in pak dependency resolution because pipfun/PROD requested stamp's older default source, conflicting with the tested stamp pin. Supporting commit `aa6dfe8` changes only pipfun's stamp remote; pipaux commit `6f026fe` selects that immutable pipfun source. The same full pak solve now succeeds for 126 packages. No workflow steps, dependency coverage, version bounds or checks were weakened. A merge is authorized only after checks pass on the corrected head.
+
+Updated correction evidence: [Review](https://github.com/PIP-Technical-Team/pipaux/blob/6f026fe0262ab4417d224f2593ea366f801a5602/.cg-docs/reviews/2026-10-30-feat-m2-aux-stamp-cpi-ppp-pfw-review.md), [Execution report](https://github.com/PIP-Technical-Team/pipaux/blob/6f026fe0262ab4417d224f2593ea366f801a5602/.cg-docs/work-reports/2026-10-30-m2-aux-stamp-cpi-ppp-pfw-execution.md).
+
+The next CI run passed dependency resolution but package lazy loading required the legacy survey-cache directory. Commit `47a3292` adds a runner-temporary `PIP_ROOT_DIR` and one empty TEST-vintage directory before dependency installation. There are no survey data in the fixture. YAML/ordering and warning-free namespace initialization pass locally; the workflow addition was independently reviewed with no P0-P3 findings. Existing dependency, site-build and deployment checks remain intact. Final evidence: [Review](https://github.com/PIP-Technical-Team/pipaux/blob/47a3292e10f185bfce01150f0edb90af68f8a1e8/.cg-docs/reviews/2026-10-30-feat-m2-aux-stamp-cpi-ppp-pfw-review.md), [Execution report](https://github.com/PIP-Technical-Team/pipaux/blob/47a3292e10f185bfce01150f0edb90af68f8a1e8/.cg-docs/work-reports/2026-10-30-m2-aux-stamp-cpi-ppp-pfw-execution.md). The conditional merge still requires successful checks on this exact head.
+
+GitHub's schema rejected job-level use of `runner.temp`; `8675cd6` corrects this by setting the path inside the runner step and exporting it through `GITHUB_ENV`. The actual extracted shell step was executed locally on E: and verified together with warning-free package initialization. The context-placement P2 is reviewed and resolved. A successful, nonempty pkgdown check and successful workflow run at the final head are required; an empty check list or `CLEAN` merge status is not accepted as success. Latest [review](https://github.com/PIP-Technical-Team/pipaux/blob/8675cd6ccc77bfcebc53530d60ec39016a318d1a/.cg-docs/reviews/2026-10-30-feat-m2-aux-stamp-cpi-ppp-pfw-review.md) and [execution evidence](https://github.com/PIP-Technical-Team/pipaux/blob/8675cd6ccc77bfcebc53530d60ec39016a318d1a/.cg-docs/work-reports/2026-10-30-m2-aux-stamp-cpi-ppp-pfw-execution.md).

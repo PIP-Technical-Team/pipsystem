@@ -9,7 +9,7 @@ Output worktree: `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.kilo/worktree
 These are verified absolute source paths. The stamp source is also listed by the available workspace file `E:/PovcalNet/01.personal/wb384996/VScode/workspaces/pipsystem-and-packages.code-workspace:30-31`. That workspace file was used for location only, not package behavior evidence.
 
 | Key | Package | Absolute source path | Recorded commit SHA | Source state from Git commands |
-|---|---|---|---|---|
+|---------------|---------------|---------------|---------------|---------------|
 | S | stamp | `E:/PovcalNet/01.personal/wb384996/Rpackages/stamp` | `b6e5e2c5519a7c00dbb8f815a59aeac2daf9592e` | Empty status; cited R, NAMESPACE, and tests match HEAD. |
 | A | pipaux | `E:/PovcalNet/01.personal/wb384996/PIP/pipaux` | `27c5a3c8eab8ddcabb032d620af6a1f76e62f444` | Only untracked `compound-gpid.local.md`; cited R, tests, and DESCRIPTION match HEAD. Untracked content not used. |
 | Dp | pipdata | `E:/PovcalNet/01.personal/wb384996/PIP/pipdata` | `84442e979c98d33fa5565ab9e56d3179cc7d5278` | Empty status; cited R, tests, YAML specification, and DESCRIPTION match HEAD. |
@@ -28,7 +28,7 @@ Coordinator final verification: path-scoped `git diff --exit-code <recorded SHA>
 Eight Task workers, one per package, completed their evidence collection. The pipster and wbpip workers returned evidence without writing files. The coordinator wrote their combined note and, after all eight workers finished, this record and `notes/FINDINGS.md`.
 
 | Harvest | Output | Coverage | Residual limit |
-|---|---|---|---|
+|------------------|------------------|------------------|------------------|
 | stamp | `notes/stamp.md`, `tables/stamp_fit.csv` | S1-S7; all 15 required fit rows | Partition-parent integration, planner/executor correctness, concurrency, scale, metadata transitions, and release semantics have gaps. |
 | pipaux | `notes/pipaux.md` | A1-A4 | Remote graph content/SHA, external PFW choice semantics, and exclusions remain UNKNOWN. |
 | pipdata | `notes/pipdata.md` | D1-D4 | Preferred-module decision and post-format validation contract remain incomplete. |
@@ -53,7 +53,7 @@ Completed means evidence collection is complete, including explicit UNKNOWN answ
 The approved nine-feature gate takes precedence over the brief's whole-milestone dependency (D: `.cg-docs/strategy/2026-10-07-pip-backend-roadmap.md:151-170`). The current roadmap still records these features as `idea`; this harvest does not write roadmap statuses (D: `roadmap.json:10-14,27-29,36-37`).
 
 | Approved M2 prerequisite | Readiness from this harvest |
-|---|---|
+|------------------------------------|------------------------------------|
 | Decide module out of survey ID | Evidence ready: S6 supports custom fields/current data-free reads. Andres decision pending; metadata-only and historical-read limits remain. |
 | Decide engine first interface later | Andres decision pending; no approval inferred from roadmap approval. |
 | Decide pipster calculations only | Andres decision pending; P1 gives the current calculation/I/O boundary. |
