@@ -34,6 +34,8 @@
 
 # Disposable helper fixtures, short-operation locks and per-session derivatives
 /.tmp/pip-orchestration/
+/.tmp/one-survey/
+/.cg-docs/orchestration/outputs/pipfun/practical-integration-tests/*/runtime/
 /.cg-docs/orchestration/control/
 /.cg-docs/orchestration/views/
 /.cg-docs/orchestration/projects/*/.lock
