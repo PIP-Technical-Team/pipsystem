@@ -204,6 +204,11 @@ verify <- function(inventory) {
 if (mode %in% c("setup", "check", "diagnose")) {
   inventory <- readRDS(file.path(root, "inventory.rds"))
   paths <- verify(inventory)
+  writeLines(capture.output(sessionInfo()), file.path(root, "logs/session-info.txt"))
+  write.table(data.frame(package = required,
+    version = vapply(required, function(p) as.character(packageVersion(p)), ""),
+    path = file.path(lib, required)), file.path(root, "installed-packages.tsv"),
+    sep = "\t", quote = FALSE, row.names = FALSE)
   bad <- inventory
   bad$receipts$pipfun <- NULL
   stopifnot(inherits(try(verify(bad), silent = TRUE), "try-error"))
@@ -240,7 +245,7 @@ if (mode == "diagnose") {
     root_exists_after = dir.exists(diagnostic_root),
     cache_exists_after = dir.exists(file.path(diagnostic_root,
       "pip_ingestion_pipeline/pc_data/cache/clean_survey_data")),
-    downstream = "NOT RUN: no pipaux install, survey, storage or numeric scenario")
+    downstream = "NOT RUN in diagnostic mode: survey, storage or numeric scenario")
   saveRDS(state, file.path(root, "diagnostic.rds"))
   if (inherits(first, "error")) {
     cat("FIRST DIAGNOSTIC ERROR class:", paste(class(first), collapse = ","),
