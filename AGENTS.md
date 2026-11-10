@@ -109,6 +109,16 @@ decision, reload or required handoff is pending. Do not invent work for a
 completed informational request or re-ask an approved choice. Check that doing
 exactly what Need from you says would enable Next; otherwise correct the pair.
 
+When a review, diagnosis or subtask ends but the user's underlying development
+goal still has a blocker or unfinished work, do not describe the task as fully
+complete or say "Nothing" merely because the review itself is finished. State
+the concrete next development action, its owner, and the trigger that will
+actually resume it. Name any user decision, approval or handoff needed; if the
+agent can safely proceed within the current request, proceed instead of asking.
+For a required package-session handoff, provide the complete setup card and
+copy-ready instructions. Do not invent blockers or actions when the underlying
+goal really is complete.
+
 ## pip-orchestrator
 
 `pip-orchestrator` (rules in `ORCHESTRATOR.md`) coordinates the project from
