@@ -22,6 +22,12 @@ packages <- data.frame(
           "13a38280c1eafe7e03a97837cdb57833fbe9d926"))
 source <- setNames(file.path(root, "sources", packages$package), packages$package)
 required <- packages$package
+dependency_origin <- function(package) {
+  shelf <- if (package %in% c("qs2", "stringfish", "RcppParallel")) {
+    "4.5-pipapi"
+  } else "4.5"
+  file.path("E:/PovcalNet/01.personal/wb384996/R/win-library", shelf, package)
+}
 setwd(root)
 safe <- function(path) {
   actual <- normalizePath(path, winslash = "/", mustWork = TRUE)
@@ -33,6 +39,10 @@ usable <- function() {
   # Actual namespace loading plus exported behavior, not inventory existence.
   stopifnot(is.character(pipfun::log_names()))
   for (package in required) loadNamespace(package)
+  # Actual required storage format usability, not merely copied DESCRIPTIONs.
+  storage_probe <- file.path(root, "temp/qs2-usability.qs2")
+  qs2::qs_save(list(value = 1:4), storage_probe)
+  stopifnot(identical(qs2::qs_read(storage_probe), list(value = 1:4)))
   value <- list(example = 1:3)
   hash <- stamp::st_hash_obj(value)
   stopifnot(length(hash) == 1L, grepl("^[0-9a-f]{16}$", hash),
@@ -50,6 +60,27 @@ if (mode == "baseline") {
   stop("Unexpected usable package before installation")
 }
 if (mode == "forced-failure") stop("Intentional child failure for restoration")
+if (mode == "evidence") {
+  validation <- readRDS(file.path(root, "validation-result.rds"))
+  report <- data.table::as.data.table(readRDS(file.path(root, "validation-report.rds")))
+  print(validation$validation$inventory[, c("survey_id", "status"), with = FALSE])
+  print(validation$validation$summary)
+  print(report[table_name == "AAA_2010_SYNB_V01_M_V01_A_GMD_GPWG" &
+                 type == "error"])
+  print(readRDS(file.path(root, "first-failure.rds")))
+  cat("Downstream catalog rows BEFORE failed clean wrapper:",
+      vapply(readRDS(file.path(root, "downstream-before.rds")), nrow, 1L), "\n")
+  cat("V3 numeric and saved data/metadata readbacks: NOT REACHED\n",
+      "V4 invalid diagnostic completed; downstream processing check BLOCKED\n")
+}
+if (mode == "dependency-probe") {
+  probe <- tryCatch(loadNamespace("qs2"), error = identity)
+  print(probe)
+  print(getLoadedDLLs())
+  print(get(".onLoad", asNamespace("RcppParallel")))
+  saveRDS(if (inherits(probe, "condition")) probe else "loaded",
+          file.path(root, "dependency-probe.rds"))
+}
 if (mode == "inspect") {
   installer <- get(".install_packages", envir = asNamespace("tools"))
   writeLines(deparse(installer), file.path(root, "logs/installer-source.txt"))
@@ -110,7 +141,6 @@ if (mode == "setup") {
                       missing_text)), any(grepl("cli", missing_text)),
             !dir.exists(file.path(lib, "stamp")))
   cat("P1.2/P2.3: actual declared-dependency child failure confirmed\n")
-  ambient <- "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5"
   base <- rownames(installed.packages(lib.loc = .Library))
   seen <- character()
   install_order <- character()
@@ -119,7 +149,7 @@ if (mode == "setup") {
     if (package %in% c("R", base, seen)) return(invisible(NULL))
     seen <<- c(seen, package)
     path <- if (package %in% required) source[[package]] else
-      file.path(ambient, package)
+      dependency_origin(package)
     desc <- read.dcf(file.path(path, "DESCRIPTION"))
     fields <- intersect(c("Depends", "Imports", "LinkingTo"), colnames(desc))
     deps <- trimws(gsub("\\s*\\(.*?\\)", "", unlist(strsplit(
@@ -176,8 +206,7 @@ verify <- function(inventory) {
     description <- file.path(destination, "DESCRIPTION")
     safe(description)
     stopifnot(identical(dep$path, destination),
-      identical(dep$origin, file.path(
-        "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5", dep$package)),
+      identical(dep$origin, dependency_origin(dep$package)),
       identical(dep$version, unname(read.dcf(description)[1L, "Version"])),
       identical(dep$description_md5, unname(tools::md5sum(description))))
   }

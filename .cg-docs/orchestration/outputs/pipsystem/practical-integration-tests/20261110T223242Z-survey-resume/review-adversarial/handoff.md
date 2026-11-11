@@ -4,13 +4,13 @@ project: pipsystem
 task: practical-integration-tests
 run: 20261110T223242Z-survey-resume/review-adversarial
 status: partial
-updated: 2026-11-10T22:44:11Z
+updated: 2026-11-10T22:50:04Z
 owner: cg-adversarial
 repo: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem
 branch: main
-head: 77b6424046367f8283d89c87d9c5767ab9d01915
+head: 506d8aa80230a32f6f6beee478c98a65488aa74e
 plan: .cg-docs/plans/2026-11-09-installed-package-one-survey-example.md revision 1
-next: Parent reviews worker final scenario and actual V2-V4 evidence before completion or final verification.
+next: Parent preserves blocked V2-V4 state and reviews worker public-call reproducer and owner direction before final verification.
 ---
 
 # Adversarial full-route review
@@ -60,3 +60,27 @@ These are recorded local archive pins from setup.R:16-22 and logs/repository-sta
 - No tests, scenario, child process, package installation or downloads executed by reviewer. No runtime binary inventory.rds decoding, archive digest recalculation or repository-SHA refresh performed. Existing logs provide evidence of recorded setup checks, not independent repeatability certification.
 - No exhaustive filesystem-write tracing; inherited tool-specific environment variables and every possible third-party hook were not independently enumerated. No evidence-based exploitable escape was found in the inspected code. Caches/paths outside the declared settings remain unverified rather than claimed safe.
 - Historical version selection after a later save, live DLW, deflation, mean and incremental certification remain out of scope. Protected artifact bodies were not viewed and no removal/replacement was recommended.
+
+## Final-scope checkpoint — 2026-11-10T22:50:04Z
+
+### Summary
+The earlier absent-scenario limitation describes the initial snapshot and is preserved above, not the final-scope source coverage. Authorized follow-up inspected the actual 191-line scenario.R, blob eb6c41e4bbdf2c89c1e07909f465c55285d9f724. No issues found in this additional adversarial source review; zero supported P0/P1/P2 findings. This is NOT original Plan clearance or a V2-V4 pass. Actual execution failed at pipdata::dlw_gmd_list before validation.
+
+### Changes
+Appended only this checkpoint and updated report metadata. No tests, code/package edits, downloads, Git mutations or runtime writes by reviewer. Read-only live HEAD now 506d8aa80230a32f6f6beee478c98a65488aa74e on main; source identity is separately recorded by scenario blob because worker changes are concurrent.
+
+### Checks run
+- Read scenario.R:1-191, logs/scenario.log:1-10, first-failure.txt:1-2, runtime directory entries, current launcher dispatch :90-108 and current setup pin lines. Loaded data.table and collapse review skills in addition to previously loaded R skills. No package repositories directly read or queried.
+- scenario.R:3-12 uses the existing runtime, sources setup.R and re-verifies the seven-install inventory before the scenario, then directs dependency manifests to the isolated root. setup.R:16-22 still matches the seven-pin table above. Updated launcher dispatch selects scenario.R/reproduce.R explicitly, not an internal acceptance script.
+- Substitutions are disclosed at :35-40. Actual namespace replacements at :56-85 target release/PPP-file acquisition, remote file information, server catalog and fixture download. The download writes fixture data through exported pipload::pip_write; fixture auxiliaries also use exported writes (:116-120). No internal worker/acceptance harness or replacement of validation, cleaning, metadata or persistence routines appears in the inspected scenario. This is source inspection of the replacement boundary, not proof of compatibility with unexecuted package calls.
+- Namespace restoration at :43-85 captures each original binding and re-locks it after substitution; each successful substitution immediately registers an on.exit restoration in main. tryCatch rethrows failures (:181-187), causing main's registered restorations to run. No code path intentionally retains the replacements after main returns. Runtime restoration equality was not logged/asserted independently, so it is not represented as tested.
+- Fixture source rows pair annual welfare 365/730/1095/1460 with weights 10/20/30/40 (:16-22). Expected daily welfare and weights are compared as a paired two-column table, not independent sorted vectors (:162-172); total weight is also asserted. This is a strict bounded oracle, not a successful numeric check in this run.
+- The malformed SYNB identity and checksum differ from SYNA (:23-34); its download removes weight (:75-83). Assertions require successful validation outcome, one valid SYNA, one invalid SYNB and no execution failures (:128-133), followed by the specific missing-weight error description (:134-138). A no-work/error result cannot reach the PASS writer. Clean and metadata catalogs are captured before processing (:139-142) and queried after, asserting no SYNB pip path (:173-178). These checks are unexecuted due to the earlier acquisition failure.
+- Data and separate metadata reads use version_id_data and version_id_metadata extracted from the selected processing result (:148-161), not the latest sidecar. Both pins must be nonempty strings. Metadata identity/CPI/PPP and paired clean values are asserted (:168-172). Actual version values/readback contents remain unavailable; source intent is not execution evidence.
+- Actual logs/scenario.log:1-10 records the durable acquisition-inventory verification error and Execution halted. first-failure.txt:1-2 records FIRST FAILURE: pipdata::dlw_gmd_list / The intended acquisition inventory could not be verified durably. The boundary variable is set immediately before that exported call (:121-122), and failure capture precedes rethrow (:181-187). No validation rejection, clean output, metadata readback or scenario PASS is claimed.
+
+### Gaps
+- V2-V4 remain failed/not reached after the acquisition boundary. Whether the first error is a package defect, an incompatible synthetic transport fixture, or another boundary mismatch is UNKNOWN to this reviewer. Worker public-call reproducer execution and final owner assignment were not inspected in this checkpoint; no package-bug finding manufactured from the error text alone.
+- inputs.rds and first-failure.rds exist in the inspected directory but binary bodies were not decoded; input contents were reviewed from scenario source, not independently loaded RDS evidence. No exact actual clean/metadata versions or completed malformed-control artifacts exist in the inspected evidence.
+- Namespace restoration has static on.exit coverage but no reviewer execution or retained equality assertion; absence of internal bypass is a bounded source conclusion for blob eb6c41e4bbdf2c89c1e07909f465c55285d9f724, not certification of future edits or all package internals.
+- Parent owns blocked-state reporting, reproducer/owner-direction inspection and final verification. Do not clear original revision-1 Plan or convert unexecuted assertions into passing checks because the source appears correct.

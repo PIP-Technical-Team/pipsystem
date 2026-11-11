@@ -10,8 +10,9 @@ deviation-policy: "autonomous"
 artifact-schema-version: 1
 phases: 2
 execution-report: .cg-docs/work-reports/2026-11-09-installed-package-one-survey-example.md
-failing-steps: [1]
-current-phase: 1
+failing-steps: [2]
+completed-phases: [1]
+current-phase: 2
 tags: [integration, isolation, survey]
 ---
 

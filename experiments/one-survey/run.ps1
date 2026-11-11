@@ -1,4 +1,4 @@
-param([ValidateSet('baseline','setup','check','inspect','forced-failure','diagnose')]
+param([ValidateSet('baseline','setup','check','inspect','forced-failure','diagnose','scenario','reproduce','dependency-probe','evidence')]
       [string]$Mode = 'check',
       [Parameter(Mandatory=$true)][ValidatePattern('^[a-zA-Z0-9-]+$')]
       [string]$RunId)
@@ -91,7 +91,12 @@ local({
 '@)
     }
     $ErrorActionPreference = 'Continue'
-    & "$runtime/r/bin/Rscript.exe" --vanilla "$root/experiments/one-survey/setup.R" $Mode 2>&1 |
+    $script = switch ($Mode) {
+        'scenario' { 'scenario.R' }
+        'reproduce' { 'reproduce.R' }
+        default { 'setup.R' }
+    }
+    & "$runtime/r/bin/Rscript.exe" --vanilla "$root/experiments/one-survey/$script" $Mode 2>&1 |
         Tee-Object -FilePath "$runtime/logs/$Mode.log"
     $result = $LASTEXITCODE
     if ($result -ne 0) { throw "R $Mode failed with exit $result; see $runtime/logs/$Mode.log" }

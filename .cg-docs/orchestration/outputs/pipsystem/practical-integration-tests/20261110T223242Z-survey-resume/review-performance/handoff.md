@@ -3,14 +3,14 @@ schema: pip-handoff-v2
 project: pipsystem
 task: practical-integration-tests
 run: 20261110T223242Z-survey-resume/review-performance
-status: partial
-updated: 2026-11-10T22:43:04Z
+status: completed
+updated: 2026-11-10T22:49:56Z
 owner: cg-performance reviewer
 repo: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem
 branch: main
 head: 77b6424046367f8283d89c87d9c5767ab9d01915
 plan: .cg-docs/plans/2026-11-09-installed-package-one-survey-example.md
-next: Parent completes required scenario implementation and review; this source snapshot is not full-route clearance.
+next: Parent integrates final source review and reports the acquisition failure; original V2-V4 remain blocked.
 ---
 
 # Performance review: original one-survey Plan
@@ -36,3 +36,21 @@ No package repository was read: package SHAs in setup.R:16-22 are observed decla
 
 ## Gaps
 Concurrent worker edits may change the inspected state; no final-state freeze or execution certification is claimed. scenario.R was absent, and its later public-path implementation must be included in the parent's remaining review. Runtime, installation timing, memory use and production-scale behavior remain unmeasured by instruction. The original Plan requires fresh execution evidence and final verification; this source-only performance review cannot supply those checks. No package source behavior was independently reviewed.
+
+## Final-scope checkpoint — 2026-11-10T22:49:56Z
+
+### Summary
+No issues found: no supported material P0-P3 performance findings in the actual scenario.R:1-191, in addition to the initial four-file review above. This completes the requested bounded source performance review, not the original example execution or V2-V4 acceptance. The earlier absent-scenario/partial assessment remains preserved above as the initial inspection state.
+
+The source constructs four survey rows and two catalog rows (scenario.R:16-34). Fixture copies isolate mutable download/catalog results (scenario.R:71-83); their tiny bounded cost is appropriate. The three-measure construction loop and six-fixture write loop operate over fixed auxiliary inputs, not individual observations (scenario.R:109-120). Paired welfare/weight verification is vectorized and uses collapse::fsum for the weight total (scenario.R:162-172). Two catalog reads before and after processing serve the explicit no-downstream-output evidence requirement (scenario.R:139-142,173-178); there is no demonstrated material redundant I/O to remove for this example. No benchmark or optimization recommendation is justified.
+
+### Changes
+Appended this checkpoint and updated own report metadata only. No scenario/setup/package/code/Git changes.
+
+### Checks run
+Read complete actual experiments/one-survey/scenario.R:1-191 and existing runtime .tmp/one-survey/resume-20261110-full/first-failure.txt:1-2 and logs/scenario.log:1-10. Reused loaded R technical, analytical and data.table skills; loaded cg-skill-r-collapse for the actual statistical assertion. Read relevant board context. Read UTC system clock only; no Git commands, tests, benchmarks, R execution, package operations or downloads during this checkpoint.
+
+first-failure.txt:1-2 identifies pipdata::dlw_gmd_list and 'The intended acquisition inventory could not be verified durably.' scenario.log:1,8-10 records the matching error and halted execution. The source calls that boundary at scenario.R:121-122, before validation at :123-125. Consequently later numerical/readback/malformed assertions are source-inspected only, not executed success evidence.
+
+### Gaps
+Actual execution stopped before validation; V2-V4 success and end-to-end performance are not established. No package repository/source was read, so no newly inspected package SHA requires recording; initial declared pins remain observations only. Initial recorded HEAD is historical and was not rechecked in this no-Git checkpoint. Concurrent changes after this 191-line source read are not covered. Parent owns integration of this no-performance-finding result with the retained acquisition failure and other reviewers; acquisition correctness/root cause is outside this bounded performance assessment.
