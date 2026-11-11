@@ -32,17 +32,22 @@
 # Project records stay tracked: .cg-docs/, compound-gpid*.md, roadmap.json,
 # project AGENTS.md, design documents, briefs, notes, and tables.
 
-# Disposable helper fixtures, short-operation locks and per-session derivatives
-/.tmp/pip-orchestration/
-/.tmp/one-survey/
-/.cg-docs/orchestration/outputs/pipfun/practical-integration-tests/*/runtime/
+# Disposable scratch, local environments and every package's private test runtime
+/.tmp/
+/.venv/
+/.cg-docs/orchestration/outputs/**/runtime/
+
+# This diagnostic run also keeps baseline installs and short temp roots beside runtime.
+/.cg-docs/orchestration/outputs/pipdata/practical-integration-tests/20261110T230827Z-bootstrap-fix/*
+!/.cg-docs/orchestration/outputs/pipdata/practical-integration-tests/20261110T230827Z-bootstrap-fix/handoff.md
+
+# Short-operation locks and per-session derivatives
 /.cg-docs/orchestration/control/
 /.cg-docs/orchestration/views/
 /.cg-docs/orchestration/projects/*/.lock
 /.cg-docs/orchestration/projects/**/*.tmp
 
 # pipsys v1: temporary files, Quarto state and generated site
-/.tmp/pipsys/
 /site/gen/
 /site/_site/
 /site/.quarto/
