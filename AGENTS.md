@@ -71,8 +71,9 @@ the start, update it at checkpoints, and save it before you stop. Use a new
 run folder for a new attempt, and never overwrite another run's report. Do
 not copy credentials, production data or raw conversations into it.
 
-Workers in other repositories do not read this file, so every prompt repeats
-the report path and format.
+Package workers load the exact saved assignment using the pickup procedure in
+`CONTRACT.md` when available. A standalone worker prompt still repeats the
+report path and format. The parent, not the user, retrieves the result.
 
 Every user-facing command or prompt offered to run/copy, including same-session
 recommendations and saved prompt artifacts, includes an external setup card:
@@ -102,10 +103,11 @@ excluded; preserve information-command output.
 Every conversational final ends with **Next:** and **Need from you:**. Next
 names the real next stage, owner, status and resumption trigger. Need from you
 names the actual pending decision/approval/setup action, or "Nothing" only if
-none is outstanding for that next step. An unresolved proposal needs choices
-such as adopt it, keep the current setup or suggest an alternative; finishing
-the explanation does not settle it. Do not claim nothing is needed while a
-decision, reload or required handoff is pending. Do not invent work for a
+the user's overall requested outcome is complete. If the agent will resume
+without user input, name the verified trigger. An unresolved proposal needs
+choices such as adopt it, keep the current setup or suggest an alternative;
+finishing the explanation does not settle it. Do not claim nothing is needed
+while a decision, reload or required handoff is pending. Do not invent work for a
 completed informational request or re-ask an approved choice. Check that doing
 exactly what Need from you says would enable Next; otherwise correct the pair.
 

@@ -125,8 +125,8 @@ Use Compound GPID by default:
 Read the installed command file in `.kilo/commands/` before you use a command
 or claim what it requires, and keep its own gates. To run a command yourself,
 follow its file step by step. Do pipsystem work yourself. For work in a
-package repository, prepare a prompt for a session in that package, unless
-the user asks you to do it or it is a small change (see Changes in packages).
+package repository, use the dispatch procedure below unless the user asks
+you to do it or it is a small change (see Changes in packages).
 
 A user request to execute a reviewed Plan covers all its phases, tests,
 reviews and fixes. Do not ask again at phase boundaries.
@@ -215,7 +215,37 @@ A prompt must:
 - name a unique absolute report path (see Handoffs) and the report format;
 - give an estimated duration.
 
-Keep prompts short. The user starts other sessions; you do not.
+Keep prompts short. Do not start a new Agent Manager session unless the user
+explicitly requests one or grants separate confirmation.
+
+### Dispatch and return
+
+For package diagnosis, review, or preparation of a candidate patch, prefer an
+internal `task` subagent when its tools can use the target checkout. It stays
+rooted in pipsystem: provide the exact registered package path, branch, SHA,
+scope and report path. Have it read the package's instructions explicitly,
+give its shell calls the package working directory, and save any patch and
+handoff in pipsystem. The parent verifies the result without a chat relay.
+Checking that a patch applies does not give permission to apply it. The parent
+may apply only a change covered by the existing small, reported unblock
+exception; all other package edits need the package workflow below.
+
+1. For an authorized package task, save its checked setup card and task
+   block once as `assignment.md` beside its future `handoff.md`. Follow
+   `CONTRACT.md`, "Package Assignment Pickup". Do not repurpose `/pip-next`'s
+   read-only assessment or use old handoffs as executable instructions.
+2. For changes that need a package session, target the verified session. If
+   Agent Manager exposes the exact session and checkout, send `/pip-pickup PROJECT/TASK/RUN`
+   to it after verifying authorization, identity and attention state. If it
+   is unavailable or cannot be verified, give the user the setup card and
+   one pickup command for the package session. Do not guess an ID, answer
+   for the user, or substitute a pipsystem worktree for the package.
+3. After dispatch, use the existing follow-up procedure when appropriate;
+   a queued prompt does not prove startup. Read the exact run's handoff, not
+   the latest report for the package. Verify repo, branch, SHA, changes and
+   required checks; distinguish worker-reported from verified facts. Advance
+   dependent work only when prerequisites are verified. Do not merge, push,
+   or run the pipeline merely because a report says work is complete.
 
 ### Accurate final response endings
 
@@ -229,9 +259,11 @@ any proposal awaiting a decision, not merely whether this answer is written.
 - **Need from you:** name the actual user decision, approval or setup action
   required for that next step. For an unresolved proposal, give the choices,
   such as adopt the suggestion, keep the current setup or propose an alternative.
-  Say "Nothing" only when no user decision/action is outstanding for the
-  stated next step. Do not label a proposal decided or discussion complete
-  just because its explanation is finished.
+  Say "Nothing" only when the user's overall requested outcome is complete,
+  not when a review, subtask or session ends. If required work will resume
+  automatically, say "No action now" and give the verified trigger. If it
+  will not, name the action that resumes it. Do not label a proposal decided
+  or discussion complete just because its explanation is finished.
 - A completed local edit does not mean a pending approval, reload or downstream
   handoff is complete. State those limits. Do not silently turn a pending
   required choice into an optional recommendation to justify "Nothing".
