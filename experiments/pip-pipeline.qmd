@@ -197,8 +197,20 @@ for COL 2010 GEIH and both national PPP2021 variants for Colombia to their raw
 CSV inputs. Both checks **passed**; neither PPP variant was selected. PFW
 **failed** its region-code check after joining the country list, and population
 **failed** its uniqueness check even though the reshaped workbook contained no
-duplicate keys. Neither failed producer saved a snapshot. The joint input check,
-survey processing, and deflation were **NOT RUN**.
+duplicate keys. Neither unmodified producer saved a snapshot.
+
+The four inputs **passed** a joint key check with experimental PFW and
+population snapshots. At first, `pipdata` rejected the full CPI vector because
+the unused 2005 value is missing. The local source fix passed with the full
+vector and still rejected a request for 2005. Both 2021 PPP variants give the
+same Colombia factor, but the run did not select a version. The corrected
+`pipaux` source validators also **passed** on the full local PFW and population
+tables. The installed producers, release setup, survey processing, and
+deflation were **NOT RUN**.
+
+The tested fixes are recorded in the [pipaux checkpoint](https://github.com/PIP-Technical-Team/pipaux/commit/5f5e8531592ca7668b33bbd23564ef90f1c8c688)
+and [pipdata checkpoint](https://github.com/PIP-Technical-Team/pipdata/commit/c70ae403acde648aff1a49d8d3178ca0202c6064).
+Neither checkpoint changes the release pins or establishes B6 refresh acceptance.
 
 The guarded user-run launcher is saved under
 `.cg-docs/orchestration/outputs/pipsystem/qmd-reconciliation-eligibility/20261118T224533Z-guarded-launcher/run.ps1`.
