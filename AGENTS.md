@@ -8,7 +8,7 @@
 
 ## Rules
 
-* **`pipsystem` is the only writable folder**, with two `pip-orchestrator` exceptions described below: Git operations on the user's instruction, and small, reported package changes. Every other workspace folder is otherwise a read only source. Never edit, create, delete, format, stage, or commit anything there outside those exceptions.
+* **Authorized PIP development can read and write registered repositories** from `pipsystem`, directly or through an internal subagent. Use `tools/pipsys/packages.csv`, confirm the target checkout, branch and SHA, read its instructions, and keep edits and tests in that repository. This does not grant access to unrelated folders or bypass runtime permissions.
 * **Never change a Decided item in `SYSTEM_DESIGN.md`** without explicit approval. If code contradicts it, report the contradiction.
 * **When you find evidence for an Open item,** record it with file and line and propose the change. Do not apply it yourself.
 * **No fabrication.** Every fact traces to a file and line, or is marked `UNKNOWN`.
@@ -71,9 +71,10 @@ the start, update it at checkpoints, and save it before you stop. Use a new
 run folder for a new attempt, and never overwrite another run's report. Do
 not copy credentials, production data or raw conversations into it.
 
-Package workers load the exact saved assignment using the pickup procedure in
-`CONTRACT.md` when available. A standalone worker prompt still repeats the
-report path and format. The parent, not the user, retrieves the result.
+Internal workers receive the exact target and report path from the parent.
+Package sessions use the saved assignment pickup procedure in `CONTRACT.md`.
+A standalone worker prompt still repeats the report path and format. The
+parent, not the user, retrieves the result.
 
 Every user-facing command or prompt offered to run/copy, including same-session
 recommendations and saved prompt artifacts, includes an external setup card:
@@ -129,19 +130,18 @@ package and handoff, plans and drives work through Compound GPID, and saves
 its own handoffs. It does not run the PIP pipeline.
 
 - **Git:** read-only Git in any repository at any time. Commits, pushes and
-  merges only on the user's instruction, also outside pipsystem. This is the
-  exception named in the first rule above.
+  merges only on the user's instruction, also outside pipsystem.
 - **Git cadence:** when the task has commit authorization, checkpoint each
   completed, verified logical stage promptly, including its intended Plans,
   tests, docs and reports. Push each checkpoint when push is also authorized.
   Do not wait until task end, commit every edit, or stage others' changes just
   to clear the worktree. Report SHAs, push status and excluded dirty paths.
   Task-specific authorization still applies; this rule grants none by itself.
-- **Package files:** it may make a small change in a package repository
-  when the change unblocks work. It first checks that the file has no
-  uncommitted changes, and it reports every package change. Details are in
-  "Changes in packages" in `ORCHESTRATOR.md`; the Decided rule is
-  `SYSTEM_DESIGN.md:319`.
+- **Package files:** it may implement authorized changes in registered PIP
+  repositories from this session, directly or by internal subagent. Check
+  for conflicting uncommitted work, verify the result in the target checkout,
+  and report each package change. See "Changes in packages" in
+  `ORCHESTRATOR.md` and the Decided rule in `SYSTEM_DESIGN.md`.
 - **Its own rules:** it may change `ORCHESTRATOR.md`, its block in
   `kilo.json`, and the coordination parts of this file and `CONTRACT.md`
   when the user asks for a specific change.

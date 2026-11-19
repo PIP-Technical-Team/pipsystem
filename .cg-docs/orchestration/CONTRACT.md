@@ -77,6 +77,12 @@ Limits, unknowns and open decisions. Never empty.
 
 ## Package Assignment Pickup
 
+This is the fallback for work that needs a package session. For an authorized
+internal Task, the parent sends the checkout path, branch, full HEAD, scope,
+checks and exact report path directly. The worker verifies the checkout,
+reads its instructions, makes only the authorized changes there, and writes
+the same v2 handoff here. The parent checks the diff and test evidence.
+
 The parent saves one `assignment.md` in the exact run folder above, with the
 standard external Setup card and one fenced task block. The block names the
 scope, expected repository and checkout paths, branch, starting full HEAD,

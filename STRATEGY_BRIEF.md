@@ -67,7 +67,7 @@ The test: run it twice, and nothing reruns the second time. Change one CPI value
 * Reason: the release around mid March 2027 must be the first one produced by the new pipeline.
 * About 16 weeks, with the December holidays inside.
 * Work runs with several agents in parallel.
-* Package repos are read only from `pipsystem`. Changes go to each package's own repo.
+* Authorized package work can be coordinated and executed from `pipsystem`. Changes go to each registered package's own repository.
 * No fabrication. Every fact traces to a file and line, or is marked unknown.
 
 ## 8. Risks

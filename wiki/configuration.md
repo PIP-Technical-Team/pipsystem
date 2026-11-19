@@ -29,17 +29,17 @@ Sources: [ORCHESTRATOR.md](../ORCHESTRATOR.md), lines 32-74, 81-85 and 365-373; 
 
 | Role | Responsibility |
 |------------------------------------|------------------------------------|
-| You | Choose and approve the work; start the sessions. |
-| `pip-orchestrator` | Read permitted saved evidence, summarize progress and blockers, draft next-session instructions. |
-| Working Code session | Perform the approved work within its own permissions, run the agreed checks and save its assigned handoff. |
+| You | Choose and approve the work. Start a package session only when the fallback requires it. |
+| `pip-orchestrator` | Perform or delegate approved work, then verify the package diff, checks, and handoff. |
+| Internal subagent or package Code session | Work in the verified package checkout, run the agreed checks and save its assigned handoff. |
 
-From the `pipsystem` workspace, other package repositories are read-only sources. Package implementation belongs in a separately approved session in that package's own repository. Saving a central handoff needs an explicitly approved report path and real write access; a prompt does not grant access.
+From `pipsystem`, the orchestrator and its internal subagents can edit registered PIP repositories for authorized tasks. Package files stay in their own repositories. A separate Code session is a fallback when the internal worker cannot do the work within its tool permissions or package context.
 
 ## Important Boundaries
 
-- `pip-orchestrator` does not run shell commands, the PIP pipeline or tests.
-- It does not start, contact, stop or monitor other Code sessions.
-- It does not commit, push, merge, edit the roadmap or change project/package source files. Those actions belong to separately approved working sessions.
+- `pip-orchestrator` can use shell tools and run scoped development tests, but does not run the PIP pipeline.
+- It can use internal subagents without opening another chat. New Agent Manager sessions need explicit user authorization.
+- Commits, pushes and merges need explicit authorization. Work authorization does not override tool permissions or production boundaries.
 - It does not search private session databases or silently read other chats.
 - It does not change approved design decisions. Unresolved questions remain unresolved until the appropriate direct decision is made.
 

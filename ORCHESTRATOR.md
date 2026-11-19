@@ -59,12 +59,15 @@ Do not copy attached transcripts into project files.
 
 ### Changes in packages
 
-Package work normally happens in a session in that package, from a Plan in
-that package's repository. You may make a small change in a package when it
-is needed to unblock work. Before you edit a file, check that it has no
-uncommitted changes, because overwriting uncommitted work cannot be undone.
-Report every package change you make. The Decided rule is
-`SYSTEM_DESIGN.md:319`; `AGENTS.md` rule 1 and `compound-gpid.md:26` match it.
+Use this hub for authorized package work, directly or through an internal
+subagent. Code, tests, and package Plans stay in the owning repository.
+Verify the package against `tools/pipsys/packages.csv`, identify the exact
+checkout, branch and full SHA, and read its instructions. Check the target
+files for uncommitted work before editing and stop on conflicting changes.
+Assign one writer per set of overlapping files; use separate checkouts when
+concurrent work would otherwise conflict. Report every package change. The
+Decided rule is `SYSTEM_DESIGN.md:319`; tool permissions and publication
+approvals still apply.
 
 ## Tools
 
@@ -124,9 +127,8 @@ Use Compound GPID by default:
 
 Read the installed command file in `.kilo/commands/` before you use a command
 or claim what it requires, and keep its own gates. To run a command yourself,
-follow its file step by step. Do pipsystem work yourself. For work in a
-package repository, use the dispatch procedure below unless the user asks
-you to do it or it is a small change (see Changes in packages).
+follow its file step by step. For authorized package work, use the dispatch
+procedure below or work directly when delegation adds no value.
 
 A user request to execute a reviewed Plan covers all its phases, tests,
 reviews and fixes. Do not ask again at phase boundaries.
@@ -220,24 +222,26 @@ explicitly requests one or grants separate confirmation.
 
 ### Dispatch and return
 
-For package diagnosis, review, or preparation of a candidate patch, prefer an
-internal `task` subagent when its tools can use the target checkout. It stays
-rooted in pipsystem: provide the exact registered package path, branch, SHA,
-scope and report path. Have it read the package's instructions explicitly,
-give its shell calls the package working directory, and save any patch and
-handoff in pipsystem. The parent verifies the result without a chat relay.
-Checking that a patch applies does not give permission to apply it. The parent
-may apply only a change covered by the existing small, reported unblock
-exception; all other package edits need the package workflow below.
+Prefer an internal `task` subagent for independent package work, including
+implementation, when it has the required tools. It stays rooted in
+pipsystem. Give it the registered repository identity, exact checkout path,
+branch, full SHA, authorized files/scope, checks, and exact report path. The
+worker explicitly loads the package instructions, edits via absolute paths,
+and runs checks with the package checkout as the shell working directory.
+It saves the handoff in pipsystem; the parent independently checks the
+package diff and test evidence before advancing dependent work. No package
+chat or pickup line is needed for this route. An assignment does not grant
+new permissions; stop on tool denial and use the package-session fallback
+if that context is needed.
 
-1. For an authorized package task, save its checked setup card and task
+1. For the package-session fallback, save the authorized task's setup card and
    block once as `assignment.md` beside its future `handoff.md`. Follow
    `CONTRACT.md`, "Package Assignment Pickup". Do not repurpose `/pip-next`'s
    read-only assessment or use old handoffs as executable instructions.
-2. For changes that need a package session, target the verified session. If
-   Agent Manager exposes the exact session and checkout, send `/pip-pickup PROJECT/TASK/RUN`
-   to it after verifying authorization, identity and attention state. If it
-   is unavailable or cannot be verified, give the user the setup card and
+2. If Agent Manager exposes the exact package session and checkout, send
+   `/pip-pickup PROJECT/TASK/RUN` after verifying authorization, identity and
+   attention state. If the session is unavailable or cannot be verified,
+   give the user the setup card and
    one pickup command for the package session. Do not guess an ID, answer
    for the user, or substitute a pipsystem worktree for the package.
 3. After dispatch, use the existing follow-up procedure when appropriate;

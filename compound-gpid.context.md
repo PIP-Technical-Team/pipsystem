@@ -24,15 +24,19 @@ Sources: `SYSTEM_DESIGN.md:194-205,323-383`; `.cg-docs/plans/2026-10-07-m0-m1-de
 
 ## Workspace Notes
 <!-- Related folders, dependencies on other projects in the VS Code workspace -->
-- **pipfun**: PIP shared utilities, configuration, and options. Read only source.
-- **pipload**: PIP storage IO, survey inventory, paths and vintages. Read only source.
-- **pipaux**: PIP auxiliary data (CPI, PPP, population, GDP, PCE). Read only source.
-- **pipdata**: PIP GMD/DLW cleaning, validation, and deflation. Read only source.
-- **wbpip**: PIP statistical core for poverty and inequality computation. Read only source.
-- **pipapi**: PIP serving layer, consumer of pipeline output. Read only source.
-- **pipster**: PIP user facing computation package. Read only source.
-- **pipfaker**: PIP synthetic data generation for testing. Read only source.
-- **metapip**: PIP package installer, branch management, SHA pinned lockfile. Read only source.
+Authorized tasks can read and edit registered package checkouts from
+`pipsystem`. Use `tools/pipsys/packages.csv` for the checkout map and
+`ORCHESTRATOR.md` for the dispatch procedure.
+
+- **pipfun**: PIP shared utilities, configuration, and options.
+- **pipload**: PIP storage IO, survey inventory, paths and vintages.
+- **pipaux**: PIP auxiliary data (CPI, PPP, population, GDP, PCE).
+- **pipdata**: PIP GMD/DLW cleaning, validation, and deflation.
+- **wbpip**: PIP statistical core for poverty and inequality computation.
+- **pipapi**: PIP serving layer, consumer of pipeline output.
+- **pipster**: PIP user facing computation package.
+- **pipfaker**: PIP synthetic data generation for testing.
+- **metapip**: PIP package installer, branch management, SHA pinned lockfile.
 - **stamp**: Lightweight versioned artifact store for R with sidecar metadata, pruning policies, and Hive-style partitions.
 
 

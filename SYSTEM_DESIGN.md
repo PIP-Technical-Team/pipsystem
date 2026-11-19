@@ -316,11 +316,11 @@ Approval sources: [first M0 decisions](.cg-docs/brainstorms/2026-10-07-m0-settle
 
 * **Decided.** API behavior does not change, except the planned PPP change in section 10.
 * **Decided.** Performance comes first. Fast formats such as `fst` stay.
-* **Decided.** Package repositories in the workspace are read only from `pipsystem`, with one exception: `pip-orchestrator` may make a small, reported change in a package repository when the change unblocks work. All other package work happens in each package's own repository.
+* **Decided.** Authorized development can read and write the PIP repositories registered in `tools/pipsys/packages.csv` from `pipsystem`, directly or through internal subagents. Package code and tests stay in their owning repositories. Verify the target checkout and respect its instructions, applicable approvals, and runtime permissions. This does not authorize production execution or Git publication.
 * **Decided.** No fabrication. Every fact traces to a file and line, or is marked unknown.
 * **Decided.** R with `data.table` and `collapse`.
 
-Approval source for the `pip-orchestrator` exception: [rules-reset follow-up](.cg-docs/orchestration/outputs/pipsystem/rules-reset-follow-up/20261029T172103Z-orchestrator/handoff.md), lines 20-30 (user reply "approve 319", 2026-10-29T17:21:03Z).
+Approval for registered-repository write access: direct user instruction to remove the read-only rule, 2026-11-19. This supersedes the [earlier small-change exception](.cg-docs/orchestration/outputs/pipsystem/rules-reset-follow-up/20261029T172103Z-orchestrator/handoff.md).
 
 ## 12. Open questions
 
