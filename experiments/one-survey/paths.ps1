@@ -1,7 +1,8 @@
 function Assert-OneSurveyTree([string]$Path, [switch]$Output) {
     $full = [IO.Path]::GetFullPath($Path).Replace('\','/')
-    $checkout = 'E:/PovcalNet/01.personal/wb384996/PIP/pipsystem'
-    if ($Output -and !$full.StartsWith("$checkout/", [StringComparison]::OrdinalIgnoreCase)) {
+    $checkout = [IO.Path]::GetFullPath("$PSScriptRoot/../..").Replace('\','/')
+    if ($Output -and ($checkout -notlike 'E:/*' -or
+        !$full.StartsWith("$checkout/", [StringComparison]::OrdinalIgnoreCase))) {
         throw "Output outside checkout: $full"
     }
     $ancestor = $full

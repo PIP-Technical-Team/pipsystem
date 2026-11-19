@@ -1,12 +1,14 @@
-param([ValidateSet('baseline','setup','check','inspect','forced-failure','diagnose','scenario','reproduce','dependency-probe','evidence')]
+param([ValidateSet('baseline','setup','check','inspect','forced-failure','diagnose','scenario','reproduce','dependency-probe','evidence','qmd-check','qmd-render')]
       [string]$Mode = 'check',
       [Parameter(Mandatory=$true)][ValidatePattern('^[a-zA-Z0-9-]+$')]
-      [string]$RunId)
+      [string]$RunId,
+      [ValidatePattern('^[a-zA-Z0-9-]+$')]
+      [string]$QmdRunId = ([DateTime]::UtcNow.ToString('yyyyMMddTHHmmssZ')))
 $previousPreference = $ErrorActionPreference
 $previous = @{}
 try {
     $ErrorActionPreference = 'Stop'
-    $root = 'E:/PovcalNet/01.personal/wb384996/PIP/pipsystem'
+    $root = [IO.Path]::GetFullPath("$PSScriptRoot/../..").Replace('\','/')
     $runtime = "$root/.tmp/one-survey/$RunId"
     if ((Get-Location).Path.Replace('\','/') -ne $root) { throw 'Wrong checkout' }
     . "$PSScriptRoot/paths.ps1"
@@ -18,6 +20,11 @@ try {
         throw 'Missing attempt'
     }
     $original = 'C:/Program Files/R/R-4.5.2'
+    if ($Mode -eq 'qmd-render') {
+        $quarto = (Get-Command quarto.exe -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1).Source
+        if (!$quarto) { $quarto = "$env:LOCALAPPDATA/Programs/Positron/resources/app/quarto/bin/quarto.exe" }
+        if (!(Test-Path -LiteralPath $quarto -PathType Leaf)) { throw 'Installed Quarto not found' }
+    }
     # Validate every recursive copy source before creating destinations.
     if ($Mode -in @('baseline','setup')) {
         foreach ($name in @('bin','etc','include','modules','share')) { Assert-OneSurveyTree "$original/$name" }
@@ -53,7 +60,7 @@ try {
         PIP_ROOT_DIR="$runtime/store"; DLW_local_dir="$runtime/store/dlw"
         RENV_PATHS_ROOT="$runtime/cache/renv"; RENV_CONFIG_AUTOLOADER_ENABLED='FALSE'
         R_PKG_CACHE_DIR="$runtime/cache/pkg"; GIT_CONFIG_GLOBAL="$runtime/config/disabled-gitconfig"
-        GIT_CONFIG_NOSYSTEM='1'; ONE_SURVEY_ROOT=$runtime
+        GIT_CONFIG_NOSYSTEM='1'; ONE_SURVEY_ROOT=$runtime; PIP_CHECKOUT=$root
         R_HOME="$runtime/r"; R_ARCH='/x64'; R_USER_DATA_DIR_BASE="$runtime/home"
         R_SHARE_DIR="$runtime/r/share"; R_INCLUDE_DIR="$runtime/r/include"
         R_DOC_DIR="$runtime/r/doc"; R_SESSION_TMPDIR=''
@@ -61,6 +68,35 @@ try {
     foreach ($key in $settings.Keys) {
         $previous[$key] = [Environment]::GetEnvironmentVariable($key,'Process')
         [Environment]::SetEnvironmentVariable($key,$settings[$key],'Process')
+    }
+    if ($Mode -eq 'qmd-render') {
+        # Use installed Quarto and the existing exact-pin private R, never setup.
+        $render = "$runtime/qmd-$QmdRunId"
+        Assert-OneSurveyTree "$root/experiments" -Output
+        Assert-OneSurveyTree $render -Output
+        if (Test-Path -LiteralPath $render) { throw "Fresh Qmd output required: $render" }
+        foreach ($name in @('', 'store', 'manifest', 'deno')) {
+            [IO.Directory]::CreateDirectory("$render/$name") | Out-Null
+        }
+        $renderSettings = @{
+            QMD_RUN_ROOT=$render; QUARTO_R="$runtime/r/bin/Rscript.exe"
+            DENO_DIR="$render/deno"; DENO_NO_UPDATE_CHECK='1'
+            QUARTO_LOG="$render/quarto.log"; QUARTO_CHECK_FOR_UPDATES='false'
+            QUARTO_PYTHON=''; QUARTO_JULIA=''; QUARTO_JUPYTER=''
+        }
+        foreach ($key in $renderSettings.Keys) {
+            $previous[$key] = [Environment]::GetEnvironmentVariable($key,'Process')
+            [Environment]::SetEnvironmentVariable($key,$renderSettings[$key],'Process')
+        }
+        Copy-Item -LiteralPath "$root/experiments/pip-pipeline.qmd" -Destination "$render/pip-pipeline.qmd"
+        $sourceHash = (Get-FileHash -LiteralPath "$root/experiments/pip-pipeline.qmd").Hash
+        if ($sourceHash -ne (Get-FileHash -LiteralPath "$render/pip-pipeline.qmd").Hash) {
+            throw 'Render source copy mismatch'
+        }
+        & $quarto render "$render/pip-pipeline.qmd" --to html --no-clean
+        if ($LASTEXITCODE -ne 0) { throw "Quarto render failed: $render/quarto.log" }
+        "Rendered source SHA256: $sourceHash; evidence: $render"
+        return
     }
     if ($Mode -in @('baseline','setup')) {
         [IO.Directory]::CreateDirectory("$runtime/r") | Out-Null
@@ -94,6 +130,7 @@ local({
     $script = switch ($Mode) {
         'scenario' { 'scenario.R' }
         'reproduce' { 'reproduce.R' }
+        'qmd-check' { 'check-qmd.R' }
         default { 'setup.R' }
     }
     & "$runtime/r/bin/Rscript.exe" --vanilla "$root/experiments/one-survey/$script" $Mode 2>&1 |

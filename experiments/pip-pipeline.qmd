@@ -1,0 +1,575 @@
+---
+title: "PIP pipeline: real-data setup and isolated survey checks"
+format:
+  html:
+    embed-resources: true
+    toc: true
+execute:
+  echo: true
+  cache: false
+  freeze: false
+params:
+  release: "20260401"
+  identity: "TEST"
+---
+
+# Real-data setup: COL 2010 GEIH (GPWG)
+
+Run this cell manually; the isolated synthetic render skips it. It configures only this R session and checks directory existence, not data-read or write permission. It does not load pipeline packages or initialize a release, aliases or storage. All real-survey stages remain **NOT RUN** by this cell.
+
+Shared steps use `.pip-local-root` at the checkout root: one line with the
+internal pipeline directory's UNC path. Git ignores it. Local checks and the
+synthetic render do not need this file or access to the share.
+
+```{r real-data-setup}
+#| eval: false
+# These are the agreed real-data targets, not synthetic fixture settings.
+pip_checkout <- normalizePath(
+  if (file.exists("experiments/pip-pipeline.qmd")) "." else "..",
+  winslash = "/", mustWork = TRUE
+)
+source(file.path(pip_checkout, "experiments/one-survey/local-root.R"), local = TRUE)
+real_context <- list(
+  release = "20260401",
+  identity = "TEST",
+  ppp = 2021,
+  main_dir = read_pip_main(pip_checkout),
+  survey_id = "COL_2010_GEIH_V04_M_V01_A_GMD_GPWG",
+  pip_id = "COL_2010_GEIH_INC_GPWG"
+)
+options(pipfun.main_dir = real_context$main_dir)
+Sys.setenv(PIP_ROOT_DIR = dirname(real_context$main_dir))
+print(real_context)
+
+# Display the actual session paths; do not create or write any directory.
+folder_status <- data.frame(
+  setting = c("PIP_ROOT_DIR", "pipfun.main_dir"),
+  path = c(Sys.getenv("PIP_ROOT_DIR"), getOption("pipfun.main_dir"))
+)
+folder_status$exists <- dir.exists(folder_status$path)
+print(folder_status, row.names = FALSE)
+stopifnot(all(folder_status$exists))
+cat(
+  "Folder existence: PASS\n",
+  "Release setup, aliases and survey processing: NOT RUN by this cell.\n",
+  sep = ""
+)
+```
+
+# Manual Working Release: `pipfun` and `stamp`
+
+Run the context cell first. This cell is deliberately skipped by the synthetic
+render. Unlike the context cell, it **writes directories**, reads real GitHub
+release/PPP metadata using existing credentials, and registers session-local
+aliases. `pipfun` owns release setup; `stamp` owns storage roots and aliases.
+The legacy output root is the selected main directory's parent, not an implicit
+session default. Running this cell on the shared target is a separate deliberate
+user action, **NOT RUN** by development sandbox checks. Sandbox PASS does not
+certify the shared store, auxiliary inputs or any real-survey processing.
+
+```{r real-working-release}
+#| eval: false
+real_setup_results <- data.frame(
+  check = c("Public initialization", "Release/folder/alias readbacks"),
+  status = "NOT RUN",
+  detail = "Blocked by an earlier failure"
+)
+real_setup_stage <- 1L
+tryCatch({
+  # Explicit roots also contain pip_create_globals() legacy output writes.
+  legacy_root <- dirname(real_context$main_dir)
+  print(list(main_dir = real_context$main_dir, legacy_root = legacy_root))
+  real_working_release <- pipfun::setup_working_release(
+    release = real_context$release,
+    identity = real_context$identity,
+    ppp = real_context$ppp,
+    main_dir = real_context$main_dir,
+    root_dir = legacy_root,
+    out_dir = legacy_root,
+    verbose = FALSE
+  )
+  print(real_working_release)
+  # The real CSV reader returns the date identifier as a number.
+  stopifnot(
+    identical(as.character(real_working_release$release), real_context$release),
+    identical(real_working_release$identity, real_context$identity),
+    identical(real_working_release$ppp, real_context$ppp)
+  )
+  real_setup_results[1L, c("status", "detail")] <- list(
+    "PASS", "Public initializer returned requested release/TEST/2021"
+  )
+
+  real_setup_stage <- 2L
+  pipfun::get_wrk_release(name = "active_real_release", verbose = FALSE)
+  real_folders <- pipfun::get_pip_folders(verbose = FALSE)
+  real_aliases <- pipfun::get_pip_aliases(verbose = FALSE)
+  release_suffix <- paste(real_context$release, real_context$identity, sep = "_")
+  expected_folders <- c(
+    aux_data = file.path("aux_repository", "aux_data", release_suffix),
+    aux_metadata = file.path("aux_repository", "aux_metadata", release_suffix),
+    dlw_data = file.path("dlw_repository", "dlw_data"),
+    dlw_inventory = file.path("dlw_repository", "dlw_inventory"),
+    dlw_metadata = file.path("dlw_repository", "dlw_metadata", release_suffix),
+    pip_data = file.path("pip_repository", "pip_data", "surveys"),
+    pip_metadata = file.path(
+      "pip_repository", "pip_data", "surveys_metadata", release_suffix
+    ),
+    pip_inventory = file.path("pip_repository", "pip_inventory", release_suffix),
+    pip_master_inventory = file.path(
+      "pip_repository", "pip_data", "master_inventory"
+    )
+  )
+  expected_aliases <- c(
+    aux_data = "aux", aux_metadata = "aux_meta", dlw_data = "dlw",
+    dlw_inventory = "dlw_inv", dlw_metadata = "dlw_meta", pip_data = "pip",
+    pip_metadata = "pip_meta", pip_inventory = "pip_inv",
+    pip_master_inventory = "pip_master"
+  )
+  expected_roots <- file.path(real_context$main_dir, expected_folders)
+  names(expected_roots) <- names(expected_folders)
+  actual_roots <- vapply(names(expected_aliases), function(folder) {
+    as.character(stamp::st_alias_get(expected_aliases[[folder]])$root)
+  }, "")
+  normalize_roots <- function(paths) {
+    normalizePath(paths, winslash = "/", mustWork = TRUE)
+  }
+  stopifnot(
+    identical(active_real_release, real_working_release),
+    identical(real_aliases[names(expected_aliases)], expected_aliases),
+    identical(
+      normalize_roots(unlist(real_folders[names(expected_folders)])),
+      normalize_roots(expected_roots)
+    ),
+    identical(normalize_roots(actual_roots), normalize_roots(expected_roots)),
+    identical(
+      normalize_roots(as.character(real_folders$stamp_root)),
+      normalize_roots(real_context$main_dir)
+    ),
+    all(dir.exists(file.path(c(real_context$main_dir, expected_roots), ".stamp")))
+  )
+  print(active_real_release)
+  print(real_folders)
+  print(real_aliases)
+  print(actual_roots)
+  real_setup_results[2L, c("status", "detail")] <- list(
+    "PASS", "Active release and all nine public folder/alias roots checked"
+  )
+}, error = function(error) {
+  real_setup_results[real_setup_stage, c("status", "detail")] <<- list(
+    "FAIL", conditionMessage(error)
+  )
+  cat("FAIL:", conditionMessage(error), "\n")
+})
+print(real_setup_results, row.names = FALSE)
+cat("Auxiliary inputs and real-survey processing: NOT RUN by this cell.\n")
+```
+
+# Manual real auxiliary check: catalog reconciliation eligibility
+
+The six approved `20260401_TEST` snapshots passed exact readback and content-hash
+checks. That does not establish that the current catalog pointers can be repaired
+without touching data or metadata. This cell uses Stamp's read-only dry run to
+check that stronger condition for each exact target and expected previous pointer.
+
+Use a separate R session where the qualification loader verified the corrected
+development build **before** loading Stamp, and where the shared `aux` alias is
+already registered. This cell does not load a replacement namespace or register
+an alias. Do not use the preceding shared release initializer to set up this
+read-only check. The first user run failed at the old build's path-binding check.
+The corrected build got past that check, but all six shared targets **failed**
+the pinned-metadata check. A follow-up diagnostic found matching paths after
+slash normalization and no usable stored file checksum for any target.
+The shared checks have not been repeated; apply and survey processing remain
+**NOT RUN**. A dry-run PASS would not authorize either.
+
+The separate `20260401_TEST` CPI-only pilot **passed** on E:, using the pinned
+raw CPI CSV and the retained country-list version that matched the release's
+current file. Its new local Stamp version `b857f991a3c4579f` passed `pipaux` CPI
+validation, a raw-to-output 2021 CPI comparison, exact-version readback and
+verification of the file checksum recorded at save. The
+pilot's detailed input and check receipts are kept locally. This snapshot was
+not promoted, and it does not
+certify the old shared CPI snapshot or change the six pins below.
+
+In the local auxiliary checks (detailed receipts kept locally),
+the `pipdata` selection and naming functions matched four national CPI entries
+for COL 2010 GEIH and both national PPP2021 variants for Colombia to their raw
+CSV inputs. Both checks **passed**; neither PPP variant was selected. PFW
+**failed** its region-code check after joining the country list, and population
+**failed** its uniqueness check even though the reshaped workbook contained no
+duplicate keys. Neither failed producer saved a snapshot. The joint input check,
+survey processing, and deflation were **NOT RUN**.
+
+The guarded user-run launcher is saved under
+`.cg-docs/orchestration/outputs/pipsystem/qmd-reconciliation-eligibility/20261118T224533Z-guarded-launcher/run.ps1`.
+Its default is local preflight only. The explicit user-only shared dry-run mode
+verifies the build first, requires all existing storage prerequisites, registers
+only `aux` through public `st_init()`, then executes only this cell. It samples
+the catalog SHA256 before/after registration and after the dry-runs; a change
+stops the run without rollback or attribution to this process versus concurrent
+work. The launcher prints the evidence paths. Keep the original R
+session open; the launcher uses a separate, isolated child process.
+
+```{r real-auxiliary-eligibility}
+#| eval: false
+real_aux_results <- data.frame(
+  measure = c("pfw", "cpi", "ppp", "pop", "gdp", "pce"),
+  previous = c("5a1af0d6edf7d639", "02e66e507fb7946a", "13aa439a44297b23",
+               "44be5f221cdbd223", "9927e67693c42f7c", "6fde46585a733db2"),
+  target = c("dbd2ccf63260991d", "ae38185bd7ff383c", "c16e62d94f46e1bc",
+             "c059b971f5fc70cc", "062e2d30b15b4661", "4d57e305a0e3c86e"),
+  status = "NOT RUN",
+  detail = ""
+)
+
+aux_preflight <- tryCatch({
+  stopifnot("Start with the qualified Stamp namespace" =
+              "stamp" %in% loadedNamespaces())
+  stopifnot("Use a session with the fingerprint-verified qualified Stamp build" =
+              exists("qualified_stamp_namespace", inherits = TRUE) &&
+              identical(asNamespace("stamp"), qualified_stamp_namespace))
+  stamp_origin <- getNamespaceInfo(qualified_stamp_namespace, "path")
+  normalize <- function(path) normalizePath(path, winslash = "/", mustWork = TRUE)
+  stopifnot("Use the qualified Stamp development build" =
+              identical(normalize(stamp_origin),
+                        normalize(file.path(pip_checkout, ".tmp/sq1/l/stamp"))))
+
+  aux_alias <- stamp::st_alias_get("aux")
+  stopifnot("The shared 20260401_TEST aux alias must already be registered" =
+              !is.null(aux_alias))
+  aux_root <- file.path(real_context$main_dir, "aux_repository/aux_data/20260401_TEST")
+  stopifnot("The shared 20260401_TEST aux alias must already be registered" =
+              identical(normalize(aux_alias$root), normalize(aux_root)) &&
+              identical(normalize(aux_alias$stamp_path),
+                        normalize(file.path(aux_root, ".stamp"))))
+  NULL
+}, error = function(error) conditionMessage(error))
+
+if (!is.null(aux_preflight)) {
+  real_aux_results$detail <- aux_preflight
+  cat("FAIL: eligibility preflight --", aux_preflight, "\n")
+} else {
+  for (index in seq_len(nrow(real_aux_results))) {
+    check <- tryCatch({
+      result <- stamp::st_reconcile_latest(
+        path = paste0(real_aux_results$measure[[index]], ".qs2"),
+        version_id = real_aux_results$target[[index]],
+        expected_previous_id = real_aux_results$previous[[index]],
+        alias = "aux",
+        dry_run = TRUE
+      )
+      stopifnot(identical(result$dry_run, TRUE),
+                result$action %in% c("would_update", "noop"))
+      list(status = "PASS", detail = result$action)
+    }, error = function(error) {
+      list(status = "FAIL", detail = conditionMessage(error))
+    })
+    real_aux_results[index, c("status", "detail")] <- check
+  }
+}
+
+print(real_aux_results, row.names = FALSE)
+cat("Catalog apply and real-survey processing: NOT RUN by this cell.\n")
+```
+
+# Isolated synthetic acceptance example
+
+All results below describe synthetic checks, not acceptance of COL 2010 GEIH.
+
+This is the canonical executable acceptance narrative for development checks, not a new pipeline engine. It starts with one synthetic survey and an invalid control. `pipdata` owns release orchestration; `stamp` decides what reruns. Package implementations and unit tests stay in their owning repositories. Generated HTML, logs and reports support the executed facts, not replace them or change the design or roadmap.
+
+This example does **not** certify live DLW, auxiliary producers, B6, deflation, means, incremental reruns or production. B6 remains deferred, not waived. An installed-package failure is **FAIL**, never original survey acceptance. Dependent checks stay **NOT RUN**. A successful render is not a passing survey.
+
+## Run Identity and Private Packages
+
+Run through the existing isolated launcher with a fresh output/store directory. The launcher is `experiments/one-survey/run.ps1` in `qmd-render` mode. Its `RunId` identifies the existing private runtime (`qmd-acceptance-20261113` for the checked example); `QmdRunId` identifies a new render attempt. It copies this source and writes the HTML, console log and result table to `.tmp/one-survey/<RunId>/qmd-<QmdRunId>/`, with a fresh `store/` there. Missing Quarto, private R or usable dependencies blocks rendering; it never authorizes installation or a library fallback. No downloads, ambient library, dirty-package installation or `load_all()` are allowed. `setup.R` checks the seven unchanged full source SHAs, installation receipts, namespace paths and actual storage usability; it does not install in this mode. A setup error still leaves the result summary visible.
+
+```{r reporting-init}
+# Begin with no earned successes; only executed assertions can change a row.
+results <- data.frame(
+  check = c(
+    "Private packages and fixtures", "Release setup", "Auxiliary inputs",
+    "Acquisition and validation", "Cleaning, metadata and storage",
+    "Exact readback and paired values", "Invalid survey has no output"
+  ),
+  status = "NOT RUN",
+  detail = "Blocked by an earlier failure",
+  stringsAsFactors = FALSE
+)
+pipeline_ok <- TRUE
+record_failure <- function(error, check) {
+  results$status[results$check == check] <<- "FAIL"
+  results$detail[results$check == check] <<- conditionMessage(error)
+  pipeline_ok <<- FALSE
+  cat("FAIL:", check, "-", conditionMessage(error), "\n")
+}
+```
+
+```{r private-packages}
+checkout <- Sys.getenv("PIP_CHECKOUT")
+run_dir <- Sys.getenv("QMD_RUN_ROOT")
+tryCatch({
+  stopifnot(nzchar(run_dir), dir.exists(run_dir))
+  document_dir <- getwd()
+  source(file.path(checkout, "experiments/one-survey/setup.R"))
+  setwd(document_dir)
+  namespace_paths <- verify(readRDS(file.path(root, "inventory.rds")))
+  source(file.path(checkout, "experiments/one-survey/qmd-fixtures.R"))
+
+  # Real run identity and exact installed source provenance, not historical logs.
+  print(list(
+    run = basename(run_dir), release = params$release,
+    identity = params$identity, pid = Sys.getpid(),
+    started = format(Sys.time(), tz = "UTC", usetz = TRUE),
+    r_home = R.home(), libraries = .libPaths(), store = file.path(run_dir, "store")
+  ))
+  print(packages)
+  print(data.frame(
+    package = required,
+    version = vapply(required, function(name) {
+      as.character(utils::packageVersion(name))
+    }, ""),
+    path = unname(namespace_paths[required])
+  ))
+
+  # Annual local-currency welfare and person weights stay paired by row.
+  raw <- data.table::data.table(
+    countrycode = "AAA", year = 2010L, survname = "SYNA",
+    hhid = paste0("h", 1:4), pid = paste0("p", 1:4),
+    hsize = c(1, 2, 3, 4),
+    welfare = c(365, 730, 1095, 1460),
+    welfshprosperity = c(365, 730, 1095, 1460),
+    weight = c(10, 20, 30, 40), urban = c(1, 0, 1, 0),
+    age = c(25, 35, 45, 55), male = c(1, 0, 1, 0)
+  )
+  survey_id <- "AAA_2010_SYNA_V01_M_V01_A_GMD_GPWG"
+  expected_survey_id <- survey_id
+  pip_id <- "AAA_2010_SYNA_INC_GPWG"
+  expected_pip_id <- pip_id
+  bad_id <- "AAA_2010_SYNB_V01_M_V01_A_GMD_GPWG"
+  bad_pip <- "AAA_2010_SYNB_INC_GPWG"
+  fixtures <- survey_fixture_tables(survey_id, bad_id)
+  stopifnot(
+    identical(raw$welfare, c(365, 730, 1095, 1460)),
+    identical(raw$weight, c(10, 20, 30, 40)),
+    all(fixtures$aux$cpi$cpi_value == 1.4),
+    identical(fixtures$aux$ppp$ppp, 1.6)
+  )
+  restore_transport <- use_fixture_transport(raw, fixtures$catalog, bad_id)
+
+  options(
+    pipfun.main_dir = file.path(run_dir, "store"),
+    pipfun.verbose = FALSE, pipload.verbose = FALSE,
+    pipdata.verbose = FALSE, dlw.verbose = FALSE,
+    pipdata.dependency_manifest_path = file.path(run_dir, "manifest")
+  )
+  Sys.setenv(PIP_ROOT_DIR = file.path(run_dir, "store"))
+  results[1L, c("status", "detail")] <- list(
+    "PASS", "Exact private packages usable; synthetic inputs checked"
+  )
+}, error = function(error) {
+  record_failure(error, "Private packages and fixtures")
+})
+```
+
+## Working Release: `pipfun`
+
+The public setup call establishes the TEST working release. The fixture support replaces only release-list/PPP-vintage transport, DLW catalog and download transport. The missing-weight download is really missing `weight`; real package validation, cleaning, metadata and storage are never substituted. Bindings are restored at the end of this isolated process's document execution.
+
+```{r release-setup}
+if (pipeline_ok) {
+  tryCatch({
+    working_release <- pipfun::setup_working_release(
+      params$release,
+      params$identity,
+      ppp = 2021,
+      verbose = FALSE
+    )
+    print(working_release)
+    stopifnot(
+      identical(working_release$release, params$release),
+      identical(working_release$identity, params$identity),
+      identical(working_release$ppp, 2021)
+    )
+    results[2L, c("status", "detail")] <- list(
+      "PASS", "Public working-release setup returned requested TEST identity"
+    )
+  }, error = function(error) record_failure(error, "Release setup"))
+}
+```
+
+## Auxiliary Inputs: `pipload` and `stamp`
+
+These are normalized **fixture-only** PFW, CPI, PPP, population, GDP and PCE tables, not evidence that `pipaux` producers ran. CPI is 1.4 and PPP is 1.6. `pipload::pip_write()` stores the inputs through `stamp`. No `metapip` upgrade, live download or M2 recipe is part of this example.
+
+```{r auxiliary-inputs}
+if (pipeline_ok) {
+  tryCatch({
+    for (measure in names(fixtures$aux)) {
+      pipload::pip_write(
+        fixtures$aux[[measure]],
+        measure,
+        alias = "aux",
+        pk = fixtures$keys[[measure]],
+        verbose = FALSE
+      )
+    }
+    print(fixtures$aux[c("pfw", "cpi", "ppp")])
+    results[3L, c("status", "detail")] <- list(
+      "PASS", "Fixture auxiliary inputs stored through public writer"
+    )
+  }, error = function(error) record_failure(error, "Auxiliary inputs"))
+}
+```
+
+## Acquisition and Validation: `pipdata`
+
+Refresh the synthetic catalog, acquire both fixtures and require a completed valid/invalid classification. A thrown error or an empty job is not rejection. The invalid survey must have its actual missing-weight diagnostic.
+
+```{r acquisition-validation}
+if (pipeline_ok) {
+  tryCatch({
+    pipdata::dlw_gmd_list()
+    validation <- pipdata::pipdata_dlw_process(
+      release = params$release,
+      identity = params$identity,
+      verbose = FALSE
+    )
+    stopifnot(
+      identical(validation$outcome, "success"),
+      identical(validation$validation$outcome, "success")
+    )
+    inventory <- validation$validation$inventory
+    stopifnot(
+      nrow(inventory[survey_id == expected_survey_id & status == "valid"]) == 1L,
+      nrow(inventory[survey_id == bad_id & status == "invalid"]) == 1L,
+      validation$validation$summary$n_failed == 0L
+    )
+    validation_report <- pipload::load_gmd_valid_report(verbose = FALSE)
+    diagnostic <- validation_report[table_name == bad_id & type == "error"]
+    stopifnot(any(grepl(
+      "weight variable should be in the data",
+      diagnostic$description,
+      fixed = TRUE
+    )))
+    print(inventory)
+    print(diagnostic)
+    results[4L, c("status", "detail")] <- list(
+      "PASS", "Valid and invalid classifications plus missing-weight diagnostic"
+    )
+  }, error = function(error) {
+    record_failure(error, "Acquisition and validation")
+  })
+}
+```
+
+## Cleaning, Metadata and Storage: `pipdata`
+
+`pd_process_data()` already composes cleaning, metadata and storage. There is no separate metadata orchestration API here. Do not seed release-context options to bypass an installed-package incompatibility. If this call fails, report its message and leave exact readback and invalid/no-output acceptance NOT RUN.
+
+```{r cleaning-metadata-storage}
+if (pipeline_ok) {
+  tryCatch({
+    master <- pipdata::pd_process_data(
+      inv = inventory,
+      bootstrap = TRUE,
+      verbose = FALSE
+    )
+    print(master)
+    selected <- master[pip_id == expected_pip_id]
+    stopifnot(nrow(selected) == 1L)
+    clean_pin <- selected$version_id_data[[1L]]
+    metadata_pin <- selected$version_id_metadata[[1L]]
+    stopifnot(
+      is.character(clean_pin), nzchar(clean_pin),
+      is.character(metadata_pin), nzchar(metadata_pin)
+    )
+    print(list(clean_version = clean_pin, metadata_version = metadata_pin))
+    results[5L, c("status", "detail")] <- list(
+      "PASS", paste("Saved exact versions:", clean_pin, metadata_pin)
+    )
+  }, error = function(error) {
+    record_failure(error, "Cleaning, metadata and storage")
+  })
+}
+```
+
+## Exact Readback and Numeric Checks: `pipload` and `collapse`
+
+Read the **returned saved versions**, never an implicit latest version. Expected daily welfare is 1, 2, 3, 4, paired with weights 10, 20, 30, 40; total weight is 100. Metadata must retain the survey ID, CPI 1.4 and PPP 1.6.
+
+```{r exact-readback}
+if (pipeline_ok) {
+  tryCatch({
+    clean <- pipload::pip_read(
+      pip_id, alias = "pip", version = clean_pin, verbose = FALSE
+    )
+    metadata <- pipload::pip_read(
+      pip_id, alias = "pip_meta", version = metadata_pin, verbose = FALSE
+    )
+    actual <- data.table::data.table(
+      welfare = clean$welfare,
+      weight = clean$weight
+    )
+    expected <- data.table::data.table(
+      welfare = c(1, 2, 3, 4),
+      weight = c(10, 20, 30, 40)
+    )
+    print(list(expected = expected, actual = actual))
+    print(metadata)
+    stopifnot(
+      identical(actual, expected),
+      identical(metadata$survey_id, survey_id),
+      identical(unname(metadata$cpi), 1.4),
+      identical(unname(metadata$ppp), 1.6),
+      identical(collapse::fsum(clean$weight), 100)
+    )
+    results[6L, c("status", "detail")] <- list(
+      "PASS", "Exact saved versions, paired rows, metadata and total weight"
+    )
+  }, error = function(error) {
+    record_failure(error, "Exact readback and paired values")
+  })
+}
+```
+
+## Invalid Survey Has No Clean or Metadata Artifact: `stamp`
+
+This check earns PASS only after classification **and** the real processing call complete. An empty store caused by a package failure is not invalid rejection.
+
+```{r invalid-no-output}
+if (pipeline_ok) {
+  tryCatch({
+    for (alias in c("pip", "pip_meta")) {
+      catalog <- stamp::st_catalog_query(alias = alias)
+      stopifnot(!any(grepl(bad_pip, catalog$path, ignore.case = TRUE)))
+      print(catalog)
+    }
+    results[7L, c("status", "detail")] <- list(
+      "PASS", "Classified-invalid survey produced no clean/metadata artifact"
+    )
+  }, error = function(error) {
+    record_failure(error, "Invalid survey has no output")
+  })
+}
+```
+
+## Same-run Summary
+
+Only the rows below report what actually ran. The original one-survey Plan is not marked complete by rendering this document. Later stages remain NOT RUN.
+
+```{r run-summary}
+results |>
+  knitr::kable(row.names = FALSE)
+print(results, row.names = FALSE)
+if (nzchar(run_dir) && dir.exists(run_dir)) {
+  utils::write.table(
+    results, file.path(run_dir, "results.tsv"),
+    sep = "\t", row.names = FALSE, quote = TRUE
+  )
+}
+if (exists("restore_transport")) restore_transport()
+cat("Original survey acceptance:",
+    if (all(results$status == "PASS")) "PASS" else "NOT PASSED", "\n")
+cat("B6 and deflation/means/incremental/production: NOT RUN\n")
+```

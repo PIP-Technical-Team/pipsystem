@@ -1,32 +1,32 @@
 # Private runtime and all write roots are established by run.ps1 before startup.
 root <- normalizePath(Sys.getenv("ONE_SURVEY_ROOT"), winslash = "/",
                       mustWork = TRUE)
-checkout <- "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem"
+checkout <- normalizePath(Sys.getenv("PIP_CHECKOUT", unset = file.path(root, "../../..")),
+                          winslash = "/", mustWork = TRUE)
 stopifnot(startsWith(root, paste0(checkout, "/.tmp/one-survey/")))
 lib <- file.path(root, "library")
-mode <- tail(commandArgs(TRUE), 1L)
+mode <- tail(c("library", commandArgs(TRUE)), 1L)
 options(pipfun.log.auto = FALSE, pipfun.verbose = FALSE)
 packages <- data.frame(
   package = c("stamp", "pipfun", "pipload", "wbpip", "dlw", "pipaux", "pipdata"),
-  repo = c("E:/PovcalNet/01.personal/wb384996/Rpackages/stamp",
-           paste0("E:/PovcalNet/01.personal/wb384996/PIP/",
-                  c("pipfun", "pipload", "wbpip")),
-           "E:/PovcalNet/01.personal/wb384996/Rpackages/dlw",
-           paste0("E:/PovcalNet/01.personal/wb384996/PIP/", c("pipaux", "pipdata"))),
+  repo = file.path(dirname(dirname(checkout)), c(
+    "Rpackages/stamp", "PIP/pipfun", "PIP/pipload", "PIP/wbpip",
+    "Rpackages/dlw", "PIP/pipaux", "PIP/pipdata"
+  )),
   sha = c("95890411e8bf9db842593c2b0ab68ec4f2a66b25",
           "7d534516a8c17c33d537681610eccd4c29211762",
-          "ff9a81e386a09fb2531c154f63fd2b91521313c6",
+          "4ef0d90a974cb6ff0725da69373bde421dd04ad5",
           "fd2c687ed527ebe33d0a7addf9859f72f71ff39f",
           "12faa058b521ef511073a7b21b1b1dd7993c9649",
           "01ff827340a9759dc3d4ef18d31f4e3ba26ff2be",
-          "13a38280c1eafe7e03a97837cdb57833fbe9d926"))
+           "53a76e379c81a3ac70b39925954981ae6a691459"))
 source <- setNames(file.path(root, "sources", packages$package), packages$package)
 required <- packages$package
 dependency_origin <- function(package) {
   shelf <- if (package %in% c("qs2", "stringfish", "RcppParallel")) {
     "4.5-pipapi"
   } else "4.5"
-  file.path("E:/PovcalNet/01.personal/wb384996/R/win-library", shelf, package)
+  file.path(dirname(dirname(checkout)), "R/win-library", shelf, package)
 }
 setwd(root)
 safe <- function(path) {

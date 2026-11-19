@@ -34,6 +34,9 @@
 
 # Disposable scratch, local environments and every package's private test runtime
 /.tmp/
+/.pip-local-root
+/.cg-docs/orchestration/outputs/pipsystem/cpi-rebuild-pilot/20261119T202215Z-release-inputs/*.log
+/.cg-docs/orchestration/outputs/pipsystem/cpi-rebuild-pilot/20261119T202215Z-release-inputs/*.tsv
 /.venv/
 /.cg-docs/orchestration/outputs/**/runtime/
 
