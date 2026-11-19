@@ -70,15 +70,21 @@ the chat tool has no arbitrary repository selector for new sessions.
   whether the slash command or the plain-message fallback invoked it. On
   2026-11-19, after the user confirmed `pipaux` was listed in the panel,
   the parent Agent Manager tool still returned only `pipsystem` sessions.
-  No direct send was attempted without a verified target. The file-based
-  workflow remains the tested route; the user starts pickup by ID.
+  No direct send was attempted without a verified target. Pickup by ID remains
+  the tested fallback when work requires a separate package session.
 - An [internal Task probe](../orchestration/outputs/pipsystem/subagent-check/20261119T163727Z-pipaux/handoff.md)
   verified that a pipsystem subagent can use the registered `pipaux` checkout
   explicitly, prepare a candidate patch in pipsystem, and check the patch
   against the real checkout without a package session. The package stayed
-  clean. This supports diagnosis, review, and patch preparation from the hub.
-  Direct package writes were not tested or authorized; `SYSTEM_DESIGN.md:319`
-  still applies.
+  clean. That probe did not test direct package writing.
+- Direct-edit follow-up passed on 2026-11-19 after the user approved the
+  pilot and replaced the read-only rule in `SYSTEM_DESIGN.md:319`. An
+  [internal Task](../orchestration/outputs/pipaux/direct-edit-pilot/20261119T165548Z-internal-task/handoff.md)
+  edited `DESCRIPTION:2` in a disposable `pipaux` sibling clone on `PROD`
+  at `01ff827340a9759dc3d4ef18d31f4e3ba26ff2be` and returned its handoff
+  without a package chat. The parent independently checked the pinned SHA,
+  sole one-line diff and exact metadata with base R. The live checkout stayed
+  clean. The pilot did not run package code, the full suite, or the pipeline.
 
 ## Risks & Mitigations
 
@@ -86,14 +92,15 @@ Only a direct user invocation or authorized dispatch can start a task. A
 saved assignment, peer note or worker report is not permission to mutate Git,
 edit package code, or bypass a Plan gate. Do not read secret files, copy env
 files, run production code, or write outside E: except authorized Kilo config.
-No commits, pushes or merges requested. No new Agent Manager sessions unless
-explicitly requested or separately confirmed.
+The direct-edit pilot authorized no new commits, pushes or merges. No new
+Agent Manager sessions unless explicitly requested or separately confirmed.
 
 ## Completion Contract
 
 One real package round trip and a parent-verified result without pasting
-task or report text. If the native route is unavailable, the user starts the
-pickup by ID from an existing package session; that action is not an
-automatic continuation. Minimal first: smallest end-to-end change, safeguards
+task or report text. The preferred route is now a direct internal Task in
+the approved target checkout. When a package session is necessary and the
+parent cannot reach it, the user starts pickup by ID. Minimal first:
+smallest end-to-end change, safeguards
 only for nearly irreversible harm, one functional check per change, installed
 tools only, and no new architecture until there is evidence it is needed.
