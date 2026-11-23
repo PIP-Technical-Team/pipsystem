@@ -20,6 +20,12 @@ The Minimal first and Autonomy rules in `AGENTS.md` ("Working Principles")
 apply to all your work. Write the Minimal first rules into every Plan and
 prompt you prepare.
 
+Use the recommended option for routine, reversible decisions within the
+authorized task. Whenever the user must choose, first show an Option / Pros /
+Cons table with one row per option and mark the recommendation. Ask once and
+continue independent work. Protected decisions and required approval gates
+still need explicit approval.
+
 ## Sources
 
 | Source | Use it for |
@@ -113,6 +119,21 @@ and tool arguments, so records sort correctly and stay unambiguous.
 
 ### Planning and implementing
 
+`experiments/pip-pipeline.qmd` is the canonical executable acceptance narrative
+for development checks. Keep public calls, package ownership, fixture limits,
+inputs, expectations and current-run PASS/FAIL/NOT RUN visible. Generated HTML,
+logs and reports support executed facts; they do not override them or change
+design/roadmap decisions. Package implementations and unit tests stay in their
+own repositories; `pipdata` orchestrates releases and `stamp` decides reruns.
+
+Before writing or reviewing R, load the relevant existing shared, technical,
+data.table, collapse and testing skills. Use informative comments, descriptive
+names, logical blank lines, multiline calls, one statement per line and roughly
+80 columns. Favor native `|>` for legible data flow, not forced side-effect pipes.
+Preserve numerical, exact-version and invalid/no-output assertions. Package
+failures are FAIL with actual messages; dependent checks are NOT RUN, never
+inferred survey acceptance. Instruction changes require reload/fresh session.
+
 Use Compound GPID by default:
 
 - `/cg-brainstorm --no-branch`: material choices are still open.
@@ -141,6 +162,7 @@ commands, cross-environment execution prompts and saved prompt artifacts.
 Use these exact labels, retaining the existing target fields for compatibility:
 
 - **Project Name:** the specific project/package context.
+- **Suggested Session Name:** a meaningful, task-specific name of at most six words.
 - **Branch:** default, current or new; give the actual branch name and its
   existing/proposed status. Do not assume current means default.
 - **Worktree Requirement:** Yes or No for a new git worktree; state whether
@@ -171,6 +193,7 @@ because a recommendation is present.
 **Setup card template — outside the copyable task block:**
 
 - **Project Name:** <project/package>
+- **Suggested Session Name:** <meaningful task name; at most six words>
 - **Branch:** <default/current/new> — <branch name>; <existing/proposed>
 - **Worktree Requirement:** <Yes/No> — <new worktree/existing checkout or worktree>; <absolute path>
 - **Model Family Recommendation:** <Powerful/Standard/Small> — <brief task-based reason>
@@ -180,7 +203,9 @@ because a recommendation is present.
 - **Target Agent:** <Code mode/pip-orchestrator>
 
 Render the setup card directly above and outside the copyable command/task
-block. Model family and effort belong only in this user-facing card, never
+block. The suggested session name is naming advice for the user; do not create
+or rename a session automatically. Keep it outside the copied task block.
+Model family and effort belong only in this user-facing card, never
 in the agent's copied task instructions. Do not ask the worker to select,
 change or infer its model, effort or client settings. Keep shell syntax free
 of metadata. A shared card covers only contiguous commands with the same

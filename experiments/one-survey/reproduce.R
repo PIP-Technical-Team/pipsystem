@@ -6,7 +6,7 @@ source(file.path(checkout, "experiments/one-survey/setup.R"))
 invisible(verify(readRDS(file.path(root, "inventory.rds"))))
 
 main <- function() {
-  destination <- file.path(root, "store/reproducer-master")
+  destination <- file.path(root, "store/reproducer-context")
   stopifnot(!file.exists(destination))
   options(pipfun.main_dir = destination, pipfun.verbose = FALSE,
           pipload.verbose = FALSE, pipdata.verbose = FALSE)
@@ -37,21 +37,34 @@ main <- function() {
     list(sha = "synthetic-ppp-vintage-v1")
   })
   on.exit(restore_info(), add = TRUE)
-  pipfun::setup_working_release("20260401", "TEST", verbose = FALSE)
+  release <- pipfun::setup_working_release("20260401", "TEST", verbose = FALSE)
+  context_options <- options()[c("pipfun.working_release", "pipfun.identity")]
+  print(release)
+  print(context_options)
+  stopifnot(identical(release$release, "20260401"),
+            identical(release$identity, "TEST"),
+            is.null(getOption("pipfun.working_release")),
+            is.null(getOption("pipfun.identity")))
   inv <- readRDS(file.path(root, "validation-result.rds"))$validation$inventory
   inv <- inv[status == "valid"]
   stopifnot(nrow(inv) == 1L)
-  # No survey load, auxiliary projection, or master initialization is reached.
+  # No context options are seeded to bypass the public setup/wrapper mismatch.
   result <- tryCatch(pipdata::pd_process_data(inv = inv, bootstrap = TRUE,
                                              verbose = FALSE), error = identity)
   versions <- stamp::st_versions("pip_master_inventory.qs2", alias = "pip_master")
-  saveRDS(list(inv = inv, result = result, master_versions = versions),
-          file.path(root, "reproducer-master.rds"))
+  downstream <- lapply(c("pip", "pip_meta"), function(alias) {
+    stamp::st_catalog_query(alias = alias)
+  })
+  saveRDS(list(inv = inv, release = release, context_options = context_options,
+              result = result, master_versions = versions, downstream = downstream),
+          file.path(root, "reproducer-context.rds"))
   print(result)
   print(versions)
   stopifnot(inherits(result, "error"),
-    grepl("No version files found in 'pip_master_inventory.qs2'",
-          conditionMessage(result), fixed = TRUE), nrow(versions) == 0L)
+    inherits(result, "pipdata_dependency_context_error"),
+    identical(conditionMessage(result),
+              "A single working release and identity are required."),
+    nrow(versions) == 0L, all(vapply(downstream, nrow, 1L) == 0L))
   cat("First package boundary reproduced; this is NOT scenario acceptance.\n")
 }
 main()

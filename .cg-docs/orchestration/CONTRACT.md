@@ -12,6 +12,30 @@ releases (`SYSTEM_DESIGN.md:186,299-307`). The hub is
 `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/`.
 `ORCHESTRATOR.md` defines how `pip-orchestrator` behaves.
 
+## User Decisions
+
+Use the recommended option for routine, reversible decisions within scope.
+When the user must choose, give an Option / Pros / Cons table with one row per
+option and mark the recommendation before asking once. Continue independent
+work. This preference grants no protected change or required approval.
+
+## Script-first Development Evidence
+
+`experiments/pip-pipeline.qmd` is the canonical executable acceptance narrative
+for development checks. Keep public calls, package ownership, fixture limits,
+inputs, expectations and current-run PASS/FAIL/NOT RUN visible. Generated HTML,
+logs and reports support executed facts; they do not override them or change
+design/roadmap decisions. Package implementations and unit tests stay in their
+own repositories; `pipdata` orchestrates releases and `stamp` decides reruns.
+
+Before writing or reviewing R, load the relevant existing shared, technical,
+data.table, collapse and testing skills. Use informative comments, descriptive
+names, logical blank lines, multiline calls, one statement per line and roughly
+80 columns. Favor native `|>` for legible data flow, not forced side-effect pipes.
+Preserve numerical, exact-version and invalid/no-output assertions. Package
+failures are FAIL with actual messages; dependent checks are NOT RUN, never
+inferred survey acceptance. Instruction changes require reload/fresh session.
+
 ## Output Layout
 
 ```text
@@ -130,6 +154,7 @@ recommendations and saved prompt artifacts, includes an external setup card
 with these exact labels:
 
 - **Project Name:** specific project/package context.
+- **Suggested Session Name:** meaningful, task-specific and at most six words.
 - **Branch:** default/current/new, actual name and existing/proposed status;
   current is not necessarily default.
 - **Worktree Requirement:** Yes/No for a new git worktree; identify the new or
@@ -144,7 +169,9 @@ with these exact labels:
 - **Target Agent:** Code mode or pip-orchestrator, as appropriate.
 
 Use the template and tier guidance in ORCHESTRATOR.md. Render the external
-setup card above and outside the copyable task block. Model family and effort
+setup card above and outside the copyable task block. Keep the suggested name
+in that card only; it is naming advice, not an automatic session creation or
+rename. Model family and effort
 belong in that card only, not in the agent task or instructions to change or
 infer its client settings. A shared card covers a contiguous block only if all
 commands share context/recommendation. Never embed metadata in shell syntax.

@@ -49,9 +49,12 @@ Do not ask before doing anything that can be undone. Ask only before:
   roadmap milestones and features;
 - commits, pushes, merges, or deleting files that are not generated.
 
-When you must ask, ask once, give your recommended answer, and keep doing the
-independent work. When a step fails, fix it within the task. Stop only when
-the fix needs one of the decisions above or the user stops you.
+Use the recommended option for routine, reversible decisions within the
+authorized task. When a choice must go to the user, ask once and present an
+Option / Pros / Cons table with the recommendation marked before asking the
+user to pick. Keep doing independent work. This does not waive protected
+decisions or required approval gates. When a step fails, fix it within the
+task; stop only at a required decision or if the user stops you.
 
 ## Coordinated Agent Outputs
 
@@ -78,9 +81,12 @@ parent, not the user, retrieves the result.
 
 Every user-facing command or prompt offered to run/copy, including same-session
 recommendations and saved prompt artifacts, includes an external setup card:
-**Project Name**, **Branch**, **Worktree Requirement**, **Model Family
-Recommendation**, **Effort**, **Target Project**, **Target Environment**, and
-**Target Agent**. Use the exact labels and template in ORCHESTRATOR.md.
+**Project Name**, **Suggested Session Name**, **Branch**, **Worktree Requirement**,
+**Model Family Recommendation**, **Effort**, **Target Project**,
+**Target Environment**, and **Target Agent**. Use the exact labels and template
+in ORCHESTRATOR.md. Suggested Session Name is meaningful, task-specific and
+at most six words. Keep it in the external card, not the copied task block;
+it is naming advice, not permission to create or rename a session automatically.
 Branch names the actual default/current/new branch and existing/proposed
 status. Worktree Requirement says Yes/No for a new git worktree and gives the
 absolute target path; a new branch does not imply a new worktree. Retain the
@@ -123,6 +129,23 @@ copy-ready instructions. Do not invent blockers or actions when the underlying
 goal really is complete.
 
 ## pip-orchestrator
+
+### Script-first Development Evidence
+
+`experiments/pip-pipeline.qmd` is the canonical executable acceptance narrative
+for development checks. Keep public calls, package ownership, fixture limits,
+inputs, expectations and current-run PASS/FAIL/NOT RUN visible. Generated HTML,
+logs and reports support executed facts; they do not override them or change
+design/roadmap decisions. Package implementations and unit tests stay in their
+own repositories; `pipdata` orchestrates releases and `stamp` decides reruns.
+
+Before writing or reviewing R, load the relevant existing shared, technical,
+data.table, collapse and testing skills. Use informative comments, descriptive
+names, logical blank lines, multiline calls, one statement per line and roughly
+80 columns. Favor native `|>` for legible data flow, not forced side-effect pipes.
+Preserve numerical, exact-version and invalid/no-output assertions. Package
+failures are FAIL with actual messages; dependent checks are NOT RUN, never
+inferred survey acceptance. Instruction changes require reload/fresh session.
 
 `pip-orchestrator` (rules in `ORCHESTRATOR.md`) coordinates the project from
 this main checkout. It has the same permissions as Code mode. It reads every
