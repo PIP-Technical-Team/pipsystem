@@ -1,0 +1,64 @@
+RESULT: Diagnosis complete; no complete process-local environment fix verified.
+
+Initial missing dependent DLL: tbb.dll, imported by stringfish.dll.
+stringfish 0.19.0 requires nine legacy tbb::internal symbols.
+qs2 requires 24 newer tbb::detail::r1 symbols from the same DLL basename.
+RcppParallel 6.0.0 loads its RcppParallel.dll successfully from library 4.5.
+Its installed tbb.dll exports all 24 qs2 symbols but none of stringfish's nine.
+Thus correcting DLL discovery alone exposes an incompatible binary interface.
+
+Fresh R 4.5.2 --vanilla process results:
+1. Baseline: stringfish and qs2 fail with 'specified module could not be found'.
+2. PATH += library 4.5/RcppParallel/lib/x64: both fail with
+   'specified procedure could not be found' at stringfish.dll.
+3. PATH += library 4.4/RcppParallel/lib/x64: stringfish loads, but qs2.dll
+   fails with 'specified procedure could not be found'. This is NOT a fix.
+All other 19 diagnostic namespaces loaded successfully in every run, including
+RcppParallel; the original preflight's other 18 dependencies loaded successfully.
+No qs2 roundtrip was run because qs2 never loaded. Parent preflight not rerun.
+
+Bounded installed candidate export comparison:
+R/win-library/4.3/RcppParallel/lib/x64/tbb.dll: stringfish 9/9, qs2 0/24.
+R/win-library/4.4/RcppParallel/lib/x64/tbb.dll: stringfish 9/9, qs2 0/24.
+R/win-library/4.5/RcppParallel/lib/x64/tbb.dll: stringfish 0/9, qs2 24/24.
+R/win-library/4.5-pipapi/RcppParallel/lib/x64/tbb.dll: stringfish 0/9, qs2 24/24.
+No TBB DLL found in Rtools45 static toolchain, ucrt64/bin, or mingw64/bin.
+No other TBB DLL found in library 4.5's package lib/x64 or libs/x64 paths.
+All R library roots above are under E:/PovcalNet/01.personal/wb384996/.
+
+Evidence (all under E:/strec/r125434):
+logs/dll-baseline.log
+logs/dll-tbb-path.log
+logs/dll-legacy-tbb-path.log
+logs/dll-symbols.log (exact required symbols and missing-symbol comparisons)
+Scripts: dll-diagnostic.R and dll-symbols.ps1.
+Installed binary tool: C:/rtools45/x86_64-w64-mingw32.static.posix/bin/objdump.exe.
+
+Exact reproduction in Windows PowerShell (each run is a new tool process):
+. E:/strec/r125434/env.ps1
+& 'C:/Program Files/R/R-4.5.2/bin/Rscript.exe' --vanilla E:/strec/r125434/dll-diagnostic.R baseline
+
+Failed current-TBB candidate (NOT recommended as remediation):
+. E:/strec/r125434/env.ps1
+$env:PATH = 'E:\PovcalNet\01.personal\wb384996\R\win-library\4.5\RcppParallel\lib\x64;' + $env:PATH
+& 'C:/Program Files/R/R-4.5.2/bin/Rscript.exe' --vanilla E:/strec/r125434/dll-diagnostic.R tbb-path
+
+Partial legacy-TBB candidate (NOT recommended as remediation):
+. E:/strec/r125434/env.ps1
+$env:PATH = 'E:\PovcalNet\01.personal\wb384996\R\win-library\4.4\RcppParallel\lib\x64;' + $env:PATH
+& 'C:/Program Files/R/R-4.5.2/bin/Rscript.exe' --vanilla E:/strec/r125434/dll-diagnostic.R legacy-tbb-path
+
+Symbol comparison:
+. E:/strec/r125434/env.ps1
+& E:/strec/r125434/dll-symbols.ps1
+
+Remaining prerequisite: a mutually binary-compatible stringfish/qs2/TBB set,
+or an already-installed tbb.dll exporting both required symbol sets. None of
+the inspected installed candidates provides both. PATH ordering or preloading
+one of these candidates cannot add its missing exports. No namespace/library
+patching or two-version loader tricks attempted. Any dependency repair is
+outside the authorized scope; no installation/update/copy/patch performed.
+
+Parent env.ps1/preflight.R and all existing libraries unchanged. No Git or
+shared-agent calls. Diagnostic files only under E:/strec/r125434. PATH edits
+were confined to individual command processes; no persistent setting applied.

@@ -1,0 +1,14 @@
+{
+    "mode":  "shared",
+    "launcher_pid":  12172,
+    "checkout":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem",
+    "r_exit":  1,
+    "started_utc":  "2026-11-19T13:13:46.5125272Z",
+    "finished_utc":  "2026-11-19T13:13:47.8783830Z",
+    "results":  "E:\\PovcalNet\\01.personal\\wb384996\\PIP\\pipsystem\\.cg-docs\\orchestration\\outputs\\pipsystem\\qmd-reconciliation-eligibility\\20261118T224533Z-guarded-launcher/shared-53c808a30b14.tsv",
+    "log":  "E:\\PovcalNet\\01.personal\\wb384996\\PIP\\pipsystem\\.cg-docs\\orchestration\\outputs\\pipsystem\\qmd-reconciliation-eligibility\\20261118T224533Z-guarded-launcher/shared-53c808a30b14.log",
+    "branch":  "main",
+    "run_id":  "53c808a30b14",
+    "r_executable":  "C:/Program Files/R/R-4.5.2/bin/Rscript.exe",
+    "scratch":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/qre/53c808a30b14"
+}

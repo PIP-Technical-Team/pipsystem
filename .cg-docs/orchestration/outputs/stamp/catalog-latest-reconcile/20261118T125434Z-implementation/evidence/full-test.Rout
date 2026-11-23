@@ -1,0 +1,1043 @@
+
+R version 4.5.2 (2025-10-31 ucrt) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # This file is part of the standard setup for testthat.
+> # It is recommended that you do not modify it.
+> #
+> # Where should you do additional test configuration?
+> # Learn more about the roles of various files in:
+> # * https://r-pkgs.org/tests.html
+> # * https://testthat.r-lib.org/reference/test_package.html#special-files
+> 
+> library(testthat)
+> library(stamp)
+> 
+> test_check("stamp")
+v stamp initialized
+  alias: A1
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8a173bac
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8a173bac/.stamp
+v stamp initialized
+  alias: A2
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db82bdd478b
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db82bdd478b/.stamp
+v stamp initialized
+  alias: B2
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db82bdd478b
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db82bdd478b/.stamp
+v stamp initialized
+  alias: myalias
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db879f93ab2
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db879f93ab2/.stampA
+v stamp initialized
+  alias: dup
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db83a864bf8
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db83a864bf8/.s1
+v stamp initialized
+  alias: a1
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db843026632
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db843026632/.sX
+v stamp initialized
+  alias: a2
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db843026632
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db843026632/.sX
+v stamp initialized
+  alias: A
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db830e83bf7
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db830e83bf7/.sa
+v stamp initialized
+  alias: B
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8631a6eef
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8631a6eef/.sb
+v stamp initialized
+  alias: A_file4db8171d10c3
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8171d10c3
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8171d10c3/.sa
+v stamp initialized
+  alias: B_file4db873f41e28
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db873f41e28
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db873f41e28/.sb
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8171d10c3/data/a.qs' @ version 7b92003b861b799d
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db873f41e28/data/b.qs' @ version c3919663d6d404a6
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db827ef7836/stamp mixed case root/missing/nested/leaf.rds'
+v stamp initialized
+  alias: WarnA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db84817f90
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db84817f90/.stamp
+v stamp initialized
+  alias: WarnB
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86fdd9b9
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86fdd9b9/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84817f90/data.qs' @ version b38f86e7730fe863
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84817f90/data.qs' @ version c0ef605a65c33a2f
+v stamp initialized
+  alias: MatchA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8741f1b8f
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8741f1b8f/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8741f1b8f/data.qs' @ version 21ece961c8ce4d00
+v stamp initialized
+  alias: NullA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8311660fa
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8311660fa/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8311660fa/data.qs' @ version 6e47258202ef17ac
+v stamp initialized
+  alias: LocA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db873a181e
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db873a181e/.stamp
+v stamp initialized
+  alias: LocB
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86a8c5920
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86a8c5920/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db873a181e/data.qs' @ version 84df1c3a54cd6a32
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db86a8c5920/data.qs' @ version 82f43a848e0e6550
+v stamp initialized
+  alias: AutoA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db85e1b626f
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db85e1b626f/.stamp
+v stamp initialized
+  alias: AutoB
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db88f946fa
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db88f946fa/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85e1b626f/data.qs' @ version ae777b6c0433bd46
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db88f946fa/data.qs' @ version d231297cda1f4ff4
+v stamp initialized
+  alias: LoadAutoA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db82737da4
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db82737da4/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db82737da4/data.qs' @ version 00e41d847bd6f06a
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db82737da4/data.qs'
+v stamp initialized
+  alias: ContextA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8c761f44
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8c761f44/.stamp
+v stamp initialized
+  alias: ContextB
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8320b74f
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8320b74f/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8c761f44/data.qs' @ version 111c5eeed8a06bdc
+v stamp initialized
+  alias: QuietA
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db812d414eb
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db812d414eb/.stamp
+v stamp initialized
+  alias: QuietB
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86b337067
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86b337067/.stamp
+v stamp initialized
+  alias: Outer
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db868685871
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db868685871/.stamp
+v stamp initialized
+  alias: Inner
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db868685871/inner
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db868685871/inner/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db868685871/inner/data.qs' @ version a6757cd2a6093e5d
+v stamp initialized
+  alias: A_file4db870c63fee
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db870c63fee
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db870c63fee/.stamp
+v stamp initialized
+  alias: B_file4db866bf269d
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db866bf269d
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db866bf269d/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db870c63fee/a.qs' @ version 6721ca64ad0ab595
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db866bf269d/b.qs' @ version bbe6a4265a8c9283
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db870c63fee/a.qs'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db866bf269d/b.qs'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db842ac6730/value.rds'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d7c224b/value.rds'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8572c49f7/value.rds'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db81fab2636
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db81fab2636/.stamp
+v stamp options updated
+  meta_format = "json"
+v stamp options updated
+  meta_format = "json"
+v stamp options updated
+  meta_format = "json"
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "json"
+v stamp options updated
+  meta_format = "both"
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "json"
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "both"
+v stamp options updated
+  meta_format = "both"
+v stamp options updated
+  meta_format = "json"
+v stamp options updated
+  meta_format = "both"
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "both"
+v stamp options updated
+  meta_format = "both"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db868647a36
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db868647a36/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db842723d62
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db842723d62/.stamp
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db842723d62/custom/country=us/custom.parquet'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db863e32b01
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db863e32b01/.stamp
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db863e32b01/rds/k=a/part.rds'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db863e32b01/rds/k=b/part.rds'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db858f2258b
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db858f2258b/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db845abc17
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db845abc17/.stamp
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db845abc17/union/k=a/part.rds'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db845abc17/union/k=b/part.rds'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db845abc17/objects/k=x/part.rds'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8be8366b
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8be8366b/.stamp
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "both"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8b801cf
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8b801cf/.stamp
+v Loaded [fst] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8b801cf/fst/k=a/part.fst'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db87a9823b3
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db87a9823b3/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db837511678
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db837511678/.stamp
+v stamp options updated
+  meta_format = "json"
+v stamp options updated
+  meta_format = "qs2"
+v stamp options updated
+  meta_format = "qs2"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86c845f17
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86c845f17/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db87408b04
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db87408b04/.stamp
+v Registered format audit_fail
+  extensions: (none)
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db842b82051
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db842b82051/.stamp
+v stamp options updated
+  code_hash = "FALSE", store_file_hash = "FALSE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db847ac1544/value.rds'
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db856832a7f/value.rds'
+v Recorded primary key for 'value.rds' --> id
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Cleared all registered builders
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db8101d4cb4/a.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db8101d4cb4/a.rds (other)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db8101d4cb4/b.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db8101d4cb4/a.rds (default)
+v Cleared builders for e:/strec/r125434/tmp/rtmpyczoh5/file4db8101d4cb4/a.rds
+v Cleared all registered builders
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86bd1549c
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86bd1549c/.stamp
+v Rebuild level 1: 1 artifact
+  * E:/strec/r125434/tmp/RtmpyczoH5/file4db857257ed6/a.rds (audit)
+OK @ version new
+v Rebuild level 2: 1 artifact
+  * E:/strec/r125434/tmp/RtmpyczoH5/file4db857257ed6/b.rds (audit)
+OK @ version new
+v Rebuild summary
+  built 2
+v Rebuild level 1: 1 artifact
+  * E:/strec/r125434/tmp/RtmpyczoH5/file4db857257ed6/a.rds (audit)
+v Rebuild summary
+  failed 1
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/a.rds' @ version 621f5af2b0cb7461
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/b.rds' @ version 8ccd57f1b3502ff8
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/c.rds' @ version db17b829e8799062
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/e.rds' @ version 5efe49a55d0508a5
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/d.rds' @ version 5315b70f6e25f733
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/a.rds' @ version 26ed7f61baa01d62
+v Rebuild level 1: 2 artifacts
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/b.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/b.rds' @ version 9a291401fd45b261
+OK @ version 9a291401fd45b261
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/c.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/c.rds' @ version 023d292b89b0e07d
+OK @ version 023d292b89b0e07d
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/e.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/e.rds' @ version 3e1cf7ac13000dc5
+OK @ version 3e1cf7ac13000dc5
+v Rebuild level 3: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/d.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8234f3a5/d.rds' @ version 449df44f09c66fc3
+OK @ version 449df44f09c66fc3
+v Rebuild summary
+  built 4
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/.stamp
+v Cleared all registered builders
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/a.rds' @ version 7d72759885beb851
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/b.rds' @ version 8659a4cdc69d730c
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/c.rds' @ version f51b892e3cf6ac4c
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/b.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/c.rds (default)
+v Rebuild level 1: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/b.rds (upstream_changed)
+  DRY RUN
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/c.rds (upstream_changed)
+  DRY RUN
+v Rebuild summary
+  dry_run 2
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/a.rds' @ version f22365627eea935f
+v Rebuild level 1: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/b.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/b.rds' @ version 78c4a1f33546b0df
+OK @ version 78c4a1f33546b0df
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/c.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/c.rds' @ version 25348712302a78dd
+OK @ version 25348712302a78dd
+v Rebuild summary
+  built 2
+v Rebuild level 1: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/b.rds (upstream_changed)
+v Skip save (reason: no_change_policy) for 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87c4b694d/b.rds'
+OK @ version 78c4a1f33546b0df
+v Rebuild summary
+  built 1
+v Nothing to rebuild (empty plan).
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/.stamp
+v Cleared all registered builders
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/a.rds' @ version d1b81797ddc6d056
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/b.rds' @ version ea3a0438ccd29fe8
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/c.rds' @ version 14be382a881f6bc7
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/d.rds' @ version 92113d3a82d77dcb
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/e.rds' @ version 08f6643fc701080e
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/c.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/d.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/e.rds (default)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/a.rds' @ version 9b7c2437b5bd0abd
+v Rebuild level 1: 2 artifacts
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/b.rds (upstream_changed)
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/e.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/e.rds' @ version 7c3802602b6c6e64
+OK @ version 7c3802602b6c6e64
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/c.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild level 3: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/d.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild summary
+  blocked 2 | built 1 | failed 1
+i Rebasing default alias to new folder.
+  Existing: E:/strec/r125434/tmp/rtmpyczoh5/file4db81ab638ce/.stamp
+  Requested: E:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/.stamp
+v Cleared all registered builders
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/a.rds' @ version 0e7664a60e3f559a
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/b.rds' @ version af15724addf4966c
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/c.rds' @ version c301852cadd9995e
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/d.rds' @ version 83db6dc066cb73e5
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/e.rds' @ version 99b1b93eca747d5f
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/b.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/c.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/d.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/e.rds (default)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/a.rds' @ version af6513efe3fad3da
+v Rebuild level 1: 2 artifacts
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/b.rds (upstream_changed)
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/e.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/e.rds' @ version a965f8c9688b0c05
+OK @ version a965f8c9688b0c05
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/c.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild level 3: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/d.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild summary
+  blocked 2 | built 1 | failed 1
+i Rebasing default alias to new folder.
+  Existing: E:/strec/r125434/tmp/rtmpyczoh5/file4db84d091ff/.stamp
+  Requested: E:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/.stamp
+v Cleared all registered builders
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/a.rds' @ version c19150801c4259a7
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/b.rds' @ version 271b3d30d3de1b98
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/c.rds' @ version c1388ff0ccb037f6
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/d.rds' @ version f5ee2a321ed728fc
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/e.rds' @ version 737b5324e1679753
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/b.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/c.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/d.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/e.rds (default)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/a.rds' @ version a0d554d690d06f26
+v Rebuild level 1: 2 artifacts
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/b.rds (upstream_changed)
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/e.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/e.rds' @ version ea87d5943eed52dc
+OK @ version ea87d5943eed52dc
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/c.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild level 3: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/d.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild summary
+  blocked 2 | built 1 | failed 1
+i Rebasing default alias to new folder.
+  Existing: E:/strec/r125434/tmp/rtmpyczoh5/file4db87caa29a2/.stamp
+  Requested: E:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/.stamp
+v Cleared all registered builders
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/a.rds' @ version 671d522142a2fa8a
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/b.rds' @ version 603525b5b1ceaa0c
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/c.rds' @ version 8d0bb9f2d31561e9
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/d.rds' @ version 6a8a3aebc93ff92c
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/e.rds' @ version 0d6f8638fdde9db9
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/b.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/c.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/d.rds (default)
+v Registered builder for e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/e.rds (default)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/a.rds' @ version 47038052ea0e4fff
+v Rebuild level 1: 2 artifacts
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/b.rds (upstream_changed)
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/e.rds (upstream_changed)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/e.rds' @ version 2db9e794a845d4f1
+OK @ version 2db9e794a845d4f1
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/c.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild level 3: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db820c05f82/d.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild summary
+  blocked 2 | built 1 | failed 1
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8407d9fd
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8407d9fd/.stamp
+v Cleared all registered builders
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8407d9fd/a.rds' @ version 01406d3ac5acd2fc
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8407d9fd/b.rds' @ version 4d871bf4a34354b3
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8407d9fd/c.rds' @ version 3d4466b42eabed77
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8407d9fd/d.rds' @ version 2f1a4594f918c2bf
+v Registered builder for E:/strec/r125434/tmp/RtmpyczoH5/file4db8407d9fd/b.rds (default)
+v Registered builder for E:/strec/r125434/tmp/RtmpyczoH5/file4db8407d9fd/c.rds (default)
+v Registered builder for E:/strec/r125434/tmp/RtmpyczoH5/file4db8407d9fd/d.rds (default)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8407d9fd/a.rds' @ version 955ef6bac39fec04
+v Rebuild level 0: 1 artifact
+  * b.rds (upstream_changed)
+v Rebuild level 1: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db8407d9fd/c.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild level 2: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db8407d9fd/d.rds (upstream_changed)
+BLOCKED: selected parent did not rebuild
+v Rebuild summary
+  blocked 2 | failed 1
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db8277129be
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db8277129be/.stamp
+v Cleared all registered builders
+v Rebuild level 1: 1 artifact
+  * E:/strec/r125434/tmp/rtmpyczoh5/file4db8277129be/new.rds (test)
+v Rebuild summary
+  failed 1
+v Rebuild level 1: 1 artifact
+  * E:/strec/r125434/tmp/rtmpyczoh5/file4db8277129be/new.rds (test)
+v Rebuild summary
+  failed 1
+v Rebuild level 1: 1 artifact
+  * E:/strec/r125434/tmp/rtmpyczoh5/file4db8277129be/new.rds (test)
+v Rebuild summary
+  failed 1
+v Rebuild level 1: 1 artifact
+  * E:/strec/r125434/tmp/rtmpyczoh5/file4db8277129be/new.rds (test)
+v Rebuild summary
+  failed 1
+v stamp initialized
+  alias: builder-audit
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86231f8
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86231f8/.stamp
+v Registered builder for E:\strec\r125434\tmp\RtmpyczoH5\file4db86231f8/Artifact.rds (default)
+v stamp initialized
+  alias: other-audit
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db85f7f1589
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db85f7f1589/.stamp
+v Rebuild level 1: 1 artifact
+  * e:/strec/r125434/tmp/rtmpyczoh5/file4db86231f8/artifact.rds (audit)
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db86231f8/artifact.rds' @ version 913c44cd92237bbd
+OK @ version 913c44cd92237bbd
+v Rebuild summary
+  built 1
+v Cleared builders for e:/strec/r125434/tmp/rtmpyczoh5/file4db86231f8/artifact.rds
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/b.rds' @ version fe12da378d1c0da6
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/a.rds' @ version b99dfae64023dd35
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/a.rds' @ version 27c0eb37f9e94365
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/a.rds' @ version eca2237327178a2b
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/b.rds' @ version 1d3460de17a3cde8
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/b.rds' @ version b790e59245c4c0b8
+v DRY RUN: 2 versions would be pruned across 1 artifact.
+  Estimated space reclaimed: ~234 bytes
+v stamp options updated
+  retain_versions = "1"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db89c71030/a.rds' @ version 76db2a4577dc8988
+v stamp initialized
+  alias: selected
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8f086384
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8f086384/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8f086384/a.rds' @ version 8c420363252b6c61
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8f086384/a.rds' @ version 5e281afff08f5b4a
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8f086384/b.rds' @ version 563ea0c7ee7b5ec5
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8f086384/b.rds' @ version dbbc06bf6ee38b59
+v stamp initialized
+  alias: untouched
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db861636500
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db861636500/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db861636500/c.rds' @ version 7ec78240034dfec9
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db861636500/c.rds' @ version 7cfc374e290c7334
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db84d00b94
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db84d00b94/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d00b94/a.rds' @ version 5b61e11a4ab457ad
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d00b94/a.rds' @ version f4edfb88ffe7b258
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84d00b94/a.rds' @ version fd18b48eb8693993
+v DRY RUN: 2 versions would be pruned across 1 artifact.
+  Estimated space reclaimed: ~234 bytes
+! 1 out of 2 versions failed to delete. Catalog will be updated only for successfully deleted versions.
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/rtmpyczoh5/file4db844b33390
+  state: E:/strec/r125434/tmp/rtmpyczoh5/file4db844b33390/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db844b33390/a.rds' @ version 0c4c0a3cd25f468a
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db844b33390/a.rds' @ version 9010a6adbce85727
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db844b33390/a.rds' @ version 5d1dda158cbc9bed
+v DRY RUN: 2 versions would be pruned across 1 artifact.
+  Estimated space reclaimed: ~232 bytes
+v Retention policy is Inf: no pruning performed.
+v No catalog artifacts matched the provided path filter; nothing to prune.
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db81bbc2b95
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db81bbc2b95/.stamp
+v No versions recorded; nothing to prune.
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db859e762dd
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db859e762dd/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db817252445/a.rds' @ version 2ed24e51de19e0b9
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db817252445/a.rds'
+v Recorded primary key for 'a.rds' --> id
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Recorded primary key for 'a.rds' --> absent
+v Recorded primary key for 'a.rds' --> id
+v Registered format audit_rds
+  extensions: (none)
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db87f855f2/item.rds @ 92379efcf20e04f6 [rds]
+v stamp options updated
+  verify_on_load = "FALSE"
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db87f855f2/item.rds @ 92379efcf20e04f6 [rds]
+v stamp options updated
+  verify_on_load = "TRUE"
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db87f855f2/item.rds @ 92379efcf20e04f6 [rds]
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85e354426/item.rds'
+v Recorded primary key for 'E:/strec/r125434/tmp/RtmpyczoH5/file4db85e354426/item.rds' --> id
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Registered format audit_fail
+  extensions: (none)
+v stamp initialized
+  alias: L
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db821792a9b
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db821792a9b/.s
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db821792a9b/a.qs' @ version cc6ced904ab932ab
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db821792a9b/b.qs' @ version b5c04e1b4b3a1581
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85a0f7646/keyed.rds'
+v Recorded primary key for 'keyed.rds' --> id
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db85a384672
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db85a384672/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85a384672/concur.qs' @ version e866d9d35348f0c8
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85a384672/concur.qs' @ version 40e2e3781114e50b
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85a384672/concur.qs' @ version 263650355b6b725c
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85a384672/concur.qs' @ version 6f91be8754d06397
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85a384672/concur.qs' @ version 84dffd770ea50b2c
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db85a384672/concur.qs @ e866d9d35348f0c8 [rds]
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db85a384672/concur.qs @ 40e2e3781114e50b [rds]
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db85a384672/concur.qs @ 263650355b6b725c [rds]
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db85a384672/concur.qs @ 6f91be8754d06397 [rds]
+v Loaded ← E:/strec/r125434/tmp/RtmpyczoH5/file4db85a384672/concur.qs @ 84dffd770ea50b2c [rds]
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db85a07466
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db85a07466/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85a07466/aa.qs' @ version d362c2f4e1b4e66e
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db879ed3e51
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db879ed3e51/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db879ed3e51/pk.qs' @ version d726487abdbf9550
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db879ed3e51/pk.qs'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db819e538fb
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db819e538fb/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db819e538fb/c.qs' @ version 56224f00f6ae57d7
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db819e538fb/c.qs' @ version 6c7cf26e44e4a4bb
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db819e538fb/c.qs' @ version d0b571f85a556868
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db83bfb4776
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db83bfb4776/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db83bfb4776/dt.qs' @ version 8bb50ea8dc26ba72
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db83bfb4776/dt.qs' @ version 07e2d1fdebd326bd
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db83bfb4776/dt.qs' @ version d7cd846d28fce718
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db867145d4a
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db867145d4a/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db867145d4a/pr.qs' @ version 7f70c1ed9b111d3f
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db867145d4a/pr.qs' @ version 92e6983b6fb6b4e9
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db867145d4a/pr.qs' @ version 53580c2177fb12a5
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db83fe61ea0
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db83fe61ea0/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db846d62cf5
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db846d62cf5/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db87ef5202
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db87ef5202/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db836771ad0
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db836771ad0/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db833d840c9
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db833d840c9/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db85d9db2
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db85d9db2/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8390258de
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8390258de/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db818ea1880
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db818ea1880/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db83a417d5f
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db83a417d5f/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db836bc704d
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db836bc704d/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db822d931ef
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db822d931ef/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db82faf738
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db82faf738/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db835017cd6
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db835017cd6/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8137064dc
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8137064dc/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db85a0a603d
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db85a0a603d/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db822fe14e2
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db822fe14e2/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8223a5274
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8223a5274/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db84ae36c55
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db84ae36c55/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8646c173a
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8646c173a/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8f876df2
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8f876df2/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8f876df2/dt.rds' @ version 31c0cc174292180b
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8f876df2/dt.rds'
+v stamp initialized
+  alias: I
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db873ec7bef
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db873ec7bef/.s
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db873ec7bef/d.qs' @ version 774ef35fd2f09a38
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db873ec7bef/d.qs' @ version 13490ba9273603c7
+v stamp initialized
+  alias: R
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8290e7212
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8290e7212/.s
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8290e7212/x.qs' @ version 28c5ddd6f3f13395
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8290e7212/x.qs' @ version c43601bf3c39ecb3
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8290e7212/x.qs' @ version 11693e6683bbd30a
+v DRY RUN: 2 versions would be pruned across 1 artifact.
+  Estimated space reclaimed: ~317 bytes
+v Retention policy matched zero versions; nothing to prune.
+v stamp initialized
+  alias: children-audit
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db828aa389c
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db828aa389c/.s
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db828aa389c/a.qs' @ version 1ba0b0fdd0211274
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db828aa389c/b.qs' @ version d608a65070277f31
+v Registered builder for E:/strec/r125434/tmp/RtmpyczoH5/file4db868b91100/a.rds (default)
+v Registered builder for E:/strec/r125434/tmp/RtmpyczoH5/file4db868b91100/b.rds (default)
+v Registered builder for E:/strec/r125434/tmp/RtmpyczoH5/file4db868b91100/c.rds (default)
+v Cleared all registered builders
+v Registered builder for E:/strec/r125434/tmp/RtmpyczoH5/file4db8624e6529/a.rds (default)
+v Cleared all registered builders
+v Registered builder for a.rds (default)
+v DRY RUN: 1 version would be pruned across 1 artifact.
+  Estimated space reclaimed: ~131 bytes
+v DRY RUN: 2 versions would be pruned across 2 artifacts.
+  Estimated space reclaimed: ~262 bytes
+v DRY RUN: 1 version would be pruned across 1 artifact.
+  Estimated space reclaimed: ~131 bytes
+v stamp options updated
+  retain_versions = "1"
+v stamp options updated
+  store_file_hash = "TRUE"
+v stamp options updated
+  meta_format = "json", versioning = "content", retain_versions = "Inf", warn_missing_pk_on_load = "FALSE"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db841987ac4
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db841987ac4/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db841987ac4/parts/country=us/year=2025/part.rds' @ version 4f62fecabb58522a
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db841987ac4/parts/country=us/year=2024/part.rds' @ version b5fce0c967ced606
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db841987ac4/parts/country=us/year=2024/part.rds'
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db841987ac4/parts/country=us/year=2025/part.rds'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db845c23cb3
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db845c23cb3/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db845c23cb3/parts2/k=1/part.rds' @ version 8a181ea855789f64
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db845c23cb3/parts2/k=1/part.rds'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db811303b4a
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db811303b4a/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db811303b4a/tbl.qs' @ version d670e5f8bf10ad8c
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db811303b4a/tbl.qs'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db855a67438
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db855a67438/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db855a67438/tbl2.qs' @ version 49315b95ed595f35
+v stamp options updated
+  require_pk_on_load = "FALSE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db855a67438/tbl2.qs'
+v stamp options updated
+  require_pk_on_load = "TRUE"
+v Recorded primary key for 'E:/strec/r125434/tmp/RtmpyczoH5/file4db855a67438/tbl2.qs' --> id
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db841667923
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db841667923/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db841667923/a.qs' @ version cfc91c52ebccfc85
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db841667923/a.qs' @ version d24dfc936b6ef397
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db841667923/a.qs' @ version a37f3679016d6429
+v DRY RUN: 2 versions would be pruned across 1 artifact.
+  Estimated space reclaimed: ~365 bytes
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db878681c62
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db878681c62/.stamp
+v stamp options updated
+  default_format = "rds"
+v stamp options updated
+  retain_versions = "1"
+v Retention policy matched zero versions; nothing to prune.
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db878681c62/b.qs' @ version 7817d6998fdc2658
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db878681c62/b.qs' @ version 00797acb56664c11
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db878681c62/b.qs' @ version 01387bbea999ad7c
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db860832953
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db860832953/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db860832953/x.qs' @ version 68ab177ccd77b2fb
+v Retention policy matched zero versions; nothing to prune.
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8599d5006
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8599d5006/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8599d5006/keep.qs' @ version cb014ac26c5407e6
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8599d5006/keep.qs' @ version cf57cd5c2ecc28de
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8429d758b
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8429d758b/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db81ac558a5
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db81ac558a5/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db878932b1a
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db878932b1a/.stamp
+v stamp initialized
+  alias: dup_b
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86f10104f
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86f10104f/.stamp
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db84d021b96
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db84d021b96/.stamp
+v stamp options updated
+  warn_missing_pk_on_load = "TRUE"
+v stamp options updated
+  warn_missing_pk_on_load = "FALSE"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db81a5159
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db81a5159/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [qs2] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81a5159/demo.qs2' @ version bb2bf4638db2078b
+v stamp options updated
+  warn_missing_pk_on_load = "FALSE"
+v Loaded [qs2] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81a5159/demo.qs2'
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81a5159/demo.rds' @ version 7085d52bc0036fba
+v stamp options updated
+  warn_missing_pk_on_load = "TRUE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81a5159/demo.rds'
+v stamp options updated
+  warn_missing_pk_on_load = "FALSE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81a5159/demo.rds'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db878a51336
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db878a51336/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db878a51336/atomic.qs' @ version 8ae79f13c8e7c0e0
+v Registered format txt_test
+  extensions: .txt
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8d8d4fa4
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8d8d4fa4/.stamp
+v stamp options updated
+  default_format = "rds"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db817a618dc
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db817a618dc/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db817a618dc/s.qs' @ version be1901180f630ec5
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db81af071fa
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db81af071fa/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db81af071fa/s2.qs' @ version 96776e91a26a68a6
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db84f797617
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db84f797617/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84f797617/nometa.qs' @ version 6ce3c2a55877dcda
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8257d56a1
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8257d56a1/.stamp
+v stamp options updated
+  default_format = "rds"
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8257d56a1/v.qs' @ version 769654a8a0acee37
+v stamp options updated
+  versioning = "timestamp"
+v stamp options updated
+  versioning = "off"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db86f1a18d
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db86f1a18d/.stamp
+v stamp options updated
+  default_format = "qs2"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db84691221a
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db84691221a/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84691221a/v.rds' @ version 30b499d33ae8a5a2
+v stamp options updated
+  warn_missing_pk_on_load = "TRUE"
+v Loaded [rds] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db84691221a/v.rds'
+v stamp options updated
+  warn_missing_pk_on_load = "FALSE"
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db852b950c0
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db852b950c0/.stamp
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db852b950c0/a.qs' @ version 02294b3f337f3b51
+v Saved [rds] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db852b950c0/b.qs' @ version 53fe57dee24b7208
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db827946e98
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db827946e98/.stamp
+v Saved [qs2] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db827946e98/data/sample.qs2' @ version 5a5826e56ae7e059
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db8360d6d6b
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db8360d6d6b/.stamp
+v Saved [qs2] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db8360d6d6b/parts/country=col/reporting_level=urban/year=2010/part.qs2' @ version a31634c0e8b2d12e
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db857e3529
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db857e3529/.stamp
+v Saved [qs2] → 'e:/strec/r125434/tmp/rtmpyczoh5/file4db857e3529/parts2/country=col/reporting_level=rural/year=2010/part.qs2' @ version 448c473d648525c0
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db843ad6470
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db843ad6470/.stamp
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db843ad6470/df/country=can/year=2021/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db843ad6470/df/country=usa/year=2020/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db843ad6470/dt/country=can/year=2021/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db843ad6470/dt/country=usa/year=2020/part.parquet'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db85b2a6044
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db85b2a6044/.stamp
+v Saved 4 partitions to 'E:/strec/r125434/tmp/RtmpyczoH5/file4db85b2a6044/parts'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2020/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=mex/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=mex/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=can/year=2021/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=mex/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=can/year=2021/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2020/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=mex/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=usa/year=2022/part.parquet'
+v Loaded [parquet] ← 'e:/strec/r125434/tmp/rtmpyczoh5/file4db85b2a6044/parts/country=can/year=2021/part.parquet'
+v stamp initialized
+  alias: default
+  root: E:/strec/r125434/tmp/RtmpyczoH5/file4db871bd54cf
+  state: E:/strec/r125434/tmp/RtmpyczoH5/file4db871bd54cf/.stamp
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4457 ]
+> 
+> proc.time()
+   user  system elapsed 
+ 127.98   34.75  182.26 

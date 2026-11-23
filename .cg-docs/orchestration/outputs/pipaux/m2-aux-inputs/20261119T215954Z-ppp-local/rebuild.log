@@ -1,0 +1,13 @@
+﻿Qualified archive SHA256: 96e2da264618fc0dc1feae10c6a0bdb098b00a82c58aea9e9b4e43bb90f8f586 
+Warning messages:
+1: package 'data.table' was built under R version 4.5.3 
+2: package 'data.validator' was built under R version 4.5.3 
+R: R version 4.5.2 (2025-10-31 ucrt) 
+Starting pinned TEST PPP producer.
+PASS: upstream PPP raw and output validators returned.
+✔ stamp options updated
+  store_file_hash = "TRUE", versioning = "content"
+Error in FUN(X[[i]], ...) : 
+  identical(without_selfref(result), without_selfref(output$expected)) is not TRUE
+Calls: lapply -> FUN -> stopifnot
+Execution halted

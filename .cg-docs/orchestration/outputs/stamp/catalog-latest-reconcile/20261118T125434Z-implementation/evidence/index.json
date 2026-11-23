@@ -1,0 +1,154 @@
+{
+  "repo": "E:/PovcalNet/01.personal/wb384996/Rpackages/stamp/.kilo/worktrees/feat-catalog-latest-reconcile-33bd6bef6c270bbc",
+  "head": "db1b29cd248a3a6cb737c71db176ae6bd76d2a1d",
+  "submitted_package_inputs": "56a1474f0fa251bcf655c78eb10e4ebae76d5611",
+  "source_manifest_sha256": "bbe3eebee26027af673556513e46feb91e5337c86ad6f155e829b5a0597f75e3",
+  "development_archive": "E:/strec/r125434/full-c1/stamp_0.1.1.tar.gz",
+  "development_archive_sha256": "771b397235beee349a6046c17f6b4d6cfe66236ae2eac4f49e16307227318cc3",
+  "files": [
+    {
+      "artifact": "standard-review.md",
+      "canonical_origin": "E:/PovcalNet/01.personal/wb384996/Rpackages/stamp/.kilo/worktrees/feat-catalog-latest-reconcile-33bd6bef6c270bbc/.cg-docs/reviews/2026-11-18-stamp-catalog-latest-reconciliation-review.md",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/standard-review.md",
+      "md5": "59043ee131614672248ccee7af37937b"
+    },
+    {
+      "artifact": "verify-review.md",
+      "canonical_origin": "E:/PovcalNet/01.personal/wb384996/Rpackages/stamp/.kilo/worktrees/feat-catalog-latest-reconcile-33bd6bef6c270bbc/.cg-docs/reviews/2026-11-18-stamp-catalog-latest-reconciliation-verify-review.md",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/verify-review.md",
+      "md5": "3c42986baf9d37b84872e08bada915a9"
+    },
+    {
+      "artifact": "work-report.md",
+      "canonical_origin": "E:/PovcalNet/01.personal/wb384996/Rpackages/stamp/.kilo/worktrees/feat-catalog-latest-reconcile-33bd6bef6c270bbc/.cg-docs/work-reports/2026-11-18-stamp-catalog-latest-reconciliation.md",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/work-report.md",
+      "md5": "eaab02c9f24cb3c78205a2b36a5824ca"
+    },
+    {
+      "artifact": "full-test.Rout",
+      "canonical_origin": "E:/strec/r125434/full-c1/stamp.Rcheck/tests/testthat.Rout",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/full-test.Rout",
+      "md5": "524f4a69f77ff1ca342c2a162d553cd4"
+    },
+    {
+      "artifact": "full-check.log",
+      "canonical_origin": "E:/strec/r125434/full-c1/check.log",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/full-check.log",
+      "md5": "c3abc9ff63e1bcccd87344e4dd2c5b89"
+    },
+    {
+      "artifact": "full-build-command.txt",
+      "canonical_origin": "E:/strec/r125434/full-c1/build-command.txt",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/full-build-command.txt",
+      "md5": "607be6bba964ea14a2c356c80cc28688"
+    },
+    {
+      "artifact": "full-check-command.txt",
+      "canonical_origin": "E:/strec/r125434/full-c1/check-command.txt",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/full-check-command.txt",
+      "md5": "aaf8c98197ef0df16efbbc2032765dfc"
+    },
+    {
+      "artifact": "full-build-exit.txt",
+      "canonical_origin": "E:/strec/r125434/full-c1/build-exit.txt",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/full-build-exit.txt",
+      "md5": "21438ef4b9ad4fc266b6129a2f60de29"
+    },
+    {
+      "artifact": "full-check-exit.txt",
+      "canonical_origin": "E:/strec/r125434/full-c1/check-exit.txt",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/full-check-exit.txt",
+      "md5": "21438ef4b9ad4fc266b6129a2f60de29"
+    },
+    {
+      "artifact": "focused-test.Rout",
+      "canonical_origin": "E:/strec/r125434/focus-green-c2/stamp.Rcheck/tests/testthat.Rout",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/focused-test.Rout",
+      "md5": "696dcdbb3e6a19906a443d0e918272cb"
+    },
+    {
+      "artifact": "example-check.log",
+      "canonical_origin": "E:/strec/r125434/logs/example-check-c1.log",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/example-check.log",
+      "md5": "882d2a60a3944c7d0acab6a1e2885ab0"
+    },
+    {
+      "artifact": "example-exit.txt",
+      "canonical_origin": "E:/strec/r125434/logs/example-check-c1-exit.txt",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/example-exit.txt",
+      "md5": "21438ef4b9ad4fc266b6129a2f60de29"
+    },
+    {
+      "artifact": "source-identity.log",
+      "canonical_origin": "E:/strec/r125434/logs/full-c1-source-identity.log",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/source-identity.log",
+      "md5": "3063ff8e193a9b472b91d90caac9f2a4"
+    },
+    {
+      "artifact": "staged-source-md5.rds",
+      "canonical_origin": "E:/strec/r125434/full-c1/staged-source-md5.rds",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/staged-source-md5.rds",
+      "md5": "346dc471c40002911458cd6b25ce3e8b"
+    },
+    {
+      "artifact": "verified-source-identity.rds",
+      "canonical_origin": "E:/strec/r125434/full-c1/verified-source-identity.rds",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/verified-source-identity.rds",
+      "md5": "35953b5dace82e6fcd89915cc8d72370"
+    },
+    {
+      "artifact": "tool-origins.rds",
+      "canonical_origin": "E:/strec/r125434/out/tool-origins.rds",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/tool-origins.rds",
+      "md5": "b0c7166897769a7bc7f5a8965a1213fa"
+    },
+    {
+      "artifact": "source-baseline.rds",
+      "canonical_origin": "E:/strec/r125434/out/source-baseline.rds",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/source-baseline.rds",
+      "md5": "b558a4f99fee92b0ce464458bd57bbe8"
+    },
+    {
+      "artifact": "preflight.log",
+      "canonical_origin": "E:/strec/r125434/logs/preflight.log",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/preflight.log",
+      "md5": "6740f62ab20b05340024ce79a40fd008"
+    },
+    {
+      "artifact": "initial-red.Rout.fail",
+      "canonical_origin": "E:/strec/r125434/focus-red-fixture2/stamp.Rcheck/tests/testthat.Rout.fail",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/initial-red.Rout.fail",
+      "md5": "36303826283b0a8b0a1cd34e655115d9"
+    },
+    {
+      "artifact": "initial-green.Rout.fail",
+      "canonical_origin": "E:/strec/r125434/focus-green/stamp.Rcheck/tests/testthat.Rout.fail",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/initial-green.Rout.fail",
+      "md5": "6ba659d15068dd2753c370e25c01faf0"
+    },
+    {
+      "artifact": "initial-full.Rout.fail",
+      "canonical_origin": "E:/strec/r125434/full/stamp.Rcheck/tests/testthat.Rout.fail",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/initial-full.Rout.fail",
+      "md5": "c3655ac8e636012a919803237317005d"
+    },
+    {
+      "artifact": "initial-example-check.log",
+      "canonical_origin": "E:/strec/r125434/logs/example-check.log",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/initial-example-check.log",
+      "md5": "a4a7997ba6dee8c5fa8ec9f5c13b3e46"
+    },
+    {
+      "artifact": "dll-diagnostic.txt",
+      "canonical_origin": "E:/strec/r125434/logs/dll-diagnostic.txt",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/dll-diagnostic.txt",
+      "md5": "8eb7a3d90bb356d92d45996abb5b8042"
+    },
+    {
+      "artifact": "green-diagnosis.log",
+      "canonical_origin": "E:/strec/r125434/logs/green-diagnosis.log",
+      "retained_path": "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.cg-docs/orchestration/outputs/stamp/catalog-latest-reconcile/20261118T125434Z-implementation/evidence/green-diagnosis.log",
+      "md5": "129bd7cadbb05228fb1e837db08257ff"
+    }
+  ]
+}

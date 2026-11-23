@@ -1,0 +1,18 @@
+[1] "Component \"code_label\": Modes: list, NULL"                                   
+[2] "Component \"code_label\": Attributes: < Modes: list, NULL >"                   
+[3] "Component \"code_label\": Attributes: < Lengths: 1, 0 >"                       
+[4] "Component \"code_label\": Attributes: < names for target but not for current >"
+[5] "Component \"code_label\": Attributes: < current is not list-like >"            
+[6] "Component \"code_label\": current is not list-like"                            
+ [1] "path"         "format"       "created_at"   "size_bytes"   "content_hash"
+ [6] "code_hash"    "file_hash"    "code_label"   "parents"      "attrs"       
+DIFFERENT FIELD: code_label 
+JSON:
+NULL
+QS2:
+NA_character_
+[1] "updated"
+CHANGED PATHS:
+ E:\strec\r125434\tmp\Rtmpy2czLQ\file37fc37d05ccb/.stamp/catalog.qs2 
+CATALOG RAW: E:/strec/r125434/tmp/Rtmpy2czLQ/file37fc37d05ccb/.stamp/catalog.qs2 
+CATALOG REAL: E:/strec/r125434/tmp/Rtmpy2czLQ/file37fc37d05ccb/.stamp/catalog.qs2 

@@ -1,0 +1,60 @@
+Source: git show e9c71e3190f1ce88a017ae25af7c373a64c655a2:experiments/one-survey/scenario.R
+Lines 123-179, retrieved directly by parent during this run (not working-tree source).
+
+    validation <- pipdata::pipdata_dlw_process(release = "20260401",
+      identity = "TEST", verbose = FALSE)
+    saveRDS(validation, file.path(root, "validation-result.rds"))
+    print(validation)
+    stopifnot(identical(validation$outcome, "success"),
+      identical(validation$validation$outcome, "success"))
+    inv <- validation$validation$inventory
+    stopifnot(nrow(inv[survey_id == expected_survey_id & status == "valid"]) == 1L,
+      nrow(inv[survey_id == bad_id & status == "invalid"]) == 1L,
+      validation$validation$summary$n_failed == 0L)
+    report <- pipload::load_gmd_valid_report(verbose = FALSE)
+    saveRDS(report, file.path(root, "validation-report.rds"))
+    diagnostic <- report[table_name == bad_id & type == "error"]
+    stopifnot(any(grepl("weight variable should be in the data",
+                       diagnostic$description, fixed = TRUE)))
+    before <- lapply(c("pip", "pip_meta"), function(alias) {
+      stamp::st_catalog_query(alias = alias)
+    })
+    saveRDS(before, file.path(root, "downstream-before.rds"))
+    boundary <- "pipdata::pd_process_data"
+    master <- pipdata::pd_process_data(inv = inv, bootstrap = TRUE,
+                                      verbose = FALSE)
+    saveRDS(master, file.path(root, "master.rds"))
+    print(master)
+    selected <- master[pip_id == expected_pip_id]
+    stopifnot(nrow(selected) == 1L)
+    clean_pin <- selected$version_id_data[[1L]]
+    metadata_pin <- selected$version_id_metadata[[1L]]
+    stopifnot(is.character(clean_pin), nzchar(clean_pin),
+              is.character(metadata_pin), nzchar(metadata_pin))
+    boundary <- "pipload::pip_read exact saved pins"
+    clean <- pipload::pip_read(pip_id, alias = "pip", version = clean_pin,
+                               verbose = FALSE)
+    metadata <- pipload::pip_read(pip_id, alias = "pip_meta",
+                                  version = metadata_pin, verbose = FALSE)
+    saveRDS(list(clean_pin = clean_pin, metadata_pin = metadata_pin,
+                 clean = clean, metadata = metadata),
+            file.path(root, "exact-readbacks.rds"))
+    # Compare paired rows, not separately sorted welfare and weight vectors.
+    actual <- data.table::data.table(welfare = clean$welfare,
+                                     weight = clean$weight)
+    expected <- data.table::data.table(welfare = c(1, 2, 3, 4),
+                                       weight = c(10, 20, 30, 40))
+    print(actual)
+    stopifnot(identical(actual, expected),
+      identical(metadata$survey_id, survey_id),
+      identical(unname(metadata$cpi), 1.4),
+      identical(unname(metadata$ppp), 1.6),
+      identical(collapse::fsum(clean$weight), 100))
+    after <- lapply(c("pip", "pip_meta"), function(alias) {
+      catalog <- stamp::st_catalog_query(alias = alias)
+      stopifnot(!any(grepl(bad_pip, catalog$path, ignore.case = TRUE)))
+      catalog
+    })
+    saveRDS(after, file.path(root, "downstream-after.rds"))
+    writeLines("V2/V3/V4 PASS", file.path(root, "scenario-assertions.txt"))
+    TRUE

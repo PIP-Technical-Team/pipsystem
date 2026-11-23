@@ -1,0 +1,15 @@
+Rscript --vanilla check.R green
+R version 4.5.2 (2025-10-31 ucrt) 
+Working directory: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/m2-cpi-admission-20261119T222645Z 
+Temp: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/m2-cpi-admission-20261119T222645Z/tmp\Rtmpie0n1I 
+Libraries: E:/PovcalNet/01.personal/wb384996/R/win-library/4.5-pipapi | E:/PovcalNet/01.personal/wb384996/R/win-library/4.5 | C:/Program Files/R/R-4.5.2/library 
+wbpip 0.1.6 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/wbpip 
+testthat 3.3.2 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/testthat 
+data.table 1.18.4 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/data.table 
+codetools 0.2.20 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/codetools 
+Selected test blocks: 10 
+Error in identical(self$running[[self$current_file]]$context, context) : 
+  attempt to use zero-length variable name
+Calls: run_tests ... eval -> test_that -> test_code -> <Anonymous> -> identical
+Execution halted
+Exit: 1

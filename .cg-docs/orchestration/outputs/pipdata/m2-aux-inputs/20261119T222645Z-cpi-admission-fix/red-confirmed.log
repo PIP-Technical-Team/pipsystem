@@ -1,0 +1,38 @@
+Rscript --vanilla check.R red
+R version 4.5.2 (2025-10-31 ucrt) 
+Working directory: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/m2-cpi-admission-20261119T222645Z 
+Temp: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/m2-cpi-admission-20261119T222645Z/tmp\RtmpyomvjJ 
+Libraries: E:/PovcalNet/01.personal/wb384996/R/win-library/4.5-pipapi | E:/PovcalNet/01.personal/wb384996/R/win-library/4.5 | C:/Program Files/R/R-4.5.2/library 
+wbpip 0.1.6 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/wbpip 
+testthat 3.3.2 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/testthat 
+data.table 1.18.4 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/data.table 
+codetools 0.2.20 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/codetools 
+Selected test blocks: 1 
+── Error: bounded CPI allows missing values only outside the exact selection ───
+Error in `pd_deflation_number(values, label)`: bounded CPI requires finite positive values (welfare permits zero)
+Backtrace:
+    ▆
+ 1. ├─base::do.call(calculate, inputs)
+ 2. └─`<fn>`(...)
+ 3.   └─pd_deflation_select(metadata$cpi, ck, "CPI")
+ 4.     └─pd_deflation_number(values, label)
+Error:
+! Test failed with 1 failure and 0 successes.
+Backtrace:
+     ▆
+  1. ├─base::local(...)
+  2. │ └─base::eval.parent(substitute(eval(quote(expr), envir)))
+  3. │   └─base::eval(expr, p)
+  4. │     └─base::eval(expr, p)
+  5. └─base::eval(...)
+  6.   └─base::eval(...)
+  7.     └─base::eval(bounded[[1L]], implementation)
+  8.       └─base::eval(bounded[[1L]], implementation)
+  9.         └─testthat::test_that(...)
+ 10.           └─testthat:::test_code(code, parent.frame())
+ 11.             ├─withr (local) `<fn>`()
+ 12.             └─reporter$end_test(context = reporter$.context, test = test)
+ 13.               └─cli::cli_abort(...)
+ 14.                 └─rlang::abort(...)
+Execution halted
+Exit: 1

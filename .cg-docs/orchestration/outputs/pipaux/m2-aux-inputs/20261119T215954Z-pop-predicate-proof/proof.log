@@ -1,0 +1,28 @@
+﻿Started UTC: 2026-11-19T22:20:42.294Z
+PASS: three local input SHA256 checks; no network acquisition.
+R version 4.5.2 (2025-10-31 ucrt) ; Sys.Date(): 2026-11-19 ; population year ceiling: 2026 
+Qualified archive SHA256: 96e2da264618fc0dc1feae10c6a0bdb098b00a82c58aea9e9b4e43bb90f8f586 
+PASS: staged country-list retained pin 30d540ca6e32d842 ; SHA256 1435fd020da520aaa920950cb784ee6df0b0fcfd27643f6aedef3fcc5a8d6c9f 
+Rscript.exe : Error in `get_error_validation()`:
+At E:\PovcalNet\01.personal\wb384996\PIP\pipsystem\.cg-docs\orchestration\outputs\pipaux\m2-aux-inputs\20261119T215954Z-pop-predicate-proof\run.ps1:60 char:9
++         & $r --vanilla "$run/proof.R"
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Error in `get_error_validation()`::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+! Description of invalid cases for POP main raw data validation, no
+  duplicate records in key variables
+Backtrace:
+    ▆
+ 1. ├─base::eval(parse(text = harness), envir = environment())
+ 2. │ └─base::eval(parse(text = harness), envir = environment())
+ 3. └─global candidate_validators(pilot, original, extract, upstream_code)
+ 4.   └─validator(unique_keys, detail = FALSE)
+ 5.     └─get_error_validation(validation_record, detail)
+ 6.       └─cli::cli_abort("Description of invalid cases for {unique(err_t$table_name)},\n                   {err_t$description}")
+ 7.         └─rlang::abort(...)
+Warning messages:
+1: package 'data.table' was built under R version 4.5.3 
+2: package 'data.validator' was built under R version 4.5.3 
+Execution halted
+R exit: 1
