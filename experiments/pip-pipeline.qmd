@@ -19,6 +19,14 @@ params:
 
 See the [M2 overview](m2/index.qmd) and [Step 05: Download one survey](m2/phase-02/step-05-download-one-survey.qmd) for the standalone check. Step 05 saves the original file on the network drive for Step 06. Rendering this overview does not run the live download.
 
+# Historical record {#historical-record}
+
+- [M0: Settle the design](m0/index.qmd): eight decisions and their integration into the design.
+- [M1: Know the code](m1/index.qmd): completed harvests and decisions. Row-level change detection remains open.
+- [M2 Phase 01: Contracts, generic stamp, and engine](m2/phase-01/index.qmd): three early walking-skeleton records. The [M2 overview](m2/index.qmd#phase-2-prepare-the-inputs-and-one-survey) links to later work.
+
+Evidence links open files in the current checkout. Use the cited Git revisions to retrieve the original text. A record check does not rerun a package test or survey. HTML navigation was verified in Quarto website mode, not in a standalone render.
+
 # Real-data setup: COL 2010 GEIH (GPWG)
 
 Run this cell manually; the isolated synthetic render skips it. It configures only this R session and checks directory existence, not data-read or write permission. It does not load pipeline packages or initialize a release, aliases or storage. All real-survey stages remain **NOT RUN** by this cell.
