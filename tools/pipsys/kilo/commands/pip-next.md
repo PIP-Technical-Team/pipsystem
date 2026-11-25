@@ -18,16 +18,14 @@ word matching `^[A-Za-z0-9_-]+$` after trimming outer whitespace. Otherwise
 print `pip-next: invalid argument` and `Usage: /pip-next [package]`, then stop
 before any shell call or report write. Do not interpolate unchecked input.
 
-ROOT is the current session's pipsystem checkout, including an Agent Manager
-worktree, not a hardcoded main checkout. Read `tools/pipsys/packages.csv`.
+ROOT is the main pipsystem checkout registered in `tools/pipsys/packages.csv` (`ORCHESTRATOR.md`, line 3). Stop if the session's Git root or branch does not match.
 A nonempty argument must exactly match a registered package. Otherwise print
 `pip-next: unknown package NAME`, list the registered names and stop before
-any shell call or report write. Use ROOT for pipsystem, even when its registry
-path points to main. Do not guess paths for missing or unregistered packages.
+any shell call or report write.  Do not guess paths for missing or unregistered packages.
 
 ## 2. Collect current evidence
 
-- Read ROOT's `compound-gpid.md`, `SYSTEM_DESIGN.md`, `ORCHESTRATOR.md` and
+- Read ROOT's `compound-gpid.md`, `SYSTEM_DESIGN.md`, `ORCHESTRATOR.md`, `AGENTS.md` and
   `.cg-docs/orchestration/CONTRACT.md`. Respect Decided items; Open is not approval.
 - Read the corresponding installed information-command definitions. From ROOT,
   use the shell tool for `tools\pipsys\pipsys.cmd overview` in global mode or
@@ -150,7 +148,7 @@ material caveats visible. Assessment never executes the recommended action.
 Do not append a long copy-ready prompt by default when the current session can
 continue; retain useful complete prompts in the saved assessment. When a different
 session/environment is actually required, include the complete prompt and its
-mandatory target metadata in chat as required by the global handoff rule, even
+mandatory target metadata in chat as required by `AGENTS.md`, "Coordinated Agent Outputs" (setup card), even
 if that exceeds the word target. An estimate is not a deadline.
 
 ## 5. Save the assessment
@@ -187,9 +185,7 @@ historical reported checks current passes.
 Save useful complete copy-ready prompts for the next action, not blocked
 implementation. Follow ORCHESTRATOR.md's prompt contract: slash command on line 1,
 target metadata, absolute repo and actual branch, Plan path/revision or NONE,
-goal/scope/functional check, routed review agents for cg-work, autonomy limits,
-short Minimal first rules, unique absolute pip-handoff-v2 report path, E:-only
-writes and estimated duration. Read the installed workflow before selecting its
+goal/scope/functional check, routed review agents for cg-work, autonomy limits, short Minimal first rules, unique absolute pip-handoff-v2 report path, the platform write limits in `ORCHESTRATOR.md`, "Tools", and estimated duration. Read the installed workflow before selecting its
 route. If inputs are UNKNOWN, provide targeted verification without guessing a
 branch or Plan. The user starts sessions; a saved prompt grants no execution.
 Finalize the complete record before returning the brief; if saving fails, do not
@@ -201,13 +197,10 @@ Do not run the PIP pipeline or package tests. Do not start sessions, workers,
 scheduled follow-ups or background jobs. Do not edit package files, Plans,
 roadmap, design, site, active-state or paused formal records. No Git mutation.
 Writes are limited to the new assessment handoff and process temporary files
-under resolved E:-contained `.tmp/pipsys`, through the existing wrapper. All
-writes and indirect caches must stay on E:, never C:; stop an unsafe write path.
+under resolved E:-contained `.tmp/pipsys`, through the existing wrapper. All writes and indirect caches must follow the platform write limits in `ORCHESTRATOR.md`, "Tools" (Windows: E: only, never C:); stop an unsafe write path.
 
 Minimal first: smallest end-to-end answer; safeguards only against almost-irreversible
 harm, otherwise Later; one functional check for each proposed change; use
 installed tools, add dependencies only if they save more work than they cost;
-keep any proposed Plan to about two pages. Ask only for almost-irreversible
-actions, Decided/scope changes, commits/pushes/merges or deleting non-generated
-files. Everything else within this assessment proceeds without asking. These
+keep any proposed Plan to about two pages. Approval gates: `AGENTS.md`, "Autonomy" and "Git scope"; copy that list into saved prompts. Everything else within this assessment proceeds without asking. These
 principles do not widen this command's read-only scope or bypass workflow gates.

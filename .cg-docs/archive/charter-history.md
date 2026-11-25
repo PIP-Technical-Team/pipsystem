@@ -25,3 +25,15 @@ M0 and M1 in parallel. M0: Andres decides the proposals in SYSTEM_DESIGN.md. M1:
 Phase 1 integrated all eight selected M0 outcomes and approved M1 R2/R3/R4. Phase 2 reconciled existing roadmap records through cg-roadmap and freshly verified all nine unique M2 start-gate features as done, with their decision/harvest evidence. M1 R1 and unresolved capability gaps remain Open; M1 is not complete and M2 implementation does not start here.
 
 Plan: `.cg-docs/plans/2026-10-07-m0-m1-design-integration.md`. Approval: the user's explicit `Approve conditional Focus` answer during Phase 1, conditional on this gate passing; recorded in `.cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md`, Run 1 Decisions and Run 2 gate evidence. This archive entry is appended before the charter change. The paired review date uses local execution date `2026-10-07`, so the date value remains unchanged.
+
+## 2026-11-25: Duplicate Key Deliverable Merged
+
+Source: `compound-gpid.md:19-22` before this edit. Previous `last-reviewed`: `2026-10-30`.
+
+### Removed text
+
+- A planner that decides what needs to run for a given release, kept separate from the executor so the compute platform can change without changing the logic.
+
+### Reason for Removal
+
+The next bullet states the same deliverable and adds that the planner is built on `{stamp}`. It supersedes the removed bullet, so only one planner deliverable remains. Approval: the user's explicit instruction to merge the duplicate deliverable, 2026-11-25.

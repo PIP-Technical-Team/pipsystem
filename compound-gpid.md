@@ -2,7 +2,7 @@
 project-name: "pipsystem"
 team: "PIP-Technical-Team"
 created: "2026-08-21"
-last-reviewed: "2026-10-30"
+last-reviewed: "2026-11-25"
 ---
 
 # pipsystem
@@ -16,7 +16,6 @@ Design and build an incremental build system for the PIP data pipeline: a system
 - Structured tables documenting how the nine PIP R packages read data, write data, consume auxiliary data, and encode cleaning rules.
 - Data contracts per pipeline layer.
 - A dependency graph with an explicit invalidation model.
-- A planner that decides what needs to run for a given release, kept separate from the executor so the compute platform can change without changing the logic.
 - A planner built on `{stamp}` that decides what needs to run for a given release,
   plus whatever extensions to `{stamp}` that requires, kept separate from the
   executor so the compute platform can change without changing the logic.
