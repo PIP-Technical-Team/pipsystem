@@ -1,0 +1,13 @@
+---
+title: "M2: one survey from download to test release"
+---
+
+## Phase 2: Prepare the inputs and one survey
+
+- Step 04: Prepare the auxiliary inputs.
+- [Step 05: Download one survey](phase-02/step-05-download-one-survey.qmd).
+  Keep the versioned Stata file on the network drive.
+- Step 06: Use that saved file to format and validate the survey.
+
+See the [full M2 plan](../../.cg-docs/plans/2026-10-10-m2-walking-skeleton.md)
+and the [pipeline overview](../pip-pipeline.qmd).

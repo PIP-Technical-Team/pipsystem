@@ -1,0 +1,71 @@
+---
+title: "M2 · Phase 2 · Step 05: Download one survey"
+format: html
+execute:
+  eval: false
+  cache: false
+---
+
+**Goal:** Save the original Stata file for Colombia, 2010 GEIH, GPWG, master V02, harmonization V09. Step 06 reads this file without another download.
+
+**On this Mac:** Mount the approved `pip` share in Finder and run the cell. It looks in `/Volumes/pip/pipsystem` and opens the saved survey. For this read-only check, no environment setting, R restart, or DLW connection is needed. If the share is mounted elsewhere, `PIP_SURVEY_ROOT` can point to its `pipsystem` folder. A normal render does not run the cell.
+
+**First download only:** If the file is missing, use an R session with DLW access and `TMPDIR` set to the network survey folder **before R starts**. This keeps download staging and the cache off the Mac's local disk.
+
+```{r save-one-survey}
+save_one_survey <- function() {
+  root <- Sys.getenv("PIP_SURVEY_ROOT")
+  if (!nzchar(root)) root <- "/Volumes/pip/pipsystem"
+  if (!dir.exists(root)) {
+    stop("Survey folder not found: ", root, ". Mount the pip share in Finder.",
+         call. = FALSE)
+  }
+  root <- normalizePath(root, mustWork = TRUE)
+  mounts <- system2("/sbin/mount", c("-t", "smbfs"), stdout = TRUE)
+  mount_paths <- sub("^.* on (.*) \\(.*$", "\\1", mounts)
+  if (!dirname(root) %in% mount_paths) {
+    stop("The survey folder is not on a mounted SMB share. Check the mount.",
+         call. = FALSE)
+  }
+
+  filename <- "COL_2010_GEIH_V02_M_V09_A_GMD_GPWG.dta"
+  target <- file.path(root, filename)
+  check_table <- function(path) {
+    sample <- haven::read_dta(path, n_max = 1L)
+    stopifnot(nrow(sample) == 1L, ncol(sample) > 0L)
+  }
+
+  if (file.exists(target)) {
+    check_table(target)
+    return("PASS: existing network file opened; no download or overwrite")
+  }
+
+  if (!startsWith(normalizePath(tempdir()), paste0(root, "/"))) {
+    stop("Survey file not found. For a new download, start R with TMPDIR=",
+         root, ". No download was attempted.", call. = FALSE)
+  }
+  withr::local_envvar(c(R_USER_CACHE_DIR = tempdir(), XDG_CACHE_HOME = tempdir()))
+  staged <- tempfile("incoming-", tmpdir = tempdir(), fileext = ".dta")
+  receipt <- dlw::dlw_download_file(
+    country_code = "COL", filename = filename, server = "GMD", year = 2010L,
+    vermast = "V02", veralt = "V09", path = staged, overwrite = FALSE
+  )
+  stopifnot(!is.data.frame(receipt), is.list(receipt),
+            identical(tolower(receipt$filename), tolower(filename)),
+            file.exists(staged))
+  check_table(staged)
+
+  # Publish the checked file on the same volume; never replace another copy.
+  status <- system2("/bin/mv", c("-n", shQuote(staged), shQuote(target)))
+  stopifnot(status == 0L, !file.exists(staged))
+  check_table(target)
+  return("PASS: saved and reopened the network file")
+}
+cat(save_one_survey(), "\n")
+```
+
+**Check:** At least one row and one column can be read from the saved file. This is a file-read check, not survey validation. A failure leaves Step 06 unverified; it does not trigger a different download or a local fallback.
+
+**Step 06 input:** `COL_2010_GEIH_V02_M_V09_A_GMD_GPWG.dta` in the network survey folder. Treat this original file as read-only.
+
+**Recorded Mac check (2026-11-25): PASS.** The first run saved and reopened the network file. A fresh R session opened it again without a download or overwrite. Formatting and survey validation were not run.
