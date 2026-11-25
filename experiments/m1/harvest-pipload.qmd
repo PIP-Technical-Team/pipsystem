@@ -1,0 +1,42 @@
+---
+title: "Harvest pipload"
+format: html
+engine: markdown
+---
+
+[M1 index](index.qmd)
+
+**Feature:** `harvest-pipload` (`done` in [roadmap](../../roadmap.json), line 30 at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`). Done means evidence collected.
+
+**Accountable owner:** `pipload` for PIP-aware access; `stamp` owns generic version storage. **Recorder:** the M1 pipload worker; the coordinator recorded the cross-package comparison ([harvest record](../../HARVEST.md), lines 26-35, and [findings](../../notes/FINDINGS.md), lines 78-84).
+
+## What and why
+
+The 2026-10-07 harvest separated PIP lookup and metadata handling from generic versioned I/O. This distinction matters for reuse without adding a second rebuild authority. **Inputs:** L1 ([brief](../../HARVEST_BRIEF.md), lines 100-102 at pipsystem `84c384f78ed44bcb96bb19c6d364519df5b5db6f`), pipload source/tests and the coordinator's stamp comparison. **Outputs:** [pipload note](../../notes/pipload.md), lines 15-63, and [harvest record](../../HARVEST.md), lines 16 and 35, at pipsystem `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c`, separate from the package pins.
+
+## Pinned evidence
+
+| Input repository and historical commit | Registered checkout on 2026-11-25 (no dirty paths) |
+|---|---|
+| pipload `ff9a81e386a09fb2531c154f63fd2b91521313c6` | `~/Developer/pip/pipload`, `feat/m2-stamp-adapter`, `4ef0d90a974cb6ff0725da69373bde421dd04ad5` |
+| stamp `b6e5e2c5519a7c00dbb8f815a59aeac2daf9592e` (coordinator comparison) | `~/Developer/pub-Rpackages/stamp`, `ready_cran`, `db1b29cd248a3a6cb737c71db176ae6bd76d2a1d` |
+
+The October pipload checkout had untracked `sessionInfoLog`; the harvest did not use it.
+
+- **PIP lookup:** pipload resolves release paths, aliases and survey inventory rows; auxiliary access takes a measure and filters default PPP rows after reading (`R/load_pip_data.R:74-145,174-255`; `R/load_aux_data.R:24-73`, pipload).
+- **Delegation:** `pip_read()` calls `st_versions()` and `st_load()`; `pip_write()` calls `st_save()`. Stamp keeps the generic artifact/version/parent tables (`R/pip_read-write.R:82-107,175-185`, pipload; `R/version_store.R:122-146,799-822`, stamp).
+- **Two metadata surfaces:** inventory enrichment reads a pinned QS2 **artifact** directly at `path_metadata/versions/version_id_metadata/artifact`. Stamp snapshots store `artifact` separately from `sidecar.json` or `sidecar.qs2` (`R/pip_inv_enrich.R:219-260`, pipload; `R/version_store.R:631-661`, stamp). The path pattern is not evidence of tested compatibility.
+- **Legacy overlap:** directory signatures can skip an unchanged inventory update, not prove survey-content invalidation (`R/pip_update_inventory.R:178-194,345-355`, pipload). The legacy ranking puts HIST before BIN; whether an active new-pipeline caller uses it is UNKNOWN (`R/pip_find_data.R:307-308,399-419,426-428`, pipload).
+
+## Check on 2026-11-25
+
+**PASS, source comparison.** The pinned `pip_write()` body forwards the object, file, format, alias, metadata, code, key and `...` to `stamp::st_save()`. It does not decide which work runs.
+
+Offline retrieval used `git -C "$HOME/Developer/pip/pipload" show ff9a81e386a09fb2531c154f63fd2b91521313c6:R/pip_read-write.R`, `git -C "$HOME/Developer/pub-Rpackages/stamp" show b6e5e2c5519a7c00dbb8f815a59aeac2daf9592e:R/version_store.R`, and `git show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:notes/pipload.md` from the hub root.
+
+**Runtime: NOT RUN.** No R, package loads, test execution or release-folder access. Loaded package versions and build SHAs: UNKNOWN.
+
+## Gaps
+
+- PIP loader FST compatibility is UNKNOWN; the survey path assumes QS2 and the auxiliary loader does not forward its format to `pip_read()` (`R/load_pip_data.R:375-389`; `R/load_aux_data.R:37,61-66`; `R/pip_read-write.R:48-53,63-79`, pipload).
+- Real stamp/pipload integration for inventory-selected metadata versions is UNKNOWN. The enrichment tests construct the layout directly (`tests/testthat/test-pip_inv_enrich.R:3-14`, pipload). A release name alone is not a pinned release membership contract.

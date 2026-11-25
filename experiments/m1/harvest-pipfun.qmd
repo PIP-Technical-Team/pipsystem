@@ -1,0 +1,36 @@
+---
+title: "Harvest pipfun"
+format: html
+engine: markdown
+---
+
+[M1 index](index.qmd)
+
+**Feature:** `harvest-pipfun` (`done` in [roadmap](../../roadmap.json), line 31 at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`). Done means evidence collected.
+
+**Accountable owner:** `pipfun` for logging helpers. **Recorder:** the M1 pipfun worker; the coordinator recorded package provenance ([harvest record](../../HARVEST.md), lines 26-36).
+
+## What and why
+
+The 2026-10-07 harvest checked what gets recorded and whether the logger decides to skip work that passed. This separates observation from rebuild authority. **Inputs:** F1 ([brief](../../HARVEST_BRIEF.md), lines 104-106 at pipsystem `84c384f78ed44bcb96bb19c6d364519df5b5db6f`) and pinned pipfun source and test text. **Outputs:** [pipfun note](../../notes/pipfun.md), lines 17-94, and [harvest record](../../HARVEST.md), lines 17 and 36, at pipsystem `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c`, separate from the pipfun pin.
+
+## Pinned evidence
+
+**Pipfun input pin:** `0c6a78d9884ed0965a524311537eec2a5095d60b`. The 2026-11-25 registered checkout (`~/Developer/pip/pipfun`, `PROD`) was at `7d534516a8c17c33d537681610eccd4c29211762`, with no dirty paths. Citations below use the input pin.
+
+- **Event input and memory output:** a row records time, environment name, call, lowercased event and message, plus argument, metadata, output and trace list columns in a `piplog` data.table. The empty schema gains `logmeta` on append. No task ID, release, code hash or pass/fail column is mandatory (`R/log.R:113-137,168-190`).
+- **Persistence:** the default is QS2; the logger passes the whole log to stamp. The `dlw` and `pipeline` checkpoint saves add stage and time metadata (`R/log.R:352-398,434-491`; `R/log_checkpoint.R:43-69,88-118`). The checkpoint code input includes time; that affects log saves, not work selection.
+- **Skip question:** filtering by event, call and time, checking whether error rows exist, and counting grouped rows do not select work (`R/log.R:251-280`; `R/log_helpers.R:228-262`). The historical search did not locate a passed-work skip caller in pipfun ([pipfun note](../../notes/pipfun.md), lines 62-76).
+
+## Check on 2026-11-25
+
+**PASS, source comparison.** The F1 schema matches the pinned row constructor: `logmeta` has its own list column, distinct from `args`, and no mandatory success field is added. This does not establish the policy of callers outside pipfun.
+
+Offline retrieval used `git -C "$HOME/Developer/pip/pipfun" show 0c6a78d9884ed0965a524311537eec2a5095d60b:R/log.R` and, from the hub root, `git show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:notes/pipfun.md`.
+
+**Runtime: NOT RUN.** No R, package loads, tests or log writes. Loaded package version and build SHA: UNKNOWN.
+
+## Gaps
+
+- **NOT RUN**, direct verification of a pipeline passed-work skip caller. The 2026-10-07 note and pinned helpers do not locate that caller. Its success marker, task identity and response to changed inputs/code remain UNKNOWN.
+- The inspected test cases use QS2; persistence in other formats with all list columns intact remains UNKNOWN (`tests/testthat/test-log.R:305-445`). No source-level contradiction with the target logging boundary follows solely from these helpers.

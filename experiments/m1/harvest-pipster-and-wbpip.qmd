@@ -1,0 +1,40 @@
+---
+title: "Harvest pipster and wbpip"
+format: html
+engine: markdown
+---
+
+[M1 index](index.qmd)
+
+**Feature:** `harvest-pipster-and-wbpip` (`done` in [roadmap](../../roadmap.json), line 32 at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`). Done means evidence collected.
+
+**Accountable owners:** `pipster` for target calculations and `wbpip` for the reference calculations. **Recorder:** the M1 coordinator wrote the joint note from two separate workers' evidence ([harvest record](../../HARVEST.md), lines 26-28, 37).
+
+## What and why
+
+The 2026-10-07 harvest compared available calculations and file access with the microdata and grouped-data references for the target stages 5-7. **Inputs:** P1-P2 ([brief](../../HARVEST_BRIEF.md), lines 108-112 and 129-131 at pipsystem `84c384f78ed44bcb96bb19c6d364519df5b5db6f`) and each package's pinned source and test text. **Outputs:** [joint note](../../notes/pipster_wbpip.md), lines 13-103, and [harvest record](../../HARVEST.md), lines 18-19 and 37, at pipsystem `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c`, distinct from **both** package pins.
+
+## Pinned evidence
+
+| Input repository and historical commit | Registered checkout on 2026-11-25 (no dirty paths) |
+|---|---|
+| pipster `828064e406e07e711c34d2ba725746e367d35f9b` | `~/Developer/pip/pipster`, `PROD`, `828064e406e07e711c34d2ba725746e367d35f9b` |
+| wbpip `fd2c687ed527ebe33d0a7addf9859f72f71ff39f` | `~/Developer/pip/wbpip`, `PROD`, `ae0d3937bc61b27fa4566e72a75c56e562ac7f88` |
+
+- **P1, pipster:** the exported calculations cover grouped Lorenz fitting, distribution statistics and poverty calculations. The inspected calculation paths return in-memory results and do not directly read or save files. `pipgd_params()` stores a supplied mean, not a dedicated mean estimate (`NAMESPACE:3-12`; `R/pipgd_params.R:33-99`; `R/pipgd_dist.R:24-72,93-135,164-213`; `R/pipgd_pov.R:14-65,164-228`, pipster). Example-data scripts are separate (`data-raw/pip_gd.R:13-33`, pipster).
+- **P2, wbpip microdata:** `md_compute_dist_stats()` consumes welfare and weights and returns mean, median, Gini, polarization, MLD and welfare shares as `quantiles`; `md_compute_quantiles()` returns cutpoints, not shares (`R/md_compute_dist_stats.R:19-64`; `R/md_compute_quantiles.R:16-38,56-83`, wbpip).
+- **P2, wbpip grouped data:** `gd_compute_dist_stats()` consumes cumulative welfare and population shares and a supplied mean; it returns the same five scalar statistics and shares as `deciles`. `sd_create_synth_vector()` is a separate route producing welfare and weights, not an equivalent estimate by inspection (`R/gd_compute_dist_stats.R:6-44,73-105`; `R/sd_create_synth_vector.R:26-85,107-112,159-171`, wbpip).
+- **Stages 6-7:** `fill_gaps()` computes poverty-line statistics, not the target lineup distribution; imputed dispatch does not construct a missing-country distribution (`R/fill_gaps.R:81-106,117-159`; `R/compute_pip_stats.R:61-64`; `R/prod_compute_pip_stats.R:33-45`, wbpip).
+
+## Check on 2026-11-25
+
+**PASS, source comparison of both pins.** The pipster parameter result stores the supplied mean (`R/pipgd_params.R:91-99`). The wbpip wrappers corroborate the joint note's distinct share keys: the microdata list returns `quantiles = share_quant`; the grouped wrapper selects `deciles` (`R/md_compute_dist_stats.R:58-64`; `R/gd_compute_dist_stats.R:95-105`).
+
+Offline retrieval used `git -C "$HOME/Developer/pip/pipster" show 828064e406e07e711c34d2ba725746e367d35f9b:R/pipgd_params.R`, `git -C "$HOME/Developer/pip/wbpip" show fd2c687ed527ebe33d0a7addf9859f72f71ff39f:R/md_compute_dist_stats.R`, and `git show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:notes/pipster_wbpip.md` from the hub root.
+
+**Runtime: NOT RUN.** No R, package loads or numerical tests. Loaded package versions and build SHAs: UNKNOWN.
+
+## Gaps
+
+- Numerical parity, default-call success and file access through every transitive dependency remain UNKNOWN. The grouped direct and synthetic paths need a separate comparison; they do not use the same Lorenz fit error measure (`R/gd_compute_dist_stats.R:39-44,73-77`; `R/sd_create_synth_vector.R:47-85,107-112`, wbpip).
+- **NOT RUN**, direct verification of the `targets` pipeline. The 2026-10-07 joint note, lines 81-87, and brief, lines 129-131, defer that source to M4. Full lineup and missing-country inputs, methods and outputs remain UNKNOWN.

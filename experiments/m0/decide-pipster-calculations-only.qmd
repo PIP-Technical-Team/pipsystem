@@ -1,0 +1,49 @@
+---
+title: "M0-05: pipster calculations only"
+format: html
+---
+
+**Feature ID:** `decide-pipster-calculations-only`.
+
+**Owner:** `pipsystem` design record. `pipster` owns calculations. `pipdata`
+coordinates; `stamp` selects rebuild work and manages artifact versions.
+
+**Git author:** R. Andres Castaneda. **Original recorder:** UNKNOWN.
+
+## Decision
+
+Keep calculations reusable by separating them from work selection and file I/O.
+A separate layer selects estimates from a data list, supplies their inputs, and
+saves their outputs through `stamp`. `pipster` does not choose what to run, read
+files, or save results.
+
+**Inputs:** Data supplied in memory to calculation functions.
+
+**Outputs:** In-memory calculation results returned to the caller; the
+coordinating layer handles storage separately.
+
+## Pinned evidence
+
+Repository: `pipsystem`. From its root, use `git -C . show <sha>:<path>` with
+the SHA and path below (omit the final line range).
+
+- [First approval, 2026-10-07](../../.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md:60-70,127`.
+- [Follow-up confirmation](../../.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md:208-211,235`.
+- [Confirmed M1 R3 approval](../../.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md):
+  `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md:132-139`.
+- [Integrated package boundaries](../../SYSTEM_DESIGN.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:SYSTEM_DESIGN.md:288-299,303-311,333-334`.
+
+## Check and gaps
+
+**2026-11-25, pinned-record comparison: PASS.** Read the approvals and integrated
+text with `git show`. The design preserves the calculation-only boundary and
+uses the later M1 R3 approval to place the separate layer in `pipdata`, with no
+new package or independent rebuild authority.
+
+**Runtime: NOT RUN.** Exact result contracts and the manifest authority
+reconciliation remain Open. The comparison does not verify package behavior.
+
+[Back to the M0 index](index.qmd)

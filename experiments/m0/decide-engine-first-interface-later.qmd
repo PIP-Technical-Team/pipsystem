@@ -1,0 +1,50 @@
+---
+title: "M0-04: Engine first, interface later"
+format: html
+---
+
+**Feature ID:** `decide-engine-first-interface-later`.
+
+**Owner:** `pipsystem` design record. The separate M1 R3 decision assigns
+release coordination to `pipdata` and leaves rebuild authority with `stamp`.
+
+**Git author:** R. Andres Castaneda. **Original recorder:** UNKNOWN.
+
+## Decision
+
+Put execution logic in plain R functions. Design analyst workflows and feedback
+with the engine, so a later interface can use the engine without taking over
+execution. Defer interface choice and implementation. Start with the smallest
+complete solution, without a general framework.
+
+**Inputs:** A release, work scope, and execution mode are illustrative engine
+inputs. Analyst workflow requirements inform the design.
+
+**Outputs:** Engine execution and analyst feedback as separate concerns from
+the interface. The design specifies a run summary with attempted outcomes,
+failure details, and blocked work, separate from persistent run records.
+
+## Pinned evidence
+
+Repository: `pipsystem`. From its root, use `git -C . show <sha>:<path>` with
+the SHA and path below (omit the final line range).
+
+- [First approval, 2026-10-07](../../.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md:42-47,88-90,124,133-138`.
+- [Confirmed M1 R3 approval](../../.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md):
+  `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md:132-139`.
+- [Integrated engine rule and coordination boundary](../../SYSTEM_DESIGN.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:SYSTEM_DESIGN.md:215,260-282,307,341`.
+
+## Check and gaps
+
+**2026-11-25, pinned-record comparison: PASS.** Read the M0 and M1 approvals
+and integrated text with `git show`. The design preserves the plain R engine,
+analyst workflow and feedback requirement, and deferred interface. The package
+location comes from M1 R3, not the first M0 approval.
+
+**Runtime: NOT RUN.** The illustrative `run(release, scope, mode)` is not a fixed
+API. Exact signatures, detailed workflows, feedback columns, interface, and
+platform remain Open.
+
+[Back to the M0 index](index.qmd)

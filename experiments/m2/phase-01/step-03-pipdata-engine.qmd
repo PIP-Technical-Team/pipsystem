@@ -1,0 +1,85 @@
+---
+title: "M2 Phase 01, Step 03: pipdata engine"
+format: html
+execute:
+  enabled: false
+---
+
+[Return to Phase 01](index.qmd)
+
+## What and why
+
+Step 03 implemented the `create-engine-skeleton` feature's bounded recipe route.
+It separates pipdata release coordination from calculation and makes stamp the
+only selector for that route. It does not replace the legacy manifest-driven
+route when `recipes` is omitted.
+
+**Owner:** pipdata owns release coordination; stamp owns rebuild decisions and
+pipload owns the access adapter. **Recorder:** The pipdata Code session recorded
+the October 27 package work and its checks. This page is a pipsystem backfill.
+
+## Inputs and outputs
+
+**Inputs:** The documented `pipdata::pd_run_pipeline()` recipe route accepts a
+`TEST` release context with an initialized local stamp root and an explicit
+node list. Nodes provide paths, parent pins, a calculation, known helpers and
+constants, semantic metadata, and an `rds`, `qs2`, or `fst` format. The original
+contract required the approved Windows E-drive runtime; it was incremental only
+and rejected nondefault legacy controls.
+
+**Outputs:** A `data.table` with preview decision, outcome, reason, exact
+version and proof IDs, and whether work was attempted. The route delegates
+selection and revalidation to public stamp functions and permits exact pinned
+reads through the approved adapter. It does not produce a registered test
+release by itself.
+
+## Pinned evidence
+
+The links open local source records. Repository roots are listed in the
+[local registry](../../../tools/pipsys/packages.csv).
+
+| Repository and record | Lines | Offline Git reference |
+|---|---|---|
+| pipsystem, [M2 plan](../../../.cg-docs/plans/2026-10-10-m2-walking-skeleton.md) | 278-288 | `git -C <pipsystem> show dcfd90671a25fd048162aead88e4674d3ec90e10:.cg-docs/plans/2026-10-10-m2-walking-skeleton.md` |
+| pipsystem, [October 27 engine handoff](../../../.cg-docs/orchestration/outputs/pipdata/m2-engine-work/20261027-plan-authority-work/handoff.md) | 11-43, 72-90, 103-107 | `git -C <pipsystem> show dcfd90671a25fd048162aead88e4674d3ec90e10:.cg-docs/orchestration/outputs/pipdata/m2-engine-work/20261027-plan-authority-work/handoff.md` |
+| pipsystem, [October 30 status and delivery record](../../../.cg-docs/orchestration/outputs/pipsystem/pre-m2-housekeeping/20261030T145818Z-orchestrator/handoff.md) | 21-26, 40-44 | `git -C <pipsystem> show dcfd90671a25fd048162aead88e4674d3ec90e10:.cg-docs/orchestration/outputs/pipsystem/pre-m2-housekeeping/20261030T145818Z-orchestrator/handoff.md` |
+| pipdata, public engine contract at the delivered feature pin | 44-58, 66-80, 102-141 | `git -C <pipdata> show 8cde5c5efd4ab87f419661221f202205e5e87214:man/pd_run_pipeline.Rd` |
+| pipdata, original and corrected fixture reports | 313-342, 372-422 | `git -C <pipdata> show 8cde5c5efd4ab87f419661221f202205e5e87214:.cg-docs/work-reports/2026-10-27-m2-pipdata-authority.md` |
+| pipdata, package version at the delivered feature pin | 1-7 | `git -C <pipdata> show 8cde5c5efd4ab87f419661221f202205e5e87214:DESCRIPTION` |
+
+## Verification and gaps
+
+**2026-11-25 pinned-record check: PASS.** The delivered public manual matches
+the M2 plan's authority boundary on the opt-in recipe route: stamp selects and
+revalidates run/skip/blocked work, and legacy manifests do not select for that
+route. The same manual distinguishes the separate legacy behavior. The delivered
+pin is present in the current local branch history. Neither the documentation
+comparison nor that ancestry check runs the engine or proves deployment.
+
+**Historical fixture integration:** The October 27 handoff reports a selected
+41-test, 286-expectation gate and a separate installed built/skipped/empty smoke
+with exact data and metadata reads. It records stamp `0.0.11` content
+`5d1ddebdc926dad9c6ec99c08a65e74baee0da92` and pipload `1.0.0` adapter commit
+`4ef0d90a974cb6ff0725da69373bde421dd04ad5` as the producers used. The tested
+pipdata candidate was uncommitted; `8cde5c5efd4ab87f419661221f202205e5e87214`
+is the cited delivery revision (version `1.0.0`), not the build SHA for that
+run. The October 28 work report supersedes the initial count with 46 tests and
+324 expectations, no failures/errors/warnings/skips, and a fresh installed
+smoke on `rds`, `qs2`, and `fst`. The corrected run identifies its uncommitted
+candidate by a 182-file source manifest on base
+`4728a2b2d2aadb43ce72ddf6c19732f75188a208` (work report lines 403-415),
+not by the delivery SHA. Forty-one existing test files remained excluded.
+
+**Current runtime and live testing: NOT RUN.** No R package was loaded (loaded
+version and build SHA `UNKNOWN`). No local substitute for the original isolated
+Windows runtime was verified, and no pipeline entry point, live DLW, mounted
+storage, or release target was used. The registered pipdata checkout was clean
+(no staged, unstaged, or untracked paths) on `fix/m2-cpi-admission-checkpoint` at
+`c70ae403acde648aff1a49d8d3178ca0202c6064`. Pipload was cited through the
+handoff; its checkout was not read.
+
+**Gaps:** The selected package integration does not certify the umbrella Plan's
+L-authority/V6 gate (work report lines 338-344). It does not establish default-branch
+adapter installation, full-suite or shared-storage/concurrency behavior, or the
+complete survey-to-release chain. The handoff and work report provide historical
+fixture results, not tests re-executed against the current checkout.

@@ -1,0 +1,48 @@
+---
+title: "M0-03: Stage 5 output shape"
+format: html
+---
+
+**Feature ID:** `decide-stage-5-output-shape`.
+
+**Owner:** `pipsystem` design record. `pipster` calculates; `pipdata` coordinates
+selection and saving through `stamp`.
+
+**Git author:** R. Andres Castaneda. **Original recorder:** UNKNOWN.
+
+## Decision
+
+Save each successful estimate before reusing it, and treat assembly as separate
+work. If assembly fails, it can run again from saved results without throwing
+away or recomputing successful, unchanged estimates. Track actual dependencies
+between estimates. The approval rejects a mandatory long table.
+
+**Inputs:** Welfare in PPP for the relevant PPP year and actual estimate
+dependencies. Assembly takes independently saved results as inputs.
+
+**Outputs:** A list or `data.table` from each estimate, an independently versioned
+saved result, and a separate assembly outcome. API-bound files retain their
+required names, shapes, keys, and units.
+
+## Pinned evidence
+
+Repository: `pipsystem`. From its root, use `git -C . show <sha>:<path>` with
+the SHA and path below (omit the final line range).
+
+- [Follow-up approval, 2026-10-07](../../.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md:206-223`.
+- [Integrated Stage 5 rule and package boundaries](../../SYSTEM_DESIGN.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:SYSTEM_DESIGN.md:150-151,162-168,305-313,333`.
+
+## Check and gaps
+
+**2026-11-25, pinned-record comparison: PASS.** Read both records with
+`git show`. The design retains per-result saving, separate assembly and failure
+recovery, real dependencies, the rejection of a mandatory long table, and
+compatibility with existing API files.
+
+**Runtime: NOT RUN.** Result keys, types, null rules, units, physical storage,
+and assembly granularity remain Open. Decile shares and cutpoints need distinct
+semantics. The comparison did not test assembly recovery or API compatibility.
+
+[Back to the M0 index](index.qmd)

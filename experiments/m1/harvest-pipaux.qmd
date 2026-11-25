@@ -1,0 +1,39 @@
+---
+title: "Harvest pipaux"
+format: html
+engine: markdown
+---
+
+[M1 index](index.qmd)
+
+**Feature:** `harvest-pipaux` (`done` in [roadmap](../../roadmap.json), line 28 at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`). Done means evidence collected.
+
+**Accountable owner:** `pipaux` for auxiliary processing. **Recorder:** the M1 pipaux worker; the coordinator recorded package provenance ([harvest record](../../HARVEST.md), lines 26-33).
+
+## What and why
+
+The 2026-10-07 harvest traced CPI, PPP, population and the price framework (PFW) to identify candidate row keys and distinguish input changes from rebuild decisions. **Inputs:** A1-A4 ([brief](../../HARVEST_BRIEF.md), lines 80-88 at pipsystem `84c384f78ed44bcb96bb19c6d364519df5b5db6f`) and pinned pipaux source and test text. **Outputs:** [pipaux note](../../notes/pipaux.md), lines 14-115, and [harvest record](../../HARVEST.md), lines 14 and 33, both at pipsystem `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c`, separate from the package input pin.
+
+## Pinned evidence
+
+**Pipaux input pin:** `27c5a3c8eab8ddcabb032d620af6a1f76e62f444`. The 2026-11-25 registered checkout (`~/Developer/pip/pipaux`, `fix/m2-aux-validator-checkpoint`) was at `5f5e8531592ca7668b33bbd23564ef90f1c8c688`, with no dirty paths. In October the record lists one untracked `compound-gpid.local.md`; the harvest did not use it. Citations below use the input pin.
+
+| Question | What the source supports at the pipaux input pin |
+|---|---|
+| A1. Granularity | Load wrappers request whole measures; they supply no survey row selector. Saved keys suggest partitions, rather than implementing them: CPI country/year ID/acronym/level/base year; PPP country/level/PPP year/release/adaptation; population country/year/level. `R/aux_cpi.R:55-60,214-242`; `R/aux_ppp.R:61-63,251-271`; `R/aux_pop.R:35-39,191-200`. |
+| A2. Dependencies | The scheduler reads a remote YAML dependency graph; GDP's code reads Maddison, WEO and WDI. The GDP wrapper also reads generated GDP back from GitHub, a mismatch with the historical target design. `R/utils.R:490-500`; `R/update_aux_data.R:67-90`; `R/aux_gdp.R:34-65,93-100,368-374`; historical pipsystem design at the brief pin, `SYSTEM_DESIGN.md:100`. |
+| A3. Hashes | The status check reads a stamp sidecar, compares raw GitHub file SHAs and compares the generator hash; cleaned-object saving goes through `pipload::pip_write()`. These are different checks. The [coordinator cross-check](../../notes/FINDINGS.md), line 82 at the output commit, traces the cleaned-object hash across package boundaries. `R/check_status.R:133-139,171-270`; `R/utils.R:470-485,539-541`. |
+| A4. PFW | The persisted key is `country_code`, `surveyid_year`, `welfare_type`. Validators accept only `inpovcal == 1`; the BIN flag is a setting, not a HIST/BIN rule. `R/aux_pfw.R:215-227,427-430,524-547,614-617,670-674`. |
+
+## Check on 2026-11-25
+
+**PASS, source comparison.** A4's three key fields match `key_cols` and the `pk` passed to `pip_aux_save()`; acronym is not in that save key. The separate clean validation key uses `year` and `is_alt_welf` (`R/aux_pfw.R:636-639`).
+
+Offline retrieval used `git -C "$HOME/Developer/pip/pipaux" show 27c5a3c8eab8ddcabb032d620af6a1f76e62f444:R/aux_pfw.R` and, from the hub root, `git show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:notes/pipaux.md`. The same form retrieves the other cited paths.
+
+**Runtime: NOT RUN.** No R, package loads, remote manifest fetches or auxiliary reads. Loaded package version and build SHA: UNKNOWN.
+
+## Gaps
+
+- **NOT RUN**, direct verification of the remote dependency graph: only its reader and the dated [pipaux note](../../notes/pipaux.md), lines 38-61, were checked. The remote graph's contents, revision and agreement with source dependencies are UNKNOWN.
+- External PFW exclusions and survey-specific choice policy remain UNKNOWN. The keys do not establish implemented row-level invalidation; see [pipdata D2](harvest-pipdata.qmd) and [findings](write-harvest-findings.qmd).

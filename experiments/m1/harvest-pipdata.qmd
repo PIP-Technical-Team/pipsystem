@@ -1,0 +1,42 @@
+---
+title: "Harvest pipdata"
+format: html
+engine: markdown
+---
+
+[M1 index](index.qmd)
+
+**Feature:** `harvest-pipdata` (`done` in [roadmap](../../roadmap.json), line 29 at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`). Done means evidence collected.
+
+**Accountable owner:** `pipdata` for survey acquisition, validation and deflation. **Recorder:** the M1 pipdata worker; the coordinator recorded package provenance and checked the wbpip deflation formula ([harvest record](../../HARVEST.md), lines 26-34 and 48).
+
+## What and why
+
+The 2026-10-07 harvest looked for survey-choice rules, the inputs each conversion consumes, the state left by validation, and the boundary between stamp storage and pipdata work selection. **Inputs:** D1-D4 ([brief](../../HARVEST_BRIEF.md), lines 90-98 at pipsystem `84c384f78ed44bcb96bb19c6d364519df5b5db6f`), pinned pipdata code/tests and the wbpip conversion source for the coordinator check. **Outputs:** [pipdata note](../../notes/pipdata.md), lines 13-127, and [harvest record](../../HARVEST.md), lines 15, 34 and 46-48, at pipsystem `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c`. The linked working-copy note includes a later acquisition-path annotation at line 88; the cited original is the committed blob.
+
+## Pinned evidence
+
+| Input repository and historical commit | Registered checkout on 2026-11-25 (no dirty paths) |
+|---|---|
+| pipdata `84442e979c98d33fa5565ab9e56d3179cc7d5278` | `~/Developer/pip/pipdata`, `fix/m2-cpi-admission-checkpoint`, `c70ae403acde648aff1a49d8d3178ca0202c6064` |
+| wbpip `fd2c687ed527ebe33d0a7addf9859f72f71ff39f` | `~/Developer/pip/wbpip`, `PROD`, `ae0d3937bc61b27fa4566e72a75c56e562ac7f88` |
+
+| Question | What the source supports at the pipdata input pin unless noted |
+|---|---|
+| D1. Module rule | Latest-version grouping retains module; PFW mapping filters by acronym and inclusion but does not choose across acronyms. New-pipeline HIST/BIN choice is UNKNOWN. `R/utils.R:335-365`; `R/dependency_plan.R:33-55`; `R/get_country_pfw.R:34-51,88-120,202-239`. |
+| D2. Deflation | CPI is selected by survey identity and base year; PPP by country, year, release and adaptation. CPI and PPP select national or row-area values independently. Population can adjust microdata weights, not the welfare division. `R/pd_aux_attr.R:129-165,189-210`; `R/pd_deflation.R:439-502,690-709,764-786,807-846,907-928`. Output names are versioned `welfare_ppp_...`, not the historical target `welfare_YYYY` (pipsystem brief pin, `SYSTEM_DESIGN.md:166`). |
+| D3. Checks | DLW validation uses YAML and R. The inventory retains invalid completed rows. The cited runnable route has neither a `status == "valid"` gate before cleaning nor an active post-format validation gate before saving. The acquisition and validation inventories and dependency manifest are distinct records; a dedicated needs-revision manifest is UNKNOWN. `inst/extdata/validation_spec.yml:14-87`; `R/pipdata_validate_gmd.R:580-646,679-703`; `R/dependency_execution.R:1-17,433-437`; `R/pipeline_stage_cores.R:158-172`; `R/pd_process_data.R:225-240,330-342`; `R/dependency_contract.R:36-59`. |
+| D4. Stamp use | pipdata loads exact versions through pipload and verifies hashes with stamp, but its dependency manifest and planner select work. This differs from the historical target's single stamp authority. `R/dependency_execution.R:20-44,559-710`; `R/dependency_plan.R:33-55,76-111,212-220`; pipsystem brief pin, `SYSTEM_DESIGN.md:188,217`. |
+
+## Check on 2026-11-25
+
+**PASS, cross-package source comparison.** The pipdata caller passes `welfare_lcu`, one PPP column and the CPI base-year column. The separately pinned wbpip callee divides `welfare_mean / ppp / cpi` (`R/deflate_welfare_mean.R:32-35`, wbpip). This confirms the formula in the harvest record, not numerical equivalence or actual survey processing.
+
+Offline retrieval used `git -C "$HOME/Developer/pip/pipdata" show 84442e979c98d33fa5565ab9e56d3179cc7d5278:R/pd_deflation.R`, `git -C "$HOME/Developer/pip/wbpip" show fd2c687ed527ebe33d0a7addf9859f72f71ff39f:R/deflate_welfare_mean.R`, and `git show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:notes/pipdata.md` from the hub root.
+
+**Runtime: NOT RUN.** No R, package loads, DLW requests, shared storage, or tests. Loaded package versions and build SHAs: UNKNOWN.
+
+## Gaps
+
+- The location and policy for selecting a preferred module or competing same-welfare survey remain UNKNOWN. Production invalid-survey behavior is also UNKNOWN; the source shows missing boundary checks, not a reproduced invalid write.
+- The keyed-invalidation test uses replacement workers (`tests/testthat/test-pd-run-pipeline.R:1547-1628`; `tests/testthat/helper-dependency-fixtures.R:506-616` at the pipdata pin). It does not establish real deflation or the target stamp work-selection contract. See [findings](write-harvest-findings.qmd).

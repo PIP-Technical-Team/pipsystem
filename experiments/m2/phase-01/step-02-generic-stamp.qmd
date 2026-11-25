@@ -1,0 +1,72 @@
+---
+title: "M2 Phase 01, Step 02: Generic stamp"
+format: html
+execute:
+  enabled: false
+---
+
+[Return to Phase 01](index.qmd)
+
+## What and why
+
+Step 02 implemented `close-stamp-gaps-for-skeleton` in stamp. The generic
+producer needs to decide whether an artifact runs, skips, or is blocked without
+knowing about PIP surveys or releases. It must preserve historical versions
+while recording successful execution against newer inputs, including cases
+where a rerun leaves the output unchanged.
+
+**Owner:** stamp. **Recorder:** The stamp worker recorded the package-local
+run; the October 21 pipsystem closeout preserved and qualified that evidence.
+This page is a pipsystem backfill.
+
+## Inputs and outputs
+
+**Inputs:** The approved local contracts, artifact targets, calculation requests
+with explicit parent pins and component fingerprints, declared semantic metadata,
+and a registered storage format.
+
+**Outputs:** The public `stamp::st_plan_rebuild()` request route previews run,
+skip, and blocked decisions with request and receipt IDs without writing state.
+`stamp::st_rebuild()` rechecks candidates after upstream results. The contract
+supports proof for unchanged output and same-version metadata access; it does
+not discover hidden dependencies or implement row-level invalidation.
+
+## Pinned evidence
+
+The links open local source records. Repository roots are listed in the
+[local registry](../../../tools/pipsys/packages.csv).
+
+| Repository and record | Lines | Offline Git reference |
+|---|---|---|
+| pipsystem, [M2 plan](../../../.cg-docs/plans/2026-10-10-m2-walking-skeleton.md) | 266-276 | `git -C <pipsystem> show dcfd90671a25fd048162aead88e4674d3ec90e10:.cg-docs/plans/2026-10-10-m2-walking-skeleton.md` |
+| pipsystem, [October 21 stamp evidence closeout](../../../.cg-docs/orchestration/outputs/stamp/stamp-release-followup-2026-10-20/20261021T121638Z-stamp-evidence-closeout/handoff.md) | 19-29, 35-61, 89-97, 103-105, 113-118 | `git -C <pipsystem> show dcfd90671a25fd048162aead88e4674d3ec90e10:.cg-docs/orchestration/outputs/stamp/stamp-release-followup-2026-10-20/20261021T121638Z-stamp-evidence-closeout/handoff.md` |
+| stamp, public planning contract | 16-36, 49-80 | `git -C <stamp> show 5d1ddebdc926dad9c6ec99c08a65e74baee0da92:man/st_plan_rebuild.Rd` |
+| stamp, October 15 execution report | 219-225, 308-327 | `git -C <stamp> show 5d1ddebdc926dad9c6ec99c08a65e74baee0da92:.cg-docs/work-reports/2026-10-15-m2-stamp-generic-gaps.md` |
+| stamp, package version at the producer content pin | 1-7 | `git -C <stamp> show 5d1ddebdc926dad9c6ec99c08a65e74baee0da92:DESCRIPTION` |
+
+## Verification and gaps
+
+**2026-11-25 pinned-record check: PASS.** The producer manual at the closeout's
+content pin documents explicit requests, read-only planning, and run/skip/blocked
+feedback. Its tree and the recorded merge
+`f7af3eda85565647fde9ca7f84e0f1147ddfac15` resolve locally to the same tree,
+`12ea22c4b2eaa0b2e1d93ea79d1cd20ca60cb4cb`. This confirms published source
+identity at those local Git objects, not the identity of an installed build.
+
+**Historical fixture evidence:** The October 15 report records an installed
+stamp `0.0.11` suite with 1,873 passing expectations, zero failures, nine
+baseline warnings, and seven baseline skips in a disposable Windows R 4.5.2
+runtime. The tested source was a working-copy manifest, not a clean tested
+commit. The October 21 closeout separately preserves the October 20 report of
+4,128 passes; the raw archive, full manifest, native exit capture and exact
+dependency snapshot were not independently verified in that closeout.
+
+**Current runtime, downstream integration and live testing: NOT RUN.** No R
+package was loaded; loaded version and build SHA are `UNKNOWN`. The registered
+stamp checkout was clean (no staged, unstaged, or untracked paths) on
+`ready_cran` at `db1b29cd248a3a6cb737c71db176ae6bd76d2a1d`; it was not used as
+the historical producer pin. No isolated runtime was established for this backfill.
+
+**Gaps:** Tree equality does not certify a current build or CRAN release. The
+local stamp fixtures do not establish pipdata/pipload integration, SMB or
+multiwriter guarantees, or end-to-end PIP behavior.

@@ -1,0 +1,42 @@
+---
+title: "Harvest stamp"
+format: html
+engine: markdown
+---
+
+[M1 index](index.qmd)
+
+**Feature:** `harvest-stamp` (`done` in [roadmap](../../roadmap.json), line 27 at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`). Done means evidence collected, not a working rebuild guarantee.
+
+**Accountable owner:** `stamp` for artifact storage and lineage. **Recorder:** the M1 stamp worker; the coordinator recorded package provenance ([harvest record](../../HARVEST.md), lines 26-32).
+
+## What and why
+
+The 2026-10-07 harvest checked whether generic artifact storage and lineage could support selective PIP rebuilds, without putting PIP-specific rules in stamp. **Inputs:** S1-S7 and the fit-table requirements ([brief](../../HARVEST_BRIEF.md), lines 38-78 at pipsystem `84c384f78ed44bcb96bb19c6d364519df5b5db6f`), plus the pinned stamp source and test text below. **Outputs:** [stamp note](../../notes/stamp.md), lines 7-101, [fit table](../../tables/stamp_fit.csv), lines 1-16, and [harvest record](../../HARVEST.md), lines 13 and 32. All three outputs are present in pipsystem commit `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c`, distinct from the stamp input pin.
+
+## Pinned evidence
+
+**Stamp input pin:** `b6e5e2c5519a7c00dbb8f815a59aeac2daf9592e`. The 2026-11-25 registered checkout (`~/Developer/pub-Rpackages/stamp`, `ready_cran`) was at `db1b29cd248a3a6cb737c71db176ae6bd76d2a1d`, with no dirty paths. Citations below are to the input pin, not this HEAD.
+
+| Question | What the source supports at the stamp input pin |
+|---|---|
+| S1. Partition parent | `st_save_part()` constructs an ordinary artifact path and forwards parents. Staleness compares immediate parent path/version pins; `st_write_parts()` is the bulk writer, not automatic consumer lineage. `R/partitions.R:175-212,342-428`; `R/version_store.R:799-822,1203-1217`. |
+| S2. Code hash | A function contributes formals and body; language is deparsed and strings are hashed. `code_label` is separate. A missing hash does not by itself make an artifact stale. `R/hashing.R:318-342,500-529`; `R/IO_core.R:318-334`; `R/version_store.R:1176-1217`. |
+| S3. Cutoff | A default no-change save skips before writing; a parents-only change can leave old lineage. The executor treats a skipped save without a version ID as failure. `R/IO_core.R:253-269,952-995`; `R/rebuild.R:296-342`. |
+| S4. Scale and locking | The `.stamp` catalog holds artifact, version and parent-index tables; the query reads the catalog, and catalog updates rewrite it. Exclusion depends on optional `filelock`; save decisions precede the artifact lock. `R/version_store.R:109-192,772-827,1257-1311`; `R/IO_core.R:253-279,1027-1044`. |
+| S5. Builders | Registry is in memory. The propagation loop removes planned children from its next frontier, so a simple chain can stop before the grandchild. The manual assertion of two levels is not a test pass. `R/rebuild.R:3-47,495-518`; `tests/manual/test_stamp_smoke.R:259-292`. |
+| S6. Metadata | Custom fields append to current sidecars; sidecar reads do not load data and have no version selector. Snapshots copy sidecars, and a metadata-only save can skip. `R/IO_core.R:253-269,310-348`; `R/format_registry.R:319-347`; `R/version_store.R:631-661`. |
+| S7. Release scope | An individual retained version can be loaded. A latest-only catalog query is not a persistent named release set. `R/IO_core.R:483-498`; `R/version_store.R:122-146,452-489,1257-1311`. |
+
+## Check on 2026-11-25
+
+**PASS, source comparison.** The S1 note matches the source chain: `st_save_part()` passes `parents` to `st_save()` and returns the concrete path and version; the stale check looks up the latest version of each recorded parent path. This does not verify selective invalidation across siblings. The fit CSV records 15 source assessments, not runtime results.
+
+Offline retrieval used `git -C "$HOME/Developer/pub-Rpackages/stamp" show b6e5e2c5519a7c00dbb8f815a59aeac2daf9592e:R/partitions.R` and, from the pipsystem root, `git show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:notes/stamp.md`. The same revision/path form retrieves the other cited files. No checkout switch or network access was needed.
+
+**Runtime: NOT RUN.** No R, package loads or calls. Loaded package version and build SHA: UNKNOWN.
+
+## Gaps
+
+- Selective sibling invalidation, removed partition keys, unchanged-pin refresh, and transitive/topological planning are not established at the input pin.
+- Target-scale and parallel-write safety, metadata-only versioning, and named-release capture and retention remain unverified. See [fit table](../../tables/stamp_fit.csv), lines 6-16, and [findings](write-harvest-findings.qmd).

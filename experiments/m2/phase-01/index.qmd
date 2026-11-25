@@ -1,0 +1,24 @@
+---
+title: "M2 Phase 01: Contract gates, generic stamp, and engine"
+format: html
+execute:
+  enabled: false
+---
+
+[Return to M2](../index.qmd)
+
+Phase 01 set the work boundaries, added generic rebuild mechanisms in stamp,
+and exercised the boundary between stamp and pipdata's minimal engine.
+
+| Record | Role in Phase 01 |
+|---|---|
+| [Step 01: Contracts and work orders](step-01-contracts-and-work-orders.qmd) | Prerequisite for the two features below; not a separate roadmap feature. |
+| [Step 02: Generic stamp](step-02-generic-stamp.qmd) | `close-stamp-gaps-for-skeleton` |
+| [Step 03: pipdata engine](step-03-pipdata-engine.qmd) | `create-engine-skeleton`; pipload adapter support is part of this feature. |
+
+The [October 10 M2 plan](../../../.cg-docs/plans/2026-10-10-m2-walking-skeleton.md)
+defines Phase 01 in lines 252-289. The [roadmap](../../../roadmap.json) lists the
+two features as `done` and M2 as `in-progress` (lines 43-49). Both references
+are at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`.
+The step records distinguish documentary checks, historical fixture results,
+package integration, and live testing. For later work, see the M2 index.

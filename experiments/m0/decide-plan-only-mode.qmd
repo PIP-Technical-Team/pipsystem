@@ -1,0 +1,44 @@
+---
+title: "M0-06: Plan-only mode"
+format: html
+---
+
+**Feature ID:** `decide-plan-only-mode`.
+
+**Owner:** `pipsystem` design record.
+
+**Git author:** R. Andres Castaneda. **Original recorder:** UNKNOWN.
+
+## Decision
+
+Let analysts inspect which work the normal planner would select and why, before
+they start a run. Plan-only mode does not execute a stage or change pipeline
+state.
+
+**Inputs:** The same inputs as normal planning, including the release, mode,
+and any scope limit.
+
+**Outputs:** An R `data.table` with selected work and selection reasons. This is
+a preview, not a stored execution commitment or an automatic Markdown export.
+
+## Pinned evidence
+
+Repository: `pipsystem`. From its root, use `git -C . show <sha>:<path>` with
+the SHA and path below (omit the final line range).
+
+- [First approval, 2026-10-07](../../.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md:102-107,119-128`.
+- [Integrated plan-only rule](../../SYSTEM_DESIGN.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:SYSTEM_DESIGN.md:258-276`.
+
+## Check and gaps
+
+**2026-11-25, pinned-record comparison: PASS.** Read both records with
+`git show`. The integrated rule at line 268 preserves normal planning, the
+table with reasons, no stage execution or state changes, and no stored
+commitment or automatic Markdown export.
+
+**Runtime: NOT RUN.** Exact columns remain Open. Neither record proves that
+runtime state stays unchanged.
+
+[Back to the M0 index](index.qmd)

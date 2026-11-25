@@ -1,0 +1,38 @@
+---
+title: "Harvest pipapi"
+format: html
+engine: markdown
+---
+
+[M1 index](index.qmd)
+
+**Feature:** `harvest-pipapi` (`done` in [roadmap](../../roadmap.json), line 33 at pipsystem `dcfd90671a25fd048162aead88e4674d3ec90e10`). Done means evidence collected.
+
+**Accountable owner:** `pipapi` for the API-side release input contract. **Recorder:** the M1 pipapi worker; the coordinator recorded package provenance ([harvest record](../../HARVEST.md), lines 26-38).
+
+## What and why
+
+The 2026-10-07 harvest traced the API's release-folder reads, join keys, and PPP conversion. A new release writer needs this contract to avoid changing the API's inputs or converting welfare twice. **Inputs:** I1 ([brief](../../HARVEST_BRIEF.md), lines 114-116 at pipsystem `84c384f78ed44bcb96bb19c6d364519df5b5db6f`) and pinned pipapi source and test text. **Outputs:** [pipapi note](../../notes/pipapi.md), lines 24-129, and [harvest record](../../HARVEST.md), lines 20 and 38, at pipsystem `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c`, separate from the package pin.
+
+## Pinned evidence
+
+**Pipapi input pin:** `280af151d05902a550d5dea18cd4bf1a3d013239`. The 2026-11-25 registered checkout (`~/Developer/pip/pipapi`, `DEV`) was at `123f260b4802ff212c3df65097a42146417041d0`, with no dirty paths. All package citations below use the input pin.
+
+| Consumer | Observed release inputs and outputs |
+|---|---|
+| Lookup creation | Reads `_aux` FST and RDS, and wide estimation FST tables, including `prod_svy_estimation.fst`, `prod_ref_estimation.fst`, and `dist_stats.fst`. The new path also reads `prod_refy_estimation.fst`, `lineup_years.fst` and `lineup_dist_stats.fst`. The [file-by-file inventory](../../notes/pipapi.md), lines 32-89 at the output commit, distinguishes unconditional, new-path, on-demand and cache inputs. `R/create_lkups.R:79-123,145-147,189-241,406-477`. |
+| Survey calculations | `survey_data/<cache_id>.fst` supplies welfare and weight. CPI and PPP join by reporting level within file; mean, median and wide statistics join by cache ID and reporting level. The reader divides `welfare` by `cpi * ppp` in memory, then drops CPI and PPP. `R/utils-pipdata.R:274-321`; `R/rg_pip.R:62-108`; `R/utils-stats.R:44-60,338-377`. |
+| New lineup calculations | `lineup_data/<country_code>_<reporting_year>.fst` supplies welfare, weights, reporting level, ordered indexes and cumulative fields `cw`, `cwy`, `cwy2`, `cwylog`. A test fixture includes the all-zero index-zero row. The reader does not deflate again at these sites; production writer units are UNKNOWN. `R/create_lkups.R:275-294`; `R/fg_pip.R:62-113`; `R/fgt_cumsum.R:67-108,348-377`; `tests/testthat/test-fgt_cumsum.R:27-66`. |
+
+## Check on 2026-11-25
+
+**PASS, source comparison.** The survey loader reads FST, joins by `reporting_level` as many-to-one, and computes `welfare / (cpi * ppp)` before removing the factor columns. That matches I1 and confirms why PPP values cannot simply replace the current survey `welfare` input without changing this reader.
+
+Offline retrieval used `git -C "$HOME/Developer/pip/pipapi" show 280af151d05902a550d5dea18cd4bf1a3d013239:R/utils-pipdata.R` and, from the hub root, `git show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:notes/pipapi.md`.
+
+**Runtime: NOT RUN.** No R, package loads, API calls, cache operations or release reads. Loaded package version and build SHA: UNKNOWN.
+
+## Gaps
+
+- **NOT RUN**, direct verification of the production release schema and writer: checked pinned reader and fixture source plus the October note, lines 124-128. Full schemas, null and uniqueness rules, writer units and deployed cache prerequisites remain UNKNOWN.
+- The old-release lookup validation path requires `refy_lkup` before old/new dispatch, while lookup creation adds the field only on the new path. This is an availability risk in source, not a reproduced API failure (`R/create_lkups.R:776-799`; `R/pip.R:57-67`; `R/validate_lkup.R:17-25,78-85`).

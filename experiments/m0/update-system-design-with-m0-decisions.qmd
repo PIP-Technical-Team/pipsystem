@@ -1,0 +1,61 @@
+---
+title: "Integrate the M0 decisions into SYSTEM_DESIGN"
+format: html
+---
+
+**Feature ID:** `update-system-design-with-m0-decisions`.
+
+**Owner:** `pipsystem` design and evidence workspace.
+
+**Git author:** R. Andres Castaneda. **Original recorder:** UNKNOWN.
+
+## Integration
+
+Move the eight approved M0 outcomes into the target design so later work uses
+agreed policy. Replace the rejected module-free and mandatory long-table
+proposals without erasing their history or treating unresolved mechanisms as
+decided. The October 7 integration also covered approved M1 R2, R3, and R4;
+it did not settle M1 R1.
+
+**Inputs:** The two October 7 M0 decision records, the confirmed M1 decisions,
+and the separately approved exact design edits and charter sentence in the
+integration plan and execution report.
+
+**Outputs:** The integrated design and charter boundary, and a completed M0
+roadmap feature linked to the integration plan. The eight decisions keep their
+M0-01 to M0-08 numbers; the integration feature has no decision number.
+
+## Pinned evidence
+
+Repository: `pipsystem`. From its root, use `git -C . show <sha>:<path>` with
+the SHA and path below (omit the final line range).
+
+- [First M0 approvals](../../.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md:119-142`.
+- [Remaining M0 approvals](../../.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md:169-246`.
+- [Confirmed M1 approvals](../../.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md):
+  `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md:132-142`.
+- [Integration plan: matrix, exact edits, and feature mapping](../../.cg-docs/plans/2026-10-07-m0-m1-design-integration.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:.cg-docs/plans/2026-10-07-m0-m1-design-integration.md:156-180,188-214,269-279`.
+- [Execution report: approvals, checks, and roadmap readback](../../.cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:.cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md:24-36,72-96,183-210`.
+- [Integrated design](../../SYSTEM_DESIGN.md) and [charter](../../compound-gpid.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:SYSTEM_DESIGN.md:121-139,164-168,186-205,215-225,248-280,288-311,323-355`;
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:compound-gpid.md:29-33`.
+- [Pinned roadmap](../../roadmap.json):
+  `dcfd90671a25fd048162aead88e4674d3ec90e10:roadmap.json:5-18`.
+
+## Check and gaps
+
+**2026-11-25, pinned-record comparison: PASS.** Read the approvals, plan,
+report, design, charter, and roadmap with `git show`. All eight numbered M0
+matrix rows map to the integrated design. The approved replacements D1-D5 and
+charter sentence match the pinned text. The roadmap preserves all nine M0 IDs,
+marks this integration feature `done`, and links it to the October 7 plan.
+
+**Runtime: NOT RUN.** Completion is for documentation. M1 R1 remains Open, as
+do mechanisms for metadata versioning, persistent failure status, and dated
+release capture and retrieval. This record does not establish package behavior.
+
+[Back to the M0 index](index.qmd)

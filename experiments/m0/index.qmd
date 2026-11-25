@@ -1,0 +1,23 @@
+---
+title: "M0: Settle the design"
+format: html
+---
+
+The [roadmap](../../roadmap.json) at the cited revision records all nine M0 features as
+`done` (`pipsystem`, `dcfd90671a25fd048162aead88e4674d3ec90e10:roadmap.json:5-18`).
+These pages cover eight design decisions and their integration into the design.
+The numbers come from the [October 7 integration matrix](../../.cg-docs/plans/2026-10-07-m0-m1-design-integration.md)
+(`c439cdbbeeb0042b8d8b0ceb636c974363067d65:.cg-docs/plans/2026-10-07-m0-m1-design-integration.md:156-169`).
+The checks compare documents; they do not establish runtime behavior.
+
+- [M0-01: Module-bearing artifact identity](decide-module-out-of-survey-id.qmd)
+- [M0-02: Decisions become data](decide-decisions-become-data.qmd)
+- [M0-03: Stage 5 output shape](decide-stage-5-output-shape.qmd)
+- [M0-04: Engine first, interface later](decide-engine-first-interface-later.qmd)
+- [M0-05: pipster calculations only](decide-pipster-calculations-only.qmd)
+- [M0-06: Plan-only mode](decide-plan-only-mode.qmd)
+- [M0-07: Transient and permanent failures](decide-transient-and-permanent-failures.qmd)
+- [M0-08: Corrections keep history](decide-corrections-keep-history.qmd)
+- [Integrate the M0 decisions into SYSTEM_DESIGN](update-system-design-with-m0-decisions.qmd)
+
+[Back to the pipeline historical record](../pip-pipeline.qmd#historical-record)

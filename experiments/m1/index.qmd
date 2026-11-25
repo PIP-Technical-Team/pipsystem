@@ -1,0 +1,30 @@
+---
+title: "M1: Know the code"
+---
+
+M1 is still in progress. These eleven records cover completed harvests and
+design decisions. They do not show that the pipeline ran.
+
+## Package harvests
+
+- [stamp](harvest-stamp.qmd)
+- [pipaux](harvest-pipaux.qmd)
+- [pipdata](harvest-pipdata.qmd)
+- [pipload](harvest-pipload.qmd)
+- [pipfun](harvest-pipfun.qmd)
+- [pipster and wbpip](harvest-pipster-and-wbpip.qmd)
+- [pipapi](harvest-pipapi.qmd)
+- [Cross-package findings](write-harvest-findings.qmd)
+
+## Completed design decisions
+
+- [Calculation fingerprints](decide-code-version-rule.qmd)
+- [Orchestrator location](decide-orchestrator-location.qmd)
+- [pipload's role](decide-pipload-role.qmd)
+
+## Unfinished work
+
+- Row-level change detection remains open (roadmap status: `idea`).
+- The M1 design update remains `active`.
+
+[Return to the pipeline overview](../pip-pipeline.qmd#historical-record).

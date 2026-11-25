@@ -1,0 +1,65 @@
+---
+title: "M2 Phase 01, Step 01: Contracts and work orders"
+format: html
+execute:
+  enabled: false
+---
+
+[Return to Phase 01](index.qmd)
+
+## What and why
+
+Step 01 was a prerequisite for `close-stamp-gaps-for-skeleton` and
+`create-engine-skeleton`, not a separate roadmap feature. It set the order:
+agree on the generic contracts, record repository-local work and safe test
+boundaries, then pass tested producer pins to consumers. This kept the hub plan
+from authorizing package changes and kept stamp as the only rebuild authority.
+
+**Owner:** The M2 plan assigns responsibility to package maintainers and a
+user-selected integration owner; individual assignments are `UNKNOWN` in that
+plan. Andres is the decision owner for the outstanding D5/D8 questions.
+**Recorder:** The pipsystem discussion worker captured the October 14 outcome;
+its individual identity is `UNKNOWN`. This page is a pipsystem backfill.
+
+## Inputs and outputs
+
+**Inputs:** Approved M0/M1 policy, the umbrella plan's proposed contracts,
+read-only package API and test-setup observations, and direct user choices.
+
+**Outputs:** The dated discussion record, proposed local work orders, and a list
+of approvals still needed. The selected example is narrow: when upstream A
+advances but rerun B has the same result, calculation fingerprint, and
+result-relevant metadata, retain B's output version so C need not rerun just
+because A changed. A separate proposal preference blocks on missing requested
+fingerprint proof and allows recovery of missing saved proof. The discussion
+did not approve the full D5 contract or D8 work gates. The later stamp-local plan
+records separate execution approval, including exact D5 revisions and its local
+test gate; that approval did not come from the discussion alone.
+
+## Pinned evidence
+
+The links open local source records. The Git references identify the exact copies
+used in the offline check. Repository roots are listed in the
+[local registry](../../../tools/pipsys/packages.csv).
+
+| Repository and record | Lines | Offline Git reference |
+|---|---|---|
+| pipsystem, [M2 plan](../../../.cg-docs/plans/2026-10-10-m2-walking-skeleton.md) | 252-264 | `git -C <pipsystem> show dcfd90671a25fd048162aead88e4674d3ec90e10:.cg-docs/plans/2026-10-10-m2-walking-skeleton.md` |
+| pipsystem, [D5/D8 discussion and proposed work orders](../../../.cg-docs/brainstorms/2026-10-13-m2-stamp-contracts.md) (capture dated 2026-10-14) | 1-28, 240-292, 294-318 | `git -C <pipsystem> show dcfd90671a25fd048162aead88e4674d3ec90e10:.cg-docs/brainstorms/2026-10-13-m2-stamp-contracts.md` |
+| stamp, later repository-local plan | 22-45 | `git -C <stamp> show 5d1ddebdc926dad9c6ec99c08a65e74baee0da92:.cg-docs/plans/2026-10-14-m2-stamp-generic-gaps.md` |
+
+## Verification and gaps
+
+**2026-11-25 pinned-record check: PASS.** The umbrella plan requires separate
+local approval. The discussion records the user's choice of the upstream-only
+case and explicitly withholds full D5/D8 and implementation approval. The later
+stamp Plan identifies a separate October 15 execution approval. These records
+support the approval boundary, not blanket approval of all downstream work.
+
+**Runtime: NOT RUN.** This check concerns a decision record; no R package was
+loaded (loaded version and build SHA `UNKNOWN`). The discussion itself ran no
+fixtures, package integration, live DLW, or production storage checks.
+
+**Gaps:** Ownership and safe runtime were not established across all repositories
+in the discussion. Its choice does not settle cutoff after B's own calculation
+changes, M1 row-level invalidation, or later end-to-end acceptance.

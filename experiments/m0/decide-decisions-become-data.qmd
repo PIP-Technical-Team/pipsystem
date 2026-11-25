@@ -1,0 +1,44 @@
+---
+title: "M0-02: Decisions become data"
+format: html
+---
+
+**Feature ID:** `decide-decisions-become-data`.
+
+**Owner:** `pipsystem` design record. `stamp` retains rebuild authority.
+
+**Git author:** R. Andres Castaneda. **Original recorder:** UNKNOWN.
+
+## Decision
+
+Generate and version resolved survey selections. Comparing old and new rows
+shows additions, exclusions, and module switches. A rule edit that leaves the
+choices unchanged does not by itself require every calculation to run again.
+
+**Inputs:** Existing selection rules and explicit survey choices. The price
+framework file (PFW) retains survey inclusion and settings.
+
+**Outputs:** A generated table of full module-bearing survey IDs and data types.
+Do not edit the generated table by hand.
+
+## Pinned evidence
+
+Repository: `pipsystem`. From its root, use `git -C . show <sha>:<path>` with
+the SHA and path below (omit the final line range).
+
+- [Follow-up approval, 2026-10-07](../../.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md):
+  `e1175c02d71e836743fc684e3883043163837411:.cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md:192-204`.
+- [Integrated selection rule and Open items](../../SYSTEM_DESIGN.md):
+  `c439cdbbeeb0042b8d8b0ceb636c974363067d65:SYSTEM_DESIGN.md:106-123,186-199,325-330`.
+
+## Check and gaps
+
+**2026-11-25, pinned-record comparison: PASS.** Read both records with
+`git show`. The design preserves the generated, versioned rows and PFW's role.
+It keeps M1 R1 row-level invalidation Open and does not add a rebuild authority.
+
+**Runtime: NOT RUN.** The exact table schema, HIST versus BIN choice policy,
+policy for competing surveys, and choice input locations remain Open or UNKNOWN.
+The record does not establish selective invalidation in a running pipeline.
+
+[Back to the M0 index](index.qmd)

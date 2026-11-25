@@ -1,0 +1,51 @@
+---
+title: "M1 R4: Decide pipload role"
+format: html
+---
+
+[Return to the M1 index](index.qmd)
+
+**Feature:** `decide-pipload-role` (`done` for the decision; M1 remains `in-progress`).
+
+**Accountable owner:** `pipload` owns PIP-aware access; `stamp` owns version, hash and parent handling and rebuild selection.
+
+**Historical recorder:** R. Andres Castaneda, Git author of the approval record.
+
+## What and why
+
+Keep PIP-aware lookup and I/O in `pipload`. Delegate versions, hashes and parents to `stamp`; do not add independent rebuild decisions to `pipload`. This reuses the existing access functions without moving them into `pipdata` solely to give the runner one public entry point.
+
+## Inputs and outputs
+
+- **Inputs:** PIP survey or auxiliary lookup criteria and read or write requests.
+- **Outputs:** Lookup results and access to PIP artifacts through delegated I/O. Storage lineage comes from `stamp`; the adapter does not return an independent rebuild decision. The integrated policy does not specify how to retrieve metadata for a pinned historical version.
+
+## Pinned evidence
+
+All records below are in `pipsystem`. Local links open the checkout copies; the pins and line numbers identify the exact historical text.
+
+| Record | Commit | Path and lines |
+|---|---|---|
+| Original approval, 2026-10-07 | `2d41c34e7e9e4de9558e39c9915c9d6302d14b2c` | [`.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md`](../../.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md):104-130, 134-150, 167 |
+| Integrated policy | `c439cdbbeeb0042b8d8b0ceb636c974363067d65` | [`SYSTEM_DESIGN.md`](../../SYSTEM_DESIGN.md):284-294, 307-311, 336 |
+| Integration matrix | `c439cdbbeeb0042b8d8b0ceb636c974363067d65` | [`.cg-docs/plans/2026-10-07-m0-m1-design-integration.md`](../../.cg-docs/plans/2026-10-07-m0-m1-design-integration.md):172 (`M1-R4`) |
+| Roadmap status | `dcfd90671a25fd048162aead88e4674d3ec90e10` | [`roadmap.json`](../../roadmap.json):22-26, 35-39 |
+
+Offline retrieval from the `pipsystem` root (`nl -ba` numbers the full file):
+
+```sh
+git -C . show 2d41c34e7e9e4de9558e39c9915c9d6302d14b2c:.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md | nl -ba
+git -C . show c439cdbbeeb0042b8d8b0ceb636c974363067d65:SYSTEM_DESIGN.md | nl -ba
+git -C . show c439cdbbeeb0042b8d8b0ceb636c974363067d65:.cg-docs/plans/2026-10-07-m0-m1-design-integration.md | nl -ba
+git -C . show dcfd90671a25fd048162aead88e4674d3ec90e10:roadmap.json | nl -ba
+```
+
+## Executed comparison
+
+**2026-11-25, PASS (design records only).** Compared approval lines 116-130, 138-139 and 167 with design lines 288, 294, 309 and 336 using the pinned `git show` outputs. Both retain PIP access in `pipload` and delegate versions, hashes and parents to `stamp`, with no adapter rebuild authority. The design also distinguishes a separate QS2 metadata artifact from a `stamp` custom sidecar and keeps format and historical metadata access open.
+
+**Runtime: NOT RUN.** No package was loaded. Loaded package version and build SHA: `UNKNOWN`.
+
+## Gaps
+
+`fst` and QS2 compatibility and access to metadata for the exact pinned version remain open (approval line 167; design lines 309 and 336). The policy does not establish that the existing loader reads both formats or retrieves same-version metadata. No package source was re-read for this decision check.
