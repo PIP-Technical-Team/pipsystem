@@ -11,7 +11,7 @@ Read `compound-gpid.md` and `SYSTEM_DESIGN.md` first.
 3. **`UNKNOWN` is a valid answer. A plausible guess is not.**
 4. **Read the code and tests, not the README.** Several features are marked experimental. Only source and tests show what works.
 5. **Every notes file ends with a Gaps section that is never empty.**
-6. **Do not change `SYSTEM_DESIGN.md`.** Propose changes in `notes/FINDINGS.md` only.
+6. **Do not change `SYSTEM_DESIGN.md`.** Propose changes in `notes/FINDINGS.md` only. In other tasks, record Open-item evidence in your handoff (`AGENTS.md`).
 7. **One agent per package.** Each agent writes only its own files, so agents can run in parallel.
 
 ## 2. Output
