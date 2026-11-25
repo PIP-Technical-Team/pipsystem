@@ -19,6 +19,11 @@ this file is committed to git and shared with the team.
 
 Sources: `SYSTEM_DESIGN.md:194-205,323-383`; `.cg-docs/plans/2026-10-07-m0-m1-design-integration.md:129-154,296-312`; `.cg-docs/work-reports/2026-10-07-m0-m1-design-integration.md:185-299`. Reusable verification pattern: `.cg-docs/solutions/testing-patterns/2026-10-07-evidence-gated-design-integration.md`.
 
+### Historical Quarto Navigation
+
+- Verify cross-page HTML under `experiments/` in a fresh offline Quarto website project. List only the target QMDs in the scratch render configuration, render with `--no-execute`, and check generated hrefs, fragments, and return routes. This check does not authorize survey cells or establish runtime acceptance.
+- Use checkout links for access and full Git revisions, paths, and line ranges for historical claims. See the [offline Quarto testing pattern](.cg-docs/solutions/testing-patterns/2026-11-25-offline-quarto-navigation.md).
+
 ## Work in Progress
 <!-- Modules, features, or migrations currently underway -->
 

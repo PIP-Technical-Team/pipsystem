@@ -77,8 +77,9 @@ No package tests, pipeline runs or API calls were executed. These results prove 
 - [Design Open Register and capability gaps](../../../SYSTEM_DESIGN.md), lines 323-383.
 - [Approved strategy start gate](../../strategy/2026-10-07-pip-backend-roadmap.md), lines 151-174.
 - [Active-state contract](../../../.kilo/shared/active-state.contract.md), lines 44-66.
+- [Verify Quarto HTML navigation offline](2026-11-25-offline-quarto-navigation.md) for historical evidence pages with runtime execution disabled.
 
-No prior solution documents were found for reciprocal cross-references. This entry records a local workflow pattern; it does not supersede historical decision or harvest records.
+This entry records a local workflow pattern; it does not supersede historical decision or harvest records.
 
 ## Gaps
 
