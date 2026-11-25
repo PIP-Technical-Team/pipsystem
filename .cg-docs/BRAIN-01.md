@@ -1,6 +1,6 @@
 # 🧠 Project Brain — Part 1
 
-_Generated 2026-10-07_
+_Generated 2026-11-25_
 
 ## Decide / Harvest / System_Design.Md
 
@@ -50,15 +50,15 @@ _Keywords: `decide` · `harvest` · `system_design.md`_ · 60 entities
   > Decide pipload role
 - **[Update SYSTEM_DESIGN with M1 findings](roadmap.json#update-system-design-with-m1-findings)** · `feature` · _active_ · `—`
   > Update SYSTEM_DESIGN with M1 findings
-- **[Close stamp gaps for skeleton](roadmap.json#close-stamp-gaps-for-skeleton)** · `feature` · _idea_ · `—`
+- **[Close stamp gaps for skeleton](roadmap.json#close-stamp-gaps-for-skeleton)** · `feature` · _done_ · `—`
   > Close stamp gaps for skeleton
-- **[Create engine skeleton](roadmap.json#create-engine-skeleton)** · `feature` · _idea_ · `—`
+- **[Create engine skeleton](roadmap.json#create-engine-skeleton)** · `feature` · _done_ · `—`
   > Create engine skeleton
-- **[Save CPI PPP and PFW through stamp](roadmap.json#save-cpi-ppp-and-pfw-through-stamp)** · `feature` · _idea_ · `—`
+- **[Save CPI PPP and PFW through stamp](roadmap.json#save-cpi-ppp-and-pfw-through-stamp)** · `feature` · _done_ · `—`
   > Save CPI PPP and PFW through stamp
-- **[Download one survey](roadmap.json#download-one-survey)** · `feature` · _idea_ · `—`
+- **[Download one survey](roadmap.json#download-one-survey)** · `feature` · _done_ · `—`
   > Download one survey
-- **[Format and validate one survey](roadmap.json#format-and-validate-one-survey)** · `feature` · _idea_ · `—`
+- **[Format and validate one survey](roadmap.json#format-and-validate-one-survey)** · `feature` · _done_ · `—`
   > Format and validate one survey
 - **[Deflate one survey](roadmap.json#deflate-one-survey)** · `feature` · _idea_ · `—`
   > Deflate one survey
@@ -127,9 +127,9 @@ _Keywords: `decide` · `harvest` · `system_design.md`_ · 60 entities
 - **[Decide platform](roadmap.json#decide-platform)** · `feature` · _idea_ · `—`
   > Decide platform
 
-## Stamp / Harvest_Brief.Md / System_Design.Md
+## System_Design.Md / Stamp / Roadmap.Json
 
-_Keywords: `stamp` · `harvest_brief.md` · `system_design.md`_ · 7 entities
+_Keywords: `system_design.md` · `stamp` · `roadmap.json`_ · 20 entities
 
 - **[Pre-harvest documentation reuse and package scope](.cg-docs/brainstorms/2026-08-21-pre-harvest-documentation-reuse.md)** · `brainstorm` · _decided_ · `2026-08-21`
   > <!-- Valid status values: decided, in-progress, abandoned -->
@@ -141,7 +141,70 @@ _Keywords: `stamp` · `harvest_brief.md` · `system_design.md`_ · 7 entities
   > This is the canonical decision record for the Thinking Partner discussion of R2, R3, and R4, in that order. The user …
 - **[M1 Code, Orchestration, and Storage Decisions](.cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions.md)** · `brainstorm` · _decided_ · `2026-10-07`
   > This Thinking Partner discussion reviewed R2, R3, and R4 from the completed M1 harvest, in that order. It did not rep…
-- **[Evidence-first Phase 1 package harvest](.cg-docs/plans/2026-08-21-pre-harvest-documentation-reuse.md)** · `plan` · _active_ · `2026-08-21`
+- **[Modernize pipsystem Quarto review site presentation](.cg-docs/brainstorms/2026-10-30-modernize-quarto-site.md)** · `brainstorm` · _decided_ · `2026-10-30`
+  > <!-- Valid status values: decided, in-progress, abandoned -->
+- **[PIP system roadmap and operating agreement](.cg-docs/brainstorms/2026-11-24-pip-system-roadmap-agreement.md)** · `brainstorm` · _decided_ · `2026-11-24`
+  > Open this agreement first on either machine. Use the [milestone register](../../roadmap.json) for current status and …
+- **[Evidence-first Phase 1 package harvest](.cg-docs/plans/2026-08-21-pre-harvest-documentation-reuse.md)** · `plan` · _completed_ · `2026-08-21`
   > Produce a deterministic, SHA-pinned Phase 1 harvest for `stamp`, `pipfun`, `pipload`, `pipaux`, `pipdata`, `wbpip`, `…
+- **[Documentation pipeline: writer, checker, simplifier](.cg-docs/plans/2026-10-29-doc-pipeline.md)** · `plan` · _completed_ · `2026-10-29`
+  > `/pip-doc <target.md> <sources...>` produces a cited, checked and plain-language document in pipsystem through fixed …
+- **[Pipeline dependency map as data](.cg-docs/plans/2026-10-29-pipeline-dependency-map.md)** · `plan` · _completed_ · `2026-10-29`
+  > Record the PIP pipeline as one data file of claims: its ten stages, the links between them, what each link carries an…
+- **[pipsystem info tools v1](.cg-docs/plans/2026-10-29-pipsystem-info-tools-v1.md)** · `plan` · _completed_ · `2026-10-29`
+  > One R script gives the user and every agent the same fixed-format facts about the PIP packages: per-package status, a…
+- **[Modernize pipsystem Quarto review site presentation](.cg-docs/plans/2026-10-30-modernize-quarto-site.md)** · `plan` · _completed_ · `2026-10-30`
+  > Overhaul the local `pipsystem` Quarto review website (`site/`) into a modern light/dark web-application interface wit…
+- **[Evidence-based next development step with /pip-next](.cg-docs/plans/2026-11-02-pip-next.md)** · `plan` · _completed_ · `2026-11-02`
+  > Add `/pip-next [package]`: recommend the next development action for the whole PIP project or one package, including …
+- **[Make the review site show current focus, next actions, and task context](.cg-docs/plans/2026-11-02-site-focus-and-navigation.md)** · `plan` · _completed_ · `2026-11-02`
+  > Put current focus and recorded next actions first. Explain milestones, package roles, and tasks, and make the main si…
+- **[Concise, prerequisite-first /pip-next decision brief](.cg-docs/plans/2026-11-03-pip-next-concise-decision-brief.md)** · `plan` · _completed_ · `2026-11-03`
+  > Make default chat a roughly 150-250-word development decision brief, allowing material caveats, while retaining the c…
+- **[Installed-package one-survey offline example](.cg-docs/plans/2026-11-09-installed-package-one-survey-example.md)** · `plan` · _active_ · `2026-11-09`
+  > Build and run one readable offline survey-validation, cleaning, metadata and exact-version storage example against an…
+- **[One-survey harness repair and package diagnosis](.cg-docs/plans/2026-11-09-one-survey-harness-repair-and-diagnosis.md)** · `plan` · _completed_ · `2026-11-09`
+  > Repair the seven open harness findings and produce an owner-actionable diagnosis of the preserved pipaux installation…
+- **[Dispatch PIP package assignments without copying prompts](.cg-docs/plans/2026-11-18-package-assignment-dispatch.md)** · `plan` · _completed_ · `2026-11-18`
+  > Use `pipsystem` as the existing coordination hub. Put an approved package task in the right package session and colle…
+- **[M2: identify the tested deflation source before the weighted mean](.cg-docs/plans/2026-11-24-m2-deflation-evidence.md)** · `plan` · _active_ · `2026-11-24`
+  > Give the next package owner a supported decision: reuse the tested deflation inputs and code, or recover one named pr…
 - **[PIP Backend Pipeline Roadmap](.cg-docs/strategy/2026-10-07-pip-backend-roadmap.md)** · `strategy` · _—_ · `2026-10-07`
   > The roadmap had no milestones or features. The charter objective is an incremental build system for the PIP Technical…
+
+## Handoff.Md / Review / Setup.R
+
+_Keywords: `handoff.md` · `review` · `setup.r`_ · 16 entities
+
+- **[2026-10-30-modernize-quarto-site-verify-review](.cg-docs/reviews/2026-10-30-modernize-quarto-site-verify-review.md)** · `review` · _—_ · `2026-10-30`
+  > **Review mode**: light (`mode:verify`) **Parent review**: `.cg-docs/reviews/2026-10-30-modernize-quarto-site-review.m…
+- **[2026-11-02-pip-next-review](.cg-docs/reviews/2026-11-02-pip-next-review.md)** · `review` · _—_ · `2026-11-02`
+  > Review mode: standard (ordinary prompt and low-risk tests; no runtime/installer changes). Eight route-appropriate rev…
+- **[2026-11-02-pip-next-verify-review](.cg-docs/reviews/2026-11-02-pip-next-verify-review.md)** · `review` · _—_ · `2026-11-02`
+  > No issues found. P0 0, P1 0, P2 0, P3 0. Both required light reviewers returned usable file-specific reports; no inco…
+- **[2026-11-02-site-focus-and-navigation-review](.cg-docs/reviews/2026-11-02-site-focus-and-navigation-review.md)** · `review` · _—_ · `2026-11-02`
+  > Resolved route: **data-risk**, because metadata joins and summary tables are changed; mandatory emphasis on data qual…
+- **[2026-11-02-site-focus-and-navigation-verify-review](.cg-docs/reviews/2026-11-02-site-focus-and-navigation-verify-review.md)** · `review` · _—_ · `2026-11-02`
+  > **No issues found.** P0: 0; P1: 0; P2: 0; P3: 0. Both required light agents completed usable static verification. Par…
+- **[2026-11-03-pip-next-concise-decision-brief-review](.cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-review.md)** · `review` · _—_ · `2026-11-03`
+  > Review mode: review:auto resolved standard under the installed routing contract. Files reviewed: seven owned maintain…
+- **[2026-11-03-pip-next-concise-decision-brief-verify-review](.cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-verify-review.md)** · `review` · _—_ · `2026-11-03`
+  > Requested action: `/cg-review mode:verify` for revision 2 of the concise pip-next Plan. Result: converged, no scoped …
+- **[2026-11-09-installed-package-one-survey-example-review](.cg-docs/reviews/2026-11-09-installed-package-one-survey-example-review.md)** · `review` · _—_ · `2026-11-09`
+  > Full review completed across all ten required roles. Not a passed gate: 10 distinct findings (P0: 0, P1: 3, P2: 5, P3…
+- **[2026-11-09-installed-package-one-survey-example-verify-review](.cg-docs/reviews/2026-11-09-installed-package-one-survey-example-verify-review.md)** · `review` · _—_ · `2026-11-09`
+  > Required light `/cg-review mode:verify` completed with code-quality and testing roles. All three fixed scopes verifie…
+- **[2026-11-09-one-survey-harness-repair-and-diagnosis-review](.cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-review.md)** · `review` · _—_ · `2026-11-09`
+  > All ten required roles completed usable file-based reports. Five current OPEN findings (P0:0, P1:3, P2:2, P3:0); two …
+- **[2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review](.cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review.md)** · `review` · _—_ · `2026-11-09`
+  > Required light mode:verify completed with both code-quality and testing roles. Both narrow inherited fixes supported;…
+- **[2026-11-10-installed-package-one-survey-example-resume-review](.cg-docs/reviews/2026-11-10-installed-package-one-survey-example-resume-review.md)** · `review` · _—_ · `2026-11-10`
+  > All ten required full-route roles dispatched. Initial setup-only reviews were explicitly partial; architecture, code …
+- **[2026-11-10-one-survey-harness-repair-and-diagnosis-review](.cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-review.md)** · `review` · _—_ · `2026-11-10`
+  > All ten required roles returned completed usable pip-handoff-v2 reports with nonempty Gaps. Zero new actionable P0-P3…
+- **[2026-11-10-one-survey-harness-repair-and-diagnosis-verify-review](.cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-verify-review.md)** · `review` · _—_ · `2026-11-10`
+  > Required light mode:verify completed with code-quality and testing roles. Both support the five latest repaired scope…
+- **[2026-11-10-survey-resume-review](.cg-docs/reviews/2026-11-10-survey-resume-review.md)** · `review` · _—_ · `2026-11-10`
+  > Full route completed across all ten required roles. Two supported harness findings, both fixed: P0 0, P1 0, P2 1, P3 …
+- **[2026-11-10-survey-resume-verify-review](.cg-docs/reviews/2026-11-10-survey-resume-verify-review.md)** · `review` · _—_ · `2026-11-10`
+  > Mode:verify completed with its required light-only code-quality and testing roles. Both P2.1 required-storage-usabili…

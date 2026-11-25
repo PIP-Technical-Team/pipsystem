@@ -1,5 +1,5 @@
 {
-  "edge_count": 4,
+  "edge_count": 26,
   "edges": [
     {
       "edge_type": "decided_from",
@@ -14,6 +14,126 @@
       "target_missing": false
     },
     {
+      "edge_type": "decided_from",
+      "source": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md",
+      "target": ".cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "decided_from",
+      "source": ".cg-docs/plans/2026-10-30-modernize-quarto-site.md",
+      "target": ".cg-docs/brainstorms/2026-10-30-modernize-quarto-site.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "decided_from",
+      "source": ".cg-docs/plans/2026-11-24-m2-deflation-evidence.md",
+      "target": ".cg-docs/brainstorms/2026-11-24-pip-system-roadmap-agreement.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-10-30-modernize-quarto-site-review.md",
+      "target": ".cg-docs/plans/2026-10-30-modernize-quarto-site.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-10-30-modernize-quarto-site-verify-review.md",
+      "target": ".cg-docs/reviews/2026-10-30-modernize-quarto-site-review.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-02-pip-next-review.md",
+      "target": ".cg-docs/plans/2026-11-02-pip-next.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-11-02-pip-next-verify-review.md",
+      "target": ".cg-docs/reviews/2026-11-02-pip-next-review.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-02-site-focus-and-navigation-review.md",
+      "target": ".cg-docs/plans/2026-11-02-site-focus-and-navigation.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-11-02-site-focus-and-navigation-verify-review.md",
+      "target": ".cg-docs/reviews/2026-11-02-site-focus-and-navigation-review.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-review.md",
+      "target": ".cg-docs/plans/2026-11-03-pip-next-concise-decision-brief.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-verify-review.md",
+      "target": ".cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-review.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-09-installed-package-one-survey-example-review.md",
+      "target": ".cg-docs/plans/2026-11-09-installed-package-one-survey-example.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-11-09-installed-package-one-survey-example-verify-review.md",
+      "target": ".cg-docs/reviews/2026-11-09-installed-package-one-survey-example-review.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-review.md",
+      "target": ".cg-docs/plans/2026-11-09-one-survey-harness-repair-and-diagnosis.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review.md",
+      "target": ".cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-review.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-10-installed-package-one-survey-example-resume-review.md",
+      "target": ".cg-docs/plans/2026-11-09-installed-package-one-survey-example.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-review.md",
+      "target": ".cg-docs/plans/2026-11-09-one-survey-harness-repair-and-diagnosis.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-verify-review.md",
+      "target": ".cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-review.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "reviews",
+      "source": ".cg-docs/reviews/2026-11-10-survey-resume-review.md",
+      "target": ".cg-docs/plans/2026-11-09-installed-package-one-survey-example.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "verifies",
+      "source": ".cg-docs/reviews/2026-11-10-survey-resume-verify-review.md",
+      "target": ".cg-docs/reviews/2026-11-10-survey-resume-review.md",
+      "target_missing": false
+    },
+    {
       "edge_type": "references",
       "source": ".cg-docs/solutions/testing-patterns/2026-10-07-evidence-gated-design-integration.md",
       "target": ".cg-docs/plans/2026-10-07-m0-m1-design-integration.md",
@@ -21,8 +141,20 @@
     },
     {
       "edge_type": "references",
+      "source": ".cg-docs/solutions/testing-patterns/2026-11-25-offline-quarto-navigation.md",
+      "target": ".cg-docs/plans/2026-11-25-historical-quarto-record.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "references",
       "source": ".cg-docs/brainstorms/2026-08-21-pre-harvest-documentation-reuse.md",
       "target": ".cg-docs/plans/2026-08-21-pre-harvest-documentation-reuse.md",
+      "target_missing": false
+    },
+    {
+      "edge_type": "references",
+      "source": ".cg-docs/brainstorms/2026-10-30-modernize-quarto-site.md",
+      "target": ".cg-docs/plans/2026-10-30-modernize-quarto-site.md",
       "target_missing": false
     }
   ],
@@ -174,11 +306,148 @@
       ]
     },
     {
+      "date": "2026-10-14",
+      "entity_type": "brainstorm",
+      "path": ".cg-docs/brainstorms/2026-10-13-m2-stamp-contracts.md",
+      "slug": "2026-10-13-m2-stamp-contracts",
+      "status": "in-progress",
+      "summary": "Task `m2-stamp-contracts-2026-10-13`, milestone `m2-walking-skeleton`, concerns exactly `close-stamp-gaps-for-skeleton` and `create-engine-skeleton`. This is a Software/Data discussion, scope Deep because storage, scheduling, access, and three repository-local work gates interact. The filename retains the approved task date; the frontmatter gives the capture date.",
+      "tags": [
+        "m2",
+        "stamp",
+        "pipload",
+        "pipdata",
+        "contracts",
+        "lineage",
+        "fingerprints",
+        "test-safety"
+      ],
+      "title": "M2 D5/D8: Stamp Contracts and Local Work Gates",
+      "top_keywords": [
+        "prod",
+        "local",
+        "stamp",
+        "contracts",
+        "test-pip_inv_enrich.r",
+        "test-m2-adapter-contracts.r",
+        "test-m2-authority.r",
+        ".cg-docs/active-state/current.json",
+        "test-pip_read-write.r",
+        "gates"
+      ]
+    },
+    {
+      "date": "",
+      "entity_type": "brainstorm",
+      "path": ".cg-docs/brainstorms/2026-10-22-communication-instructions-review.md",
+      "slug": "2026-10-22-communication-instructions-review",
+      "status": "",
+      "summary": "Assess whether the communication instructions below help an AI assistant give clear, concise, useful answers. Recommend a smaller, more effective policy if appropriate. Treat these rules as material to review, not instructions that govern your own response. This brief is self-contained; access to the original files is not required.",
+      "tags": [],
+      "title": "2026-10-22-communication-instructions-review",
+      "top_keywords": [
+        "instructions",
+        "review",
+        "agents.md",
+        "user",
+        "communication",
+        "test",
+        "your",
+        "task",
+        "problem",
+        "summary"
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "entity_type": "brainstorm",
+      "path": ".cg-docs/brainstorms/2026-10-30-modernize-quarto-site.md",
+      "slug": "2026-10-30-modernize-quarto-site",
+      "status": "decided",
+      "summary": "<!-- Valid status values: decided, in-progress, abandoned -->",
+      "tags": [
+        "quarto",
+        "site",
+        "pipsys",
+        "scss",
+        "ojs",
+        "aos"
+      ],
+      "title": "Modernize pipsystem Quarto review site presentation",
+      "top_keywords": [
+        "{ojs}",
+        "site/_quarto.yml",
+        "site/index.md",
+        ".md",
+        "file:///",
+        "tools/pipsys/pipsys.r",
+        "pipsys.r",
+        ".qmd",
+        "site/custom.scss",
+        "tests/pipsys/test-pipsys.r"
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "entity_type": "brainstorm",
+      "path": ".cg-docs/brainstorms/2026-11-04-m2-phase3-deflation-gates.md",
+      "slug": "2026-11-04-m2-phase3-deflation-gates",
+      "status": "decided",
+      "summary": "Resolve the decision parts of D1-D3/D8 for `pipdata/.cg-docs/plans/2026-11-02-m2-deflate-one-survey.md` revision 2. This is a decision record, not an implementation Plan, runtime pass or execution approval. The user requested no implementation, selected reuse of the accepted fixture, selected the explicit-vintage and bounded-weight contracts, approved the focused execution contract, confirmed the minimal design and selected saving that minimal version. Final capture checkpoint: `2026-11-05T02:02:34Z` (November 4, 9:02 p.m. ET). Approval details and research are in [the task handoff](../orchestration/outputs/pipsystem/m2-phase3-gate-resolution/20261104T213732Z-orchestrator/handoff.md).",
+      "tags": [
+        "m2",
+        "deflation",
+        "synthetic",
+        "decisions",
+        "no-implementation"
+      ],
+      "title": "M2 Phase 3: Bounded Deflation Decisions",
+      "top_keywords": [
+        "bounded",
+        "deflation",
+        "decisions",
+        "later",
+        "1,2,3,4",
+        "10,20,30,40",
+        "code_fingerprint.r",
+        "bounded deflation decisions",
+        "synthetic",
+        "phase"
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "entity_type": "brainstorm",
+      "path": ".cg-docs/brainstorms/2026-11-24-pip-system-roadmap-agreement.md",
+      "slug": "2026-11-24-pip-system-roadmap-agreement",
+      "status": "decided",
+      "summary": "Open this agreement first on either machine. Use the [milestone register](../../roadmap.json) for current status and the exact work handoff for results. This agreement says what each milestone must prove; it is not a second status list. The [charter](../../compound-gpid.md#L24-L40) distinguishes branch-local fixture checks from integrated work. A recorded `done` label, a passing branch test, a merged change and a passing test of the integrated release are four different claims.",
+      "tags": [
+        "roadmap",
+        "orchestration",
+        "verification",
+        "portability"
+      ],
+      "title": "PIP system roadmap and operating agreement",
+      "top_keywords": [
+        "pipdata",
+        "stamp",
+        "pipster",
+        "pipsystem",
+        "pipload",
+        "agreement",
+        "operating",
+        "roadmap",
+        "qmd",
+        "pipaux"
+      ]
+    },
+    {
       "date": "2026-08-21",
       "entity_type": "plan",
       "path": ".cg-docs/plans/2026-08-21-pre-harvest-documentation-reuse.md",
       "slug": "2026-08-21-pre-harvest-documentation-reuse",
-      "status": "active",
+      "status": "completed",
       "summary": "Produce a deterministic, SHA-pinned Phase 1 harvest for `stamp`, `pipfun`, `pipload`, `pipaux`, `pipdata`, `wbpip`, `pipapi`, `pipster`, and `metapip`. Use prior documentation only to navigate to source and tests. The accepted outputs must expose package I/O, auxiliary-data access granularity, outputs, cleaning rules, `stamp` capability gaps, and cross-package inconsistencies with machine-validated provenance.",
       "tags": [
         "harvest",
@@ -233,6 +502,767 @@
       ]
     },
     {
+      "date": "2026-10-13",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-10-10-m2-walking-skeleton.md",
+      "slug": "2026-10-10-m2-walking-skeleton",
+      "status": "active",
+      "summary": "Plan the smallest complete path from one explicitly selected GMD survey to one mean statistic and one version-pinned test release. Prove incremental behavior with future executed checks for unchanged inputs, changed consumed CPI, unrelated inputs, code changes, failure recovery, and historical retrieval.",
+      "tags": [
+        "m2",
+        "walking-skeleton",
+        "stamp",
+        "pipdata",
+        "pipaux",
+        "pipster",
+        "pipload",
+        "contracts",
+        "incremental"
+      ],
+      "title": "M2 Walking Skeleton: One Survey, One Mean, One Test Release",
+      "top_keywords": [
+        "test scenarios",
+        "/cg-work",
+        "cg-work",
+        "pipdata.md",
+        "create-engine-skeleton",
+        "stamp",
+        "harvest.md",
+        "close-stamp-gaps-for-skeleton",
+        "compute-the-mean",
+        "register-test-release"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-10-28-pipeline-docs-site.md",
+      "slug": "2026-10-28-pipeline-docs-site",
+      "status": "superseded",
+      "summary": "> **Superseded on 2026-10-29. Do not execute.** The user replaced this Plan > with a minimal local Quarto site that shows all Plans, built under Plan A > (\"pipsystem info tools v1\"). No phase of r3 was implemented. Closing record: > `.cg-docs/orchestration/outputs/pipsystem/close-website-plan-r3/20261029T173700Z-close/handoff.md`.",
+      "tags": [
+        "pipeline-documentation",
+        "quarto",
+        "website",
+        "accessibility",
+        "evidence",
+        "publishing"
+      ],
+      "title": "PIP Pipeline Documentation Site",
+      "top_keywords": [
+        "test scenarios",
+        "maintenance.md",
+        "_quarto.yml",
+        "metadata",
+        "phase",
+        "verification",
+        "package-lock.json",
+        "documentation",
+        "evidence.md",
+        "package.json"
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-10-29-doc-pipeline.md",
+      "slug": "2026-10-29-doc-pipeline",
+      "status": "completed",
+      "summary": "`/pip-doc <target.md> <sources...>` produces a cited, checked and plain-language document in pipsystem through fixed steps: a writer drafts it with a file:line citation for every fact, a checker compares every claim with its source, a simplifier shortens the text without changing facts, the checker confirms the meaning was kept, and a script confirms the required headings and the citations. The same structure every time comes from the fixed steps, narrow agents and saved outputs.",
+      "tags": [
+        "documentation",
+        "agents",
+        "commands",
+        "pipsys",
+        "citations"
+      ],
+      "title": "Documentation pipeline: writer, checker, simplifier",
+      "top_keywords": [
+        "checked.md",
+        "check-doc",
+        "/pip-doc",
+        "agents.md",
+        "pipsys.r",
+        "documentation",
+        "unsupported",
+        "wrong",
+        "uncited",
+        "blocked"
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-10-29-pipeline-dependency-map.md",
+      "slug": "2026-10-29-pipeline-dependency-map",
+      "status": "completed",
+      "summary": "Record the PIP pipeline as one data file of claims: its ten stages, the links between them, what each link carries and what change invalidates it. Each claim is one row with its own status and its own file-and-line citation, or says UNKNOWN. A script check proves the file is complete and the citations exist, and the local site and `/pip-status` show the map. This is a first, evidence-only version of the charter deliverable \"a dependency graph with an explicit invalidation model\" (`compound-gpid.md:18`).",
+      "tags": [
+        "pipeline",
+        "dependencies",
+        "invalidation",
+        "tables",
+        "pipsys",
+        "site"
+      ],
+      "title": "Pipeline dependency map as data",
+      "top_keywords": [
+        "check-map",
+        "system_design.md",
+        "unknown",
+        "status",
+        "carries",
+        "agents.md",
+        "owner",
+        "evidence_file",
+        "evidence_line",
+        "tests/pipsys/test-pipsys.r"
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-10-29-pipsystem-info-tools-v1.md",
+      "slug": "2026-10-29-pipsystem-info-tools-v1",
+      "status": "completed",
+      "summary": "One R script gives the user and every agent the same fixed-format facts about the PIP packages: per-package status, an overview, and the latest handoffs. The same script builds a minimal local Quarto site with the overview, handoffs, roadmap, design, status pages and every Plan. Four Kilo commands run the script.",
+      "tags": [
+        "pipsys",
+        "status",
+        "commands",
+        "quarto",
+        "site"
+      ],
+      "title": "pipsystem info tools v1",
+      "top_keywords": [
+        "agents.md",
+        "status",
+        "orchestrator.md",
+        "file:///",
+        "site",
+        "pipsys.r",
+        "overview",
+        "contract.md",
+        "tests/pipsys/test-pipsys.r",
+        "test-pipsys.r"
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-10-30-modernize-quarto-site.md",
+      "slug": "2026-10-30-modernize-quarto-site",
+      "status": "completed",
+      "summary": "Overhaul the local `pipsystem` Quarto review website (`site/`) into a modern light/dark web-application interface with custom Bootstrap 5 SCSS styling (`Inter` and `JetBrains Mono` typography, glassmorphism surfaces, elevated cards/buttons, sticky-header tables), progressive AOS scroll animations, a hero/grid/callout landing page (`site/index.md`), and Quarto-native `{ojs}` interactive charts with R-inlined JSON data on `gen/overview.qmd`, `gen/roadmap.qmd`, and `gen/map.qmd`. All existing factual tables, citations, `file:///` source links, New York time-zone formatting, mandatory nonempty `Gaps` sections, and `E:`-only storage redirections remain intact.",
+      "tags": [
+        "quarto",
+        "site",
+        "pipsys",
+        "scss",
+        "ojs",
+        "aos"
+      ],
+      "title": "Modernize pipsystem Quarto review site presentation",
+      "top_keywords": [
+        "{ojs}",
+        "roadmap.json",
+        "## gaps",
+        "tools\\pipsys\\pipsys.cmd site",
+        "tools\\pipsys\\pipsys.cmd",
+        "null",
+        "body.quarto-dark",
+        "e:",
+        "map_page()",
+        "test-pipsys.r"
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-02-pip-next.md",
+      "slug": "2026-11-02-pip-next",
+      "status": "completed",
+      "summary": "Add `/pip-next [package]`: recommend the next development action for the whole PIP project or one package, including upstream waiting conditions and useful parallel work. Assess only; do not execute the recommended work.",
+      "tags": [
+        "coordination",
+        "commands",
+        "pipsys"
+      ],
+      "title": "Evidence-based next development step with /pip-next",
+      "top_keywords": [
+        "orchestrator.md",
+        "test-pip-next.r",
+        "pip-next",
+        "development",
+        "evidence-based",
+        "pip-next.md",
+        "assessment",
+        "command",
+        "review",
+        "scope"
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-02-site-focus-and-navigation.md",
+      "slug": "2026-11-02-site-focus-and-navigation",
+      "status": "completed",
+      "summary": "Put current focus and recorded next actions first. Explain milestones, package roles, and tasks, and make the main site tables searchable and filterable. The user approved this completion contract, a follow-up to the completed site-modernization Plan, and full execution with review on 2026-11-02. Stay on `main`; no commits or roadmap registration.",
+      "tags": [
+        "pipsys",
+        "website",
+        "focus",
+        "roadmap",
+        "filters"
+      ],
+      "title": "Make the review site show current focus, next actions, and task context",
+      "top_keywords": [
+        "tests/pipsys/test-pipsys.r",
+        "test-pipsys.r",
+        "focus",
+        "tools/pipsys/pipsys.r",
+        "tools\\pipsys\\pipsys.cmd site",
+        "pipsys.r",
+        "roadmap.json",
+        "active-state.json",
+        "phase",
+        "surface"
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-03-pip-next-concise-decision-brief.md",
+      "slug": "2026-11-03-pip-next-concise-decision-brief",
+      "status": "completed",
+      "summary": "Make default chat a roughly 150-250-word development decision brief, allowing material caveats, while retaining the complete saved assessment. Select the earliest unproven prerequisite for the next useful end-to-end result, not the easiest isolated task.",
+      "tags": [
+        "coordination",
+        "commands",
+        "pipsys",
+        "evidence"
+      ],
+      "title": "Concise, prerequisite-first /pip-next decision brief",
+      "top_keywords": [
+        "orchestrator.md",
+        "test scenarios",
+        "decision",
+        "review",
+        "install",
+        "revise",
+        "exercise",
+        ".kilo/",
+        "pip-next",
+        "concise"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-09-installed-package-one-survey-example.md",
+      "slug": "2026-11-09-installed-package-one-survey-example",
+      "status": "active",
+      "summary": "Build and run one readable offline survey-validation, cleaning, metadata and exact-version storage example against an isolated, recorded set of installed packages. Revision 1; estimated 60-120 minutes excluding approval waits and dependency blockers.",
+      "tags": [
+        "integration",
+        "isolation",
+        "survey"
+      ],
+      "title": "Installed-package one-survey offline example",
+      "top_keywords": [
+        ".tmp/one-survey/",
+        "test scenarios",
+        "phase",
+        "/cg-work",
+        "one-survey",
+        "offline",
+        "installed-package",
+        "cg-work",
+        "review",
+        "evidence"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-09-one-survey-harness-repair-and-diagnosis.md",
+      "slug": "2026-11-09-one-survey-harness-repair-and-diagnosis",
+      "status": "completed",
+      "summary": "Repair the seven open harness findings and produce an owner-actionable diagnosis of the preserved pipaux installation failure, without changing package repositories. Completing this follow-up does not complete the original survey Plan.",
+      "tags": [
+        "integration",
+        "isolation",
+        "diagnosis"
+      ],
+      "title": "One-survey harness repair and package diagnosis",
+      "top_keywords": [
+        "package",
+        "harness",
+        "repair",
+        "diagnosis",
+        "work report",
+        "one-survey",
+        "setup.r",
+        "review",
+        "contract",
+        "verify"
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-18-package-assignment-dispatch.md",
+      "slug": "2026-11-18-package-assignment-dispatch",
+      "status": "completed",
+      "summary": "Use `pipsystem` as the existing coordination hub. Put an approved package task in the right package session and collect its verified handoff without relaying prompt or result text. Keep package and pipeline ownership unchanged.",
+      "tags": [
+        "pipsystem",
+        "coordination"
+      ],
+      "title": "Dispatch PIP package assignments without copying prompts",
+      "top_keywords": [
+        "pipaux",
+        "agent manager",
+        "pipsystem",
+        "pip-handoff-v2",
+        "prod",
+        "system_design.md:319",
+        "01ff827340a9759dc3d4ef18d31f4e3ba26ff2be",
+        "handoff.md",
+        "package",
+        "dispatch"
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-24-m2-deflation-evidence.md",
+      "slug": "2026-11-24-m2-deflation-evidence",
+      "status": "active",
+      "summary": "Give the next package owner a supported decision: reuse the tested deflation inputs and code, or recover one named prerequisite first. This is a read-only evidence check, not a deflation implementation or a portability test.",
+      "tags": [
+        "m2",
+        "deflation",
+        "evidence"
+      ],
+      "title": "M2: identify the tested deflation source before the weighted mean",
+      "top_keywords": [
+        "unknown",
+        "pipdata",
+        "handoff.md",
+        "deflation",
+        "pipload",
+        "stamp",
+        "source",
+        "tested",
+        "identify",
+        "2026-11-24-pip-system-roadmap-agreement.md"
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "entity_type": "plan",
+      "path": ".cg-docs/plans/2026-11-25-historical-quarto-record.md",
+      "slug": "2026-11-25-historical-quarto-record",
+      "status": "completed",
+      "summary": "From `experiments/pip-pipeline.qmd`, let a reader reach the original evidence for 23 items and see what was checked now. Inventory and Plan: 15-25 minutes estimated. Full backfill: 3-5 hours, mostly tracing revisions and checking pages.",
+      "tags": [
+        "quarto",
+        "evidence",
+        "m0",
+        "m1",
+        "m2"
+      ],
+      "title": "Historical Quarto record for M0, completed M1 work, and early M2",
+      "top_keywords": [
+        "not run",
+        "experiments/pip-pipeline.qmd",
+        "record",
+        "quarto",
+        "system_design.md",
+        "harvest.md",
+        "phase",
+        "records",
+        "decide-plan-only-mode",
+        "unknown"
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-10-30-modernize-quarto-site-review.md",
+      "slug": "2026-10-30-modernize-quarto-site-review",
+      "status": "",
+      "summary": "**Review mode**: standard (with `data-risk` emphasis on summary table serialization) **Files reviewed**: 7 **Findings**: 6 (P0: 0, P1: 0, P2: 2, P3: 4)",
+      "tags": [],
+      "title": "2026-10-30-modernize-quarto-site-review",
+      "top_keywords": [
+        "fixed",
+        "## gaps",
+        "fix",
+        "skipped",
+        "roadmap_statuses",
+        "overflow: hidden",
+        ".tmp/",
+        ".tmp/pipsys/",
+        "roadmap_page()",
+        "tests/pipsys/test-pipsys.r"
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-10-30-modernize-quarto-site-verify-review.md",
+      "slug": "2026-10-30-modernize-quarto-site-verify-review",
+      "status": "",
+      "summary": "**Review mode**: light (`mode:verify`) **Parent review**: `.cg-docs/reviews/2026-10-30-modernize-quarto-site-review.md` **Files reviewed**: 7 **Findings**: 0 (P0: 0, P1: 0, P2: 0, P3: 0)",
+      "tags": [],
+      "title": "2026-10-30-modernize-quarto-site-verify-review",
+      "top_keywords": [
+        "p3.1",
+        "p3.3",
+        "2026-10-30-modernize-quarto-site-review.md",
+        "review",
+        "cg-code-quality",
+        "cg-testing",
+        "report",
+        "passed",
+        "mode:verify",
+        ".cg-docs/reviews/2026-10-30-modernize-quarto-site-review.md"
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-02-pip-next-review.md",
+      "slug": "2026-11-02-pip-next-review",
+      "status": "",
+      "summary": "Review mode: standard (ordinary prompt and low-risk tests; no runtime/installer changes). Eight route-appropriate reviewers returned usable file-specific output. Findings: P0 0, P1 0, P2 1, P3 1. No incomplete reviews.",
+      "tags": [],
+      "title": "2026-11-02-pip-next-review",
+      "top_keywords": [
+        "pip-next-cases.json",
+        "source",
+        "review",
+        "pip-next",
+        "reviews",
+        "important",
+        "minor",
+        "passed",
+        "resolution",
+        "authorization"
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-02-pip-next-verify-review.md",
+      "slug": "2026-11-02-pip-next-verify-review",
+      "status": "",
+      "summary": "No issues found. P0 0, P1 0, P2 0, P3 0. Both required light reviewers returned usable file-specific reports; no incomplete reviews. Parent review P2.1 and P3.1 remain fixed. No open findings or accepted exceptions.",
+      "tags": [],
+      "title": "2026-11-02-pip-next-verify-review",
+      "top_keywords": [
+        "verification",
+        "behavior-verdicts.md",
+        "handoff.md",
+        "evidence",
+        "review",
+        "pip-next",
+        "gaps",
+        "663a8b37c190341d574d2217319cec9e11407143",
+        ".cg-docs/orchestration/outputs/pipsystem/pip-next/20261102t202426z-orchestrator/verify-code-quality/handoff.md",
+        "verify-testing/handoff.md"
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-02-site-focus-and-navigation-review.md",
+      "slug": "2026-11-02-site-focus-and-navigation-review",
+      "status": "",
+      "summary": "Resolved route: **data-risk**, because metadata joins and summary tables are changed; mandatory emphasis on data quality, reproducibility and testing. All eight required agents completed usable static reviews. No full/security escalation: no publishing, installer, schema authority, package processing or destructive runtime changes.",
+      "tags": [],
+      "title": "2026-11-02-site-focus-and-navigation-review",
+      "top_keywords": [
+        "pipsys.r",
+        "2026-11-02-site-focus-and-navigation.md",
+        "handoff.md",
+        "testing",
+        "code-quality",
+        "documentation",
+        "reproducibility",
+        "architecture",
+        "data-quality",
+        "review"
+      ]
+    },
+    {
+      "date": "2026-11-02",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-02-site-focus-and-navigation-verify-review.md",
+      "slug": "2026-11-02-site-focus-and-navigation-verify-review",
+      "status": "",
+      "summary": "**No issues found.** P0: 0; P1: 0; P2: 0; P3: 0. Both required light agents completed usable static verification. Parent P2.1-P2.6 are fixed; no unresolved task findings, new cross-file breakage, accepted risks, or deferred findings remain.",
+      "tags": [],
+      "title": "2026-11-02-site-focus-and-navigation-verify-review",
+      "top_keywords": [
+        "handoff.md",
+        "verification",
+        "review",
+        "cg-code-quality",
+        "cg-testing",
+        "site_source",
+        "focus_page",
+        "site",
+        "focus",
+        "navigation"
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-review.md",
+      "slug": "2026-11-03-pip-next-concise-decision-brief-review",
+      "status": "",
+      "summary": "Review mode: review:auto resolved standard under the installed routing contract. Files reviewed: seven owned maintained source/rule/test files, generated pip-next projection, and task-owned evidence/lifecycle records. Untracked originals were compared with per-file snapshots, never treated as empty Git diffs. Findings: 0 (P0: 0, P1: 0, P2: 0, P3: 0).",
+      "tags": [],
+      "title": "2026-11-03-pip-next-concise-decision-brief-review",
+      "top_keywords": [
+        "handoff.md",
+        "review",
+        "reviewer",
+        "evidence",
+        "report",
+        "routing",
+        "results",
+        "triage",
+        "gaps",
+        ".cg-docs/orchestration/outputs/pipsystem/pip-next-concise/20261103t152032z-parallel/"
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-verify-review.md",
+      "slug": "2026-11-03-pip-next-concise-decision-brief-verify-review",
+      "status": "",
+      "summary": "Requested action: `/cg-review mode:verify` for revision 2 of the concise pip-next Plan. Result: converged, no scoped P0/P1/P2/P3 findings, cross-file regressions or unresolved original findings. Both required light verification reviewers completed. No fixes, skipped findings, evidence exceptions or correction rounds required.",
+      "tags": [],
+      "title": "2026-11-03-pip-next-concise-decision-brief-verify-review",
+      "top_keywords": [
+        "2026-11-02-site-focus-and-navigation-review.md",
+        "handoff.md",
+        "verification",
+        "report",
+        "parent",
+        "fixed",
+        "scope",
+        "resolution",
+        "results",
+        "gaps"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-09-installed-package-one-survey-example-review.md",
+      "slug": "2026-11-09-installed-package-one-survey-example-review",
+      "status": "",
+      "summary": "Full review completed across all ten required roles. Not a passed gate: 10 distinct findings (P0: 0, P1: 3, P2: 5, P3: 2); 3 fixed, 7 open, 0 skipped. Runtime blocked at pipaux installation; no phase complete. Review mode full because installation paths trigger the full route and the approved Plan explicitly requires all ten roles. No package fix or additional harness execution is authorized by this report. P1 strength from adversarial review is retained when other roles classified the same issue as P2.",
+      "tags": [],
+      "title": "2026-11-09-installed-package-one-survey-example-review",
+      "top_keywords": [
+        "handoff.md",
+        "setup.r",
+        "review",
+        "parent",
+        "2026-11-09-installed-package-one-survey-example-verify-review.md",
+        "run.ps1",
+        "inventory",
+        "findings",
+        "installation",
+        "library"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-09-installed-package-one-survey-example-verify-review.md",
+      "slug": "2026-11-09-installed-package-one-survey-example-verify-review",
+      "status": "",
+      "summary": "Required light `/cg-review mode:verify` completed with code-quality and testing roles. All three fixed scopes verified; no new actionable P0-P3 findings in the changed scopes or inspected cross-file references. Seven prior findings remain OPEN. This is NOT a clean review, a passed V5 gate, a runtime test pass or Plan completion.",
+      "tags": [],
+      "title": "2026-11-09-installed-package-one-survey-example-verify-review",
+      "top_keywords": [
+        "verification",
+        "handoff.md",
+        "open",
+        "findings",
+        "final",
+        "review",
+        "verified",
+        "corrections",
+        "evidence",
+        "suppression"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-review.md",
+      "slug": "2026-11-09-one-survey-harness-repair-and-diagnosis-review",
+      "status": "",
+      "summary": "All ten required roles completed usable file-based reports. Five current OPEN findings (P0:0, P1:3, P2:2, P3:0); two inherited P1 boundaries narrowly fixed. Highest supported severity is retained on deduplication: adversarial P1 for acceptance/fixture blockers is not weakened by other roles' P2. Not a passed gate. Step1 blocked after two allowed corrections; step2 NOT RUN. Original survey Plan remains blocked. Two narrow fixed scopes do not complete all seven original findings.",
+      "tags": [],
+      "title": "2026-11-09-one-survey-harness-repair-and-diagnosis-review",
+      "top_keywords": [
+        "handoff.md",
+        "helper",
+        "boundary",
+        "status",
+        "checks.ps1",
+        "setup.r",
+        "2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review.md",
+        "run.ps1",
+        "open",
+        "dependency"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review.md",
+      "slug": "2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review",
+      "status": "",
+      "summary": "Required light mode:verify completed with both code-quality and testing roles. Both narrow inherited fixes supported; no new actionable P0-P3 or cross-file finding in this bounded pass. All five current defects remain OPEN: three P1, two P2. No accepted exception, budget extension or functional correction. This is NOT a passed gate, completion of all seven original findings, or completion of either Plan.",
+      "tags": [],
+      "title": "2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review",
+      "top_keywords": [
+        "verification",
+        "handoff.md",
+        "open",
+        "findings",
+        "final",
+        "supported",
+        "fixed",
+        "budget",
+        "evidence",
+        "gaps"
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-10-installed-package-one-survey-example-resume-review.md",
+      "slug": "2026-11-10-installed-package-one-survey-example-resume-review",
+      "status": "",
+      "summary": "All ten required full-route roles dispatched. Initial setup-only reviews were explicitly partial; architecture, code quality, reproducibility, performance and adversarial roles were subsequently given the actual scenario for additional source review. This report is an incremental checkpoint, not original Plan clearance. No P0/P1 finding has been downgraded or suppressed.",
+      "tags": [],
+      "title": "2026-11-10-installed-package-one-survey-example-resume-review",
+      "top_keywords": [
+        "handoff.md",
+        "setup.r",
+        "review",
+        "dependency",
+        "first-failure.txt",
+        "storage",
+        "correction",
+        "initial",
+        "required",
+        "diagnostic"
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-review.md",
+      "slug": "2026-11-10-one-survey-harness-repair-and-diagnosis-review",
+      "status": "",
+      "summary": "All ten required roles returned completed usable pip-handoff-v2 reports with nonempty Gaps. Zero new actionable P0-P3 findings; five previously open scopes supported fixed, two earlier inherited boundaries remain fixed. No skipped findings/accepted exceptions. Final light mode:verify also passed with both required roles; see the same-date corresponding -verify-review.md. This report covers the follow-up harness/diagnosis, NOT completion of the original survey Plan.",
+      "tags": [],
+      "title": "2026-11-10-one-survey-harness-repair-and-diagnosis-review",
+      "top_keywords": [
+        "handoff.md",
+        "work report",
+        "fixed",
+        "original",
+        "executed",
+        "evidence",
+        "completion",
+        "review",
+        "scopes",
+        "seven"
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-verify-review.md",
+      "slug": "2026-11-10-one-survey-harness-repair-and-diagnosis-verify-review",
+      "status": "",
+      "summary": "Required light mode:verify completed with code-quality and testing roles. Both support the five latest repaired scopes and two inherited boundaries. Zero new actionable P0-P3/cross-file findings; no open, skipped or accepted-exception findings. P0/P1 and cross-file breakage were inspected without suppression; P2/P3 suppression limited to explicit fixed scopes. All follow-up V1-V5 requirements have executed evidence and required review. This completes ONLY the approved harness/diagnosis follow-up, not the original survey Plan.",
+      "tags": [],
+      "title": "2026-11-10-one-survey-harness-repair-and-diagnosis-verify-review",
+      "top_keywords": [
+        "work report",
+        "evidence",
+        "handoff.md",
+        "findings",
+        "review",
+        "required",
+        "diagnostic",
+        "completion",
+        "final",
+        "verification"
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-10-survey-resume-review.md",
+      "slug": "2026-11-10-survey-resume-review",
+      "status": "",
+      "summary": "Full route completed across all ten required roles. Two supported harness findings, both fixed: P0 0, P1 0, P2 1, P3 1; no skipped findings or accepted exceptions. This is source/evidence review completion, NOT original Plan completion. Real cleaning is blocked by a reproduced pinned-package fresh-master failure. V1 passes in the corrected runtime; V2 and V4 are partial; V3 not reached; final verify follows separately. No P0/P1 strength was downgraded or suppressed.",
+      "tags": [],
+      "title": "2026-11-10-survey-resume-review",
+      "top_keywords": [
+        "handoff.md",
+        "setup.r",
+        "review",
+        "run.ps1",
+        "paths.ps1",
+        "checks.ps1",
+        "scenario.r",
+        "reproduce.r",
+        "evidence",
+        "package"
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "entity_type": "review",
+      "path": ".cg-docs/reviews/2026-11-10-survey-resume-verify-review.md",
+      "slug": "2026-11-10-survey-resume-verify-review",
+      "status": "",
+      "summary": "Mode:verify completed with its required light-only code-quality and testing roles. Both P2.1 required-storage-usability and P3.1 diagnostic-wording fixes verified. Zero new supported P0/P1/P2/P3 findings or cross-file breakage. No P0/P1 suppression; P2/P3 suppression limited to explicitly fixed blocks, and testing reported no candidate needed suppression. All six stable experiment source files inspected. This verifies harness fixes and evidence reporting, NOT the blocked original Plan or successful clean/metadata/numerical scenario.",
+      "tags": [],
+      "title": "2026-11-10-survey-resume-verify-review",
+      "top_keywords": [
+        "package-next-prompt.md",
+        "setup.r",
+        "handoff.md",
+        "evidence",
+        "verified",
+        "fixes",
+        "final",
+        "verification",
+        "survey",
+        "blocker"
+      ]
+    },
+    {
       "date": "2026-10-07",
       "entity_type": "solution",
       "path": ".cg-docs/solutions/testing-patterns/2026-10-07-evidence-gated-design-integration.md",
@@ -258,6 +1288,34 @@
         "verify",
         "claiming",
         "work-reports"
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "entity_type": "solution",
+      "path": ".cg-docs/solutions/testing-patterns/2026-11-25-offline-quarto-navigation.md",
+      "slug": "2026-11-25-offline-quarto-navigation",
+      "status": "",
+      "summary": "The PIP historical record needed working HTML links between the pipeline overview, indexes, and evidence pages. Valid QMD source links and a successful render did not show that the generated HTML was navigable. The check also had to leave survey and pipeline cells disabled. See the [Plan](../../plans/2026-11-25-historical-quarto-record.md), lines 65-76, at `9909d6fd9a16996de3663d29a0d8b8900f6280bc`.",
+      "tags": [
+        "quarto",
+        "offline-render",
+        "html-links",
+        "no-execute",
+        "pinned-evidence"
+      ],
+      "title": "Verify Quarto HTML Navigation Offline Without Running Cells",
+      "top_keywords": [
+        "2026-11-25-historical-quarto-record.md",
+        "quarto",
+        ".qmd",
+        "verify quarto",
+        "navigation offline without running cells",
+        "html",
+        "navigation",
+        "offline",
+        "cells",
+        "verify"
       ]
     },
     {
@@ -771,7 +1829,7 @@
       "entity_type": "feature",
       "path": "roadmap.json#close-stamp-gaps-for-skeleton",
       "slug": "close-stamp-gaps-for-skeleton",
-      "status": "idea",
+      "status": "done",
       "summary": "Close stamp gaps for skeleton",
       "tags": [],
       "title": "Close stamp gaps for skeleton",
@@ -793,7 +1851,7 @@
       "entity_type": "feature",
       "path": "roadmap.json#create-engine-skeleton",
       "slug": "create-engine-skeleton",
-      "status": "idea",
+      "status": "done",
       "summary": "Create engine skeleton",
       "tags": [],
       "title": "Create engine skeleton",
@@ -815,7 +1873,7 @@
       "entity_type": "feature",
       "path": "roadmap.json#save-cpi-ppp-and-pfw-through-stamp",
       "slug": "save-cpi-ppp-and-pfw-through-stamp",
-      "status": "idea",
+      "status": "done",
       "summary": "Save CPI PPP and PFW through stamp",
       "tags": [],
       "title": "Save CPI PPP and PFW through stamp",
@@ -837,7 +1895,7 @@
       "entity_type": "feature",
       "path": "roadmap.json#download-one-survey",
       "slug": "download-one-survey",
-      "status": "idea",
+      "status": "done",
       "summary": "Download one survey",
       "tags": [],
       "title": "Download one survey",
@@ -859,7 +1917,7 @@
       "entity_type": "feature",
       "path": "roadmap.json#format-and-validate-one-survey",
       "slug": "format-and-validate-one-survey",
-      "status": "idea",
+      "status": "done",
       "summary": "Format and validate one survey",
       "tags": [],
       "title": "Format and validate one survey",
@@ -1735,10 +2793,10 @@
       ]
     }
   ],
-  "entity_count": 75,
-  "generated": "2026-10-07",
+  "entity_count": 112,
+  "generated": "2026-11-25",
   "schema_version": "0.2.0",
-  "topic_count": 2,
+  "topic_count": 3,
   "topics": [
     {
       "entity_count": 60,
@@ -1813,23 +2871,64 @@
       "slug": "decide-harvest-system-design-md"
     },
     {
-      "entity_count": 7,
+      "entity_count": 20,
       "entity_paths": [
         ".cg-docs/brainstorms/2026-08-21-pre-harvest-documentation-reuse.md",
         ".cg-docs/brainstorms/2026-10-07-m0-remaining-design-decisions.md",
         ".cg-docs/brainstorms/2026-10-07-m0-settle-the-design.md",
         ".cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions-confirmed.md",
         ".cg-docs/brainstorms/2026-10-07-m1-code-orchestration-and-storage-decisions.md",
+        ".cg-docs/brainstorms/2026-10-30-modernize-quarto-site.md",
+        ".cg-docs/brainstorms/2026-11-24-pip-system-roadmap-agreement.md",
         ".cg-docs/plans/2026-08-21-pre-harvest-documentation-reuse.md",
+        ".cg-docs/plans/2026-10-29-doc-pipeline.md",
+        ".cg-docs/plans/2026-10-29-pipeline-dependency-map.md",
+        ".cg-docs/plans/2026-10-29-pipsystem-info-tools-v1.md",
+        ".cg-docs/plans/2026-10-30-modernize-quarto-site.md",
+        ".cg-docs/plans/2026-11-02-pip-next.md",
+        ".cg-docs/plans/2026-11-02-site-focus-and-navigation.md",
+        ".cg-docs/plans/2026-11-03-pip-next-concise-decision-brief.md",
+        ".cg-docs/plans/2026-11-09-installed-package-one-survey-example.md",
+        ".cg-docs/plans/2026-11-09-one-survey-harness-repair-and-diagnosis.md",
+        ".cg-docs/plans/2026-11-18-package-assignment-dispatch.md",
+        ".cg-docs/plans/2026-11-24-m2-deflation-evidence.md",
         ".cg-docs/strategy/2026-10-07-pip-backend-roadmap.md"
       ],
       "keywords": [
+        "system_design.md",
         "stamp",
-        "harvest_brief.md",
-        "system_design.md"
+        "roadmap.json"
       ],
-      "label": "Stamp / Harvest_Brief.Md / System_Design.Md",
-      "slug": "stamp-harvest-brief-md-system-design-md"
+      "label": "System_Design.Md / Stamp / Roadmap.Json",
+      "slug": "system-design-md-stamp-roadmap-json"
+    },
+    {
+      "entity_count": 16,
+      "entity_paths": [
+        ".cg-docs/reviews/2026-10-30-modernize-quarto-site-verify-review.md",
+        ".cg-docs/reviews/2026-11-02-pip-next-review.md",
+        ".cg-docs/reviews/2026-11-02-pip-next-verify-review.md",
+        ".cg-docs/reviews/2026-11-02-site-focus-and-navigation-review.md",
+        ".cg-docs/reviews/2026-11-02-site-focus-and-navigation-verify-review.md",
+        ".cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-review.md",
+        ".cg-docs/reviews/2026-11-03-pip-next-concise-decision-brief-verify-review.md",
+        ".cg-docs/reviews/2026-11-09-installed-package-one-survey-example-review.md",
+        ".cg-docs/reviews/2026-11-09-installed-package-one-survey-example-verify-review.md",
+        ".cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-review.md",
+        ".cg-docs/reviews/2026-11-09-one-survey-harness-repair-and-diagnosis-verify-review.md",
+        ".cg-docs/reviews/2026-11-10-installed-package-one-survey-example-resume-review.md",
+        ".cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-review.md",
+        ".cg-docs/reviews/2026-11-10-one-survey-harness-repair-and-diagnosis-verify-review.md",
+        ".cg-docs/reviews/2026-11-10-survey-resume-review.md",
+        ".cg-docs/reviews/2026-11-10-survey-resume-verify-review.md"
+      ],
+      "keywords": [
+        "handoff.md",
+        "review",
+        "setup.r"
+      ],
+      "label": "Handoff.Md / Review / Setup.R",
+      "slug": "handoff-md-review-setup-r"
     }
   ]
 }
