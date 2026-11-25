@@ -133,6 +133,14 @@ read_frontmatter <- function(file, lines = read_lines_utf8(file)) {
 read_packages <- function(root) {
   file <- file.path(root, "tools", "pipsys", "packages.csv")
   pk <- fread(file, colClasses = "character", na.strings = NULL)
+  if (.Platform$OS.type != "windows") {
+    mac_hub <- path.expand(pk[package == "pipsystem", mac_path])
+    if (!identical(normalizePath(root, mustWork = TRUE), mac_hub)) {
+      rlang::abort("No package mapping for this hub checkout.")
+    }
+    pk[, path := path.expand(mac_path)]
+  }
+  pk[, mac_path := NULL]
   pk[is.na(path), path := ""]
   # The pipsystem row always describes the checkout that runs the script
   # (main checkout or an Agent Manager worktree).

@@ -54,13 +54,7 @@
 /site/.quarto/
 /site/.gitignore
 
-.kilo
-.kilo/AGENTS.md
-.kilo/kilo.json
 
-.kilo
-.kilo/AGENTS.md
-.kilo/kilo.json
 
 # Compound GPID managed items (junctions + copied file - do not commit)
 .compound-gpid/*.bak
