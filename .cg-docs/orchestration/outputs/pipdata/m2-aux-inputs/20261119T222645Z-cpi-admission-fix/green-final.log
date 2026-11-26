@@ -1,0 +1,37 @@
+Rscript --vanilla check.R green
+R version 4.5.2 (2025-10-31 ucrt) 
+Working directory: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/m2-cpi-admission-20261119T222645Z 
+Temp: E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/m2-cpi-admission-20261119T222645Z/tmp\RtmpOeQLNZ 
+Libraries: E:/PovcalNet/01.personal/wb384996/R/win-library/4.5-pipapi | E:/PovcalNet/01.personal/wb384996/R/win-library/4.5 | C:/Program Files/R/R-4.5.2/library 
+wbpip 0.1.6 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/wbpip 
+testthat 3.3.2 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/testthat 
+data.table 1.18.4 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/data.table 
+codetools 0.2.20 E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/codetools 
+Selected test blocks: 10 
+                                                                     test
+  bounded microdata uses literal factors and retains LCU rows and weights
+         bounded selection is dynamic and uses only explicit vintage keys
+       bounded CPI allows missing values only outside the exact selection
+          bounded CPI preserves full-vector shape, names and other checks
+               bounded CPI and PPP domains resolve independently from PFW
+    bounded population resolves same-row PFW without hsize multiplication
+        bounded matrix selections and malformed factor codes are rejected
+        bounded factor admission rejects nested levels before S3 dispatch
+ bounded positive welfare underflow is rejected but input zeros are valid
+        bounded invalid inputs fail closed and zero welfare remains valid
+ failed error warning skipped passed
+      0 FALSE       0   FALSE     16
+      0 FALSE       0   FALSE      4
+      0 FALSE       0   FALSE      7
+      0 FALSE       0   FALSE     13
+      0 FALSE       0   FALSE      8
+      0 FALSE       0   FALSE      6
+      0 FALSE       0   FALSE      2
+      0 FALSE       0   FALSE      2
+      0 FALSE       0   FALSE      3
+      0 FALSE       0   FALSE     21
+Passing expectations: 82 
+PASS: exact proof component pd_deflate_microdata 874540a4514a477d8e3f7f00836e38e6322c9957f0b2d26e9a44ae370e99f58d 
+PASS: exact proof component pd_deflation_number f1053de1977fefdbcc64069cbdd9ffced4eac0af0f64bc82b1d6d62c3095d50b 
+PASS: exact proof component pd_deflation_select 0907229552e00da62f6b07703a9655fc9f46d68d3d0691e9ff93489d2b252cd5 
+Exit: 0

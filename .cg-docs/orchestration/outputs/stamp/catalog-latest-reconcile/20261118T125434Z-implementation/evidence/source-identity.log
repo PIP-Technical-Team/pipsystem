@@ -1,0 +1,23 @@
+PASS: 155 staged source files exactly match current intended source; no filter.
+PASS: 40 test files present in check; no test-file omissions or overlays.
+PASS: 15 old R files and 3 protected records unchanged.
+$manifest_sha256
+[1] "bbe3eebee26027af673556513e46feb91e5337c86ad6f155e829b5a0597f75e3"
+
+$tarball_sha256
+[1] "771b397235beee349a6046c17f6b4d6cfe66236ae2eac4f49e16307227318cc3"
+
+$changed_sha256
+                                              R/reconcile_latest.R 
+"226bbcf193d051f415658c89b25c6d7e20ad52ecad1983452e243730c6a67b6e" 
+                            tests/testthat/test-reconcile-latest.R 
+"67cf8cace3d8c2d9cdba8910c668c410934edde0341ff105b55087368b9ae1e4" 
+                                    tests/testthat/test-m2-state.R 
+"aa93004e1ead96dad1a7cd9a2f72f8288651c076ddb5538dd04f4071b2e02292" 
+                                                         NAMESPACE 
+"9b23ac6344a113ba7b39d1feee2442454483c23607672750ce123c22c4767ed2" 
+                                        man/st_reconcile_latest.Rd 
+"454a93fb8e5211097dd39dc5490b17ae78b60e6939788c086dc83d69e2cb9227" 
+                                                           NEWS.md 
+"27ee9851a960fed4648bf9f11dbddd97779e1c05bb0f838656880e4de603a7ab" 
+

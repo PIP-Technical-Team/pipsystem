@@ -1,0 +1,1 @@
+"C:/PROGRA~1/R/R-4.5.2/bin/x64/R.exe" --vanilla CMD build --no-build-vignettes --no-manual "E:/strec/r125434/full-c1/stamp"

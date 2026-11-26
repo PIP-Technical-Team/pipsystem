@@ -1,0 +1,4 @@
+Rscript --vanilla check.R red
+Error: all(is_e(normalizePath(setdiff(.libPaths(), .Library), winslash = "/"))) is not TRUE
+Execution halted
+Exit: 1

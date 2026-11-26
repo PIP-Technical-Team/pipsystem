@@ -1,0 +1,7 @@
+"measure"	"catalog_pointer"	"pointer_retained"	"newest_catalog_ids"	"newest_retained_ids"	"newest_retained_utc"	"retained_count"	"validated_id"	"validated_retained_now"	"validated_saved_utc"	"status"
+"pfw"	"5a1af0d6edf7d639"	FALSE	"dbd2ccf63260991d"	"dbd2ccf63260991d"	"2026-05-26T16:21:38.730901Z"	2	"dbd2ccf63260991d"	TRUE	"2026-05-26T16:21:38.730901Z"	"Latest retained equals publicly validated candidate"
+"cpi"	"02e66e507fb7946a"	FALSE	"ae38185bd7ff383c"	"ae38185bd7ff383c"	"2026-05-26T16:21:51.225475Z"	2	"ae38185bd7ff383c"	TRUE	"2026-05-26T16:21:51.225475Z"	"Latest retained equals publicly validated candidate"
+"ppp"	"13aa439a44297b23"	FALSE	"c16e62d94f46e1bc"	"c16e62d94f46e1bc"	"2026-05-26T16:21:44.224163Z"	2	"c16e62d94f46e1bc"	TRUE	"2026-05-26T16:21:44.224163Z"	"Latest retained equals publicly validated candidate"
+"pop"	"44be5f221cdbd223"	FALSE	"c059b971f5fc70cc"	"c059b971f5fc70cc"	"2026-05-26T16:21:48.727535Z"	2	"c059b971f5fc70cc"	TRUE	"2026-05-26T16:21:48.727535Z"	"Latest retained equals publicly validated candidate"
+"gdp"	"9927e67693c42f7c"	FALSE	"062e2d30b15b4661"	"062e2d30b15b4661"	"2026-05-26T16:22:24.310111Z"	3	"062e2d30b15b4661"	TRUE	"2026-05-26T16:22:24.310111Z"	"Latest retained equals publicly validated candidate"
+"pce"	"6fde46585a733db2"	FALSE	"4d57e305a0e3c86e"	"4d57e305a0e3c86e"	"2026-05-26T16:22:11.803518Z"	2	"4d57e305a0e3c86e"	TRUE	"2026-05-26T16:22:11.803518Z"	"Latest retained equals publicly validated candidate"

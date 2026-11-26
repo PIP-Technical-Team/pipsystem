@@ -1,0 +1,94 @@
+
+R version 4.5.2 (2025-10-31 ucrt) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(testthat)
+> library(stamp)
+> test_check('stamp', filter = "^reconcile-latest$")
+Saving _problems/test-reconcile-latest-84.R
+Saving _problems/test-reconcile-latest-58.R
+Saving _problems/test-reconcile-latest-84.R
+[ FAIL 3 | WARN 2 | SKIP 0 | PASS 183 ]
+
+══ Warnings ════════════════════════════════════════════════════════════════════
+── Warning ('test-reconcile-latest.R:175:5'): reconciliation rejects extra_retained_form before any mutation ──
+Sidecar metadata differs between JSON and QS2 for 'result.rds'; using JSON.
+Backtrace:
+     ▆
+  1. ├─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+  2. │ └─testthat:::expect_condition_matching_(...)
+  3. │   └─testthat:::quasi_capture(...)
+  4. │     ├─testthat (local) .capture(...)
+  5. │     │ └─base::withCallingHandlers(...)
+  6. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+  7. └─stamp::st_reconcile_latest(f$path, f$b, f$a, f$alias)
+  8.   ├─base::tryCatch(...)
+  9.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 10.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 11.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 12.   └─stamp (local) inspect()
+ 13.     └─stamp:::.st_execution_validate_pin(...)
+ 14.       └─stamp::st_read_sidecar(norm$rel_path, alias = norm$alias, version_id = version_id)
+ 15.         └─cli::cli_warn("Sidecar metadata differs between JSON and QS2 for {.file {rel_path}}; using JSON.")
+── Warning ('test-reconcile-latest.R:178:5'): reconciliation rejects extra_retained_form before any mutation ──
+Sidecar metadata differs between JSON and QS2 for 'result.rds'; using JSON.
+Backtrace:
+     ▆
+  1. ├─testthat::expect_error(...) at test-reconcile-latest.R:178:5
+  2. │ └─testthat:::expect_condition_matching_(...)
+  3. │   └─testthat:::quasi_capture(...)
+  4. │     ├─testthat (local) .capture(...)
+  5. │     │ └─base::withCallingHandlers(...)
+  6. │     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+  7. └─stamp::st_reconcile_latest(f$path, f$b, f$a, f$alias, FALSE)
+  8.   ├─base::tryCatch(...)
+  9.   │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 10.   │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 11.   │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 12.   └─stamp (local) inspect()
+ 13.     └─stamp:::.st_execution_validate_pin(...)
+ 14.       └─stamp::st_read_sidecar(norm$rel_path, alias = norm$alias, version_id = version_id)
+ 15.         └─cli::cli_warn("Sidecar metadata differs between JSON and QS2 for {.file {rel_path}}; using JSON.")
+
+══ Failed tests ════════════════════════════════════════════════════════════════
+── Failure ('test-reconcile-latest.R:84:7'): reconciliation is pointer-only for rds json ──
+Expected `after[unchanged]` to be identical to `before[unchanged]`.
+Differences:
+    actual                             | expected                              
+[1] "5c813dbb1a45cdf3987c0be0a9cafba2" - "185de42b26e73ba7454365e75acc6df8" [1]
+[2] "37ff93d09a0cce9c62e7966b629e2c7a" | "37ff93d09a0cce9c62e7966b629e2c7a" [2]
+[3] "cc35d7cc53175a4db826fba20cbde400" | "cc35d7cc53175a4db826fba20cbde400" [3]
+[4] "37ff93d09a0cce9c62e7966b629e2c7a" | "37ff93d09a0cce9c62e7966b629e2c7a" [4]
+
+── Error ('test-reconcile-latest.R:58:7'): reconciliation is pointer-only for rds both ──
+<stamp_reconcile_error/rlang_error/error/condition>
+Error in `st_reconcile_latest(f$path, f$b, f$a, alias = f$alias)`: Conflicting retained sidecar forms.
+Caused by error in `fail()`:
+! Conflicting retained sidecar forms.
+── Failure ('test-reconcile-latest.R:84:7'): reconciliation is pointer-only for qs2 qs2 ──
+Expected `after[unchanged]` to be identical to `before[unchanged]`.
+Differences:
+    actual                             | expected                              
+[1] "8b481977d615bd85565d074fb1b5f777" - "89d2f38d62c8640635b48b17a2d69c2a" [1]
+[2] "37ff93d09a0cce9c62e7966b629e2c7a" | "37ff93d09a0cce9c62e7966b629e2c7a" [2]
+[3] "c0ebc9344ff640cd050f4527be50cd5a" | "c0ebc9344ff640cd050f4527be50cd5a" [3]
+[4] "37ff93d09a0cce9c62e7966b629e2c7a" | "37ff93d09a0cce9c62e7966b629e2c7a" [4]
+
+
+[ FAIL 3 | WARN 2 | SKIP 0 | PASS 183 ]
+Error:
+! Test failures.
+Execution halted

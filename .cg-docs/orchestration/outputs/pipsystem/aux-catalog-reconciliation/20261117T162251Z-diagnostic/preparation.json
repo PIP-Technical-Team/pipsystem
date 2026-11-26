@@ -1,0 +1,10 @@
+{
+    "sourceRoot":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/one-survey/qmd-acceptance-20261113",
+    "copiedRHome":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/aux-catalog-reconciliation/20261117T162251Z-diagnostic/r",
+    "originalProfileSha256":  "8AFC9A11B86403F86203B2FA833B8D4E8E01247903B11C69D22A25F54EA30E3A",
+    "copiedRscriptSha256":  "66921700DC477930627FC09CF2E734AD9E4A9D55D2C39F8C95CEC6E24FF40D6D",
+    "modifiedAuditLines":  1,
+    "contributedLibrary":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/one-survey/qmd-acceptance-20261113/library",
+    "baseLibrary":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/aux-catalog-reconciliation/20261117T162251Z-diagnostic/r/library",
+    "startupAudit":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/aux-catalog-reconciliation/20261117T162251Z-diagnostic/logs/child-startup.log"
+}

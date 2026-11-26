@@ -1,0 +1,2 @@
+"started_utc"	"finished_utc"	"catalog_md5_before"	"catalog_md5_after"	"catalog_unchanged"	"main_sidecar_comparison"
+"2026-11-17T22:44:06.525794Z"	"2026-11-17T22:44:06.691373Z"	"44c5f3fe9ce4e3705e276f04e0e384af"	"44c5f3fe9ce4e3705e276f04e0e384af"	TRUE	"Prior saved inspection, NOT refreshed in this reader"

@@ -1,0 +1,18 @@
+﻿Started UTC: 2026-11-19T22:09:38.144Z
+pop.xlsx Git blob 3326203c0ce359852633cf9da6bd49d24676723b; SHA256 4d5febb535435d55de1eae4ad011f5b3d8282b0508dec9d06884e97b65277708
+spop.csv Git blob da1c247e66623145a8ebcee6a8046630c1e00b48; SHA256 21e9dcee0bc5c75347fe9569066d9815f25f0d6d151cec509aea0706776d0098
+R version 4.5.2 (2025-10-31 ucrt) ; Sys.Date(): 2026-11-19 ; population year ceiling: 2026 
+Qualified archive SHA256: 96e2da264618fc0dc1feae10c6a0bdb098b00a82c58aea9e9b4e43bb90f8f586 
+Rscript.exe : Warning messages:
+At E:\PovcalNet\01.personal\wb384996\PIP\pipsystem\.cg-docs\orchestration\outputs\pipaux\m2-aux-inputs\20261119T215954Z-pop-local\run.ps1:77 char:9
++         & $r --vanilla "$run/proof.R"
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning messages::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+1: package 'data.table' was built under R version 4.5.3 
+2: package 'data.validator' was built under R version 4.5.3 
+PASS: staged country-list retained pin 30d540ca6e32d842 ; SHA256 1435fd020da520aaa920950cb784ee6df0b0fcfd27643f6aedef3fcc5a8d6c9f 
+Error: length(found) == c(2L, 1L, 1L)[[i]] is not TRUE
+Execution halted
+R exit: 1

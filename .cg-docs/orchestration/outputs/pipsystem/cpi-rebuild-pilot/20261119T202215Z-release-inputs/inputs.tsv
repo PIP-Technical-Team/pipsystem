@@ -1,0 +1,3 @@
+"release"	"input"	"source"	"version"	"source_object"	"local_file"	"sha256"	"bytes"
+"20260401_TEST"	"raw_cpi"	"PIP-Technical-Team/aux_cpi/cpi.csv"	"7e96f769859bad9f8d98b8aa0e67250bf1b3e7a3"	"adb5a6fdac90e0842e1989a76c9ede023d9e860d"	"E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/cp26/inputs/cpi.csv"	"72c597d88f5796d9a3e51e02cf3ac0a17b0700fd211590ca7999c29e221b5fb3"	536046
+"20260401_TEST"	"country_list"	"//w1wbgencifs01/pip/PIP_ingestion_pipeline_v2/aux_repository/aux_data/20260401_TEST/country_list.qs2/country_list.qs2"	"30d540ca6e32d842"	"9211182e995b116f"	"E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/cp26/inputs/country_list.qs2"	"1435fd020da520aaa920950cb784ee6df0b0fcfd27643f6aedef3fcc5a8d6c9f"	6847

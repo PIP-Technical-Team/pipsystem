@@ -1,0 +1,1 @@
+"C:/PROGRA~1/R/R-4.5.2/bin/x64/R.exe" --vanilla CMD check --no-manual --no-vignettes --no-examples --library="E:/strec/r125434/full-c1/library" "E:/strec/r125434/full-c1/stamp_0.1.1.tar.gz"

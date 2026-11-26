@@ -1,0 +1,13 @@
+﻿Qualified archive SHA256: 96e2da264618fc0dc1feae10c6a0bdb098b00a82c58aea9e9b4e43bb90f8f586 
+Verified version requested: ppp.qs2 404c83141bb0ab87 
+Attribute names on disk: row.names, class, names, aux_name, aux_key, stamp_pk, st_original_format, stamp_sanitized 
+Attribute names after load: row.names, names, aux_name, aux_key, stamp_pk, class, .internal.selfref, sorted 
+PASS: exact retained bytes, recorded object hash, column data, keys and provenance.
+Object hash after public load: aa34b27b5f7c6720 
+Verified version requested: ppp_vintage.qs2 72ea2037d77f5728 
+Attribute names on disk: row.names, class, aux_name, aux_key, names, stamp_pk, st_original_format, stamp_sanitized 
+Attribute names after load: row.names, aux_name, aux_key, names, stamp_pk, class, .internal.selfref, sorted 
+PASS: exact retained bytes, recorded object hash, column data, keys and provenance.
+Object hash after public load: 9ab992cf5c00697d 
+Bitwise equal to independent parser: TRUE 
+PASS: national COL 2021 source checks (relative tolerance 1e-14): 2 cells; unselected tags: 2021_v1_v1, 2021_v1_v2 

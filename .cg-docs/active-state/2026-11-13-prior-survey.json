@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "compound-gpid-active-state-v1",
+  "updatedAt": "2026-11-13T11:20:39Z",
+  "workflow": "/cg-work",
+  "status": "blocked",
+  "branch": "main",
+  "plan": ".cg-docs/plans/2026-11-09-installed-package-one-survey-example.md",
+  "executionReport": ".cg-docs/work-reports/2026-11-09-installed-package-one-survey-example.md",
+  "artifactRefs": [{"kind": "handoff", "path": ".cg-docs/orchestration/outputs/pipsystem/practical-integration-tests/20261111T190007Z-survey-resume/handoff.md", "status": "blocked"}],
+  "unresolvedDecisions": [{"id": "package-context-handoff", "summary": "Original acceptance needs separate package work and pin approval; Qmd Plan does not settle it.", "blocking": true}],
+  "nextCommand": "/cg-work .cg-docs/plans/2026-11-09-installed-package-one-survey-example.md phase2 review:auto deviate:auto"
+}

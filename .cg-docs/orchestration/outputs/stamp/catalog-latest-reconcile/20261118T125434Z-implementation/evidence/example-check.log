@@ -1,0 +1,8 @@
+EXAMPLE PASS: initially absent default alias and all recorded state unchanged
+✔ Registered builder for
+  E:\strec\r125434\tmp\Rtmpm0u1xK\existing-default-6f3c2f1c7435/unrelated.rds
+  (unrelated)
+✔ stamp options updated
+  retain_versions = "7", warn_missing_pk_on_load = "FALSE"
+EXAMPLE PASS: existing default, unrelated builder, options, cwd and graphics unchanged
+COMPATIBILITY PASS: baseline + one export; 39 old signatures, 15 old R files and protected records unchanged

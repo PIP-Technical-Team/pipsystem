@@ -1,0 +1,14 @@
+{
+    "mode":  "pin-diagnosis",
+    "launcher_pid":  27020,
+    "checkout":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem",
+    "r_exit":  0,
+    "started_utc":  "2026-11-19T16:37:41.9886082Z",
+    "finished_utc":  "2026-11-19T16:37:43.1376556Z",
+    "results":  "E:\\PovcalNet\\01.personal\\wb384996\\PIP\\pipsystem\\.cg-docs\\orchestration\\outputs\\pipsystem\\qmd-reconciliation-eligibility\\20261118T224533Z-guarded-launcher/pin-diagnosis-e602bdea0368.tsv",
+    "log":  "E:\\PovcalNet\\01.personal\\wb384996\\PIP\\pipsystem\\.cg-docs\\orchestration\\outputs\\pipsystem\\qmd-reconciliation-eligibility\\20261118T224533Z-guarded-launcher/pin-diagnosis-e602bdea0368.log",
+    "branch":  "main",
+    "run_id":  "e602bdea0368",
+    "r_executable":  "C:/Program Files/R/R-4.5.2/bin/Rscript.exe",
+    "scratch":  "E:/PovcalNet/01.personal/wb384996/PIP/pipsystem/.tmp/qre/e602bdea0368"
+}

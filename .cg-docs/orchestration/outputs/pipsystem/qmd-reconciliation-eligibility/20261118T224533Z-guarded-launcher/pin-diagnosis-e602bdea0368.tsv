@@ -1,0 +1,7 @@
+"measure"	"target"	"observation"	"path_exact"	"path_slashes_equal"	"format_recognized"	"format_matches_catalog"	"content_hash_matches_catalog"	"sidecar_size_matches_file"	"sidecar_size_matches_catalog"	"byte_checksum_recorded"
+"pfw"	"dbd2ccf63260991d"	"OBSERVED"	FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE
+"cpi"	"ae38185bd7ff383c"	"OBSERVED"	FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE
+"ppp"	"c16e62d94f46e1bc"	"OBSERVED"	FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE
+"pop"	"c059b971f5fc70cc"	"OBSERVED"	FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE
+"gdp"	"062e2d30b15b4661"	"OBSERVED"	FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE
+"pce"	"4d57e305a0e3c86e"	"OBSERVED"	FALSE	TRUE	TRUE	TRUE	TRUE	TRUE	TRUE	FALSE

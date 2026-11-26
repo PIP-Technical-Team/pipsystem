@@ -1,0 +1,346 @@
+
+R version 4.5.2 (2025-10-31 ucrt) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(testthat)
+> library(stamp)
+> test_check('stamp', filter = "^reconcile-latest$")
+Saving _problems/test-reconcile-latest-58.R
+Saving _problems/test-reconcile-latest-58.R
+Saving _problems/test-reconcile-latest-58.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-176.R
+Saving _problems/test-reconcile-latest-190.R
+Saving _problems/test-reconcile-latest-214.R
+Saving _problems/test-reconcile-latest-223.R
+Saving _problems/test-reconcile-latest-282.R
+[ FAIL 32 | WARN 0 | SKIP 0 | PASS 0 ]
+
+══ Failed tests ════════════════════════════════════════════════════════════════
+── Error ('test-reconcile-latest.R:58:7'): reconciliation is pointer-only for rds json ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, alias = f$alias)`: could not find function "st_reconcile_latest"
+── Error ('test-reconcile-latest.R:58:7'): reconciliation is pointer-only for rds both ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, alias = f$alias)`: could not find function "st_reconcile_latest"
+── Error ('test-reconcile-latest.R:58:7'): reconciliation is pointer-only for qs2 qs2 ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, alias = f$alias)`: could not find function "st_reconcile_latest"
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects count before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects fractional_count before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects invalid_time before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects tied_time before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects missing_time before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects list_time before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects duplicate_target before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects duplicate_artifact before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects format before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects content before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects code before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects created before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects size before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects missing_schema before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects parents_index before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects parents_snapshot before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects retained_bytes before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects missing_snapshot before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects missing_sidecar before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects main before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects current_sidecar before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects extra_current_form before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects extra_retained_form before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects checksum before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:175:5'): reconciliation rejects history_index before any mutation ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:175:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:189:5'): exact inputs and expected prestate cannot silently retarget ──
+Error in `st_reconcile_latest(f$path, target, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:189:5
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:213:3'): all integrity gates also precede an already-target noop ──
+Error in `st_reconcile_latest(f$path, f$b, f$a, f$alias)`: could not find function "st_reconcile_latest"
+Backtrace:
+    ▆
+ 1. └─testthat::expect_error(...) at test-reconcile-latest.R:213:3
+ 2.   └─testthat:::expect_condition_matching_(...)
+ 3.     └─testthat:::quasi_capture(...)
+ 4.       ├─testthat (local) .capture(...)
+ 5.       │ └─base::withCallingHandlers(...)
+ 6.       └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+── Error ('test-reconcile-latest.R:223:3'): apply requires real locks in writer order and releases on failure ──
+Error in `eval(code, test_env)`: object 'st_reconcile_latest' not found
+── Error ('test-reconcile-latest.R:262:5'): apply rechecks catalog and main bytes after both locks ──
+Error in `eval(code, test_env)`: object 'st_reconcile_latest' not found
+Backtrace:
+    ▆
+ 1. └─stamp:::audit_local_function(...) at test-reconcile-latest.R:262:5
+ 2.   ├─stamp (local) replace(body(fn)) at ./helper-faults.R:51:3
+ 3.   │ └─base::identical(expr, replacement[[1L]]) at ./helper-faults.R:41:7
+ 4.   └─base::body(fn)
+
+[ FAIL 32 | WARN 0 | SKIP 0 | PASS 0 ]
+Error:
+! Test failures.
+Execution halted

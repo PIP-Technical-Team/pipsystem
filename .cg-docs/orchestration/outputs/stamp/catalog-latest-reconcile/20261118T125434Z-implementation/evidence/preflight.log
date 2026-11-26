@@ -1,0 +1,525 @@
+R version 4.5.2 (2025-10-31 ucrt) 
+temp: E:\strec\r125434\tmp\Rtmpc9v9HW 
+home: E:\strec\r125434\home 
+[1] "E:/strec/r125434/library"                           
+[2] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5"
+[3] "C:/Program Files/R/R-4.5.2/library"                 
+R version 4.5.2 (2025-10-31 ucrt) 
+temp: E:\strec\r125434\tmp\RtmpcHHp9d 
+home: E:\strec\r125434\home 
+[1] "E:/strec/r125434/library"                           
+[2] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5"
+[3] "C:/Program Files/R/R-4.5.2/library"                 
+Checking cli 
+Checking fs 
+Checking rlang 
+Checking secretbase 
+Checking jsonlite 
+Checking data.table 
+Checking nanoparquet 
+Checking qs2 
+R version 4.5.2 (2025-10-31 ucrt) 
+temp: E:\strec\r125434\tmp\RtmpMjACPK 
+home: E:\strec\r125434\home 
+[1] "E:/strec/r125434/library"                           
+[2] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5"
+[3] "C:/Program Files/R/R-4.5.2/library"                 
+Checking cli 
+$package
+[1] "cli"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.6.6"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/cli"
+
+Checking fs 
+$package
+[1] "fs"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.1.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/fs"
+
+Checking rlang 
+$package
+[1] "rlang"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.3.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/rlang"
+
+Checking secretbase 
+$package
+[1] "secretbase"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.3.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/secretbase"
+
+Checking jsonlite 
+$package
+[1] "jsonlite"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.0.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/jsonlite"
+
+Checking data.table 
+$package
+[1] "data.table"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.18.4"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/data.table"
+
+Checking nanoparquet 
+$package
+[1] "nanoparquet"
+
+$status
+[1] "PASS"
+
+$version
+[1] "0.5.1"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/nanoparquet"
+
+Checking qs2 
+$package
+[1] "qs2"
+
+$status
+[1] "FAIL"
+
+$error
+[1] "unable to load shared object 'E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/stringfish/libs/x64/stringfish.dll':\n  LoadLibrary failure:  The specified module could not be found.\n"
+
+Checking testthat 
+$package
+[1] "testthat"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.3.2"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/testthat"
+
+Checking filelock 
+$package
+[1] "filelock"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.0.3"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/filelock"
+
+Checking pkgload 
+$package
+[1] "pkgload"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.5.3"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/pkgload"
+
+Checking roxygen2 
+$package
+[1] "roxygen2"
+
+$status
+[1] "PASS"
+
+$version
+[1] "8.0.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/roxygen2"
+
+Checking withr 
+$package
+[1] "withr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.0.2"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/withr"
+
+Checking callr 
+$package
+[1] "callr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.8.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/callr"
+
+Checking fst 
+$package
+[1] "fst"
+
+$status
+[1] "PASS"
+
+$version
+[1] "0.9.8"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/fst"
+
+Checking collapse 
+$package
+[1] "collapse"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.1.7"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/collapse"
+
+Checking knitr 
+$package
+[1] "knitr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.51"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/knitr"
+
+Checking rmarkdown 
+$package
+[1] "rmarkdown"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.31"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/rmarkdown"
+
+Checking covr 
+$package
+[1] "covr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.6.5"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/covr"
+
+R version 4.5.2 (2025-10-31 ucrt) 
+temp: E:\strec\r125434\tmp\RtmpoxiqUb 
+home: E:\strec\r125434\home 
+[1] "E:/strec/r125434/library"                                  
+[2] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5-pipapi"
+[3] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5"       
+[4] "C:/Program Files/R/R-4.5.2/library"                        
+Checking cli 
+$package
+[1] "cli"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.6.6"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/cli"
+
+Checking fs 
+$package
+[1] "fs"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.1.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/fs"
+
+Checking rlang 
+$package
+[1] "rlang"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.3.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/rlang"
+
+Checking secretbase 
+$package
+[1] "secretbase"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.3.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/secretbase"
+
+Checking jsonlite 
+$package
+[1] "jsonlite"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.0.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/jsonlite"
+
+Checking data.table 
+$package
+[1] "data.table"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.18.4"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/data.table"
+
+Checking nanoparquet 
+$package
+[1] "nanoparquet"
+
+$status
+[1] "PASS"
+
+$version
+[1] "0.5.1"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/nanoparquet"
+
+Checking qs2 
+$package
+[1] "qs2"
+
+$status
+[1] "PASS"
+
+$version
+[1] "0.2.2"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5-pipapi/qs2"
+
+Checking testthat 
+$package
+[1] "testthat"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.3.2"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/testthat"
+
+Checking filelock 
+$package
+[1] "filelock"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.0.3"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/filelock"
+
+Checking pkgload 
+$package
+[1] "pkgload"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.5.3"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/pkgload"
+
+Checking roxygen2 
+$package
+[1] "roxygen2"
+
+$status
+[1] "PASS"
+
+$version
+[1] "8.0.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/roxygen2"
+
+Checking withr 
+$package
+[1] "withr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.0.2"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/withr"
+
+Checking callr 
+$package
+[1] "callr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.8.0"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/callr"
+
+Checking fst 
+$package
+[1] "fst"
+
+$status
+[1] "PASS"
+
+$version
+[1] "0.9.8"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/fst"
+
+Checking collapse 
+$package
+[1] "collapse"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.1.7"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/collapse"
+
+Checking knitr 
+$package
+[1] "knitr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "1.51"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/knitr"
+
+Checking rmarkdown 
+$package
+[1] "rmarkdown"
+
+$status
+[1] "PASS"
+
+$version
+[1] "2.31"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/rmarkdown"
+
+Checking covr 
+$package
+[1] "covr"
+
+$status
+[1] "PASS"
+
+$version
+[1] "3.6.5"
+
+$origin
+[1] "E:/PovcalNet/01.personal/wb384996/R/win-library/4.5/covr"
+
+PREFLIGHT PASS

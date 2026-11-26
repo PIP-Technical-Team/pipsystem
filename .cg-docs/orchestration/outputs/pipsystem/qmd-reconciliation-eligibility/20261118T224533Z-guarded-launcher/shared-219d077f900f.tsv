@@ -1,0 +1,19 @@
+"measure"	"previous"	"target"	"status"	"detail"
+"pfw"	"5a1af0d6edf7d639"	"dbd2ccf63260991d"	"FAIL"	"Pinned metadata and catalog disagree.
+Caused by error in `.st_execution_validate_pin()`:
+! Pinned metadata and catalog disagree."
+"cpi"	"02e66e507fb7946a"	"ae38185bd7ff383c"	"FAIL"	"Pinned metadata and catalog disagree.
+Caused by error in `.st_execution_validate_pin()`:
+! Pinned metadata and catalog disagree."
+"ppp"	"13aa439a44297b23"	"c16e62d94f46e1bc"	"FAIL"	"Pinned metadata and catalog disagree.
+Caused by error in `.st_execution_validate_pin()`:
+! Pinned metadata and catalog disagree."
+"pop"	"44be5f221cdbd223"	"c059b971f5fc70cc"	"FAIL"	"Pinned metadata and catalog disagree.
+Caused by error in `.st_execution_validate_pin()`:
+! Pinned metadata and catalog disagree."
+"gdp"	"9927e67693c42f7c"	"062e2d30b15b4661"	"FAIL"	"Pinned metadata and catalog disagree.
+Caused by error in `.st_execution_validate_pin()`:
+! Pinned metadata and catalog disagree."
+"pce"	"6fde46585a733db2"	"4d57e305a0e3c86e"	"FAIL"	"Pinned metadata and catalog disagree.
+Caused by error in `.st_execution_validate_pin()`:
+! Pinned metadata and catalog disagree."
