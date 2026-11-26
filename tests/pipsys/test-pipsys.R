@@ -110,30 +110,6 @@ test_that("times print in New York time with EDT or EST", {
   expect_equal(ps$fmt_et(ps$parse_utc(NA_character_)), "UNKNOWN")
 })
 
-test_that("pickup resolves one exact unstarted run from the correct repo", {
-  temp <- withr::local_tempdir()
-  checkout <- make_git_repo(file.path(temp, "package"))
-  other <- make_git_repo(file.path(temp, "other"))
-  root <- make_root(file.path(temp, "hub"), c(demo = checkout))
-  run <- file.path(ps$outputs_dir(root), "demo", "build", "run1")
-  assignment <- write_lines(file.path(run, "assignment.md"), "assigned task")
-  handoff <- file.path(run, "handoff.md")
-
-  expect_identical(
-    unname(ps$pickup_path("demo/build/run1", root, checkout)),
-    c(normalizePath(assignment, winslash = "/"),
-      file.path(normalizePath(run, winslash = "/"), "handoff.md"))
-  )
-  expect_error(ps$pickup_path("demo/../run1", root, checkout), "Invalid")
-  expect_error(ps$pickup_path("unknown/build/run1", root, checkout), "registered")
-  expect_error(ps$pickup_path("demo/build/run1", root, other), "checkout")
-  expect_error(ps$pickup_path("demo/build/run2", root, checkout), "not found")
-  expect_false(file.exists(handoff))
-  write_lines(handoff, "started")
-  expect_error(ps$pickup_path("demo/build/run1", root, checkout), "already")
-  expect_identical(readLines(handoff), "started")
-})
-
 test_that("handoffs: v2, v1 and other formats are read", {
   out <- withr::local_tempdir()
   f2 <- write_lines(

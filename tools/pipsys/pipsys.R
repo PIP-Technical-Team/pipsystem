@@ -11,7 +11,6 @@
 #   tools\pipsys\pipsys.cmd check-doc <file>   check a /pip-doc document
 #   tools\pipsys\pipsys.cmd check-path <path>  exit 1 if a path leaves the checkout
 #   tools\pipsys\pipsys.cmd install-kilo       copy tools/pipsys/kilo/* into .kilo/
-#   tools\pipsys\pipsys.cmd pickup-path P/T/R  run from the package checkout
 #
 # macOS has no wrapper: Rscript --no-init-file tools/pipsys/pipsys.R <command>
 #
@@ -1838,18 +1837,12 @@ main <- function(args = commandArgs(trailingOnly = TRUE)) {
         }
         sprintf("inside: %s", normalizePath(arg2, winslash = "/", mustWork = FALSE))
       },
-      `pickup-path` = {
-        if (length(args) != 2L) {
-          rlang::abort("Usage: pickup-path PROJECT/TASK/RUN")
-        }
-        pickup_path(arg2)
-      },
       `install-kilo` = c("Installed:", install_kilo()),
       rlang::abort(sprintf(
         paste0(
           "Unknown subcommand '%s'. Use: status <package>, overview, ",
           "handoffs [project], site, check-map, check-doc <file>, ",
-          "check-path <path>, pickup-path PROJECT/TASK/RUN, install-kilo."
+          "check-path <path>, install-kilo."
         ),
         cmd
       ))
@@ -1889,48 +1882,6 @@ backtick_citations <- function(text) {
     rest <- sub(s, " ", rest, fixed = TRUE)
   }
   return(list(cit = cit, rest = rest))
-}
-
-# Resolve one unused assignment, only from its registered package checkout.
-pickup_path <- function(id, root = pipsys_root(), checkout = getwd()) {
-  if (!grepl("\\A[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+){2}\\z", id, perl = TRUE)) {
-    rlang::abort("Invalid assignment ID; expected PROJECT/TASK/RUN.")
-  }
-  project <- strsplit(id, "/", fixed = TRUE)[[1L]][1L]
-  packages <- read_packages(root)
-  registered <- packages$path[packages$package == project]
-  if (project == "pipsystem" || length(registered) != 1L ||
-      !dir.exists(registered)) {
-    rlang::abort("Assignment package is not a registered local package.")
-  }
-
-  canonical <- function(path) {
-    return(tolower(normalizePath(path, winslash = "/", mustWork = TRUE)))
-  }
-  top <- run_git(checkout, c("rev-parse", "--show-toplevel"))
-  git_dir <- c("rev-parse", "--path-format=absolute", "--git-common-dir")
-  actual_repo <- run_git(checkout, git_dir)
-  expected_repo <- run_git(registered, git_dir)
-  if (length(top) != 1L || !identical(canonical(top), canonical(checkout)) ||
-      length(actual_repo) != 1L || length(expected_repo) != 1L ||
-      !identical(canonical(actual_repo), canonical(expected_repo))) {
-    rlang::abort("Run pickup from the assigned package repository checkout.")
-  }
-
-  hub <- normalizePath(root, winslash = "/", mustWork = TRUE)
-  run_dir <- file.path(outputs_dir(hub), id)
-  assignment <- file.path(run_dir, "assignment.md")
-  handoff <- file.path(run_dir, "handoff.md")
-  if (!file.exists(assignment) || dir.exists(assignment)) {
-    rlang::abort("Assignment not found.")
-  }
-  if (!identical(canonical(assignment), tolower(assignment))) {
-    rlang::abort("Assignment path resolves outside its literal run path.")
-  }
-  if (file.exists(handoff)) {
-    rlang::abort("This assignment already has a handoff; do not rerun it.")
-  }
-  return(c(assignment = assignment, handoff = handoff))
 }
 
 if (sys.nframe() == 0L) {

@@ -194,9 +194,8 @@ Record internal gate codes and actual workflow approval needs; never call
 historical reported checks current passes.
 
 Save useful complete copy-ready prompts for the next action, not blocked
-implementation. Target a pipsystem session, also for package work, unless
-the user asked for the package-session fallback (`ORCHESTRATOR.md`,
-"Dispatch and return"). Follow `ORCHESTRATOR.md`, "Prompts for other
+implementation. Target a pipsystem session, also for package work
+(`ORCHESTRATOR.md`, "Dispatch and return"). Follow `ORCHESTRATOR.md`, "Prompts for other
 sessions" and "Metadata for user-facing commands and prompts" (Plan NONE
 when there is none), and add the platform write limits in
 `ORCHESTRATOR.md`, "Tools".
