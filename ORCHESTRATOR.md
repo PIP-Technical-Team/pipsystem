@@ -27,41 +27,40 @@ Every fact traces to a file and line, or is marked UNKNOWN; a run-time fact trac
 
 ## Packages
 
-| Package | Windows location (Mac: see registry) | Owns (`SYSTEM_DESIGN.md:284-313`) |
-|------------------------|------------------------|------------------------|
-| `pipsystem` | `E:/PovcalNet/01.personal/wb384996/PIP/pipsystem` | Design, evidence, coordination |
-| `stamp` | `E:/PovcalNet/01.personal/wb384996/Rpackages/stamp` | Artifacts, hashes, parents, versions, staleness |
-| `pipaux` | `E:/PovcalNet/01.personal/wb384996/PIP/pipaux` | Auxiliary data and their dependencies |
-| `pipdata` | `E:/PovcalNet/01.personal/wb384996/PIP/pipdata` | Survey processing and release orchestration |
-| `pipster` | `E:/PovcalNet/01.personal/wb384996/PIP/pipster` | Calculations on supplied data |
-| `pipload` | `E:/PovcalNet/01.personal/wb384996/PIP/pipload` | PIP-aware access adapter |
-| `pipfun` | `E:/PovcalNet/01.personal/wb384996/PIP/pipfun` | Shared utilities, logging |
-| `pipapi` | `E:/PovcalNet/01.personal/wb384996/PIP/pipapi` | Serving every release |
-| `wbpip` | `E:/PovcalNet/01.personal/wb384996/PIP/wbpip` | Calculation reference (Open: likely retired) |
-| `pipfaker` | `E:/PovcalNet/01.personal/wb384996/PIP/pipfaker` | Synthetic test data |
-| `metapip` | `E:/PovcalNet/01.personal/wb384996/PIP/metapip` | Ecosystem installation |
-| `piptm` | Out of scope | Table Maker |
+Locations: `tools/pipsys/packages.csv` (`path` on Windows, `mac_path` on macOS).
+
+| Package | Owns (`SYSTEM_DESIGN.md:284-313`) |
+|------------------------|------------------------|
+| `pipsystem` | Design, evidence, coordination |
+| `stamp` | Artifacts, hashes, parents, versions, staleness |
+| `pipaux` | Auxiliary data and their dependencies |
+| `pipdata` | Survey processing and release orchestration |
+| `pipster` | Calculations on supplied data |
+| `pipload` | PIP-aware access adapter |
+| `pipfun` | Shared utilities, logging |
+| `pipapi` | Serving every release |
+| `wbpip` | Calculation reference (Open: likely retired) |
+| `pipfaker` | Synthetic test data |
+| `metapip` | Ecosystem installation |
+| `piptm` | Table Maker (out of scope, not registered) |
 
 ### Changes in packages
 
-Use this hub for authorized package work, directly or through an internal subagent. Code, tests, and package Plans stay in the owning repository. Verify the package against `tools/pipsys/packages.csv`, identify the exact checkout, branch and full SHA, and read its instructions. Check the target files for uncommitted work before editing and stop on conflicting changes. `AGENTS.md` ("Git scope") says which repositories you may change: the registered ones only. Assign one writer per set of overlapping files; use separate checkouts when concurrent work would otherwise conflict. Report every package change. The Decided rule is `SYSTEM_DESIGN.md:319`; tool permissions and publication approvals still apply.
+Use this hub for authorized package work, directly or through an internal subagent. Code, tests, and package Plans stay in the owning repository. Follow `AGENTS.md`, first Rule (registry, checkout, branch, full SHA, instructions, uncommitted work) and "Git scope" (registered repositories only). Assign one writer per set of overlapping files; use separate checkouts when concurrent work would otherwise conflict. Report every package change. The Decided rule is `SYSTEM_DESIGN.md:319`; tool permissions and publication approvals still apply.
 
 ## Tools
 
-You have the same permissions as Code mode: read, search, edit, shell, subagents, web and scheduling. On Windows, write only to E:, except for Kilo configuration files that the global rules explicitly allow. On macOS, write source files only for authorized work (`AGENTS.md`, first Rule) in a registered checkout whose Git root matches its mac_path in tools/pipsys/packages.csv. Save sanitized coordination reports only in the verified pipsystem hub. Workspace membership alone grants no write access. Keep network inputs read-only. Use a separately approved location for runtime writes. Host and organization restrictions still apply. Never copy credentials, production data, or raw conversations into project files. Do not change client settings; the user keeps auto-approve ON. Do not make any rule or prompt depend on a specific Kilo version.
+You have the same permissions as Code mode: read, search, edit, shell, subagents, web and scheduling. On Windows, write only to E:, except for Kilo configuration files that the global rules explicitly allow. On macOS, write source files only for authorized work (`AGENTS.md`, first Rule) in a registered checkout whose Git root matches its mac_path in `tools/pipsys/packages.csv`, or in a linked worktree of that repository (same `git rev-parse --path-format=absolute --git-common-dir`). Save sanitized coordination reports only in the verified pipsystem hub. Workspace membership alone grants no write access. Keep network inputs read-only. Use a separately approved location for runtime writes. Host and organization restrictions still apply. Never copy credentials, production data, or raw conversations into project files. Do not change client settings; the user keeps auto-approve ON. Do not make any rule or prompt depend on a specific Kilo version.
 
-For status, use the information commands (`/pip-status <package>`, `/pip-overview`, `/pip-handoffs [project]`, `/pip-site`) instead of assembling it by hand, and show their output as printed. They run `tools\pipsys\pipsys.cmd` (Plan `.cg-docs/plans/2026-10-29-pipsystem-info-tools-v1.md`); package paths are in `tools/pipsys/packages.csv`. For a cited document, use `/pip-doc` (Plan `.cg-docs/plans/2026-10-29-doc-pipeline.md`). Edit command and agent definitions in `tools/pipsys/kilo/`, then run `tools\pipsys\pipsys.cmd install-kilo`; `.kilo/` holds only the installed copies.
+For status, use the information commands (`/pip-status <package>`, `/pip-overview`, `/pip-handoffs [project]`, `/pip-site`) instead of assembling it by hand, and show their output as printed. They run pipsys (`AGENTS.md`, Rules, "pipsys"; Plan `.cg-docs/plans/2026-10-29-pipsystem-info-tools-v1.md`); package paths are in `tools/pipsys/packages.csv`. For a cited document, use `/pip-doc` (Plan `.cg-docs/plans/2026-10-29-doc-pipeline.md`). Edit command and agent definitions in `tools/pipsys/kilo/`, then run pipsys `install-kilo` and reload the window. `.kilo/` is gitignored and holds only the installed copies; a new worktree has none until its own copy runs `install-kilo`.
 
-Only /pip-next may retain raw information-command output in its saved assessment instead of repeating it in default chat. Its concise decision brief keeps material caveats and failures visible and links the saved assessment; full evidence and useful complete prompts remain there. 
-
-
-Time zone: show times to people in New York time (`America/New_York`, written "ET", for example "1:44 p.m. ET"). It follows daylight saving time: EDT (UTC-4) until 2026-11-01, then EST (UTC-5). Keep UTC (`Z`) in files, run IDs and tool arguments, so records sort correctly and stay unambiguous.
+Time zone: show times to people in New York time (`America/New_York`, written "ET", for example "1:44 p.m. ET"). Take the offset from the time zone database (EST, UTC-5, in winter; EDT, UTC-4, in summer). Keep UTC (`Z`) in files, run IDs and tool arguments, so records sort correctly and stay unambiguous.
 
 ## Workflow
 
 ### Status questions
 
-1.  Read the relevant handoffs (`outputs/<project>/<task>/<run>/handoff.md`), the package's Git state and its active Plans.
+1.  Run the information command for the scope ("Tools"). Then read only the handoffs, Git state and active Plans that the answer needs.
 2.  For each project or task, report: stage, last update, blockers, next action and owner, and the source path. Label each claim as observed, worker-reported or proposed.
 3.  Say what you did not read.
 
@@ -109,25 +108,13 @@ Use extra high only when the task merits it; do not inherit or identify the curr
 **Setup card template — outside the copyable task block:**
 
 - **Project Name:** <project/package>
-
-- **Suggested Session Name:** \<meaningful task name; at most six words\>
-
-- **Branch:**
-
-  <default/current/new>
-
-  — <branch name>; <existing/proposed>
-
+- **Suggested Session Name:** <meaningful task name; at most six words>
+- **Branch:** <default/current/new> — <branch name>; <existing/proposed>
 - **Worktree Requirement:** <Yes/No> — <new worktree/existing checkout or worktree>; <absolute path>
-
 - **Model Family Recommendation:** <Powerful/Standard/Small> — <brief task-based reason>
-
 - **Effort:** <low/medium/high/extra high>
-
 - **Target Project:** <project/package and absolute repository root>
-
-- **Target Environment:** \<branch, path and new/existing status\>
-
+- **Target Environment:** <branch, path and new/existing status>
 - **Target Agent:** <Code mode/pip-orchestrator>
 
 Render the setup card directly above and outside the copyable command/task block. The suggested session name is naming advice for the user; do not create or rename a session automatically. Keep it outside the copied task block. Model family and effort belong only in this user-facing card, never in the agent's copied task instructions. Do not ask the worker to select, change or infer its model, effort or client settings. Keep shell syntax free of metadata. A shared card covers only contiguous commands with the same context/recommendation; different targets or tasks need separate cards.
@@ -153,7 +140,7 @@ Keep prompts short. Do not start a new Agent Manager session unless the user exp
 
 ### Dispatch and return
 
-Prefer an internal `task` subagent for independent package work, including implementation, when it has the required tools. It stays rooted in pipsystem. Give it the registered repository identity, exact checkout path, branch, full SHA, authorized files/scope, checks, and exact report path. The worker explicitly loads the package instructions, edits via absolute paths, and runs checks with the package checkout as the shell working directory. It saves the handoff in pipsystem; the parent independently checks the package diff and test evidence before advancing dependent work. No package chat or pickup line is needed for this route. An assignment authorizes only its stated scope and grants no new tool permissions or approvals; stop on tool denial and use the package-session fallback if that context is needed.
+Prefer an internal `task` subagent for independent package work, including implementation, when it has the required tools. It stays rooted in pipsystem. Give it the registered repository identity, exact checkout path, branch, full SHA, authorized files/scope, checks, and exact report path. The worker explicitly loads the package instructions, edits via absolute paths, and runs checks with the package checkout as the shell working directory. It saves the handoff in pipsystem; the parent independently checks the package diff and test evidence before advancing dependent work. No package chat or pickup line is needed for this route. An assignment authorizes only its stated scope and grants no new tool permissions or approvals. On a tool denial, stop and report it (`AGENTS.md`, "Autonomy"). Do not hand the user a prompt for a package session unless the user asks for the package-session fallback (items 1-3).
 
 1.  For the package-session fallback, save the authorized task's setup card and block once as `assignment.md` beside its future `handoff.md`. Follow `CONTRACT.md`, "Package Assignment Pickup". Do not repurpose `/pip-next`'s read-only assessment or use old handoffs as executable instructions.
 2.  If Agent Manager exposes the exact package session and checkout, send `/pip-pickup PROJECT/TASK/RUN` after verifying authorization, identity and attention state. If the session is unavailable or cannot be verified, give the user the setup card and one pickup command for the package session. Do not guess an ID, answer for the user, or substitute a pipsystem worktree for the package.
@@ -186,11 +173,11 @@ Follow `AGENTS.md`, "Coordinated Agent Outputs", and the format and layout in `.
 
 ## Git
 
-Follow "Git scope" in `AGENTS.md`: any repository that is not registered in `tools/pipsys/packages.csv` is read-only. In `pipsystem` and the registered packages you may use state-changing Git for authorized work.
+Follow `AGENTS.md`, "Git scope".
 
-- Commits, pushes, merges and other publication: only on the user's instruction for that task (`AGENTS.md`, "Git scope"). "Commit when done" covers that task's commits.
+- "Commit when done" covers that task's commits.
 - Branches and worktrees: create them when the task needs one, and name them in your report.
-- Stage only the files of the task. Destructive Git (`AGENTS.md`, "Git scope") needs the user's approval.
+- Stage only the files of the task.
 
 ### Frequent logical checkpoints
 
@@ -205,11 +192,11 @@ Change `roadmap.json` only through `@cg-roadmap`. Status updates that follow ver
 
 ## Changing These Rules
 
-When the user asks for a specific rule change, edit this file, your block in `kilo.json`, `CONTRACT.md`, and the sections of `AGENTS.md` that hold the changed rule. Update every copy of the rule. Save a handoff under `outputs/pipsystem/orchestrator-self-maintenance/<run-id>/handoff.md`. A change takes effect after the user reloads the project configuration or starts a fresh session.
+Follow `AGENTS.md`, "pip-orchestrator", "Its own rules".
 
 ## Retained Records
 
-`registry.json`, `projects/*`, `STATE.md`, `REQUESTS.md`, `templates/*` and `tools/pip-orchestration.mjs` with its tests belong to a paused formal workflow. Keep them. Do not use or update them.
+`registry.json`, `projects/*`, `STATE.md`, `REQUESTS.md` and `templates/*` in `.cg-docs/orchestration/`, and `tools/pip-orchestration.mjs` with its tests, belong to a paused formal workflow. Keep them. Do not use or update them.
 
 ## Gaps
 

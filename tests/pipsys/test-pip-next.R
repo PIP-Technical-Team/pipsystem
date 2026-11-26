@@ -1,6 +1,7 @@
 # Contract checks, not a claim that every LLM assessment is deterministic.
-# Run tools\pipsys\pipsys.cmd install-kilo first: parity is post-install.
-# Run from the checkout root with TEMP/TMP/TMPDIR on E: before starting R:
+# Run pipsys install-kilo first (AGENTS.md, Rules, "pipsys"): parity is
+# post-install. Run from the checkout root (on Windows, with TEMP/TMP/TMPDIR
+# on E: before starting R):
 # Rscript --no-init-file -e "testthat::test_file('tests/pipsys/test-pip-next.R')"
 
 library(testthat)
@@ -38,7 +39,7 @@ test_that("argument validation precedes shell use and uses the package registry"
   expect_match(text, "pip-next: invalid argument", fixed = TRUE)
   expect_match(text, "pip-next: unknown package", fixed = TRUE)
   expect_match(text, "before any shell call or report write", fixed = TRUE)
-  expect_match(text, "ROOT is the current session's pipsystem checkout", fixed = TRUE)
+  expect_match(text, "ROOT is HUB, the main pipsystem checkout", fixed = TRUE)
 })
 
 test_that("evidence collection handles refs, worktrees and circular assessments", {
@@ -97,18 +98,14 @@ test_that("saved assessment retains full evidence and prompts", {
 })
 
 test_that("coordination exception applies only to pip-next", {
-  paths <- c("ORCHESTRATOR.md", "AGENTS.md", ".cg-docs/orchestration/CONTRACT.md")
-  texts <- vapply(paths, function(path) {
-    paste(readLines(file.path("..", "..", path), warn = FALSE), collapse = " ")
-  }, character(1))
-  config <- jsonlite::fromJSON(file.path("..", "..", "kilo.json"))
-  texts <- c(texts, config$agent$`pip-orchestrator`$prompt)
-  for (text in texts) {
-    expect_match(text, "Only /pip-next", fixed = TRUE)
-    expect_match(text, "saved assessment", fixed = TRUE)
-    expect_match(text, "material", fixed = TRUE)
-    expect_match(text, "standalone", fixed = TRUE)
-  }
+  # The rule lives once, in AGENTS.md ("Coordinated Agent Outputs").
+  agents <- paste(
+    readLines(file.path("..", "..", "AGENTS.md"), warn = FALSE),
+    collapse = " "
+  )
+  expect_match(agents, "output as printed. Only `/pip-next`", fixed = TRUE)
+  expect_match(agents, "saved assessment", fixed = TRUE)
+  expect_match(agents, "material", fixed = TRUE)
   for (name in c("pip-status", "pip-overview", "pip-handoffs")) {
     path <- file.path("..", "..", "tools", "pipsys", "kilo", "commands", paste0(name, ".md"))
     text <- paste(readLines(path, warn = FALSE), collapse = " ")

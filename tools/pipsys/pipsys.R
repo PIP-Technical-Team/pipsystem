@@ -11,13 +11,19 @@
 #   tools\pipsys\pipsys.cmd check-doc <file>   check a /pip-doc document
 #   tools\pipsys\pipsys.cmd check-path <path>  exit 1 if a path leaves the checkout
 #   tools\pipsys\pipsys.cmd install-kilo       copy tools/pipsys/kilo/* into .kilo/
+#   tools\pipsys\pipsys.cmd pickup-path P/T/R  run from the package checkout
+#
+# macOS has no wrapper: Rscript --no-init-file tools/pipsys/pipsys.R <command>
 #
 # Packages and paths: tools/pipsys/packages.csv (the pipsystem row always
-# means the checkout that holds this script). Quarto: DEFAULT_QUARTO below, or
-# the environment variable PIPSYS_QUARTO. Saved times stay UTC; generated
+# means the checkout that holds this script). Quarto: DEFAULT_QUARTO below
+# (Windows: the E: install; macOS: quarto on PATH), or the environment
+# variable PIPSYS_QUARTO. Saved times stay UTC; generated
 # report times are New York time (America/New_York). The script only reads
 # package repositories (Git calls use --no-optional-locks) and writes only
 # under this checkout: site/gen, site/_site, site/.quarto and .tmp/pipsys.
+# On macOS (no wrapper) R temporary files go to the system temp folder, and
+# Quarto keeps its cache in ~/Library/Caches/quarto.
 # Plan: .cg-docs/plans/2026-10-29-pipsystem-info-tools-v1.md
 
 suppressPackageStartupMessages(suppressWarnings({
@@ -26,9 +32,11 @@ suppressPackageStartupMessages(suppressWarnings({
 
 PIPSYS_VERSION <- "v1"
 DISPLAY_TZ <- "America/New_York"
-DEFAULT_QUARTO <- paste0(
+DEFAULT_QUARTO <- if (.Platform$OS.type == "windows") {
   "E:/PovcalNet/01.personal/wb384996/tools/quarto-1.8.27/bin/quarto.exe"
-)
+} else {
+  unname(Sys.which("quarto"))
+}
 # Plan statuses treated as closed; every other status counts as open.
 CLOSED_PLAN_STATUSES <- c("completed", "complete", "done", "superseded")
 
@@ -130,12 +138,34 @@ read_frontmatter <- function(file, lines = read_lines_utf8(file)) {
   return(out)
 }
 
+# TRUE when `path` is the `hub` checkout or a linked worktree of it (same
+# Git common directory).
+same_repository <- function(path, hub) {
+  if (identical(
+    normalizePath(path, mustWork = FALSE),
+    normalizePath(hub, mustWork = FALSE)
+  )) {
+    return(TRUE)
+  }
+  args <- c("rev-parse", "--path-format=absolute", "--git-common-dir")
+  path_git <- run_git(path, args)
+  hub_git <- run_git(hub, args)
+  return(
+    length(path_git) == 1L &&
+      length(hub_git) == 1L &&
+      identical(
+        normalizePath(path_git, mustWork = FALSE),
+        normalizePath(hub_git, mustWork = FALSE)
+      )
+  )
+}
+
 read_packages <- function(root) {
   file <- file.path(root, "tools", "pipsys", "packages.csv")
   pk <- fread(file, colClasses = "character", na.strings = NULL)
   if (.Platform$OS.type != "windows") {
     mac_hub <- path.expand(pk[package == "pipsystem", mac_path])
-    if (!identical(normalizePath(root, mustWork = TRUE), mac_hub)) {
+    if (!same_repository(root, mac_hub)) {
       rlang::abort("No package mapping for this hub checkout.")
     }
     pk[, path := path.expand(mac_path)]
@@ -1605,18 +1635,21 @@ inside_root <- function(path, root) {
   return(identical(real, base) || startsWith(real, paste0(base, "/")))
 }
 
-# Delete and recreate <root>/site/gen. Refuses any other folder, a root that
-# is not on E:, or a site without _quarto.yml.
+# Delete and recreate <root>/site/gen. Refuses any other folder, a Windows
+# root that is not on E:, or a site without _quarto.yml.
 reset_gen_dir <- function(gen, root) {
   gen <- normalizePath(gen, winslash = "/", mustWork = FALSE)
   root <- normalizePath(root, winslash = "/", mustWork = TRUE)
   expected <- paste0(root, "/site/gen")
   ok <- identical(tolower(gen), tolower(expected)) &&
-    grepl("^[Ee]:/", root) &&
+    (.Platform$OS.type != "windows" || grepl("^[Ee]:/", root)) &&
     file.exists(file.path(root, "site", "_quarto.yml"))
   if (!ok) {
     rlang::abort(sprintf(
-      "Refusing to reset '%s': only <pipsystem root on E:>/site/gen is reset.",
+      paste0(
+        "Refusing to reset '%s': only <pipsystem root>/site/gen is reset ",
+        "(on E: on Windows)."
+      ),
       gen
     ))
   }
@@ -1708,8 +1741,9 @@ build_site <- function(root = pipsys_root(),
     return(out)
   }
   home <- file.path(root, ".tmp", "pipsys", "quarto-home")
-  # Quarto state must stay inside this checkout, also through junctions:
+  # Windows Quarto state stays inside this checkout, also through junctions:
   # check each folder (or its nearest existing parent) before creating it.
+  # On macOS Quarto uses DENO_DIR only (see the header).
   for (d in c("local", "roaming", "deno")) {
     target <- file.path(home, d)
     if (!inside_root(target, root)) {
@@ -1727,7 +1761,13 @@ build_site <- function(root = pipsys_root(),
   )
   log <- suppressWarnings(system2(
     quarto,
-    c("render", shQuote(site, type = "cmd")),
+    c(
+      "render",
+      shQuote(
+        site,
+        type = if (.Platform$OS.type == "windows") "cmd" else "sh"
+      )
+    ),
     stdout = TRUE,
     stderr = TRUE
   ))

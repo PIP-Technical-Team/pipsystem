@@ -18,33 +18,45 @@ word matching `^[A-Za-z0-9_-]+$` after trimming outer whitespace. Otherwise
 print `pip-next: invalid argument` and `Usage: /pip-next [package]`, then stop
 before any shell call or report write. Do not interpolate unchecked input.
 
-ROOT is the main pipsystem checkout registered in `tools/pipsys/packages.csv` (`ORCHESTRATOR.md`, line 3). Stop if the session's Git root or branch does not match.
+ROOT is HUB, the main pipsystem checkout registered in
+`tools/pipsys/packages.csv` (`AGENTS.md`, Rules, "pipsys").
+If the session's Git root or branch does not match, print
+`pip-next: run from ROOT on main (this session: PATH, BRANCH)` and stop
+before any report write.
 A nonempty argument must exactly match a registered package. Otherwise print
 `pip-next: unknown package NAME`, list the registered names and stop before
 any shell call or report write.  Do not guess paths for missing or unregistered packages.
 
 ## 2. Collect current evidence
 
-- Read ROOT's `compound-gpid.md`, `SYSTEM_DESIGN.md`, `ORCHESTRATOR.md`, `AGENTS.md` and
-  `.cg-docs/orchestration/CONTRACT.md`. Respect Decided items; Open is not approval.
-- Read the corresponding installed information-command definitions. From ROOT,
-  use the shell tool for `tools\pipsys\pipsys.cmd overview` in global mode or
-  `tools\pipsys\pipsys.cmd status PACKAGE` in package mode; also run
-  `tools\pipsys\pipsys.cmd handoffs` to discover cross-package task reports.
+- This read-only assessment reads ROOT's `compound-gpid.md`, section 12 of
+  `SYSTEM_DESIGN.md`, the `SYSTEM_DESIGN.md` sections that the candidates
+  touch, and "Output Layout" and "Handoff Format" in
+  `.cg-docs/orchestration/CONTRACT.md`. `ORCHESTRATOR.md` is your prompt
+  (`kilo.json`); read it and `AGENTS.md` only if they are not already in
+  your context. Respect Decided items; Open is not approval.
+- Run pipsys (`AGENTS.md`, Rules, "pipsys") with `overview` and
+  `status pipsystem` in global mode (the hub's open Plans; `roadmap.json`
+  does not link every Plan) or `status PACKAGE` in package mode, and with
+  `handoffs` to discover cross-package task reports.
   Keep stdout verbatim, separate from your assessment. Keep errors and exit
   status too; an unavailable input becomes a named gap, not a fabricated state.
 - Read the system clock and time zone. Show the assessment time and evidence
   update times in ET; keep UTC in run IDs and saved records.
-- Inspect roadmap milestone/feature IDs, status, dependencies and Plan links.
+- Inspect roadmap milestone/feature IDs, status and Plan links. roadmap.json
+  has no dependency field; take dependencies from the linked Plans.
   Start with current focus and unfinished work; do not select a task just
   because its Plan or handoff sorts newest. In global mode scan active tasks
   across registered packages for candidates. In package mode inspect that
   package plus its upstream blockers and relevant downstream interfaces.
 - Open the selected original task handoffs, actual Plans and their revisions,
-  reviews (including unresolved findings) and work reports. Follow references
-  to newer/superseding runs. A completed Plan, roadmap flag or reported test
-  pass alone does not prove integration or current readiness. Do not run tests
-  to certify those claims; distinguish source inspection from reported execution.
+  reviews (including unresolved findings), work reports, and the milestone,
+  phase and step documents under `experiments/` (`AGENTS.md`, "Development
+  evidence"); their PASS/FAIL/NOT RUN are recorded results, not current runs.
+  Follow references to newer/superseding runs. A completed Plan, roadmap flag or
+  reported test pass alone does not prove integration or current readiness. Do
+  not run tests to certify those claims; distinguish source inspection from
+  reported execution.
 - For each repository read, record branch, path, dirty paths and full SHAs
   using read-only Git, including `git rev-parse HEAD`. Inspect relevant source
   or tests when needed to establish a prerequisite. When a report names another
@@ -135,8 +147,7 @@ Retain material caveats, conflicts, failed information commands and approval nee
 in chat even if this exceeds the word target. Label worker-reported checks;
 never imply integration, real-source success or deployment from weaker evidence.
 Summarize an information-command failure and its effect; keep exact output/status
-in the saved assessment, not a default raw-output dump. Standalone information
-commands still show their output as printed; only /pip-next has this exception.
+in the saved assessment, not a default raw-output dump.
 Keep full SHAs, detailed task matrices, internal gate codes and exhaustive
 citations in the saved assessment rather than default chat. Briefly state the
 evidence strength or provenance gap that affects the decision instead.
@@ -183,9 +194,13 @@ Record internal gate codes and actual workflow approval needs; never call
 historical reported checks current passes.
 
 Save useful complete copy-ready prompts for the next action, not blocked
-implementation. Follow ORCHESTRATOR.md's prompt contract: slash command on line 1,
-target metadata, absolute repo and actual branch, Plan path/revision or NONE,
-goal/scope/functional check, routed review agents for cg-work, autonomy limits, short Minimal first rules, unique absolute pip-handoff-v2 report path, the platform write limits in `ORCHESTRATOR.md`, "Tools", and estimated duration. Read the installed workflow before selecting its
+implementation. Target a pipsystem session, also for package work, unless
+the user asked for the package-session fallback (`ORCHESTRATOR.md`,
+"Dispatch and return"). Follow `ORCHESTRATOR.md`, "Prompts for other
+sessions" and "Metadata for user-facing commands and prompts" (Plan NONE
+when there is none), and add the platform write limits in
+`ORCHESTRATOR.md`, "Tools".
+Read the installed workflow before selecting its
 route. If inputs are UNKNOWN, provide targeted verification without guessing a
 branch or Plan. The user starts sessions; a saved prompt grants no execution.
 Finalize the complete record before returning the brief; if saving fails, do not
@@ -196,8 +211,8 @@ claim that omitted evidence was durably preserved.
 Do not run the PIP pipeline or package tests. Do not start sessions, workers,
 scheduled follow-ups or background jobs. Do not edit package files, Plans,
 roadmap, design, site, active-state or paused formal records. No Git mutation.
-Writes are limited to the new assessment handoff and process temporary files
-under resolved E:-contained `.tmp/pipsys`, through the existing wrapper. All writes and indirect caches must follow the platform write limits in `ORCHESTRATOR.md`, "Tools" (Windows: E: only, never C:); stop an unsafe write path.
+Writes are limited to the new assessment handoff and the R temporary files of
+pipsys (on Windows, under E:-contained `.tmp/pipsys` through the wrapper). All writes and indirect caches must follow the platform write limits in `ORCHESTRATOR.md`, "Tools" (Windows: E: only, never C:); stop an unsafe write path.
 
 Minimal first: smallest end-to-end answer; safeguards only against almost-irreversible
 harm, otherwise Later; one functional check for each proposed change; use

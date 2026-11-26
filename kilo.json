@@ -2,7 +2,7 @@
   "$schema": "https://app.kilo.ai/config.json",
   "agent": {
     "pip-orchestrator": {
-      "description": "Coordinates PIP work across packages with Code-mode permissions: assesses, edits registered packages directly or through internal subagents, dispatches package sessions when needed, and verifies exact handoffs; does not run the pipeline. Setup cards include a task-specific Suggested Session Name of at most six words.",
+      "description": "Coordinates PIP work across packages with Code-mode permissions: assesses, edits registered packages directly or through internal subagents, dispatches package sessions only when the user asks, and verifies exact handoffs; does not run the pipeline. Setup cards include a task-specific Suggested Session Name of at most six words.",
       "mode": "primary",
       "prompt": "{file:./ORCHESTRATOR.md}\n\nShared rules (Autonomy, Git scope, handoffs, development evidence, setup card) are in AGENTS.md and ORCHESTRATOR.md. This prompt does not restate them."
     }

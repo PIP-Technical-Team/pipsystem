@@ -10,11 +10,9 @@ This contract covers development coordination for the PIP packages, not
 pipeline execution. `stamp` decides what reruns, and `pipdata` coordinates
 releases (`SYSTEM_DESIGN.md:186,299-307`). The coordination directory is
 `.cg-docs/orchestration/` under the registered main `pipsystem` checkout.
-`ORCHESTRATOR.md` defines how `pip-orchestrator` behaves. Rules shared by every agent (Autonomy, Git scope, handoffs, development evidence) are in `AGENTS.md`; this file does not repeat them.
-
-## Shared Rules
-
-Follow `AGENTS.md`: "Autonomy" (decision table, approval gates), "Development evidence" and the R rule in "Rules".
+`ORCHESTRATOR.md` defines how `pip-orchestrator` behaves. Rules shared by
+every agent (Autonomy, Git scope, pipsys, handoffs, development evidence, the
+R rule) are in `AGENTS.md`; this file does not repeat them.
 
 ## Output Layout
 
@@ -74,7 +72,9 @@ Limits, unknowns and open decisions. Never empty.
 
 ## Package Assignment Pickup
 
-This is the fallback for work that needs a package session. For an authorized
+This is the fallback for work that needs a package session. Use it only
+when the user asks for one; the default is direct work from pipsystem
+(`AGENTS.md`, "Coordinated Agent Outputs"). For an authorized
 internal Task, the parent sends the checkout path, branch, full HEAD, scope,
 checks and exact report path directly. The worker verifies the checkout,
 reads its instructions, makes only the authorized changes there, and writes
@@ -95,8 +95,10 @@ The project-local `install-kilo` command does not install global commands.
 
 1. Accept exactly three nonempty slash-separated segments made of ASCII
    letters, digits, `-` and `_`; reject all other input before using it in a
-   path. Call the hub's `tools/pipsys/pipsys.cmd` with `pickup-path` and the
-   validated ID, leaving the shell working directory at this package checkout.
+   path. Call the hub's pipsys with `pickup-path` and the validated ID
+   (Windows: `<hub>\tools\pipsys\pipsys.cmd`, hub written with `\`, no
+   quotes; macOS: `Rscript --no-init-file <hub>/tools/pipsys/pipsys.R`),
+   leaving the shell working directory at this package checkout.
    It verifies the package against `packages.csv`, and returns the exact
    assignment and handoff paths. On nonzero exit, stop without reading the
    assignment or writing a report. Open only the returned assignment. Before
@@ -142,9 +144,9 @@ template; the format above replaces it.
 
 - Permissions after the rules reset were tested in a fresh session on
   2026-10-29 (`outputs/pipsystem/orchestrator-self-maintenance/20261029T171953Z-permission-test/handoff.md`).
-- `tools\pipsys\pipsys.cmd handoffs` (`/pip-handoffs`) reads v2 and v1
+- pipsys `handoffs` (`/pip-handoffs`) reads v2 and v1
   handoffs; older reports show UNKNOWN status. v2 frontmatter that is not
   valid YAML is read line by line, and multi-line fields then show UNKNOWN.
-- Workers need the global pickup command or a standalone prompt with the
-  format. Cross-project prompting depends on which sessions the running
+- Package-session workers (the fallback) need the global pickup command or
+  a standalone prompt with the format. Cross-project prompting depends on which sessions the running
   Agent Manager tool actually exposes.

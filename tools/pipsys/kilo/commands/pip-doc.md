@@ -8,7 +8,11 @@ Run these steps in this order. Do not skip, merge or reorder them. Start each
 subagent with the `task` tool and give it only the inputs named here. ROOT is
 the absolute path of the current pipsystem checkout (the session working
 directory: the main checkout or an Agent Manager worktree); pass it to every
-subagent. Write only inside ROOT, never on C:.
+subagent. HUB is the main checkout (`AGENTS.md`, Rules, "pipsys"); it is
+ROOT outside a worktree. PIPSYS(X) is `<X>\tools\pipsys\pipsys.cmd` on
+Windows (X written with `\`, no quotes) and
+`Rscript --no-init-file <X>/tools/pipsys/pipsys.R` on macOS. Write only
+inside ROOT and HUB, never on C:.
 
 0. Parse the arguments. TARGET is the first argument, a `.md` path (use
    `docs/<name>.md` when the user gives only a name). SOURCES are the next
@@ -18,11 +22,11 @@ subagent. Write only inside ROOT, never on C:.
      print `pip-doc: invalid path <path>` and stop.
    - Every SOURCE must exist.
    - SLUG is the TARGET file name without `.md`. RUN is
-     `.cg-docs/orchestration/outputs/pipsystem/doc-<SLUG>/<UTC time as
+     `<HUB>/.cg-docs/orchestration/outputs/pipsystem/doc-<SLUG>/<UTC time as
      yyyyMMddTHHmmssZ>-pip-doc`.
-   - Run `tools\pipsys\pipsys.cmd check-path "<TARGET>"` and
-     `tools\pipsys\pipsys.cmd check-path "<RUN>"`. If either exits with an
-     error, print it and stop.
+   - From ROOT, run `PIPSYS(ROOT) check-path "<TARGET>"` and
+     `PIPSYS(HUB) check-path "<RUN>"`. If either exits with an error, print
+     it and stop.
    - Create RUN and `RUN/handoff.md` in the pip-handoff-v2 format of
      `.cg-docs/orchestration/CONTRACT.md`, status `running`.
 1. Writer. Subagent `pip-doc-writer` with ROOT, TARGET, SOURCES and PURPOSE.
@@ -39,8 +43,9 @@ subagent. Write only inside ROOT, never on C:.
    `RUN/meaning.md`. If a verdict is not `same`, leave TARGET and
    `RUN/checked.md` as they are, set the handoff to `blocked`, name the rows
    and both paths, and stop.
-6. Script check. Run `tools\pipsys\pipsys.cmd check-doc "<TARGET>"` with the
+6. Script check. From ROOT, run `PIPSYS(ROOT) check-doc "<TARGET>"` with the
    shell tool and save its output as `RUN/check-doc.md`. If it exits with an
    error, set the handoff to `blocked` and stop.
 7. Set the handoff to `completed` with the TARGET path and the three summary
-   lines. Print the TARGET path, the summaries and the RUN path.
+   lines; if a writer or simplifier reply ends with `style file not read`,
+   say so under Gaps. Print the TARGET path, the summaries and the RUN path.
