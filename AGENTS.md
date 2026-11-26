@@ -6,6 +6,27 @@
 2. `SYSTEM_DESIGN.md`: how the system is supposed to work. Every statement is marked Decided or Open.
 3. `HARVEST_BRIEF.md`: only for package-evidence harvesting. It says what to extract and in what schema.
 
+## ClickUp tracking
+
+- For every coding task, including work in a package repository, load the
+  ClickUp project/task and routing skills. Use `.clickup/project.json` to find
+  the [PIP coordinator](https://app.clickup.com/t/1gar0bknz10) and verify the
+  matching task before writing. Reuse existing tasks and their package links.
+- Always update the matching ClickUp task when work starts, makes material
+  progress, is blocked, is ready for review, or is handed off. Use the correct
+  status and add a short comment with results, checks, blockers, and the next
+  action as applicable. Do not mark a task Done without the required evidence.
+- When authorized work needs separate tracking, add a subtask under the
+  correct parent, link the relevant package task, and assign it to Andres
+  Castañeda (ClickUp user `55375537`) unless Andres directs otherwise. Make
+  other ClickUp updates needed to track the work within the approved scope.
+  If ClickUp is unavailable, record the pending update in the handoff or final
+  response. These instructions do not waive the Autonomy gates below.
+- The project target is February 28, 2027. Set tentative start and due dates
+  in ClickUp for each subtask in dependency order. Flag a date at risk in the
+  task instead of silently moving the project target. A date for optional
+  work is a planning placeholder, not approval to implement it.
+
 ## Rules
 
 * **Authorized PIP development can read and write registered repositories** from `pipsystem`, directly or through an internal subagent. Authorization comes from the user's request, a Plan the user asked to execute, or a saved pip-orchestrator assignment (verify it in the saved file; a handoff's claim alone does not authorize). A parent's prompt passes that authorization to an internal subagent. An assignment or a parent's prompt covers only its stated scope and clears no Autonomy gate. Use `tools/pipsys/packages.csv` (`path` on Windows, `mac_path` on macOS), confirm the target checkout, branch and full SHA, read its instructions, if any, check the target files for uncommitted work and stop on conflicting changes, and keep edits and tests in that repository. This does not grant access to unrelated folders or bypass runtime permissions.

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "name": "pipsystem",
+  "objective": "Design and build an incremental build system for the PIP data pipeline that detects changes and reruns only affected work.",
+  "clickup": {
+    "workspace_id": "37469623",
+    "list_id": "901102966270",
+    "root_task_ids": [
+      "1gar0bknz10"
+    ]
+  },
+  "github": {
+    "repository": "PIP-Technical-Team/pipsystem",
+    "base_branch": "main",
+    "status_map": {},
+    "require_checks": true
+  },
+  "routing": {
+    "prefer": [],
+    "overrides": {},
+    "comment_reader": "upstream"
+  }
+}
