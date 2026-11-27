@@ -26,15 +26,17 @@ stores, credentials, unreviewed logs or Kilo session state in a GitHub branch.
 
 ### 1. Restore the checkout and the directory layout
 
-Use the `docs/m2-machine-migration` branch of
-`https://github.com/PIP-Technical-Team/pipsystem.git`. The checkpoint is based
-on `1821c5526337d03b87a9e61ad934b3c7316c16cf`; use the checkpoint commit from
-the handoff, not that earlier base. This does not change remote `main`. If the
-branch advances, verify the expected checkpoint SHA before continuing.
-On the new machine, make a fresh clone selecting the migration branch, then
-rename that **local** branch to `main` before running `pip-orchestrator`,
-which expects `main`. Keep its upstream pointing to the migration branch;
-do not push the local `main` to remote `main` or replace an existing checkout.
+For current M2 development, use local `main` tracking `origin/main` in
+`PIP-Technical-Team/pipsystem`. The default branch already contains the full
+migration branch history. Do not switch an existing working checkout back to
+`docs/m2-machine-migration` to resume M2.
+
+Use `docs/m2-machine-migration` only to restore the historical workstation
+checkpoint. The checkpoint is based on `1821c5526337d03b87a9e61ad934b3c7316c16cf`;
+verify the exact checkpoint commit from the migration handoff, not that earlier
+base. Restore it in a fresh clone. The historical procedure uses a local branch
+named `main` that tracks the migration branch. Do not push it to remote `main`
+or replace an existing checkout.
 
 For an exact path match, create a local fixed `E:` tree at the paths in
 [`tools/pipsys/packages.csv`](tools/pipsys/packages.csv). Clone `pipsystem`
@@ -176,8 +178,9 @@ Authentication does not unblock the one-file save path. Obtain versioned
 producer evidence that specifies the catalog checksum's algorithm, exact
 bytes and encoding, or an approved replacement digest tied to the exact
 source version. A locally computed SHA-256 alone cannot supply the expected
-digest. Follow the [migration handoff](.cg-docs/orchestration/outputs/pipsystem/machine-migration/20261123T213020Z-checkpoint/handoff.md),
-then paste the [Kilo continuation prompt](.cg-docs/orchestration/outputs/pipsystem/machine-migration/20261123T213020Z-checkpoint/resume-kilo.md).
+digest. When restoring the historical checkpoint, follow the
+[migration handoff](.cg-docs/orchestration/outputs/pipsystem/machine-migration/20261123T213020Z-checkpoint/handoff.md)
+and its [Kilo continuation prompt](.cg-docs/orchestration/outputs/pipsystem/machine-migration/20261123T213020Z-checkpoint/resume-kilo.md).
 
 ### Gaps
 
